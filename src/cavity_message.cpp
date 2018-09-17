@@ -51,7 +51,7 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
       std::generate_n(this->weights[i][j], this->N,
                       [&]()
                       {
-                        return Magnetization::f2m<Mag>(x * (2. * dist(engine) - 1.)); // troubles with rng
+                        return mag::f2m<Mag>(x * (2. * dist(engine) - 1.)); // troubles with rng
                       });
     }
   }
@@ -68,14 +68,14 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
 
   for (long int i = 0L; i < this->K; ++i)
   {
-    Magnetization::zeros(this->m_star_j[i], this->N);
-    Magnetization::zeros(this->m_j_star[i], this->N);
+    mag::zeros(this->m_star_j[i], this->N);
+    mag::zeros(this->m_j_star[i], this->N);
   }
   for (long int i = 0L; i < this->M; ++i)
   {
-    Magnetization::zeros(this->m_in[i], this->K);
-    Magnetization::zeros(this->m_no[i], this->K);
-    Magnetization::zeros(this->m_ni[i], this->K);
+    mag::zeros(this->m_in[i], this->K);
+    mag::zeros(this->m_no[i], this->K);
+    mag::zeros(this->m_ni[i], this->K);
     for (long int j = 0L; j < this->K; ++j)
     {
       this->weights[i][j] = new Mag[this->N];
@@ -83,7 +83,7 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
       std::generate_n(this->weights[i][j], this->N,
                       [&]()
                       {
-                        return Magnetization::f2m<Mag>(x * (2. * dist(engine) - 1.));
+                        return mag::f2m<Mag>(x * (2. * dist(engine) - 1.));
                       });
     }
   }

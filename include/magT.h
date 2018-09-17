@@ -50,7 +50,7 @@ struct MagT64
                                                                                       -2. * ay,
                                                                                   t2 = (std::isinf(ax) || std::isinf(ay)) ?
                                                                                        0.                                 :
-                                                                                       Magnetization::lr(ax + ay) - Magnetization::lr(ax - ay);
+                                                                                       mag::lr(ax + ay) - mag::lr(ax - ay);
                                                                            return MagT64((t1 + t2) * .5);
                                                                          }
   double operator*(const double &x)                                      { return this->mag * x; }

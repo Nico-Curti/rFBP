@@ -20,7 +20,7 @@ struct MagP64
   std::string magformat()                                     { return "plain"; }
 
   // math operators
-  MagP64 operator%(const MagP64 &m)                           { return MagP64( Magnetization::clamp( (this->mag + m.mag) / (1. + this->mag * m.mag), -1., 1.)); }
+  MagP64 operator%(const MagP64 &m)                           { return MagP64( mag::clamp( (this->mag + m.mag) / (1. + this->mag * m.mag), -1., 1.)); }
 
   MagP64 operator+(const MagP64 &m)                           { return MagP64(this->mag + m.mag); }
   double operator+(const double &x)                           { return x + this->mag; }

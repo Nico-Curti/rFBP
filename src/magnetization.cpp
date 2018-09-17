@@ -1,22 +1,99 @@
 #include <magnetization.h>
 
-namespace Magnetization
+namespace mag
 {
                       auto     sign          (const double &x)                                         { return (x > 0.) ? 1. : (x < 0. ? -1. : 0);}
-  template<class Mag> bool     signbit       (const Mag &m)                                            { return std::signbit(m.mag); }
-  template<class Mag> auto     f2m           (const double &x)                                         { return Mag(x); }
-  template<class Mag> void     zeros         (Mag *x, const long int &n)                               { std::fill_n(x, n, 0.f); }
-  template<class Mag> void     zero          (Mag &x)                                                  { x.mag = 0.; }
-  template<class Mag> double   abs           (const Mag &a)                                            { return std::abs(a.mag); }
                       double   clamp         (const double &x, const double &low, const double &high)  {return (low <= x && x <= high) ? x : (x < low) ? low : high; }
-  template<class Mag> void     copysign      (Mag &x, const double &y)                                 { signbit(x) != signbit(y) ? -x : x; }
                       double   lr            (const double &x)                                         { return std::log1p(std::exp(-2. * std::abs(x))); }
-  template<class Mag> auto     arrow         (const Mag &m, const double &x)                           { return mtanh(x * std::atanh(m.mag));}
                       long int sign0         (const double &x)                                         { return 1L - 2L * static_cast<long int>(std::signbit(x));}
-  template<class Mag> long int sign0         (const Mag &x)                                            { return 1L - 2L * static_cast<long int>(signbit(x)); }
-  template<class Mag> double   logmag2p      (const Mag &x)                                            { return std::log( (1. + x.mag) * .5 ); }
-  template<class Mag> auto     convert       (const double &x)                                         { return Mag(x); }
-  template<class Mag> auto     convert       (const Mag &x)                                            { return Mag(clamp(std::atanh(x), -30., 30.)); }
+
+  template<class Mag> bool     signbit       (const Mag &m)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "signbit function! Incompatible types found.");
+    return std::signbit(m.mag);
+  }
+
+  template<class Mag> auto     f2m           (const double &x)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "f2m function! Incompatible types found.");
+    return Mag(x);
+  }
+
+  template<class Mag> void     zeros         (Mag *x, const long int &n)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "zeros function! Incompatible types found.");
+    std::fill_n(x, n, 0.f);
+  }
+
+  template<class Mag> void     zero          (Mag &x)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "zero function! Incompatible types found.");
+    x.mag = 0.;
+  }
+
+  template<class Mag> double   abs           (const Mag &a)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "abs function! Incompatible types found.");
+    return std::abs(a.mag);
+  }
+
+  template<class Mag> void     copysign      (Mag &x, const double &y)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "copysign function! Incompatible types found.");
+    signbit(x) != signbit(y) ? -x : x;
+  }
+
+  template<class Mag> auto     arrow         (const Mag &m, const double &x)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "arrow function! Incompatible types found.");
+    return mtanh(x * std::atanh(m.mag));
+  }
+
+  template<class Mag> long int sign0         (const Mag &x)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "sign0 function! Incompatible types found.");
+    return 1L - 2L * static_cast<long int>(signbit(x));
+  }
+
+  template<class Mag> double   logmag2p      (const Mag &x)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "logmag2p function! Incompatible types found.");
+    return std::log( (1. + x.mag) * .5 );
+  }
+
+  template<class Mag> auto     convert       (const double &x)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "convert function! Incompatible types found.");
+    return Mag(x);
+  }
+
+  template<class Mag> auto     convert       (const Mag &x)
+  {
+    static_assert( (std::is_same_v<Mag, MagP64> ||
+                   (std::is_same_v<Mag, MagT64>)),
+                   "convert function! Incompatible types found.");
+    return Mag(clamp(std::atanh(x), -30., 30.));
+  }
 
 
   template<class Mag> auto     couple        (const double &x1, const double &x2)
@@ -185,7 +262,7 @@ namespace Magnetization
 
     double aH = std::atanh(H.mag),
            t1, t2;
-    if (aH == 0) return MagT64(0.);
+    if (aH == 0.) return MagT64(0.);
     else
     {
       double xH   = aH + ap,
@@ -213,21 +290,13 @@ namespace Magnetization
         }
         else
         {
+          t2 = 0.;
           if ( (sign(ap) == sign(aH) && sign(ap) == sign(aH)) || ((sign(ap) != sign(aH) && sign(ap) != sign(aH))) )
-          {
             t1 = 0.;
-            t2 = 0.;
-          }
           else if (sign(ap) == sign(aH))
-          {
             t1 = 2. * H.mInf;
-            t2 = 0.;
-          }
           else
-          {
             t1 = -2. * H.mInf;
-            t2 = 0.;
-          }
         }
     }
     else

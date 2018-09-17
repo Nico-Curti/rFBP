@@ -7,19 +7,19 @@
 static constexpr double log_2 = 0.30102999566;
 static constexpr double inf   = std::numeric_limits<double>::infinity();
 
-namespace Magnetization
+namespace mag
 {
                       auto     sign          (const double &x);
+                      double   clamp         (const double &x, const double &low, const double &high);
+                      double   lr            (const double &x);
+                      long int sign0         (const double &x);
   template<class Mag> bool     signbit       (const Mag &m);
   template<class Mag> auto     f2m           (const double &x);
   template<class Mag> void     zeros         (Mag *x, const long int &n);
   template<class Mag> void     zero          (Mag &x);
   template<class Mag> double   abs           (const Mag &a);
-                      double   clamp         (const double &x, const double &low, const double &high);
   template<class Mag> void     copysign      (Mag &x, const double &y);
-                      double   lr            (const double &x);
   template<class Mag> auto     arrow         (const Mag &m, const double &x);
-                      long int sign0         (const double &x);
   template<class Mag> long int sign0         (const Mag &x);
   template<class Mag> double   logmag2p      (const Mag &x);
   template<class Mag> auto     convert       (const double &x);

@@ -1,6 +1,12 @@
 #include <rfbp.h>
 
-template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M, const double *xi, MagVec<Mag> u, Mag &U, const Params<Mag> &params, const long int &nxi, const long int &nm)
+template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
+                                                    const double *xi,
+                                                    MagVec<Mag> u,
+                                                    Mag &U,
+                                                    const Params<Mag> &params,
+                                                    const long int &nxi,
+                                                    const long int &nm)
 {
 #ifdef DEBUG
   assert(nxi == nm);
@@ -8,21 +14,20 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M, const
   double maxdiff = 0.,
          mu      = 0.,
          sigma2  = 0.,
-         vH, dsigma2, g, p0, pmu, psigma;
+         dsigma2, g, p0, pmu, psigma;
   Mag old_m_on(0.),
       new_u(0.),
       new_m(0.);
 
   std::unique_ptr<Mag[]> h(new Mag[nm]);
 
-  old_m_on = Magnetization::bar(M, U);
-  vH       = old_m_on.mag;
+  old_m_on = mag::bar(M, U);
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : mu, sigma2)
   for (long int i = 0L; i < nm; ++i)
   {
-    h[i] = Magnetization::bar(m[i], u[i]);
+    h[i] = mag::bar(m[i], u[i]);
     mu  += hi[i] * x[i];
     sigma2 += (1. - h[i].mag * h[i].mag) * (xi[i] * x[i]);
   }
@@ -30,22 +35,22 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M, const
   std::transform(m, m + nm, u,
                  h, [](const Mag &mi, const Mag &ui)
                  {
-                  return Magnetization::bar(mi, ui);
+                  return mag::bar(mi, ui);
                  });
   mu     = std::inner_product(h, h + nm, xi, 0.f, std::plus<double>(), [](const Mag &hi,    const double &xi_i){return hi * xi_i;});
   sigma2 = std::inner_product(h, h + nxi, xi, 0., std::plus<double>(), [](const double &hi, const double &xi_i){return (1. - hi.mag * hi.mag) * (xi_i * xi_i);});
 #endif
 
   dsigma2 = 2. * sigma2;
-  new_u   = Magnetization::merf<Mag>( mu / std::sqrt(dsigma2) );
+  new_u   = mag::merf<Mag>( mu / std::sqrt(dsigma2) );
   maxdiff = std::abs( U - new_u );
-  U       = Magnetization::damp(new_u, U, params.damping);
+  U       = mag::damp(new_u, U, params.damping);
   new_m   = old_m_on % U;
   M       = new_m;
 
   g       = std::exp(- (mu * mu) / dsigma2) / std::sqrt(M_PI * dsigma2);
 
-  p0      = 2. * vH * g / (1. + vH * U);
+  p0      = 2. * old_m_on.mag * g / (1. + old_m_on.mag * U);
   pmu     = p0 * (p0 + mu / sigma2);
   psigma  = p0 * (1. - mu / sigma2 - mu * p0) / dsigma2;
 
@@ -54,17 +59,24 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M, const
 #endif
   for (long int i = 0L; i < nm; ++i)
   {
-    new_u   = Magnetization::convert<Mag>(Magnetization::clamp(xi[i] * (p0 + xi[i] * (h[i].mag * pmu + xi[i] * (1. - h[i].mag * h[i].mag) * psigma)),
+    new_u   = mag::convert<Mag>(mag::clamp(xi[i] * (p0 + xi[i] * (h[i].mag * pmu + xi[i] * (1. - h[i].mag * h[i].mag) * psigma)),
                                                                -1. + epsilon, 1. - epsilon));
     maxdiff = std::max(maxdiff, std::abs(new_u - u[i]) );
-    u[i] = Magnetization::damp(new_u, u[i], params.damping);
+    u[i] = mag::damp(new_u, u[i], params.damping);
     m[i] = h[i] % u[i];
   }
 
   return maxdiff;
 }
 
-template<class Mag> double theta_node_update_accurate(MagVec<Mag> m, Mag &M, const double *xi, MagVec<Mag> u, Mag &U, const Params<Mag> &params, const long int &nxi, const long int &nm)
+template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
+                                                      Mag &M,
+                                                      const double *xi,
+                                                      MagVec<Mag> u,
+                                                      Mag &U,
+                                                      const Params<Mag> &params,
+                                                      const long int &nxi,
+                                                      const long int &nm)
 {
 #ifdef DEBUG
   assert(nxi == nm);
@@ -77,13 +89,13 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m, Mag &M, con
       new_u(0.);
   std::unique_ptr<Mag[]> h(new Mag[nm]);
 
-  old_m_on = Magnetization::bar(M, U);
+  old_m_on = mag::bar(M, U);
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : mu, sigma2)
   for (long int i = 0L; i < nm; ++i)
   {
-    h[i]    = Magnetization::bar(m[i], u[i]);
+    h[i]    = mag::bar(m[i], u[i]);
     mu     += h[i] * xi[i];
     sigma2 += (1. - h[i].mag * h[i].mag) * (xi[i] * xi[i]);
   }
@@ -91,14 +103,14 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m, Mag &M, con
   std::transform(m, m + nm, u,
                  h, [](const Mag &mi, const Mag &ui)
                  {
-                  return Magnetization::bar(mi, ui);
+                  return mag::bar(mi, ui);
                  });
   mu     = std::inner_product(h, h + nm, xi, 0.f, std::plus<double>(), [](const Mag &hi,    const double &xi_i){return hi * xi_i;});
   sigma2 = std::inner_product(h, h + nxi, xi, 0., std::plus<double>(), [](const double &hi, const double &xi_i){return (1. - hi.mag * hi.mag) * (xi_i * xi_i);});
 #endif
 
-  new_u = Magnetization::merf<Mag>( mu / std::sqrt(2. * sigma2));
-  U     = Magnetization::damp(new_u, U, params.damping);
+  new_u = mag::merf<Mag>( mu / std::sqrt(2. * sigma2));
+  U     = mag::damp(new_u, U, params.damping);
   M     = old_m_on % U;
 
 #ifdef _OPENMP
@@ -107,9 +119,9 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m, Mag &M, con
   for (long int i = 0L; i < nm; ++i)
   {
     tmp     = std::sqrt( 2. * (sigma2 - (1. - h[i].mag * h[i].mag) * x[i] * x[i]));
-    new_u   = Magnetization::erfmix(old_m_on, ((mu - xi[i] * vh[i]) + xi[i]) / tmp , ((mu - xi[i] * vh[i]) - xi[i]) / tmp);
+    new_u   = mag::erfmix(old_m_on, ((mu - xi[i] * vh[i]) + xi[i]) / tmp , ((mu - xi[i] * vh[i]) - xi[i]) / tmp);
     maxdiff = std::max(maxdiff, std::abs(new_u.mag, u[i].mag));
-    u[i]    = Magnetization::damp(new_u, u[i], params.damping);
+    u[i]    = mag::damp(new_u, u[i], params.damping);
     m[i]    = h[i] % u[i];
   }
 
@@ -122,7 +134,13 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m, Mag &M, con
 
 
 
-template<class Mag> double free_energy_theta(const MagVec<Mag> m, const Mag &M, const double *xi, const MagVec<Mag> u, const Mag &U, const long int &nxi, const long int &nm)
+template<class Mag> double free_energy_theta(const MagVec<Mag> m,
+                                             const Mag &M,
+                                             const double *xi,
+                                             const MagVec<Mag> u,
+                                             const Mag &U,
+                                             const long int &nxi,
+                                             const long int &nm)
 {
 #ifdef DEBUG
   assert(nm == nxi);
@@ -131,17 +149,16 @@ template<class Mag> double free_energy_theta(const MagVec<Mag> m, const Mag &M, 
         sigma = 0.,
         f;
   Mag old_m_on(0.),
-      new_u(0.),
       b(0.);
   std::unique_ptr<Mag[]> h(new Mag[nm]);
 
-  old_m_on = Magnetization::bar(M, U);
+  old_m_on = mag::bar(M, U);
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : mu, sigma)
   for (long int i = 0L; i < nm; ++i)
   {
-    h[i]   = Magnetization::bar(m[i], u[i]);
+    h[i]   = mag::bar(m[i], u[i]);
     mu    += h[i] * xi[i];
     sigma += (1. - h[i].mag * h[i].mag) * (xi[i] * xi[i]);
   }
@@ -150,15 +167,15 @@ template<class Mag> double free_energy_theta(const MagVec<Mag> m, const Mag &M, 
   std::transform(m, m + nm, u,
                  h, [](const Mag &mi, const Mag &ui)
                  {
-                  return Magnetization::bar(mi, ui);
+                  return mag::bar(mi, ui);
                  });
   mu    = std::inner_product(h, h + nm, xi, 0.f, std::plus<double>(), [](const Mag &hi,    const double &xi_i){return hi * xi_i;});
   sigma = std::inner_product(h, h + nxi, xi, 0., std::plus<double>(), [](const double &hi, const double &xi_i){return (1. - hi.mag * hi.mag) * (xi_i * xi_i);});
 #endif
   sigma = std::sqrt( 2. * sigma );
 
-  b     = Magnetization::merf<Mag>( mu / sigma );
-  f     = -Magnetization::log1pxy(old_m_on, b);
+  b     = mag::merf<Mag>( mu / sigma );
+  f     = -mag::log1pxy(old_m_on, b);
 
 #ifdef DEBUG
   assert( !std::isinf(f) );
@@ -166,39 +183,42 @@ template<class Mag> double free_energy_theta(const MagVec<Mag> m, const Mag &M, 
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : f)
-  for (long int i = 0L; i < nm; ++i) f += Magnetization::log1pxy(h[i], u[i]);
+  for (long int i = 0L; i < nm; ++i) f += mag::log1pxy(h[i], u[i]);
 #else
-  f = std::inner_product(h, h + nm, u, f, std::plus<double>(), [](const Mag &hi, const Mag &ui){return Magnetization::log1pxy(hi, ui);});
+  f = std::inner_product(h, h + nm, u, f, std::plus<double>(), [](const Mag &hi, const Mag &ui){return mag::log1pxy(hi, ui);});
 #endif
 
   return f;
 }
 
-template<class Mag> double free_energy_theta_exact(MagVec<Mag> m, const Mag &M, const double *xi, MagVec<Mag> u, const Mag &U, const long int &nm)
+template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
+                                                   const Mag &M,
+                                                   const double *xi,
+                                                   MagVec<Mag> u,
+                                                   const Mag &U,
+                                                   const long int &nm)
 {
   long int z;
   double pm = 0., pp = 0., f = 0.;
   Mag old_m_on(0.),
-      new_u(0.),
-      mp(0.), mm(0.),
       b(0.);
   std::unique_ptr<Mag[]> h(new Mag[nm]);
   double **leftC = new double*[nm];
 
-  old_m_on = Magnetization::bar(M, U);
+  old_m_on = mag::bar(M, U);
 
 #ifdef _OPENMP
 #pragma omp for
   for (long int i = 0L; i < nm; ++i)
   {
-    h[i] = Magnetization::bar(m[i], u[i]);
-    leftC[i] = new T[nm + 1];
+    h[i] = mag::bar(m[i], u[i]);
+    leftC[i] = new double[nm + 1];
   }
 #else
   std::transform(m, m + nm, u,
                  h, [](const Mag &mi, const Mag &ui)
                  {
-                  return Magnetization::bar(mi, ui);
+                  return mag::bar(mi, ui);
                  });
   std::generate_n(leftC, nm, [&](){return new double[nm + 1L];});
 #endif
@@ -230,21 +250,21 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m, const Mag &M, 
     pm += (i <  z) ? leftC[nm - 1L][i] : 0.;
     pp += (i >= z) ? leftC[nm - 1L][i] : 0.;
   }
-  b  = Magnetization::couple<Mag>(pp, pm);
-  f -= Magnetization::log1pxy(old_m_on, b);
+  b  = mag::couple<Mag>(pp, pm);
+  f -= mag::log1pxy(old_m_on, b);
 #ifdef DEBUG
   assert(!std::isinf(f));
 #endif
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : f)
-  for (long int i = 0; i < nm; ++i) f += Magnetization::log1pxy(h[i], u[i]);
+  for (long int i = 0; i < nm; ++i) f += mag::log1pxy(h[i], u[i]);
 #else
-  f = std::inner_product(h, h + nm, u, f, std::plus<T>(), [](const Mag &h, const Mag &u){return Magnetization::log1pxy(h, u);});
+  f = std::inner_product(h, h + nm, u, f, std::plus<T>(), [](const Mag &h, const Mag &u){return mag::log1pxy(h, u);});
 #endif
 
-  for (int i = 0; i < nm; ++i) delete[]leftC[i];
-  delete[]leftC;
+  for (int i = 0; i < nm; ++i) delete[] leftC[i];
+  delete[] leftC;
 
   return f;
 }
@@ -252,7 +272,7 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m, const Mag &M, 
 template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Mag> &params) //old entro_node_update
 {
   double diff;
-  Mag old_m_j_star = Magnetization::bar(m_j_star, m_star_j),
+  Mag old_m_j_star = mag::bar(m_j_star, m_star_j),
       new_m_star_j(0.),
       new_m_j_star(0.);
 
@@ -261,10 +281,10 @@ template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Ma
     params.tan_gamma = (old_m_j_star != 0.) ?
                        ( (signbit(params.tan_gamma) != signbit(old_m_j_star)) ? -params.tan_gamma : params.tan_gamma) :
                        params.tan_gamma;
-  else    new_m_star_j = Magnetization::arrow( (old_m_j_star * params.tan_gamma), params.r ) * params.tan_gamma;
+  else    new_m_star_j = mag::arrow( (old_m_j_star * params.tan_gamma), params.r ) * params.tan_gamma;
 
-  diff = std::abs(new_m_star_j - m_star_j);
-  new_m_star_j = Magnetization::damp(new_m_star_j, m_star_j, params.damping);
+  diff         = std::abs(new_m_star_j - m_star_j);
+  new_m_star_j = mag::damp(new_m_star_j, m_star_j, params.damping);
   new_m_j_star = old_m_j_star % new_m_star_j;
 
   m_j_star = new_m_j_star;
@@ -365,7 +385,7 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 #pragma omp single
 #endif
       std::cout << std::endl << "ok" << std::endl;
-#endif // VERBOSE
+#endif // verbose
       break;
     }
   }
@@ -406,12 +426,12 @@ template<class Mag> long int nonbayes_test(const Cavity_Message<Mag> &messages, 
   for (long int i = 0L; i < patterns.Nrow; ++i)
   {
     s = std::accumulate(sign_m_j_star, sign_m_j_star + messages.K, 0.,
-                        [&](const double &val, const int *mjs_i)
+                        [&](const double &val, const long int *mjs_i)
                         {
                           trsf0 = 0.;
                           s2 = std::inner_product(mjs_i, mjs_i + patterns.Ncol,
                                                   patterns.input[i], 0.,
-                                                  std::plus<double>(), [&](const int &mjs, const double &in)
+                                                  std::plus<double>(), [&](const long int &mjs, const double &in)
                                                   {
                                                     trsf0 += mjs * in;
                                                     return (1. - mjs * mjs) * (in * in);
@@ -438,7 +458,12 @@ template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, cons
   std::unique_ptr<double[]> ones(new double[messages.K]);
   std::unique_ptr<Mag[]> v(new Mag[messages.M]);
 
+#ifdef _OPENMP
+#pragma omp for
+  for (long int i = 0L; i < messages.K; ++i) ones[i] = 1.;
+#else
   std::fill_n(ones.get(), messages.K, 1.);
+#endif
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : f) collapse(2)
@@ -457,21 +482,21 @@ template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, cons
     for (long int j = 0L; j < messages.N; ++j)
     {
       for (long int k = 0L; k < messages.M; ++k) v[k] = messages.weights[k][i][j];
-      f += -Magnetization::logZ(messages.m_star_j[i][j], v.get(), messages.M);
+      f += -mag::logZ(messages.m_star_j[i][j], v.get(), messages.M);
       f += log2_over_2;
-      f += Magnetization::log1pxy(params.tan_gamma, -params.tan_gamma) * .5;
+      f += mag::log1pxy(params.tan_gamma, -params.tan_gamma) * .5;
 
-      old_m_j_star = Magnetization::bar(old_m_j_star, messages.m_j_star[i][j], messages.m_star_j[i][j]);
+      old_m_j_star = mag::bar(old_m_j_star, messages.m_j_star[i][j], messages.m_star_j[i][j]);
 
-      f += Magnetization::log1pxy(old_m_j_star, messages.m_star_j[i][j]);
-      f += Magnetization::mcrossentropy( Magnetization::arrow(old_m_j_star * params.tan_gamma, params.r + 1.),
+      f += mag::log1pxy(old_m_j_star, messages.m_star_j[i][j]);
+      f += mag::mcrossentropy( mag::arrow(old_m_j_star * params.tan_gamma, params.r + 1.),
                                          old_m_j_star * params.tan_gamma);
     }
 
   return f / (messages.N * messages.K);
 }
 
-
+#ifdef STATS
 
 template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const Params<Mag> &params)
 {
@@ -484,8 +509,8 @@ template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const 
   for (long int i = 0L; i < messages.K; ++i)
     for (long int j = 0L; j < messages.N; ++j)
     {
-      old_m_j_star = Magnetization::bar(messages.m_star_j[i][j], messages.m_j_star[i][j]);
-      S += ( ( old_m_j_star * Magnetization::arrow( (old_m_j_star * params.tan_gamma), params.r ) ) % params.tan_gamma ).mag;
+      old_m_j_star = mag::bar(messages.m_star_j[i][j], messages.m_j_star[i][j]);
+      S += ( ( old_m_j_star * mag::arrow( (old_m_j_star * params.tan_gamma), params.r ) ) % params.tan_gamma ).mag;
     }
 
   return S / (messages.N * messages.K);
@@ -503,14 +528,14 @@ template<class Mag> Mag compute_q_bar(const Cavity_Message<Mag> &messages, const
   for (long int i = 0L; i < messages.K; ++i)
     for (long int j = 0L; j < messages.N; ++j)
     {
-      old_m_j_star = Magnetization::bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
-      mx           = Magnetization::arrow( old_m_j_star * params.tan_gamma, params.r + 1.);
+      old_m_j_star = mag::bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
+      mx           = mag::arrow( old_m_j_star * params.tan_gamma, params.r + 1.);
       q_bar       += mx * mx;
     }
   return q_bar / (messages.N * messages.K);
 }
 
-template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const int &nm_j_star, const int &nm_j_star_col)
+template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const long int &nm_j_star, const long int &nm_j_star_col)
 {
   double q = 0.;
 
@@ -526,9 +551,9 @@ template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const 
 
 
 // miss mags_simmetry
+#endif // STATS
 
-
-template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message, const int *output, const double &beta)
+template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message, const long int *output, const double &beta)
 {
   double t = std::tanh(beta * .5);
 
@@ -662,7 +687,7 @@ template<class Mag> auto focusingBP(const long int &K,
 #ifdef DEBUG
     if (!std::isinf(fprotocol.beta[i])) error_infinite(fprotocol.beta[i]);
 #endif
-    params.tan_gamma = Magnetization::mtanh<Mag>(fprotocol.gamma[i]);
+    params.tan_gamma = mag::mtanh<Mag>(fprotocol.gamma[i]);
     params.r         = static_cast<double>(fprotocol.n_rep[i] - 1L);
     params.beta      = fprotocol.beta[i];
 

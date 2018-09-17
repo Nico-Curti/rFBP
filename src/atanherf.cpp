@@ -67,7 +67,7 @@ namespace AtanhErf
   double atanherf_largex(const double &x)
   {
     double t = 1. / (x * x);
-    return sign(x) * (2. * std::log(std::abs(x)) + std::log(4. * M_PI) + 2. * x * x + t * evalpoly(t)) / 4.;
+    return sign(x) * (2. * std::log(std::abs(x)) + std::log(4. * M_PI) + 2. * x * x + t * evalpoly(t)) * .25;
   }
 
   double atanherf(const double &x)
