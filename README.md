@@ -27,9 +27,9 @@ To build the executables, clone the repo and then type
 
 See also the list of [contributors](https://github.com/Nico-Curti/rFBP/contributors) who partecipated in this project.
 
-## Acknowledgement
+### Acknowledgement
 
-Thanks goes to the all contributors of this project:
+Thanks goes to all contributors of this project:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
