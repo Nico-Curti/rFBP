@@ -18,8 +18,16 @@ Optimization and extension of the [**Replicated Focusing Belief Propagation**](h
 To build the executables, clone the repo and then type
 
 ```
+make
+```
+
+for the complete list of available examples, or
 
 ```
+make main
+```
+
+to compile the main example
 
 ## Authors
 

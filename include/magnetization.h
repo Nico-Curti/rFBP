@@ -2,14 +2,10 @@
 #define MAG_H
 #include <type_traits>
 #include <cmath>
-#include <limits>
-
-static constexpr double log_2 = 0.30102999566;
-static constexpr double inf   = std::numeric_limits<double>::infinity();
+#include <utils.h>
 
 namespace mag
 {
-                      auto     sign          (const double &x);
                       double   clamp         (const double &x, const double &low, const double &high);
                       double   lr            (const double &x);
                       long int sign0         (const double &x);

@@ -5,8 +5,8 @@
 #include <numeric>
 #include <cmath>
 #include <climits>
-
-static constexpr double inf = std::numeric_limits<double>::infinity();
+#include <utils.h>
+#include <errors.h>
 
 struct FocusingProtocol
 {
@@ -16,13 +16,16 @@ struct FocusingProtocol
                             beta;   // 1/kT
 
   FocusingProtocol() : Nrep(0L), gamma(nullptr), n_rep(nullptr), beta(nullptr) {};
+  FocusingProtocol(const std::string &prot, const long int &size);
   ~FocusingProtocol() = default;
+
+private:
   void StandardReinforcement(const double *rho, const long int &Nrho);
   void StandardReinforcement(const double &drho);
   void Scoping(const double *gr, const double &x, const long int &ngr);
   void PseudoReinforcement(const double *rho, const long int &nrho, double x = .5);
   void PseudoReinforcement(const double &drho, double x = .5);
-  void FreeScoping(const double **list, const long int &nlist);
+  void FreeScoping(double **list, const long int &nlist);
 };
 
 #endif // FPROTOCOL_H

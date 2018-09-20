@@ -2,7 +2,6 @@
 
 namespace mag
 {
-                      auto     sign          (const double &x)                                         { return (x > 0.) ? 1. : (x < 0. ? -1. : 0);}
                       double   clamp         (const double &x, const double &low, const double &high)  {return (low <= x && x <= high) ? x : (x < low) ? low : high; }
                       double   lr            (const double &x)                                         { return std::log1p(std::exp(-2. * std::abs(x))); }
                       long int sign0         (const double &x)                                         { return 1L - 2L * static_cast<long int>(std::signbit(x));}

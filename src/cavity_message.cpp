@@ -239,3 +239,78 @@ template<class Mag> Cavity_Message<Mag>::~Cavity_Message()
 }
 
 
+template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &filename, const Params<Mag> &parameters)
+{
+  std::ofstream os(filename);
+  os << "fmt: "         << parameters.tan_gamma.magformat()
+     << ", max_iters: " << parameters.max_iters
+     << ", damping: "   << parameters.damping
+     << ", epsil: "     << parameters.epsil
+     << ", replicas: "  << parameters.r
+     << ", accuracy1: " << parameters.accuracy1
+     << ", accuracy2: " << parameters.accuracy2
+     << std::endl
+     << "K,N: " << this->K << " " << this->N
+     << std::endl;
+  long int j;
+  for (long int i = 0L; i < this->K; ++i)
+  {
+    std::copy_n(this->m_j_star[i], this->m_j_star[i] + this->N, std::ostream_iterator<Mag>(os, " "));
+    os << std::endl;
+  }
+  os.close();
+}
+
+template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &filename)
+{
+  std::ofstream os(filename, std::ios::out | std::ios::binary);
+  os.write( (const char *) &this->K, sizeof( long int ));
+  os.write( (const char *) &this->N, sizeof( long int ));
+  for(long int i = 0L; i < this->K; ++i)
+    for(long int j = 0L; j < this->N; ++j)
+      os.write( (const char *) &this->m_j_star[i][j].mag, sizeof( double ));
+  os.close();
+}
+
+template<class Mag> void Cavity_Message<Mag>::read_weights(const std::string &filename, const bool &bin)
+{
+  long int k, n;
+  std::ifstream is;
+  if(bin)
+  {
+    is.open(filename, std::ios::binary);
+    if( !is ) error_message_weights(filename);
+    is.read((char*)&k, sizeof(long int));
+    is.read((char*)&n, sizeof(long int));
+
+#ifdef DEBUG
+    assert(this->K == k);
+    assert(this->N == n);
+#endif
+    for (long int i = 0L; i < this->K; ++i)
+      for (long int j = 0L; j < this->N; ++j)
+        is.read( (char *) &this->m_j_star[i][j].mag, sizeof(double));
+    is.close();
+  }
+  else
+  {
+    std::string row;
+    is.open(filename);
+    if(!is) error_message_weights(filename);
+    std::stringstream buff;
+    buff << is.rdbuf();
+    is.close();
+
+    std::getline(buff, row); // fmt:
+    buff >> row;
+    buff >> k;
+    buff >> n;
+#ifdef DEBUG
+    assert(this->K == k);
+    assert(this->N == n);
+#endif
+    for (long int i = 0L; i < this->K; ++i)
+      for (long int j = 0L; j < this->N; ++j)
+        buff >> this->m_j_star[i][j].mag;
+  }
+}

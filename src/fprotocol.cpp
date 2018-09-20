@@ -1,5 +1,46 @@
 #include <fprotocol.h>
 
+FocusingProtocol::FocusingProtocol(const std::string &prot, const long int &size)
+{
+  long int p = protocol.at(prot),
+           i = 0;
+  switch(p)
+  {
+    case scoping_:
+    {
+      std::unique_ptr<double[]> scop(new double[size]);
+      std::generate_n(scop.get(), size, [&](){ return (i++) * 1.;});
+      Scoping(scop.get(), 21L, size);
+    } break;
+    case pseudo_:
+    {
+      std::unique_ptr<double[]> pseudo(new double[size]);
+      std::generate_n(pseudo.get(), size, [&](){ return (i++) * 1e-2;});
+      PseudoReinforcement(pseudo.get(), size);
+    } break;
+    case free_scoping_:
+    {
+      double **freeS = new double*[size];
+      std::generate_n(freeS, size, [](){return new double[3];});
+      for (long int i = 0L; i < size; ++i)
+      {
+        freeS[i][0] = std::atanh(std::sqrt(i * 1e-3));
+        freeS[i][1] = (2. - i * 1e-3) / (1. - i * 1e-3);
+        freeS[i][2] = inf;
+      }
+      FreeScoping(freeS, size);
+      for (long int i = 0L; i < size; ++i) delete[] freeS[i];
+      delete[] freeS;
+    } break;
+    case standard_:
+    {
+      StandardReinforcement(1e-2);
+    } break;
+    default: error_protocol(prot);
+    break;
+  }
+}
+
 void FocusingProtocol::StandardReinforcement(const double *rho, const long int &Nrho)
 {
   this->Nrep  = Nrho;
@@ -66,7 +107,7 @@ void FocusingProtocol::PseudoReinforcement(const double &drho, double x)
 }
 
 
-void FocusingProtocol::FreeScoping(const double **list, const long int &nlist)
+void FocusingProtocol::FreeScoping(double **list, const long int &nlist)
 {
   this->Nrep  = nlist;
   this->gamma = std::make_unique<double[]>(this->Nrep);

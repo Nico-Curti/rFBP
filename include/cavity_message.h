@@ -3,15 +3,20 @@
 #include <algorithm>
 #include <numeric>
 #include <random>
+#include <fstream>
+#include <sstream>
+#include <iterator>
 
 #include <magP.h>
 #include <magT.h>
 #include <errors.h>
+#include <params.h>
 
-template<class Mag>  using MagVec  = Mag*;
-template<class Mag>  using MagVec2 = MagVec<Mag>*;
-template<class Mag>  using MagVec3 = MagVec2<Mag>*;
+#ifdef DEBUG
+#include <cassert>
+#endif
 
+#include <utils.h>
 
 template<class Mag> struct Cavity_Message
 {
@@ -33,8 +38,9 @@ template<class Mag> struct Cavity_Message
   Cavity_Message<Mag>& operator=(const Cavity_Message<Mag> &m);
   ~Cavity_Message();
 
-  //Cavity_Message<T, Mag> read_messages(const std::string &io);
-  //void save_weights(const std::string &filename, const bool &binary);
+  void save_weights(const std::string &filename, const Params<Mag> &parameters);
+  void save_weights(const std::string &filename);
+  void read_weights(const std::string &filename, const bool &bin);
 
 };
 

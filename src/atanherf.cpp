@@ -6,7 +6,6 @@ namespace AtanhErf
   {
     std::string filename = "atanherf_interp.max_" + std::to_string(mm) + ".step_" + std::to_string(st) + ".txt";
     std::ifstream is(filename, std::ios::binary);
-    int i = 0;
     if (is)
     {
       int N = static_cast<int>((mm - 1.) / st);

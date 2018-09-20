@@ -11,6 +11,8 @@
 #include <iostream>
 #endif
 
+#include <utils.h>
+
 namespace AtanhErf
 {
   void getinp(const double &mm, const double &st, double *&inp);

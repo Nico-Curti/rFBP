@@ -3,12 +3,13 @@
 
 #include <iostream>
 static constexpr int ERROR_POSITIVE = 1;
-static constexpr int ERROR_WRITEOUT = 2;
-static constexpr int ERROR_RANGE    = 3;
-static constexpr int ERROR_ACCURACY = 4;
-static constexpr int ERROR_EXACT    = 5;
-static constexpr int ERROR_INFINITE = 6;
-static constexpr int ERROR_WEIGHTS  = 7;
+static constexpr int ERROR_RANGE    = 2;
+static constexpr int ERROR_ACCURACY = 3;
+static constexpr int ERROR_EXACT    = 4;
+static constexpr int ERROR_INFINITE = 5;
+static constexpr int ERROR_WEIGHTS  = 6;
+static constexpr int ERROR_PATTERN  = 7;
+static constexpr int ERROR_PROTOCOL = 8;
 
 
 inline void error_Npositive(const long int &N)
@@ -21,12 +22,6 @@ inline void error_Kpositive(const int &K)
 {
   std::cerr << "K must be positive; given: " << K << std::endl;
   std::exit(ERROR_POSITIVE);
-}
-
-inline void error_writeoutfile(const std::string &writeoutfile)
-{
-  std::cerr << "invalid writeoutfile, expected one of 'auto', 'always', 'none'; given: " << writeoutfile << std::endl;
-  std::exit(ERROR_WRITEOUT);
 }
 
 inline void error_maxiters(const long int &max_iters)
@@ -95,5 +90,18 @@ inline void error_message_weights(const std::string &filename)
   std::exit(ERROR_WEIGHTS);
 }
 
+inline void error_pattern(const std::string &filename)
+{
+  std::cerr << "Input file not found! Given: " << filename << std::endl;
+  std::exit(ERROR_PATTERN);
+}
+
+inline void error_protocol(const std::string &prot)
+{
+  std::cerr << "Invalid protocol parameter. Given: " << prot
+            << ". Possible values are \"scoping\", \"pseudo_reinforcement\", \"free_scoping\" and \"standard_reinforcement\""
+            << std::endl;
+  std::exit(ERROR_PATTERN);
+}
 
 #endif // ERRORS_H
