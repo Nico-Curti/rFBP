@@ -2,7 +2,7 @@
 #define MAG_H
 #include <type_traits>
 #include <cmath>
-#include <utils.h>
+#include <string>
 
 namespace mag
 {
@@ -34,8 +34,5 @@ namespace mag
   template<class Mag> auto     erfmix        (const Mag &H, const double &mp, const double &mm);
   template<class Mag> auto     exactmix      (const Mag &H, const Mag &pp, const Mag &pm);
 }
-
-#include <magP.h>
-#include <magT.h>
 
 #endif // MAG_H

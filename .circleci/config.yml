@@ -1,0 +1,26 @@
+version: 2.0
+jobs:
+  build:
+    machine:
+      image: "circleci/classic:201708-01" # VM will run Ubuntu 14.04 for this release date
+    steps:
+      - checkout
+      - run:
+          name: Build Byron
+          command: |
+            sudo apt-get install software-properties-common
+            sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+            sudo apt-get update
+            sudo apt-get install -y gcc-8 g++-8
+            export CC=/usr/bin/gcc-8 && export CXX=/usr/bin/g++-8
+
+            wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.tar.gz
+            tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz
+            export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH
+
+            sudo apt-get install ninja-build
+
+            mkdir -p build
+            cd build
+            cmake -G "Ninja" "-DCMAKE_BUILD_TYPE=Release" ..
+            cmake --build .

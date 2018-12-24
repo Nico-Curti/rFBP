@@ -1,0 +1,42 @@
+image: Visual Studio 2017
+clone_folder: c:\projects\rFBP
+configuration: Debug
+
+environment:
+    matrix:
+    - platform: cygwin64
+      COMPILER: cygwin
+      CYGWIN_NOWINPATH: yes
+      CYGSH: C:\cygwin64\bin\bash -c
+    - platform: Win32
+      COMPILER: vs
+      MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+      MSVC_SETUP_ARG: x86
+    - platform: Win64
+      COMPILER: vs
+      MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+      MSVC_SETUP_ARG: x64
+
+install:
+  - if [%COMPILER%]==[vs] cinst cmake ninja
+  - if [%COMPILER%]==[vs] SET "PATH=C:\Program Files\CMake\bin;%PATH%"
+  - if [%COMPILER%]==[vs] SET "PATH=C:\Program Files\LLVM\bin;%PATH%"
+  - if [%COMPILER%]==[vs] call "%MSVC_SETUP_PATH%" %MSVC_SETUP_ARG%
+  - if [%COMPILER%]==[cygwin] SET "PATH=C:\cygwin64\bin;C:\cygwin64\usr\bin;%PATH%"
+  - if [%COMPILER%]==[cygwin] SET "PATH=%PATH:C:\Program Files\Git\usr\bin;=%"
+  - git submodule -q update --init --recursive
+  - cd C:\projects\
+  - mkdir cygwin-downloads
+  - ps: if($env:COMPILER -eq "cygwin") { Invoke-WebRequest https://cygwin.com/setup-x86_64.exe -OutFile C:\projects\cygwin-setup.exe }
+  - if [%COMPILER%]==[cygwin] C:\projects\cygwin-setup.exe --quiet-mode --no-shortcuts --no-startmenu --no-desktop --upgrade-also --root C:\cygwin64 --local-package-dir C:\projects\cygwin-downloads --packages gcc-g++,cmake,libopencv-dev
+
+before_build:
+  - cd C:\projects\rFBP
+  - mkdir build
+  - cd build
+
+build_script:
+  - if [%COMPILER%]==[cygwin] %CYGSH% 'cmake -G "Unix Makefiles" -DOMP=ON "-DCMAKE_BUILD_TYPE=%configuration%" ..
+  - if [%COMPILER%]==[cygwin] %CYGSH% 'cmake --build .'
+  - if [%COMPILER%]==[vs] cmake -G "Ninja" -DOMP=ON "-DCMAKE_TOOLCHAIN_FILE=C:\projects\vcpkg\scripts\buildsystems\vcpkg.cmake" ..
+  - if [%COMPILER%]==[vs] cmake --build .

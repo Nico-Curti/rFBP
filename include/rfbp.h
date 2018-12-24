@@ -8,11 +8,9 @@
 #include <cassert>
 #endif
 
-#include <magnetization.h>
 #include <cavity_message.h>
 #include <fprotocol.h>
 #include <pattern.h>
-#include <utils.h>
 
 template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M, const double *xi, MagVec<Mag> u, Mag &U, const Params<Mag> &params, const long int &nxi, const long int &nm);
 template<class Mag> double theta_node_update_accurate(MagVec<Mag> m, Mag &M, const double *xi, MagVec<Mag> u, Mag &U, const Params<Mag> &params, const long int &nxi, const long int &nm);

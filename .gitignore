@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Directories
+[Bb]in/
+[Oo]bj/
+.[Dd]ep/
+[Bb]uild/

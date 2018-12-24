@@ -1,9 +1,6 @@
 #ifndef MAGP_H
 #define MAGP_H
 
-#include <string>
-#include <magnetization.h>
-
 struct MagP64
 {
   // member

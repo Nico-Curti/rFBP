@@ -1,8 +1,5 @@
 #ifndef PARAMS_H
 #define PARAMS_H
-#include <string>
-#include <magP.h>
-#include <magT.h>
 
 template<class Mag> struct Params
 {

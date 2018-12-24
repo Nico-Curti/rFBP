@@ -1,3 +1,8 @@
+# rFBP Version
+MAJOR 	 := 1
+MINOR 	 := 0
+REVISION := 0
+
 # Setting bash colors
 RED    := $(shell tput -Txterm setaf 1)
 YELLOW := $(shell tput -Txterm setaf 3)
@@ -11,14 +16,14 @@ RESET  := $(shell tput -Txterm sgr0   )
 #                         COMPILE OPTIONS                       #
 #################################################################
 
-OMP     := 1
-DEBUG   := 1
-VERBOSE := 1
-STATS   := 1
+OMP     ?= 1
+DEBUG   ?= 1
+VERBOSE ?= 1
+STATS   ?= 1
 
 STD     := -std=c++17
 
-CFLAGS  := -Wall -Wextra -Wno-unused-result -lstdc++fs
+CFLAGS  := -DMAJOR=$(MAJOR) -DMINOR=$(MINOR) -DREVISION=$(REVISION) -Wall -Wextra -Wno-unused-result -lstdc++fs
 LDFLAGS := -fPIC
 AR      := ar
 ARFLAGS := rcs
@@ -61,9 +66,10 @@ INC    := -I$(INC_DIR)
 SLIB   := librfbp.so
 ALIB   := librfbp.a
 
-OBJS   := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
-EXEC   := $(patsubst %.cpp, %$(EXTENSION), $(EXE))
-OUTPUT := $(addprefix $(OUT_DIR)/, $(notdir $(patsubst %.cpp, %$(EXTENSION), $(EXE))) )
+EXTENSION  := $(call config, $(OS), Windows_NT, .exe, )
+OBJS   		 := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
+EXEC   		 := $(patsubst %.cpp, %$(EXTENSION), $(EXE))
+OUTPUT 		 := $(addprefix $(OUT_DIR)/, $(notdir $(patsubst %.cpp, %$(EXTENSION), $(EXE))) )
 
 #################################################################
 #                         OS FUNCTIONS                          #
@@ -76,8 +82,6 @@ endef
 mkdir_dep  := $(call MKDIR, $(DEP_DIR))
 mkdir_obj  := $(call MKDIR, $(OBJ_DIR))
 mkdir_out  := $(call MKDIR, $(OUT_DIR))
-
-EXTENSION  := $(call config, $(OS), Windows_NT, .exe, )
 
 #################################################################
 #                         BUILD COMMAND LINE                    #
@@ -93,7 +97,7 @@ all: help
 #                         MAIN RULES                            #
 #################################################################
 
-main: depdir objdir outdir $(OBJS)    ##@examples Compile main example.
+main: $(DEP_DIR) $(OBJ_DIR) $(OUT_DIR) $(OBJS)    ##@examples Compile main example.
 	@printf "%-80s " "Compiling main example ..."
 	@$(CXX) $(OBJS) $(EXAMPLE)/main.cpp -o $(OUT_DIR)/rfbp $(CFLAGS) $(LDFLAGS)
 	@printf "[done]\n"
@@ -102,8 +106,8 @@ main: depdir objdir outdir $(OBJS)    ##@examples Compile main example.
 #                         rFBP  RULES                           #
 #################################################################
 
-script: depdir objdir $(OBJS)         ##@library Compile all the objs.
-librfbp: $(OBJS) $(ALIB)              ##@library Create shared rFBP library.
+script: $(DEP_DIR) $(OBJ_DIR) $(OBJS)         ##@library Compile all the objs.
+librfbp: $(OBJS) $(ALIB)                      ##@library Create shared rFBP library.
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(DEP_DIR)/%.d # compile all cpp in SRC_DIR for OBJ
 	@printf "%-80s " "generating obj for $<"
@@ -156,15 +160,15 @@ clean:                  ##@utils Clean all files.
 	@printf "%-80s " "Cleaning all files..."
 	@rm -rf $(OBJS) $(ALIB) $(SLIB) $(OBJ_DIR)/* $(DEP_DIR)/*
 	@printf "[done]\n"
-depdir: $(DEP_DIR)      ##@utils Make dependencies directory.
+$(DEP_DIR):             ##@utils Make dependencies directory.
 	@printf "%-80s " "Creating dependencies directory ..."
 	@$(mkdir_dep)
 	@printf "[done]\n"
-objdir: $(OBJ_DIR)      ##@utils Make objs directory.
+$(OBJ_DIR):             ##@utils Make objs directory.
 	@printf "%-80s " "Creating objs directory ..."
 	@$(mkdir_obj)
 	@printf "[done]\n"
-outdir: $(OUT_DIR)      ##@utils Make output (executables) directory.
+$(OUT_DIR):             ##@utils Make output (executables) directory.
 	@printf "%-80s " "Creating output directory ..."
 	@$(mkdir_out)
 	@printf "[done]\n"

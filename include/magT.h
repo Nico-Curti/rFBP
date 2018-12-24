@@ -2,9 +2,6 @@
 #define MAGT_H
 
 #include <cmath>
-#include <numeric>
-#include <string>
-#include <magnetization.h>
 #include <atanherf.h>
 
 struct MagT64

@@ -1,5 +1,8 @@
 #include <magnetization.h>
 
+#include <magP.h>
+#include <magT.h>
+
 namespace mag
 {
                       double   clamp         (const double &x, const double &low, const double &high)  {return (low <= x && x <= high) ? x : (x < low) ? low : high; }

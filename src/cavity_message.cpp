@@ -9,13 +9,20 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
   this->N = n;
   this->K = k;
 
-  this->m_star_j = new Mag* [this->K];
-  this->m_j_star = new Mag* [this->K];
-  this->m_in     = new Mag* [this->M];
-  this->weights  = new Mag**[this->M];
-  this->m_no     = new Mag* [this->M];
-  this->m_on     = new Mag  [this->M];
-  this->m_ni     = new Mag* [this->M];
+#ifdef _OPENMP
+#pragma omp single
+  {
+#endif
+    this->m_star_j = new Mag* [this->K];
+    this->m_j_star = new Mag* [this->K];
+    this->m_in     = new Mag* [this->M];
+    this->weights  = new Mag**[this->M];
+    this->m_no     = new Mag* [this->M];
+    this->m_on     = new Mag  [this->M];
+    this->m_ni     = new Mag* [this->M];
+#ifdef _OPENMP
+  }
+#endif
 
 #ifdef _OPENMP
 #pragma omp for
