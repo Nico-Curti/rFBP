@@ -1,6 +1,6 @@
 | **Authors**  | **Project** | **Documentation**                                                                   | **Build Status**              |
 |:------------:|:-----------:|:-----------------------------------------------------------------------------------:|:-----------------------------:|
-|   N. Curti   |    rFBP    | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux** : [![travis](https://travis-ci.com/Nico-Curti/rFBP.svg?style=plastic?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) |
+|   N. Curti   |    rFBP    | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) |
 
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/issues)
