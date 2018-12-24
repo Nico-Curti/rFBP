@@ -64,8 +64,6 @@ install:
   - if [[ "$BUILD" == "linux-gcc" ]]; then export CXX=/usr/bin/g++-8                                                                     ;fi
   # Check versions of gcc, g++ and cmake
   - if [[ "$BUILD" == "linux-gcc" ]]; then gcc -v && g++ -v && cmake --version                                                           ;fi
-  # Check version of opencv installed
-  - if [[ "$BUILD" == "linux-gcc" ]]; then pkg-config --modversion opencv                                                                ;fi
 
 before_script:
   - mkdir build
