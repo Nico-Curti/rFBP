@@ -15,21 +15,21 @@ matrix:
             - ninja-build
       env: BUILD=linux-gcc
 
-#    - os: osx
-#      compiler: clang
-#      addons:
-#        apt:
-#          sources:
-#            - ubuntu-toolchain-r-test
-#            - llvm-toolchain-trusty-7
-#          packages:
-#            - clang-7.0
-#            - libstdc++7
-#      env:
-#        - CXX=clang++-7
-#        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-#        - CXXFLAGS="-stdlib=libc++"
-#        - BUILD=osx-clang
+   - os: osx
+     compiler: clang
+     addons:
+       apt:
+         sources:
+           - ubuntu-toolchain-r-test
+           - llvm-toolchain-trusty-7
+         packages:
+           - clang-7.0
+           - libstdc++7
+     env:
+       - CXX=clang++-7
+       - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+       - CXXFLAGS="-stdlib=libc++"
+       - BUILD=osx-clang
 
 before_install:
   - pip install --user codecov

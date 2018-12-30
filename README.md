@@ -1,12 +1,18 @@
 | **Authors**  | **Project** | **Documentation**                                                                   | **Build Status**              |
 |:------------:|:-----------:|:-----------------------------------------------------------------------------------:|:-----------------------------:|
-|   N. Curti   |    rFBP    | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux** : [![travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **CircleCI** : [![CircleCI](https://circleci.com/gh/Nico-Curti/rFBP/tree/master.svg?style=svg&circle-token=fcb48077c80775110a804919fa6f17fb67b6d3e7)](https://circleci.com/gh/Nico-Curti/rFBP/tree/master) |
+|   N. Curti   |    rFBP    | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux/MacOS** : [![travi](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : *miss* |
 
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/issues)
 
 [![GitHub stars](https://img.shields.io/github/stars/Nico-Curti/rFBP.svg?label=Stars&style=social)](https://github.com/Nico-Curti/rFBP/stargazers)
 [![GitHub watchers](https://img.shields.io/github/watchers/Nico-Curti/rFBP.svg?label=Watch&style=social)](https://github.com/Nico-Curti/rFBP/watchers)
+
+<a href="https://github.com/UniboDIFABiophysics">
+<div class="image">
+<img src="https://cdn.rawgit.com/physycom/templates/697b327d/logo_unibo.png" width="90" height="90">
+</div>
+</a>
 
 # Replicated Focusing Belief Propagation algorithm
 
@@ -19,6 +25,8 @@ Optimization and extension of the [**Replicated Focusing Belief Propagation**](h
 5. [Acknowledgments](#acknowledgments)
 
 ## Prerequisites
+
+The project is written in c++ language with the support of c++17 standard (*make sure that your c++ compiler support it!*). If you want enable the OpenMP support (*no particular version is required*) compile the library with `-DOMP=ON`.
 
 ## Installation
 
@@ -36,7 +44,7 @@ make main
 
 to compile the main example.
 
-You can also build with the CMake file or easier with the *build.sh* file in Linux or MacOS and with *build.ps1* in Windows.
+You can also build with CMake or easier with the *build.sh* file in Linux/MacOS and *build.ps1* in Windows.
 
 ## Authors
 
@@ -45,6 +53,8 @@ You can also build with the CMake file or easier with the *build.sh* file in Lin
 See also the list of [contributors](https://github.com/Nico-Curti/rFBP/contributors) [![GitHub contributors](https://img.shields.io/github/contributors/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/graphs/contributors/) who partecipated in this project.
 
 ## License
+
+NO LICENCEs are available.
 
 ### Acknowledgement
 

@@ -94,9 +94,6 @@ endif()
 set(SRC_DIR    ./src)
 set(INC_DIR    ./include)
 set(EXAMPLE    ./example)
-set(OBJ_DIR    ./obj)
-set(OUT_DIR    ./bin)
-set(DEP_DIR    ./.dep)
 
 set(rfbplib rfbp)
 
