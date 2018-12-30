@@ -1,6 +1,7 @@
 | **Authors**  | **Project** | **Documentation**                                                                   | **Build Status**              |
 |:------------:|:-----------:|:-----------------------------------------------------------------------------------:|:-----------------------------:|
-|   N. Curti   |    rFBP    | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux/MacOS** : [![travi](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : *miss* |
+<<<<<<< HEAD
+|   N. Curti   |    rFBP    | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : *miss* |
 
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/issues)
@@ -44,7 +45,7 @@ make main
 
 to compile the main example.
 
-You can also build with CMake or easier with the *build.sh* file in Linux/MacOS and *build.ps1* in Windows.
+You can also build with CMake or easier with the [build.sh](https://github.com/Nico-Curti/rFBP/blob/master/build.sh) file in Linux/MacOS and [build.ps1](https://github.com/Nico-Curti/rFBP/blob/master/build.ps1) in Windows.
 
 ## Authors
 
