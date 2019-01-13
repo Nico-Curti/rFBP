@@ -71,7 +71,7 @@ before_script:
   - cd build
   - cmake --version
   - if [[ "$BUILD" == "linux-gcc" ]]; then cmake -G "Ninja" "-DCMAKE_BUILD_TYPE=Debug" "-DOMP=ON" ..                                     ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then cmake "-DCMAKE_BUILD_TYPE=Debug" "-DOMP=ON"  ..                                              ;fi
+  - if [[ "$BUILD" == "osx-clang" ]]; then cmake "-DCMAKE_BUILD_TYPE=Debug" "-DOMP=OFF"  ..                                              ;fi
 
 script:
   - cmake --build .
