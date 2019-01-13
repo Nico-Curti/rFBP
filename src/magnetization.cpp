@@ -17,7 +17,7 @@ namespace mag
     return std::signbit(m.mag);
   }
 
-  template<class Mag> auto     f2m           (const double &x)
+  template<class Mag> Mag      f2m           (const double &x)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -57,7 +57,7 @@ namespace mag
     signbit(x) != signbit(y) ? -x : x;
   }
 
-  template<class Mag> auto     arrow         (const Mag &m, const double &x)
+  template<class Mag> Mag      arrow         (const Mag &m, const double &x)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -81,7 +81,7 @@ namespace mag
     return std::log( (1. + x.mag) * .5 );
   }
 
-  template<class Mag> auto     convert       (const double &x)
+  template<class Mag> Mag      convert       (const double &x)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -89,7 +89,7 @@ namespace mag
     return Mag(x);
   }
 
-  template<class Mag> auto     convert       (const Mag &x)
+  template<class Mag> Mag      convert       (const Mag &x)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -98,7 +98,7 @@ namespace mag
   }
 
 
-  template<class Mag> auto     couple        (const double &x1, const double &x2)
+  template<class Mag> Mag      couple        (const double &x1, const double &x2)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -111,7 +111,7 @@ namespace mag
   }
 
 
-  template<class Mag> auto     damp          (const Mag &newx, const Mag &oldx, const double &l)
+  template<class Mag> Mag      damp          (const Mag &newx, const Mag &oldx, const double &l)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -123,7 +123,7 @@ namespace mag
       return MagT64(std::atanh(newx.mag) * (1. - l) + std::atanh(oldx.mag) * l);
   }
 
-  template<class Mag> auto     mtanh         (const double &x)
+  template<class Mag> Mag      mtanh         (const double &x)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -135,13 +135,13 @@ namespace mag
       return MagT64(x);
   }
 
-  template<class Mag> auto     matanh        (const Mag &m)
+  template<class Mag> Mag      matanh        (const Mag &m)
   {
     static_assert( std::is_same_v<Mag, MagT64>, "matanh function! Incompatible type found. You must use MagT64 variable for this function." );
     return MagT64(m.mag);
   }
 
-  template<class Mag> auto     merf          (const double &x)
+  template<class Mag> Mag      merf          (const double &x)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
@@ -153,7 +153,7 @@ namespace mag
       return MagT64(AtanhErf::atanherf(x));
   }
 
-  template<class Mag> auto     bar           (const Mag &m1, const Mag &m2)
+  template<class Mag> Mag      bar           (const Mag &m1, const Mag &m2)
   {
     static_assert( std::is_same_v<Mag, MagP64> ||
                    std::is_same_v<Mag, MagT64>,
@@ -258,7 +258,7 @@ namespace mag
     }
   }
 
-  template<class Mag> auto     auxmix        (const Mag &H, const double &ap, const double &am)
+  template<class Mag> Mag      auxmix        (const Mag &H, const double &ap, const double &am)
   {
     static_assert( std::is_same_v<Mag, MagT64>, "auxmix function! Incompatible type found. You must use MagT64 variable for this function." );
 
@@ -313,7 +313,7 @@ namespace mag
 
   }
 
-  template<class Mag> auto     erfmix        (const Mag &H, const double &mp, const double &mm)
+  template<class Mag> Mag      erfmix        (const Mag &H, const double &mp, const double &mm)
   {
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return MagP64( H.mag * (std::erf(mp) - std::erf(mm)) / ( 2. + H.mag * (std::erf(mp) + std::erf(mm))));
@@ -321,7 +321,7 @@ namespace mag
       return auxmix(H, AtanhErf::atanherf(mp), AtanhErf::atanherf(mm));
   }
 
-  template<class Mag> auto     exactmix      (const Mag &H, const Mag &pp, const Mag &pm)
+  template<class Mag> Mag      exactmix      (const Mag &H, const Mag &pp, const Mag &pm)
   {
     static_assert( std::is_same_v<Mag, MagP64> ||
                    std::is_same_v<Mag, MagT64>,

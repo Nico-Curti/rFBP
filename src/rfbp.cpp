@@ -145,8 +145,8 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   double maxdiff = 0.,
          pm = 0., pp = 0.,
          pz, p;
-  static double **leftC  = new double[nm],
-                **rightC = new double[nm];
+  static double **leftC  = new double *[nm],
+                **rightC = new double *[nm];
   Mag old_m_on(0.),
       new_u(0.),
       mp(0.), mm(0.);
@@ -526,8 +526,13 @@ template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns
 
 #ifdef _OPENMP
 #pragma omp single
+  {
 #endif
-  std::random_shuffle(randperm.get(), randperm.get() + size);
+    std::mt19937 eng;
+    std::shuffle(randperm.get(), randperm.get() + size, eng);
+#ifdef _OPENMP
+  }
+#endif
 
   auto tnu1 = accuracy<Mag>[params.accuracy1];
   auto tnu2 = accuracy<Mag>[params.accuracy2];
