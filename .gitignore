@@ -36,3 +36,4 @@
 [Oo]bj/
 .[Dd]ep/
 [Bb]uild/
+ReplicatedFocusingBeliefPropagation/*.cpp

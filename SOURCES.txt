@@ -1,0 +1,7 @@
+setup.py
+ReplicatedFocusingBeliefPropagation/__init__.py
+ReplicatedFocusingBeliefPropagation/__version__.py
+ReplicatedFocusingBeliefPropagation/Fprotocol.pyx
+ReplicatedFocusingBeliefPropagation/_mag.pyd
+ReplicatedFocusingBeliefPropagation/Pattern.pyx
+ReplicatedFocusingBeliefPropagation/ReplicatedFocusingBeliefPropagation.pyx

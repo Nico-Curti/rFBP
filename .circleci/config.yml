@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build Byron
+          name: Build rFBP
           command: |
             sudo apt-get install software-properties-common
             sudo add-apt-repository ppa:ubuntu-toolchain-r/test

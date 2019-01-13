@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+# distutils: language = c++
+# distutils: sources = magP.cpp magT.cpp
+# cython: language_level=3
+
+cdef extern from "magP.h":
+  cppclass magP64:
+    magP64() except +
+    magP64(double x) except +
+
+cdef extern from "magT.h":
+  cppclass magT64:
+    magT64() except +
+    magT64(double x, double m) except +

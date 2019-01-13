@@ -91,9 +91,10 @@ endif()
 #                         SETTING DIRECTORIES                   #
 #################################################################
 
-set(SRC_DIR    ./src)
-set(INC_DIR    ./include)
-set(EXAMPLE    ./example)
+set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
+set(EXAMPLE ${CMAKE_SOURCE_DIR}/example)
+set(PYC_DIR ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation)         # cython directory
 
 set(rfbplib rfbp)
 
@@ -102,6 +103,20 @@ file(GLOB HEADER "${INC_DIR}/*.h"  )
 file(GLOB EXE    "${EXAMPLE}/*.cpp")
 
 include_directories(${INC_DIR})
+
+# Make the scripts available in the 'cmake' directory available for the
+# 'include()' command, 'find_package()' command.
+set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
+
+# Include the CMake script UseCython.cmake.  This defines add_cython_module().
+# Instruction for use can be found at the top of cmake/UseCython.cmake.
+include( UseCython )
+
+# With CMake, a clean separation can be made between the source tree and the
+# build tree.  When all source is compiled, as with pure C/C++, the source is
+# no-longer needed in the build tree.  However, with pure *.py source, the
+# source is processed directly.  To handle this, we reproduce the availability
+# of the source files in the build tree.
 
 #################################################################
 #                          SUMMARY                              #
@@ -127,12 +142,14 @@ endforeach(FLAG)
 message(STATUS ""                                                                   )
 message(STATUS "   OpenMP support : ${OMP}"                                         )
 message(STATUS "   VERBOSE level  : ${VERBOSE}"                                     )
-message(STATUS "   STATIS  level  : ${STATS}"                                       )
+message(STATUS "   STATS   level  : ${STATS}"                                       )
 message(STATUS ""                                                                   )
 
 #################################################################
 #                         MAIN RULES                            #
 #################################################################
+
+add_subdirectory(${PYC_DIR})
 
 add_library(${rfbplib} SHARED ${SRC} ${HEADER})
 set_property(TARGET ${rfbplib} PROPERTY POSITION_INDEPENDENT_CODE ON)
