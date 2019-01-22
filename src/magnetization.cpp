@@ -86,15 +86,21 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "convert function! Incompatible types found.");
-    return Mag(x);
+    if constexpr      ( std::is_same_v<Mag, MagP64> )
+      return MagP64(x);
+    else
+      return Mag(clamp(std::atanh(x), -30., 30.));
   }
 
-  template<class Mag> Mag      convert       (const Mag &x)
+  template<class Mag> double    convert       (const Mag &x)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "convert function! Incompatible types found.");
-    return Mag(clamp(std::atanh(x), -30., 30.));
+    if constexpr      ( std::is_same_v<Mag, MagP64> )
+      return x.mag;
+    else
+      return std::atanh(x.mag);
   }
 
 
@@ -240,7 +246,7 @@ namespace mag
       s1          = is_inf ? 0. : a0;
       s2          = is_inf ? 0. : std::abs(a0);
       s3          = is_inf ? 0. : lr(a0);
-      hasinf      = is_inf ? 0. : 0.;
+      hasinf      = 0.;
 
       for (int i = 0; i < nu; ++i)
       {
@@ -273,7 +279,7 @@ namespace mag
              a_am = std::abs(am);
       bool inf_ap = std::isinf(ap),
            inf_am = std::isinf(am);
-      if (std::isinf(H.mag))
+      if (std::isinf(aH))
       {
         if (!inf_ap && !inf_am)
         {

@@ -19,7 +19,7 @@ namespace mag
   template<class Mag> long int sign0         (const Mag &x);
   template<class Mag> double   logmag2p      (const Mag &x);
   template<class Mag> Mag      convert       (const double &x);
-  template<class Mag> Mag      convert       (const Mag &x);
+  template<class Mag> double   convert       (const Mag &x);
 
   template<class Mag> Mag      couple        (const double &x1, const double &x2);
   template<class Mag> Mag      damp          (const Mag &newx, const Mag &oldx, const double &l);
