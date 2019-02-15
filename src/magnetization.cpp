@@ -273,7 +273,7 @@ namespace mag
              a_am = std::abs(am);
       bool inf_ap = std::isinf(ap),
            inf_am = std::isinf(am);
-      if (std::isinf(H.mag))
+      if (std::isinf(H.mag)) // std::isinf(aH) 
       {
         if (!inf_ap && !inf_am)
         {
