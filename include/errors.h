@@ -10,6 +10,8 @@ static constexpr int ERROR_INFINITE = 5;
 static constexpr int ERROR_WEIGHTS  = 6;
 static constexpr int ERROR_PATTERN  = 7;
 static constexpr int ERROR_PROTOCOL = 8;
+static constexpr int ERROR_MESSAGES = 91;
+static constexpr int ERROR_INVALID_MESSAGES = 92;
 
 
 inline void error_Npositive(const long int &N)
@@ -103,5 +105,18 @@ inline void error_protocol(const std::string &prot)
             << std::endl;
   std::exit(ERROR_PATTERN);
 }
+
+inline void error_messages(const std::string &filename)
+{
+  std::cerr << "Messages file not found! Given: " << filename << std::endl;
+  std::exit(ERROR_MESSAGES);
+}
+
+inline void error_invalid_messages(const std::string &filename)
+{
+  std::cerr << "Invalid messages file! Given: " << filename << std::endl;
+  std::exit(ERROR_INVALID_MESSAGES);
+}
+
 
 #endif // ERRORS_H
