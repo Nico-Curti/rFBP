@@ -1,12 +1,164 @@
 #include <cavity_message.h>
 
+template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filename, const bool &bin)
+{
+  std::ifstream is;
+
+  if (bin)
+  {
+    is.open(filename, std::ios::binary);
+    if ( !is ) error_messages(filename);
+
+    is.read((char*) &this->N, sizeof(long int));
+    is.read((char*) &this->M, sizeof(long int));
+    is.read((char*) &this->K, sizeof(long int));
+
+    this->m_star_j = new Mag* [this->K];
+    this->m_j_star = new Mag* [this->K];
+    this->m_in     = new Mag* [this->M];
+    this->weights  = new Mag**[this->M];
+    this->m_no     = new Mag* [this->M];
+    this->m_on     = new Mag  [this->M];
+    this->m_ni     = new Mag* [this->M];
+
+    for (long int i = 0L; i < this->K; ++i)
+    {
+      this->m_star_j[i] = new Mag[this->N];
+      for (long int j = 0L; j < this->N; ++j)
+        is.read( (char *) &this->m_star_j[i][j].mag, sizeof(double));
+    }
+
+    for (long int i = 0L; i < this->K; ++i)
+    {
+      this->m_j_star[i] = new Mag[this->N];
+      for (long int j = 0L; j < this->N; ++j)
+        is.read( (char *) &this->m_j_star[i][j].mag, sizeof(double));
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->m_in[i]    = new Mag [this->K];
+      for (long int j = 0L; j < this->K; ++j)
+        is.read( (char *) &this->m_in[i][j].mag, sizeof(double));
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->weights[i] = new Mag*[this->K];
+      for (long int j = 0L; j < this->K; ++j)
+      {
+        this->weights[i][j] = new Mag[this->N];
+        for (long int k = 0L; k < this->N; ++k)
+          is.read( (char *) &this->weights[i][j][k].mag, sizeof(double));
+      }
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->m_no[i]    = new Mag [this->K];
+      for (long int j = 0L; j < this->K; ++j)
+        is.read( (char *) &this->m_no[i][j].mag, sizeof(double));
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+      is.read( (char *) &this->m_on[i].mag, sizeof(double));
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->m_ni[i]    = new Mag [this->K];
+      for (long int j = 0L; j < this->K; ++j)
+        is.read( (char *) &this->m_ni[i][j].mag, sizeof(double));
+    }
+
+  }
+  else
+  {
+    is.open(filename);
+    std::stringstream buff;
+    if ( !is ) error_messages(filename);
+    std::string row;
+    buff << is.rdbuf();
+
+    buff >> row;
+    if ( row != "fmt:") error_invalid_messages(filename);
+
+    buff >> row;
+    if ( row != "N,M,K:") error_invalid_messages(filename);
+
+    buff >> this->N;
+    buff >> this->M;
+    buff >> this->K;
+
+    this->m_star_j = new Mag* [this->K];
+    this->m_j_star = new Mag* [this->K];
+    this->m_in     = new Mag* [this->M];
+    this->weights  = new Mag**[this->M];
+    this->m_no     = new Mag* [this->M];
+    this->m_on     = new Mag  [this->M];
+    this->m_ni     = new Mag* [this->M];
+
+    for (long int i = 0L; i < this->K; ++i)
+    {
+      this->m_star_j[i] = new Mag[this->N];
+      for (long int j = 0L; j < this->N; ++j)
+        buff >> this->m_star_j[i][j].mag;
+    }
+
+    for (long int i = 0L; i < this->K; ++i)
+    {
+      this->m_j_star[i] = new Mag[this->N];
+      for (long int j = 0L; j < this->N; ++j)
+        buff >> this->m_j_star[i][j].mag;
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->m_in[i]    = new Mag [this->K];
+      for (long int j = 0L; j < this->K; ++j)
+        buff >> this->m_in[i][j].mag;
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->weights[i] = new Mag*[this->K];
+      for (long int j = 0L; j < this->K; ++j)
+      {
+        this->weights[i][j] = new Mag[this->N];
+        for (long int k = 0L; k < this->N; ++k)
+          buff >> this->weights[i][j][k].mag;
+      }
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->m_no[i]    = new Mag [this->K];
+      for (long int j = 0L; j < this->K; ++j)
+        buff >> this->m_no[i][j].mag;
+    }
+
+    for (long int i = 0L; i < this->M; ++i)
+      buff >> this->m_on[i].mag;
+
+    for (long int i = 0L; i < this->M; ++i)
+    {
+      this->m_ni[i]    = new Mag [this->K];
+      for (long int j = 0L; j < this->K; ++j)
+        buff >> this->m_ni[i][j].mag;
+    }
+
+  }
+
+  is.close();
+// new (this) Cavity_Message<Mag>(n, m, k, x, seed);
+}
+
 template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const long int &n, const long int &k, const double &x, const int &start)
 {
   std::mt19937 engine(start);
   std::uniform_real_distribution<double> dist(0., 1.);
 
-  this->M = m;
   this->N = n;
+  this->M = m;
   this->K = k;
 
 #ifdef _OPENMP
@@ -54,7 +206,7 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
       this->m_ni[i][j] = Mag(0.);
 
       this->weights[i][j] = new Mag[this->N];
-      this->m_in[i][j] = this->m_in[i][j] % this->m_no[i][j] % this->m_ni[i][j];
+      this->m_in[i][j] = this->m_in[i][j] % this->m_no[i][j] % this->m_ni[i][j]; // always 0 ?
       std::generate_n(this->weights[i][j], this->N,
                       [&]()
                       {
@@ -196,7 +348,7 @@ template<class Mag> Cavity_Message<Mag>& Cavity_Message<Mag>::operator=(const Ca
   for (long int i = 0L; i < this->K; ++i)
   {
     std::copy_n(m.m_star_j[i], this->N, this->m_star_j[i]);
-    std::copy_n(m.m_star_j[i], this->N, this->m_j_star[i]);
+    std::copy_n(m.m_j_star[i], this->N, this->m_j_star[i]); // CHECK IF THIS IS OK
   }
   std::copy_n(m.m_on, this->M, this->m_on);
   for (long int i = 0L; i < this->M; ++i)
@@ -259,7 +411,7 @@ template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &fi
      << std::endl
      << "K,N: " << this->K << " " << this->N
      << std::endl;
-  long int j;
+
   for (long int i = 0L; i < this->K; ++i)
   {
     std::copy_n(this->m_j_star[i], this->m_j_star[i] + this->N, std::ostream_iterator<Mag>(os, " "));
@@ -320,4 +472,100 @@ template<class Mag> void Cavity_Message<Mag>::read_weights(const std::string &fi
       for (long int j = 0L; j < this->N; ++j)
         buff >> this->m_j_star[i][j].mag;
   }
+
+}
+
+template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &filename, const Params<Mag> &parameters)
+{
+   std::ofstream os(filename);
+   os << "fmt: "   << parameters.tan_gamma.magformat()
+      << std::endl
+      << "N,M,K: " << this->N << " " << this->M << this->K
+      << std::endl;
+
+  for (long int i = 0L; i < this->K; ++i)
+  {
+    std::copy_n(this->m_star_j[i], this->m_star_j[i] + this->N, std::ostream_iterator<Mag>(os, " "));
+    os << std::endl;
+  }
+
+  for (long int i = 0L; i < this->K; ++i)
+  {
+    std::copy_n(this->m_j_star[i], this->m_j_star[i] + this->N, std::ostream_iterator<Mag>(os, " "));
+    os << std::endl;
+  }
+
+  for (long int i = 0L; i < this->M; ++i)
+  {
+    std::copy_n(this->m_in[i], this->m_in[i] + this->K, std::ostream_iterator<Mag>(os, " "));
+    os << std::endl;
+  }
+
+  for (long int i = 0L; i < this->M; ++i)
+  {
+    for(long int j = 0L; j < this->K; ++j)
+    {
+      std::copy_n(this->weights[i][j], this->weights[i][j] + this->N, std::ostream_iterator<Mag>(os, " "));
+      os << std::endl;
+    }
+  }
+
+  for (long int i = 0L; i < this->M; ++i)
+  {
+    std::copy_n(this->m_no[i], this->m_no[i] + this->K, std::ostream_iterator<Mag>(os, " "));
+    os << std::endl;
+  }
+
+  std::copy_n(this->m_on, this->m_on + this->M, std::ostream_iterator<Mag>(os, " "));
+  os << std::endl;
+
+  for (long int i = 0L; i < this->M; ++i)
+  {
+    std::copy_n(this->m_ni[i], this->m_ni[i] + this->K, std::ostream_iterator<Mag>(os, " "));
+    os << std::endl;
+  }
+
+  os.close();
+}
+
+template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &filename)
+{ // WHAT ABOUT FMT???
+  std::ofstream os(filename, std::ios::out | std::ios::binary);
+  os.write( (const char *) &this->N, sizeof( long int ));
+  os.write( (const char *) &this->M, sizeof( long int ));
+  os.write( (const char *) &this->K, sizeof( long int ));
+
+  for(long int i = 0L; i < this->K; ++i)
+    for(long int j = 0L; j < this->N; ++j)
+      os.write( (const char *) &this->m_j_star[i][j].mag, sizeof( double ));
+
+  for (long int i = 0L; i < this->K; ++i)
+    for(long int j = 0L; j < this->N; ++j)
+      os.write( (const char *) &this->m_star_j[i][j].mag, sizeof( double ));
+
+  for (long int i = 0L; i < this->K; ++i)
+    for(long int j = 0L; j < this->N; ++j)
+      os.write( (const char *) &this->m_j_star[i][j].mag, sizeof( double ));
+
+  for (long int i = 0L; i < this->M; ++i)
+    for(long int j = 0L; j < this->K; ++j)
+      os.write( (const char *) &this->m_in[i][j].mag, sizeof( double ));
+
+  for (long int i = 0L; i < this->M; ++i)
+    for(long int j = 0L; j < this->K; ++j)
+      for(long int k = 0L; k < this->N; ++k)
+        os.write( (const char *) &this->weights[i][j][k].mag, sizeof( double ));
+
+  for (long int i = 0L; i < this->M; ++i)
+    for(long int j = 0L; j < this->K; ++j)
+      os.write( (const char *) &this->m_no[i][j].mag, sizeof( double ));
+
+  for (long int i = 0L; i < this->M; ++i)
+    os.write( (const char *) &this->m_on[i].mag, sizeof( double ));
+
+  for (long int i = 0L; i < this->M; ++i)
+    for(long int j = 0L; j < this->K; ++j)
+      os.write( (const char *) &this->m_ni[i][j].mag, sizeof( double ));
+
+  os.close();
 }
