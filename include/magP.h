@@ -35,7 +35,7 @@ struct MagP64
   MagP64 operator-(const MagP64 &m)                           { return MagP64(this->mag - m.mag ); }
   MagP64 operator-(const double &x)                           { return MagP64(this->mag - x); }
   friend MagP64 operator-(const double &x, const MagP64 &m)   { return MagP64(x - m.mag); }
-
+  MagP64 operator-() const                                    { return MagP64(-this->mag); }
   // logical operators
   bool operator==(const MagP64 &m)                            { return this->mag == m.mag; }
   bool operator!=(const MagP64 &m)                            { return this->mag != m.mag; }

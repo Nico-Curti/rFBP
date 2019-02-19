@@ -56,6 +56,7 @@ struct MagT64
   MagT64 operator-(const MagT64 &m)                                      { return MagT64(this->mag - m.mag ); }
   MagT64 operator-(const double &x)                                      { return MagT64(this->mag - x); }
   friend MagT64 operator-(const double &x, const MagT64 &m)              { return MagT64(x - m.mag); }
+  MagT64 operator-() const                                               { return MagT64(-this->mag); }
 
   // logical operators
   bool operator==(const MagT64 &m)                                       { return this->mag == m.mag; }
