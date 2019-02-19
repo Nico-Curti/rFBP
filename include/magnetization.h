@@ -35,4 +35,7 @@ namespace mag
   template<class Mag> Mag      exactmix      (const Mag &H, const Mag &pp, const Mag &pm);
 }
 
+#include <magP.h>
+#include <magT.h>
+
 #endif // MAG_H
