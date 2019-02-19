@@ -36,6 +36,7 @@ template<class Mag> struct Cavity_Message
                      m_star_j(nullptr), m_j_star(nullptr), m_in(nullptr), m_no(nullptr), m_ni(nullptr),
                      m_on(nullptr)
                      {};
+  Cavity_Message(const std::string &filename, const bool &bin);
   Cavity_Message(const long int &m, const long int &n, const long int &k, const double &x, const int &start);
   Cavity_Message(const Cavity_Message<Mag> &m);
   Cavity_Message<Mag>& operator=(const Cavity_Message<Mag> &m);
@@ -44,7 +45,8 @@ template<class Mag> struct Cavity_Message
   void save_weights(const std::string &filename, const Params<Mag> &parameters);
   void save_weights(const std::string &filename);
   void read_weights(const std::string &filename, const bool &bin);
-
+  void save_messages(const std::string &filename, const Params<Mag> &parameters);
+  void save_messages(const std::string &filename);
 };
 
 #endif // MESSAGE_H
