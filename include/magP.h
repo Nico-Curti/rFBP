@@ -39,12 +39,8 @@ struct MagP64
   // logical operators
   bool operator==(const MagP64 &m)                            { return this->mag == m.mag; }
   bool operator!=(const MagP64 &m)                            { return this->mag != m.mag; }
-};
 
-std::ostream& operator<<(std::ostream& os, const MagP64 &m)
-{
-  os << m.mag;
-  return os;
-}
+  friend std::ostream& operator<<(std::ostream& os, const MagP64 &m);
+};
 
 #endif // MAGP_H

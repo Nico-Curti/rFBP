@@ -18,5 +18,5 @@ cd build
 
 ##sudo apt-get install ninja-build
 cmake -G "Ninja" "-DOMP=ON" "-DCMAKE_BUILD_TYPE=Release" ..
-make -j4 install
+cmake --build . --target install
 cd ..

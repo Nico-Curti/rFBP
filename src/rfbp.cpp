@@ -11,10 +11,10 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
 #ifdef DEBUG
   assert(nxi == nm);
 #endif
-  double maxdiff = 0.,
-         mu      = 0.,
-         sigma2  = 0.,
-         dsigma2, g, p0, pmu, psigma;
+  static double maxdiff = 0.,
+                mu      = 0.,
+                sigma2  = 0.;
+  double dsigma2, g, p0, pmu, psigma;
   Mag old_m_on(0.),
       new_u(0.),
       new_m(0.);
@@ -25,7 +25,7 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : mu, sigma2)
-  for (long int i = 0L; i < nm; ++i)
+  for (long int i = 0L; i < nxi; ++i)
   {
     h[i] = mag::bar(m[i], u[i]);
     mu  += h[i] * xi[i];
@@ -82,9 +82,10 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
   assert(nxi == nm);
 #endif
 
-  double maxdiff = 0.,
-         mu      = 0.,
-         sigma2, tmp;
+  static double maxdiff = 0.,
+                mu      = 0.,
+                sigma2  = 0.;
+  double tmp;
   Mag old_m_on(0.),
       new_u(0.);
   static std::unique_ptr<Mag[]> h(new Mag[nm]);
@@ -93,7 +94,7 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : mu, sigma2)
-  for (long int i = 0L; i < nm; ++i)
+  for (long int i = 0L; i < nxi; ++i)
   {
     h[i]    = mag::bar(m[i], u[i]);
     mu     += h[i] * xi[i];
@@ -142,9 +143,9 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   assert(nxi == nm);
 #endif
   long int z;
-  double maxdiff = 0.,
-         pm = 0., pp = 0.,
-         pz, p;
+  static double maxdiff = 0.,
+                pm = 0., pp = 0.;
+  double pz, p;
   static double **leftC  = new double *[nm],
                 **rightC = new double *[nm];
   Mag old_m_on(0.),
@@ -247,11 +248,10 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #endif
 
   // other iterations (expect last)
-  long int i;
 #ifdef _OPENMP
-#pragma omp for private(i, pm, pz, pp, p, mp, mm) reduction (max : maxdiff)
+#pragma omp for private(pm, pz, pp, p, mp, mm) reduction (max : maxdiff)
 #endif
-  for (i = 1L; i < nm - 1L; ++i)
+  for (long int i = 1L; i < nm - 1L; ++i)
   {
     pm = 0.;
     pz = 0.;
@@ -260,9 +260,6 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
     assert(xi[i] * xi[i] == 1.);
 #endif
 
-#ifdef _OPENMP
-#pragma omp for private(p, pz) reduction (+ : pm, pp)
-#endif
     for (long int j = 0L; j < nm; ++j)
     {
       p = 0.;
@@ -294,6 +291,7 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #ifdef DEBUG
   assert(xi[i] * xi[i] == 1.);
 #endif
+  long int i = nm - 1L;
 #ifdef _OPENMP
 #pragma omp for private(p, pz) reduction (+ : pm, pp)
 #endif
@@ -347,9 +345,9 @@ template<class Mag> double free_energy_theta(const MagVec<Mag> m,
 #ifdef DEBUG
   assert(nm == nxi);
 #endif
-  double mu   = 0.,
-        sigma = 0.,
-        f;
+  static double mu   = 0.,
+                sigma = 0.,
+                f;
   Mag old_m_on(0.),
       b(0.);
   static std::unique_ptr<Mag[]> h(new Mag[nm]);
@@ -358,7 +356,7 @@ template<class Mag> double free_energy_theta(const MagVec<Mag> m,
 
 #ifdef _OPENMP
 #pragma omp for reduction (+ : mu, sigma)
-  for (long int i = 0L; i < nm; ++i)
+  for (long int i = 0L; i < nxi; ++i)
   {
     h[i]   = mag::bar(m[i], u[i]);
     mu    += h[i] * xi[i];
@@ -401,7 +399,7 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
                                                    const long int &nm)
 {
   long int z;
-  double pm = 0., pp = 0., f = 0.;
+  static double pm = 0., pp = 0., f = 0.;
   Mag old_m_on(0.),
       b(0.);
   static std::unique_ptr<Mag[]> h(new Mag[nm]);
@@ -612,7 +610,7 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 
 template<class Mag> long int nonbayes_test(const Cavity_Message<Mag> &messages, const Patterns &patterns)
 {
-  long int t = 0;
+  static long int t = 0;
   double s, s2, trsf0;
 
   static long int **sign_m_j_star = new long int*[messages.K];
@@ -675,7 +673,7 @@ template<class Mag> long int nonbayes_test(const Cavity_Message<Mag> &messages, 
 
 template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, const Patterns &patterns, const Params<Mag> &params)
 {
-  double f = 0.;
+  static double f = 0.;
   Mag z(0.),
       old_m_j_star(0.);
 
@@ -727,7 +725,7 @@ template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, cons
 
 template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const Params<Mag> &params)
 {
-  double S = 0.;
+  static double S = 0.;
   Mag old_m_j_star(0.);
 
 #ifdef _OPENMP
@@ -745,12 +743,13 @@ template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const 
 
 template<class Mag> Mag compute_q_bar(const Cavity_Message<Mag> &messages, const Params<Mag> &params)
 {
-  Mag q_bar(0.),
-      old_m_j_star(0.),
+  static Mag q_bar(0.);
+  Mag old_m_j_star(0.),
       mx(0.);
 
 #ifdef _OPENMP
-#pragma omp for private(old_m_j_star, mx) reduction (+ : q_bar) collapse(2)
+#pragma omp declare reduction (sum_mags : Mag : omp_out = omp_out + omp_in ) initializer(omp_priv=0)
+#pragma omp for private(old_m_j_star, mx) reduction (sum_mags : q_bar) collapse(2)
 #endif
   for (long int i = 0L; i < messages.K; ++i)
     for (long int j = 0L; j < messages.N; ++j)
@@ -764,7 +763,7 @@ template<class Mag> Mag compute_q_bar(const Cavity_Message<Mag> &messages, const
 
 template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const long int &nm_j_star, const long int &nm_j_star_col)
 {
-  double q = 0.;
+  static double q = 0.;
 
 #ifdef _OPENMP
 #pragma omp for collapse(2) reduction (+ : q)

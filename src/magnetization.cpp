@@ -336,3 +336,15 @@ namespace mag
       return auxmix(H, pp.mag, pm.mag);
   }
 }
+
+std::ostream& operator<<(std::ostream& os, const MagP64 &m)
+{
+  os << m.mag;
+  return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const MagT64 &m)
+{
+  os << m.mag;
+  return os;
+}

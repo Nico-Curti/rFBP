@@ -61,12 +61,8 @@ struct MagT64
   // logical operators
   bool operator==(const MagT64 &m)                                       { return this->mag == m.mag; }
   bool operator!=(const MagT64 &m)                                       { return this->mag != m.mag; }
-};
 
-std::ostream& operator<<(std::ostream& os, const MagT64 &m)
-{
-  os << m.mag;
-  return os;
-}
+  friend std::ostream& operator<<(std::ostream& os, const MagT64 &m);
+};
 
 #endif // MAGT_H
