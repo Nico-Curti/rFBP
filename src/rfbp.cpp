@@ -236,8 +236,8 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
       else if (j == z - 1L) pz = p;
       else                  pp += p;
   }
-  mp      = mag::convert(mag::clamp(pp + xi[0] * pz - pm, -1., 1.));
-  mm      = mag::convert(mag::clamp(pp - xi[0] * pz - pm, -1., 1.));
+  mp      = mag::convert<Mag>(mag::clamp(pp + xi[0] * pz - pm, -1., 1.));
+  mm      = mag::convert<Mag>(mag::clamp(pp - xi[0] * pz - pm, -1., 1.));
   new_u   = mag::exactmix(old_m_on, mp, mm);
   maxdiff = static_cast<double>(std::max(maxdiff, mag::abs(new_u - u[0])));
   u[0]    = mag::damp(new_u, u[0], params.damping);
@@ -271,8 +271,8 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
       else if (j == z - 1L) pz = p;
       else                  pp += p;
     }
-    mp      = mag::convert(mag::clamp(pp + xi[i] * pz - pm, -1., 1.));
-    mm      = mag::convert(mag::clamp(pp - xi[i] * pz - pm, -1., 1.));
+    mp      = mag::convert<Mag>(mag::clamp(pp + xi[i] * pz - pm, -1., 1.));
+    mm      = mag::convert<Mag>(mag::clamp(pp - xi[i] * pz - pm, -1., 1.));
     new_u   = mag::exactmix(old_m_on, mp, mm);
     maxdiff = static_cast<double>(std::max(maxdiff, mag::abs(new_u - u[i])));
     u[i]    = mag::damp(new_u, u[i], params.damping);
@@ -302,8 +302,8 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
       else if (j == z - 1L) pz = p;
       else                  pp += p;
   }
-  mp      = mag::convert(mag::clamp(pp + xi[i] * pz - pm, -1., 1.));
-  mm      = mag::convert(mag::clamp(pp - xi[i] * pz - pm, -1., 1.));
+  mp      = mag::convert<Mag>(mag::clamp(pp + xi[i] * pz - pm, -1., 1.));
+  mm      = mag::convert<Mag>(mag::clamp(pp - xi[i] * pz - pm, -1., 1.));
   new_u   = mag::exactmix(old_m_on, mp, mm);
   maxdiff = static_cast<double>(std::max(maxdiff, mag::abs(new_u - u[i])));
   u[i]    = mag::damp(new_u, u[i], params.damping);

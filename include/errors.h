@@ -12,7 +12,7 @@ static constexpr int ERROR_PATTERN  = 7;
 static constexpr int ERROR_PROTOCOL = 8;
 static constexpr int ERROR_MESSAGES = 91;
 static constexpr int ERROR_INVALID_MESSAGES = 92;
-
+// ERRORS 101-105 are related to raising errors in parse_args.h
 
 inline void error_Npositive(const long int &N)
 {
@@ -117,6 +117,5 @@ inline void error_invalid_messages(const std::string &filename)
   std::cerr << "Invalid messages file! Given: " << filename << std::endl;
   std::exit(ERROR_INVALID_MESSAGES);
 }
-
 
 #endif // ERRORS_H

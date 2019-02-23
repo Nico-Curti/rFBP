@@ -69,7 +69,7 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
       for (long int j = 0L; j < this->K; ++j)
         is.read( (char *) &this->m_ni[i][j].mag, sizeof(double));
     }
-
+    is.close();
   }
   else
   {
@@ -78,6 +78,7 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
     if ( !is ) error_messages(filename);
     std::string row;
     buff << is.rdbuf();
+    is.close();
 
     buff >> row;
     if ( row != "fmt:") error_invalid_messages(filename);
@@ -148,7 +149,6 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
 
   }
 
-  is.close();
 // new (this) Cavity_Message<Mag>(n, m, k, x, seed);
 }
 
@@ -398,7 +398,7 @@ template<class Mag> Cavity_Message<Mag>::~Cavity_Message()
 }
 
 
-template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &filename, const Params<Mag> &parameters)
+template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &filename, Params<Mag> &parameters)
 {
   std::ofstream os(filename);
   os << "fmt: "         << parameters.tan_gamma.magformat()
@@ -414,7 +414,7 @@ template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &fi
 
   for (long int i = 0L; i < this->K; ++i)
   {
-    std::copy_n(this->m_j_star[i], this->m_j_star[i] + this->N, std::ostream_iterator<Mag>(os, " "));
+    std::copy_n(this->m_j_star[i], this->N, std::ostream_iterator<Mag>(os, " "));
     os << std::endl;
   }
   os.close();
@@ -475,7 +475,7 @@ template<class Mag> void Cavity_Message<Mag>::read_weights(const std::string &fi
 
 }
 
-template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &filename, const Params<Mag> &parameters)
+template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &filename, Params<Mag> &parameters)
 {
    std::ofstream os(filename);
    os << "fmt: "   << parameters.tan_gamma.magformat()
@@ -485,19 +485,19 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
 
   for (long int i = 0L; i < this->K; ++i)
   {
-    std::copy_n(this->m_star_j[i], this->m_star_j[i] + this->N, std::ostream_iterator<Mag>(os, " "));
+    std::copy_n(this->m_star_j[i], this->N, std::ostream_iterator<Mag>(os, " "));
     os << std::endl;
   }
 
   for (long int i = 0L; i < this->K; ++i)
   {
-    std::copy_n(this->m_j_star[i], this->m_j_star[i] + this->N, std::ostream_iterator<Mag>(os, " "));
+    std::copy_n(this->m_j_star[i], this->N, std::ostream_iterator<Mag>(os, " "));
     os << std::endl;
   }
 
   for (long int i = 0L; i < this->M; ++i)
   {
-    std::copy_n(this->m_in[i], this->m_in[i] + this->K, std::ostream_iterator<Mag>(os, " "));
+    std::copy_n(this->m_in[i], this->K, std::ostream_iterator<Mag>(os, " "));
     os << std::endl;
   }
 
@@ -505,23 +505,23 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
   {
     for(long int j = 0L; j < this->K; ++j)
     {
-      std::copy_n(this->weights[i][j], this->weights[i][j] + this->N, std::ostream_iterator<Mag>(os, " "));
+      std::copy_n(this->weights[i][j], this->N, std::ostream_iterator<Mag>(os, " "));
       os << std::endl;
     }
   }
 
   for (long int i = 0L; i < this->M; ++i)
   {
-    std::copy_n(this->m_no[i], this->m_no[i] + this->K, std::ostream_iterator<Mag>(os, " "));
+    std::copy_n(this->m_no[i], this->K, std::ostream_iterator<Mag>(os, " "));
     os << std::endl;
   }
 
-  std::copy_n(this->m_on, this->m_on + this->M, std::ostream_iterator<Mag>(os, " "));
+  std::copy_n(this->m_on, this->M, std::ostream_iterator<Mag>(os, " "));
   os << std::endl;
 
   for (long int i = 0L; i < this->M; ++i)
   {
-    std::copy_n(this->m_ni[i], this->m_ni[i] + this->K, std::ostream_iterator<Mag>(os, " "));
+    std::copy_n(this->m_ni[i], this->K, std::ostream_iterator<Mag>(os, " "));
     os << std::endl;
   }
 
@@ -569,3 +569,20 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
 
   os.close();
 }
+
+template<class Mag> std::vector<std::string> Cavity_Message<Mag>::split(const std::string &txt, const std::string &del)
+{
+  std::vector<std::string> token;
+  std::size_t pos = txt.find_first_of(del), start = 0, end = txt.size();
+  while(pos != std::string::npos)
+  {
+    if(pos) token.push_back(txt.substr(start, pos));
+    start += pos + 1;
+    pos = txt.substr(start, end).find_first_of(del);
+  }
+  if(start != end) token.push_back(txt.substr(start, pos));
+  return token;
+}
+
+template struct Cavity_Message<MagP64>;
+template struct Cavity_Message<MagT64>;

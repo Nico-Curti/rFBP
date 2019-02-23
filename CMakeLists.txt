@@ -3,7 +3,7 @@ project (rFBP LANGUAGES CXX VERSION 2.0.1 DESCRIPTION "Replicated Focusing Belie
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Byron Version
+# rFBP Version
 set (MAJOR    1)
 set (MINOR    0)
 set (REVISION 0)
@@ -101,14 +101,15 @@ endif()
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
-set(EXAMPLE ${CMAKE_SOURCE_DIR}/example)
+set(TST ${CMAKE_SOURCE_DIR}/tst)
 set(PYC_DIR ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation)         # cython directory
 
 set(rfbplib rfbp)
+set(rfbpmain main)
 
 file(GLOB SRC    "${SRC_DIR}/*.cpp")
 file(GLOB HEADER "${INC_DIR}/*.h"  )
-file(GLOB EXE    "${EXAMPLE}/*.cpp")
+file(GLOB EXE    "${TST}/*.cpp")
 
 include_directories(${INC_DIR})
 
@@ -163,8 +164,12 @@ add_library(${rfbplib} SHARED ${SRC} ${HEADER})
 set_property(TARGET ${rfbplib} PROPERTY POSITION_INDEPENDENT_CODE ON)
 target_link_libraries(${rfbplib} ${linked_libs})
 
+add_executable(${rfbpmain} ${EXE})
+target_link_libraries(${rfbpmain} ${linked_libs} ${rfbplib})
+
 #################################################################
 #                          INSTALLERS                           #
 #################################################################
 
 install(TARGETS ${rfbplib}         DESTINATION ${CMAKE_SOURCE_DIR})
+install(TARGETS ${rfbpmain}        DESTINATION ${TST})

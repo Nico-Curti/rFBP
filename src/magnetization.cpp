@@ -13,6 +13,8 @@ namespace mag
                    "signbit function! Incompatible types found.");
     return std::signbit(m.mag);
   }
+  template bool signbit<MagP64>(const MagP64 &m);
+  template bool signbit<MagT64>(const MagT64 &m);
 
   template<class Mag> Mag      f2m           (const double &x)
   {
@@ -21,6 +23,8 @@ namespace mag
                    "f2m function! Incompatible types found.");
     return Mag(x);
   }
+  template MagP64 f2m<MagP64>(const double &x);
+  template MagT64 f2m<MagT64>(const double &x);
 
   template<class Mag> void     zeros         (Mag *x, const long int &n)
   {
@@ -29,6 +33,8 @@ namespace mag
                    "zeros function! Incompatible types found.");
     std::fill_n(x, n, 0.f);
   }
+  template void zeros<MagP64>(MagP64 *x, const long int &n);
+  template void zeros<MagT64>(MagT64 *x, const long int &n);
 
   template<class Mag> void     zero          (Mag &x)
   {
@@ -45,6 +51,8 @@ namespace mag
                    "abs function! Incompatible types found.");
     return std::abs(a.mag);
   }
+  template double abs<MagP64>(const MagP64 &a);
+  template double abs<MagT64>(const MagT64 &a);
 
   template<class Mag> void     copysign      (Mag &x, const double &y)
   {
@@ -59,8 +67,11 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "arrow function! Incompatible types found.");
-    return mtanh(x * std::atanh(m.mag));
+    return mtanh<Mag>(x * std::atanh(m.mag));
   }
+  template MagP64 arrow<MagP64>(const MagP64 &m, const double &x);
+  template MagT64 arrow<MagT64>(const MagT64 &m, const double &x);
+
 
   template<class Mag> long int sign0         (const Mag &x)
   {
@@ -88,6 +99,8 @@ namespace mag
     else
       return Mag(clamp(std::atanh(x), -30., 30.));
   }
+  template MagP64 convert<MagP64>(const double &x);
+  template MagT64 convert<MagT64>(const double &x);
 
   template<class Mag> double    convert       (const Mag &x)
   {
@@ -100,7 +113,6 @@ namespace mag
       return std::atanh(x.mag);
   }
 
-
   template<class Mag> Mag      couple        (const double &x1, const double &x2)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
@@ -108,10 +120,12 @@ namespace mag
                    "couple function! Incompatible types found.");
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
-      MagP64( (x1 - x2) / (x1 + x2) );
+      return MagP64( (x1 - x2) / (x1 + x2) );
     else
-      MagT64( (std::log(x1) - std::log(x2)) * .5 );
+      return MagT64( (std::log(x1) - std::log(x2)) * .5 );
   }
+  template MagP64 couple<MagP64>(const double &x1, const double &x2);
+  template MagT64 couple<MagT64>(const double &x1, const double &x2);
 
 
   template<class Mag> Mag      damp          (const Mag &newx, const Mag &oldx, const double &l)
@@ -125,6 +139,8 @@ namespace mag
     else
       return MagT64(std::atanh(newx.mag) * (1. - l) + std::atanh(oldx.mag) * l);
   }
+  template MagP64 damp<MagP64>(const MagP64 &newx, const MagP64 &oldx, const double &l);
+  template MagT64 damp<MagT64>(const MagT64 &newx, const MagT64 &oldx, const double &l);
 
   template<class Mag> Mag      mtanh         (const double &x)
   {
@@ -155,6 +171,8 @@ namespace mag
     else
       return MagT64(AtanhErf::atanherf(x));
   }
+  template MagP64 merf<MagP64>(const double &x);
+  template MagT64 merf<MagT64>(const double &x);
 
   template<class Mag> Mag      bar           (const Mag &m1, const Mag &m2)
   {
@@ -171,6 +189,9 @@ namespace mag
               MagT64(0.)           :
               MagT64(std::atanh(m1.mag) -  std::atanh(m2.mag)));
   }
+  template MagP64 bar<MagP64>(const MagP64 &m1, const MagP64 &m2);
+  template MagT64 bar<MagT64>(const MagT64 &m1, const MagT64 &m2);
+
 
   template<class Mag> double   log1pxy       (const Mag &x, const Mag &y)
   {
@@ -192,6 +213,8 @@ namespace mag
               sign(ax) == sign(ay) ? 0. : -inf;
     }
   }
+  template double log1pxy<MagP64>(const MagP64 &x, const MagP64 &y);
+  template double log1pxy<MagT64>(const MagT64 &x, const MagT64 &y);
 
   template<class Mag> double   mcrossentropy (const Mag &x, const Mag &y)
   {
@@ -212,7 +235,8 @@ namespace mag
              0.;
     }
   }
-
+  template double mcrossentropy<MagP64>(const MagP64 &x, const MagP64 &y);
+  template double mcrossentropy<MagT64>(const MagT64 &x, const MagT64 &y);
 
   template<class Mag> double   logZ          (const Mag &u0, const Mag *u, const long int &nu)
   {
@@ -222,8 +246,8 @@ namespace mag
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
     {
-      double zkip = std::log( (1. + u0.mag) * .5),
-             zkim = std::log( (1. - u0.mag) * .5);
+      static double zkip = std::log( (1. + u0.mag) * .5),
+                    zkim = std::log( (1. - u0.mag) * .5);
 #ifdef _OPENMP
 #pragma omp for reduction(+ : zkip, zkim)
 #endif
@@ -260,6 +284,8 @@ namespace mag
       return std::abs(s1) - s2 + lr(s1) - s3;
     }
   }
+  template double logZ<MagP64>(const MagP64 &u0, const MagP64 *u, const long int &nu);
+  template double logZ<MagT64>(const MagT64 &u0, const MagT64 *u, const long int &nu);
 
   template<class Mag> Mag      auxmix        (const Mag &H, const double &ap, const double &am)
   {
@@ -313,8 +339,8 @@ namespace mag
     }
   }
   return MagT64((t1 + t2) * .5);
-
   }
+
 
   template<class Mag> Mag      erfmix        (const Mag &H, const double &mp, const double &mm)
   {
@@ -323,6 +349,8 @@ namespace mag
     else
       return auxmix(H, AtanhErf::atanherf(mp), AtanhErf::atanherf(mm));
   }
+  template MagP64 erfmix<MagP64>(const MagP64 &H, const double &mp, const double &mm);
+  template MagT64 erfmix<MagT64>(const MagT64 &H, const double &mp, const double &mm);
 
   template<class Mag> Mag      exactmix      (const Mag &H, const Mag &pp, const Mag &pm)
   {
@@ -335,6 +363,9 @@ namespace mag
     else
       return auxmix(H, pp.mag, pm.mag);
   }
+  template MagP64 exactmix<MagP64>(const MagP64 &H, const MagP64 &pp, const MagP64 &pm);
+  template MagT64 exactmix<MagT64>(const MagT64 &H, const MagT64 &pp, const MagT64 &pm);
+
 }
 
 std::ostream& operator<<(std::ostream& os, const MagP64 &m)
