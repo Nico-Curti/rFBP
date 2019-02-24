@@ -18,8 +18,8 @@ from distutils.sysconfig import customize_compiler
 NAME = 'ReplicatedFocusingBeliefPropagation'
 DESCRIPTION = 'Replicated Focusing Belief Propagation algorithm.'
 URL = 'https://github.com/Nico-Curti/rFBP'
-EMAIL = 'nico.curti2@unibo.it'
-AUTHOR = 'Nico Curti'
+EMAIL = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
+AUTHOR = ['Nico Curti', "Daniele Dall'Olio"]
 REQUIRES_PYTHON = '>=2.7'
 VERSION = None
 KEYWORDS = "belief-propagation deep-neural-networks spin-glass"

@@ -3,6 +3,10 @@
 # distutils: sources = magP.cpp magT.cpp
 # cython: language_level=3
 
+
+__package__ = "Magnetization"
+__author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+
 cdef extern from "magP.h":
   cppclass magP64:
     magP64() except +

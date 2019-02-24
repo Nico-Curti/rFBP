@@ -9,6 +9,9 @@ from libcpp.memory cimport unique_ptr
 from cython.operator cimport dereference as deref
 
 
+__package__ = "rFBP_protocol"
+__author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+
 cdef extern from "fprotocol.h":
   cppclass FocusingProtocol:
     FocusingProtocol() except +

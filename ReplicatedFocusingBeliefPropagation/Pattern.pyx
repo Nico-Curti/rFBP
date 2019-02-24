@@ -10,6 +10,10 @@ from libcpp.memory cimport unique_ptr
 from cython.operator cimport dereference as deref
 import pandas as pd
 
+
+__package__ = "rFBP_Pattern"
+__author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+
 cdef string leave_uninitalized = string()
 
 cdef extern from "pattern.h":

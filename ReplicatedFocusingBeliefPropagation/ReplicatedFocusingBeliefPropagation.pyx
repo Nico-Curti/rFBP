@@ -12,6 +12,9 @@ from ._mag import *
 from .Fprotocol import FocusingProtocol, FProtocol
 from .Pattern import Patterns, Pattern
 
+__package__ = "ReplicatedFocusingBeliefPropagation"
+__author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+
 cdef extern from "rfbp.h":
   cdef void focusingBP(long int K,
                        object patterns,
