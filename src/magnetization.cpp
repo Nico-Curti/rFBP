@@ -153,6 +153,8 @@ namespace mag
     else
       return MagT64(x);
   }
+  template MagP64 mtanh<MagP64>(const double &x);
+  template MagT64 mtanh<MagT64>(const double &x);
 
   template<class Mag> Mag      matanh        (const Mag &m)
   {
@@ -164,7 +166,7 @@ namespace mag
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
-                   "mtanh function! Incompatible types found.");
+                   "merf function! Incompatible types found.");
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return MagP64(std::erf(x));
@@ -378,4 +380,18 @@ std::ostream& operator<<(std::ostream& os, const MagT64 &m)
 {
   os << m.mag;
   return os;
+}
+
+std::vector<std::string> split(const std::string &txt, const std::string &del)
+{
+  std::vector<std::string> token;
+  std::size_t pos = txt.find_first_of(del), start = 0, end = txt.size();
+  while(pos != std::string::npos)
+  {
+    if(pos) token.push_back(txt.substr(start, pos));
+    start += pos + 1;
+    pos = txt.substr(start, end).find_first_of(del);
+  }
+  if(start != end) token.push_back(txt.substr(start, pos));
+  return token;
 }

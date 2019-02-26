@@ -21,7 +21,7 @@ void Patterns::check_binary()
 }
 #endif
 
-Patterns::Patterns(const std::string &filename, bool bin)
+Patterns::Patterns(const std::string &filename, bool bin, const std::string &del)
 {
   if (bin)
   {
@@ -43,32 +43,41 @@ Patterns::Patterns(const std::string &filename, bool bin)
   }
   else
   {
+    std::vector<std::string> row_;
     std::ifstream is(filename);
     if (!is) error_pattern(filename);
     std::stringstream buff;
     buff << is.rdbuf();
     is.close();
 
+    // Get M
     std::string row;
     std::getline(buff, row);
-    this->Nout = std::count(row.begin(), row.end(), ' ') + 1;
+    row_ = split(row, del);
+    this->Nout = row_.size();
     this->Nrow = this->Nout;
 
-    std::getline(buff, row);
-    this->Ncol = std::count(row.begin(), row.end(), ' ') + 1;
+    // Read outputs
+    this->output = std::make_unique<long int[]>(this->Nout);
+    std::transform( row_.begin(), row_.end(), this->output.get(), [](std::string &i){return std::stod(i);} );
 
-    buff.clear();
-    buff.seekg(0, std::ios::beg);
-
-    this->output = std::make_unique<long int[]>(this->Ncol);
-    for (int i = 0; i < this->Ncol; ++i)
-      buff >> this->output[i];
-
+    // Get N
     this->input = new double*[this->Nrow];
+    std::getline(buff, row);
+    row_ = split(row, del);
+    this->Ncol = row_.size();
     std::generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
-    for (long int i = 0L; i < this->Nrow; ++i)
-      for (long int j = 0L; j < this->Ncol; ++j)
-        buff >> this->input[i][j];
+
+    // Read first pattern
+    std::transform( row_.begin(), row_.end(), this->input[0L], [](std::string &i){return std::stod(i);} );
+
+    // Read all others
+    for (long int i = 1L; i < this->Nrow; ++i){
+      std::getline(buff, row);
+      row_ = split(row, del);
+      std::transform( row_.begin(), row_.end(), this->input[i], [](std::string &rr){return std::stod(rr);} );
+    }
+
   }
 
 #ifdef DEBUG
@@ -105,4 +114,3 @@ Patterns::~Patterns()
       delete[] this->input;
   }
 }
-

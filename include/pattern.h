@@ -9,6 +9,7 @@
 #include <numeric>
 
 #include <errors.h>
+#include <utils.h>
 #ifdef DEBUG
 #include <cassert>
 #endif
@@ -21,7 +22,7 @@ struct Patterns
   std::unique_ptr<long int[]> output; // output vector
   double **input;
 
-  Patterns(const std::string &filename, bool bin = false);
+  Patterns(const std::string &filename, bool bin = false, const std::string &del = "\t");
   Patterns(const long int &N, const long int &M);
   //Patterns& operator=(const Patterns &p);
   //Patterns(const Patterns &p);

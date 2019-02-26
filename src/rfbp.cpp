@@ -146,8 +146,17 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   static double maxdiff = 0.,
                 pm = 0., pp = 0.;
   double pz, p;
-  static double **leftC  = new double *[nm],
-                **rightC = new double *[nm];
+  // static std::unique_ptr< std::unique_ptr<double[]> [] >  leftC,
+  //                                                         rightC;
+
+  // leftC  = std::move( std::unique_ptr< std::unique_ptr<double[]> [] > (new std::unique_ptr<double[]>[nm]) );
+  // rightC = std::move( std::unique_ptr< std::unique_ptr<double[]> [] > (new std::unique_ptr<double[]>[nm]) );
+
+  static double **leftC  = nullptr,
+                **rightC = nullptr;
+  leftC  = new double *[nm];
+  rightC = new double *[nm];
+
   Mag old_m_on(0.),
       new_u(0.),
       mp(0.), mm(0.);
@@ -158,38 +167,42 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #ifdef _OPENMP
 #pragma omp for
 #endif
+
   for (long int i = 0L; i < nm; ++i)
   {
     h[i]      = mag::bar(m[i], u[i]);
     leftC[i]  = new double[i + 2L];
     rightC[i] = new double[nm - i + 1L];
+    // leftC[i]   = std::move(std::make_unique< double[] > (i + 2L));
+    // rightC[i]  = std::move(std::make_unique< double[] > (nm - i + 1L));
   }
-  leftC[0][0] = (1. - xi[0] * h[0]) * .5;
-  leftC[0][1] = (1. + xi[0] * h[0]) * .5;
 
+
+  leftC[0][0] = (1. - xi[0] * h[0].mag) * .5;
+  leftC[0][1] = (1. + xi[0] * h[0].mag) * .5;
 #ifdef _OPENMP
 #pragma omp for
 #endif
   for (long int i = 1L; i < nm; ++i)
   {
-    leftC[i][0]      = leftC[i - 1L][0]  * (1. - xi[i] * h[i]) * .5;
+    leftC[i][0]      = leftC[i - 1L][0]  * (1. - xi[i] * h[i].mag) * .5;
     for (long int j = 1L; j < i + 1L; ++j)
-      leftC[i][j]    = leftC[i - 1L][j - 1L] * (1. + xi[i] * h[i]) * .5 + leftC[i - 1L][j] * (1. - xi[i] * h[i]) * .5;
-    leftC[i][i + 1L] = leftC[i - 1L][i]  * (1. + xi[i] * h[i]) * .5;
+      leftC[i][j]    = leftC[i - 1L][j - 1L] * (1. + xi[i] * h[i].mag) * .5 + leftC[i - 1L][j] * (1. - xi[i] * h[i].mag) * .5;
+    leftC[i][i + 1L] = leftC[i - 1L][i]  * (1. + xi[i] * h[i].mag) * .5;
   }
 
-  rightC[nm - 1L][0] = (1. - xi[nxi - 1L] * h[nm - 1L]) * .5;
-  rightC[nm - 1L][1] = (1. + xi[nxi - 1L] * h[nm - 1L]) * .5;
+  rightC[nm - 1L][0] = (1. - xi[nxi - 1L] * h[nm - 1L].mag) * .5;
+  rightC[nm - 1L][1] = (1. + xi[nxi - 1L] * h[nm - 1L].mag) * .5;
 
 #ifdef _OPENMP
 #pragma omp for
 #endif
   for (long int i = nm - 2L; i >= 0L; --i)
   {
-    rightC[i][0]      = rightC[i + 1L][0]            * (1. - xi[i] * h[i]) * .5;
+    rightC[i][0]      = rightC[i + 1L][0]            * (1. - xi[i] * h[i].mag) * .5;
     for (long int j = 1L; j < nm - i; ++j)
-      rightC[i][j]    = rightC[i + 1L][j - 1]        * (1. + xi[i] * h[i]) * .5 + rightC[i + 1L][j] * (1. - xi[i] * h[i]) * .5;
-    rightC[i][nm - i] = rightC[i + 1L][nm - i - 1L]  * (1. + xi[i] * h[i]) * .5;
+      rightC[i][j]    = rightC[i + 1L][j - 1]        * (1. + xi[i] * h[i].mag) * .5 + rightC[i + 1L][j] * (1. - xi[i] * h[i].mag) * .5;
+    rightC[i][nm - i] = rightC[i + 1L][nm - i - 1L]  * (1. + xi[i] * h[i].mag) * .5;
   }
 
 #ifdef DEBUG
@@ -242,7 +255,6 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   maxdiff = static_cast<double>(std::max(maxdiff, mag::abs(new_u - u[0])));
   u[0]    = mag::damp(new_u, u[0], params.damping);
   m[0]    = h[0] % u[0];
-
 #ifdef DEBUG
   assert(!std::isinf(u[0].mag));
 #endif
@@ -282,7 +294,6 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
     assert(!std::isinf(u[i].mag));
 #endif
   }
-
   // last iteration
   pm = 0.;
   pz = 0.;
@@ -308,7 +319,6 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   maxdiff = static_cast<double>(std::max(maxdiff, mag::abs(new_u - u[i])));
   u[i]    = mag::damp(new_u, u[i], params.damping);
   m[i]    = h[i] % u[i];
-
 #ifdef DEBUG
   assert(!std::isinf(u[i].mag));
 #endif
@@ -317,7 +327,7 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #pragma omp single
   {
 #endif
-    for (int i = 0; i < nm; ++i)
+    for (int i = 0L; i < nm; ++i)
     {
       delete[] leftC[i];
       delete[] rightC[i];
@@ -404,6 +414,7 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
       b(0.);
   static std::unique_ptr<Mag[]> h(new Mag[nm]);
   static double **leftC = new double*[nm];
+  //static std::unique_ptr< std::unique_ptr<double[]> [] > leftC(new std::unique_ptr<double[]>[nm]);
 
   old_m_on = mag::bar(M, U);
 
@@ -412,7 +423,8 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
   for (long int i = 0L; i < nm; ++i)
   {
     h[i] = mag::bar(m[i], u[i]);
-    leftC[i] = new double[nm + 1];
+    leftC[i] = new double[i + 2L];
+    // leftC[i] = std::make_unique< double[] > (i + 2L);
   }
 #else
   std::transform(m, m + nm, u,
@@ -420,7 +432,10 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
                  {
                   return mag::bar(mi, ui);
                  });
-  std::generate_n(leftC, nm, [&](){return new double[nm + 1L];});
+  for (long int i = 0L; i < nm; ++i)
+    leftC[i] = new double[i + 2L];
+    //leftC[i] = std::make_unique< double[] > (i + 2L);
+
 #endif
   leftC[0][0] = (1. - xi[0] * h[0]) * .5;
   leftC[0][1] = (1. + xi[0] * h[0]) * .5;
@@ -543,7 +558,6 @@ template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns
       z = Mag(0.);
       for (k = 0L; k < messages.K; ++k)
         maxdiff = std::max(maxdiff, tnu1(messages.m_j_star[k],       messages.m_in[randperm[a]][k], patterns.input[randperm[a]], messages.weights[randperm[a]][k], messages.m_no[randperm[a]][k], params, patterns.Ncol, messages.N));
-
       maxdiff   = std::max(maxdiff, tnu2(messages.m_in[randperm[a]], messages.m_on[randperm[a]],    ones.get(),                  messages.m_ni[randperm[a]],       z,                             params, messages.K,    messages.K));
     }
 

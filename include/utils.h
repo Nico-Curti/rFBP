@@ -30,6 +30,7 @@ static std::unordered_map<std::string, long int> protocol{
   {"standard_reinforcement", standard_}
 };
 
+std::vector<std::string> split(const std::string &txt, const std::string &del);
 
 //static void menu_FBP()
 //{
