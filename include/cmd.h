@@ -46,8 +46,8 @@ void parse_training_fbp(int argc, char *argv[],
                                                                    "(1) PseudoReinforcement(default), "
                                                                    "(2) FreeScoping, "
                                                                    "(3) StandardReinforcement",                              false, "pseudo_reinforcement"); // TODO: set true!
-  argparse.add_argument<double>(     "eArg",  "e", "epsilon",      "Threshold for convergence(default: 0.01)",               false, 0.01);
-  argparse.add_argument<int>(        "sArg",  "s",  "steps",       "Max Number of Steps for chosen protocol(default: 101)",  false, 101);
+  argparse.add_argument<double>(     "eArg",  "e", "epsilon",      "Threshold for convergence(default: 0.1)",               false, 0.01);
+  argparse.add_argument<int>(        "sArg",  "s", "steps",        "Max Number of Steps for chosen protocol(default: 101)",  false, 101);
   argparse.add_argument<char>(       "mArg",  "m", "mag",          "Specify Magnetization: "
                                                                    "(0) MagnetizationP (MagP64), "
                                                                    "(1) MagnetizationT (MagT64)",                            false, '1'); // TODO: set true!

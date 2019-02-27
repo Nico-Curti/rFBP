@@ -11,7 +11,7 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
 #ifdef DEBUG
   assert(nxi == nm);
 #endif
-  static double maxdiff = 0.,
+  double maxdiff = 0.,
                 mu      = 0.,
                 sigma2  = 0.;
   double dsigma2, g, p0, pmu, psigma;
@@ -19,7 +19,7 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
       new_u(0.),
       new_m(0.);
 
-  static std::unique_ptr<Mag[]> h(new Mag[nm]);
+  std::unique_ptr<Mag[]> h(new Mag[nm]);
 
   old_m_on = mag::bar(M, U);
 
@@ -82,13 +82,13 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
   assert(nxi == nm);
 #endif
 
-  static double maxdiff = 0.,
+  double maxdiff = 0.,
                 mu      = 0.,
                 sigma2  = 0.;
   double tmp;
   Mag old_m_on(0.),
       new_u(0.);
-  static std::unique_ptr<Mag[]> h(new Mag[nm]);
+  std::unique_ptr<Mag[]> h(new Mag[nm]);
 
   old_m_on = mag::bar(M, U);
 
@@ -120,7 +120,7 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
   for (long int i = 0L; i < nm; ++i)
   {
     tmp     = std::sqrt( 2. * (sigma2 - (1. - h[i].mag * h[i].mag) * xi[i] * xi[i]));
-    new_u   = mag::erfmix(old_m_on, ((mu - xi[i] * h[i]) + xi[i]) / tmp , ((mu - xi[i] * h[i]) - xi[i]) / tmp);
+    new_u   = mag::erfmix(old_m_on, ((mu - h[i] * xi[i]) + xi[i]) / tmp , ((mu - h[i] * xi[i]) - xi[i]) / tmp);
     maxdiff = std::max(maxdiff, mag::abs(new_u - u[i]));
     u[i]    = mag::damp(new_u, u[i], params.damping);
     m[i]    = h[i] % u[i];
@@ -143,16 +143,16 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   assert(nxi == nm);
 #endif
   long int z;
-  static double maxdiff = 0.,
+  double maxdiff = 0.,
                 pm = 0., pp = 0.;
   double pz, p;
-  // static std::unique_ptr< std::unique_ptr<double[]> [] >  leftC,
+  // std::unique_ptr< std::unique_ptr<double[]> [] >  leftC,
   //                                                         rightC;
 
   // leftC  = std::move( std::unique_ptr< std::unique_ptr<double[]> [] > (new std::unique_ptr<double[]>[nm]) );
   // rightC = std::move( std::unique_ptr< std::unique_ptr<double[]> [] > (new std::unique_ptr<double[]>[nm]) );
 
-  static double **leftC  = nullptr,
+  double **leftC  = nullptr,
                 **rightC = nullptr;
   leftC  = new double *[nm];
   rightC = new double *[nm];
@@ -160,7 +160,7 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   Mag old_m_on(0.),
       new_u(0.),
       mp(0.), mm(0.);
-  static std::unique_ptr<Mag[]> h(new Mag[nm]);
+  std::unique_ptr<Mag[]> h(new Mag[nm]);
 
   old_m_on = mag::bar(M, U);
 
@@ -178,17 +178,17 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   }
 
 
-  leftC[0][0] = (1. - xi[0] * h[0].mag) * .5;
-  leftC[0][1] = (1. + xi[0] * h[0].mag) * .5;
+  leftC[0][0] = (1. - h[0] * xi[0]) * .5;
+  leftC[0][1] = (1. + h[0] * xi[0]) * .5;
 #ifdef _OPENMP
 #pragma omp for
 #endif
   for (long int i = 1L; i < nm; ++i)
   {
-    leftC[i][0]      = leftC[i - 1L][0]  * (1. - xi[i] * h[i].mag) * .5;
+    leftC[i][0]      = leftC[i - 1L][0]  * (1. - h[i] * xi[i]) * .5;
     for (long int j = 1L; j < i + 1L; ++j)
-      leftC[i][j]    = leftC[i - 1L][j - 1L] * (1. + xi[i] * h[i].mag) * .5 + leftC[i - 1L][j] * (1. - xi[i] * h[i].mag) * .5;
-    leftC[i][i + 1L] = leftC[i - 1L][i]  * (1. + xi[i] * h[i].mag) * .5;
+      leftC[i][j]    = leftC[i - 1L][j - 1L] * (1. + h[i] * xi[i]) * .5 + leftC[i - 1L][j] * (1. - h[i] * xi[i]) * .5;
+    leftC[i][i + 1L] = leftC[i - 1L][i]  * (1. + h[i] * xi[i]) * .5;
   }
 
   rightC[nm - 1L][0] = (1. - xi[nxi - 1L] * h[nm - 1L].mag) * .5;
@@ -199,10 +199,10 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #endif
   for (long int i = nm - 2L; i >= 0L; --i)
   {
-    rightC[i][0]      = rightC[i + 1L][0]            * (1. - xi[i] * h[i].mag) * .5;
+    rightC[i][0]      = rightC[i + 1L][0]            * (1. - h[i] * xi[i]) * .5;
     for (long int j = 1L; j < nm - i; ++j)
-      rightC[i][j]    = rightC[i + 1L][j - 1]        * (1. + xi[i] * h[i].mag) * .5 + rightC[i + 1L][j] * (1. - xi[i] * h[i].mag) * .5;
-    rightC[i][nm - i] = rightC[i + 1L][nm - i - 1L]  * (1. + xi[i] * h[i].mag) * .5;
+      rightC[i][j]    = rightC[i + 1L][j - 1]        * (1. + h[i] * xi[i]) * .5 + rightC[i + 1L][j] * (1. - h[i] * xi[i]) * .5;
+    rightC[i][nm - i] = rightC[i + 1L][nm - i - 1L]  * (1. + h[i] * xi[i]) * .5;
   }
 
 #ifdef DEBUG
@@ -355,12 +355,12 @@ template<class Mag> double free_energy_theta(const MagVec<Mag> m,
 #ifdef DEBUG
   assert(nm == nxi);
 #endif
-  static double mu   = 0.,
+  double mu   = 0.,
                 sigma = 0.,
                 f;
   Mag old_m_on(0.),
       b(0.);
-  static std::unique_ptr<Mag[]> h(new Mag[nm]);
+  std::unique_ptr<Mag[]> h(new Mag[nm]);
 
   old_m_on = mag::bar(M, U);
 
@@ -409,12 +409,12 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
                                                    const long int &nm)
 {
   long int z;
-  static double pm = 0., pp = 0., f = 0.;
+  double pm = 0., pp = 0., f = 0.;
   Mag old_m_on(0.),
       b(0.);
-  static std::unique_ptr<Mag[]> h(new Mag[nm]);
-  static double **leftC = new double*[nm];
-  //static std::unique_ptr< std::unique_ptr<double[]> [] > leftC(new std::unique_ptr<double[]>[nm]);
+  std::unique_ptr<Mag[]> h(new Mag[nm]);
+  double **leftC = new double*[nm];
+  //std::unique_ptr< std::unique_ptr<double[]> [] > leftC(new std::unique_ptr<double[]>[nm]);
 
   old_m_on = mag::bar(M, U);
 
@@ -437,18 +437,18 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
     //leftC[i] = std::make_unique< double[] > (i + 2L);
 
 #endif
-  leftC[0][0] = (1. - xi[0] * h[0]) * .5;
-  leftC[0][1] = (1. + xi[0] * h[0]) * .5;
+  leftC[0][0] = (1. - h[0] * xi[0]) * .5;
+  leftC[0][1] = (1. + h[0] * xi[0]) * .5;
 
 #ifdef _OPENMP
 #pragma omp for
 #endif
   for (long int i = 1L; i < nm; ++i)
   {
-    leftC[i][0] = leftC[i - 1L][0] * (1. - (xi[i] * h[i])) * .5;
+    leftC[i][0] = leftC[i - 1L][0] * (1. - (h[i] * xi[i])) * .5;
     for (long int j = 1L; j < i + 1L; ++j)
-      leftC[i][j] = leftC[i - 1L][j - 1L] * (1. + (xi[i] * h[i])) * .5 + leftC[i - 1L][j] * (1. - (xi[i] * h[i])) * .5;
-    leftC[i][i + 1L] = leftC[i - 1L][i] * (1. + (xi[i] * h[i])) * .5;
+      leftC[i][j] = leftC[i - 1L][j - 1L] * (1. + (h[i] * xi[i])) * .5 + leftC[i - 1L][j] * (1. - (h[i] * xi[i])) * .5;
+    leftC[i][i + 1L] = leftC[i - 1L][i] * (1. + (h[i] * xi[i])) * .5;
   }
 #ifdef DEBUG
   assert(nm % 2L);
@@ -521,8 +521,8 @@ template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns
            i, j, k;
   double maxdiff = 0.;
   Mag z(0.);
-  static std::unique_ptr<long int[]> randperm(new long int[size]);
-  static std::unique_ptr<double[]> ones(new double[messages.K]);
+  std::unique_ptr<long int[]> randperm(new long int[size]);
+  std::unique_ptr<double[]> ones(new double[messages.K]);
 
 #ifdef _OPENMP
 #pragma omp for
@@ -580,7 +580,7 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
   bool ok = false;
   double diff;
 
-  // auto start_time = std::chrono::system_clock::now();
+  auto start_time = std::chrono::system_clock::now();
 
   for (long int it = 0L; it < params.max_iters; ++it)
   {
@@ -624,10 +624,10 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 
 template<class Mag> long int nonbayes_test(const Cavity_Message<Mag> &messages, const Patterns &patterns)
 {
-  static long int t = 0;
+  long int t = 0;
   double s, s2, trsf0;
 
-  static long int **sign_m_j_star = new long int*[messages.K];
+  long int **sign_m_j_star = new long int*[messages.K];
   std::generate_n(sign_m_j_star, messages.K, [&](){return new long int[messages.N];});
 
 #ifdef _OPENMP
@@ -687,12 +687,12 @@ template<class Mag> long int nonbayes_test(const Cavity_Message<Mag> &messages, 
 
 template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, const Patterns &patterns, const Params<Mag> &params)
 {
-  static double f = 0.;
+  double f = 0.;
   Mag z(0.),
       old_m_j_star(0.);
 
-  static std::unique_ptr<double[]> ones(new double[messages.K]);
-  static std::unique_ptr<Mag[]> v(new Mag[messages.M]);
+  std::unique_ptr<double[]> ones(new double[messages.K]);
+  std::unique_ptr<Mag[]> v(new Mag[messages.M]);
 
 #ifdef _OPENMP
 #pragma omp for
@@ -739,7 +739,7 @@ template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, cons
 
 template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const Params<Mag> &params)
 {
-  static double S = 0.;
+  double S = 0.;
   Mag old_m_j_star(0.);
 
 #ifdef _OPENMP
@@ -757,7 +757,7 @@ template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const 
 
 template<class Mag> Mag compute_q_bar(const Cavity_Message<Mag> &messages, const Params<Mag> &params)
 {
-  static Mag q_bar(0.);
+  Mag q_bar(0.);
   Mag old_m_j_star(0.),
       mx(0.);
 
@@ -777,7 +777,7 @@ template<class Mag> Mag compute_q_bar(const Cavity_Message<Mag> &messages, const
 
 template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const long int &nm_j_star, const long int &nm_j_star_col)
 {
-  static double q = 0.;
+  double q = 0.;
 
 #ifdef _OPENMP
 #pragma omp for collapse(2) reduction (+ : q)
@@ -792,7 +792,7 @@ template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const 
 template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, double *overlaps)
 {
   double s = 0.;
-  static std::unique_ptr<double[]> qs(new double[messages.K]);
+  std::unique_ptr<double[]> qs(new double[messages.K]);
 #ifdef _OPENMP
 #pragma omp for
   for (long int i = 0L; i < messages.K; ++i) qs[i] = 0.;
@@ -800,14 +800,14 @@ template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, doub
   std::fill_n(qs.get(), messages.K, 0.);
 #endif
 
-  std::div_t dv {};
+  std::ldiv_t dv {};
 #ifdef _OPENMP
 #pragma omp for private(dv)
 #endif
   for (long int it = 0L; it < messages.K * messages.N; ++it)
   {
     dv = std::div(it, messages.N);
-    qs[dv.quot] += messages.m_j_star[dv.quot][dv.rem];
+    qs[dv.quot] += messages.m_j_star[dv.quot][dv.rem].mag * messages.m_j_star[dv.quot][dv.rem].mag; // TODO: OVERLOAD OPERATOR +=
   }
 #ifdef _OPENMP
 #pragma omp for
@@ -817,7 +817,7 @@ template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, doub
 #ifdef _OPENMP
 #pragma omp for
 #endif
-  for (long int i = 0L; i < messages.K * messages.K; ++i) overlaps[i] = 1.;
+  for (long int i = 0L; i < messages.K; ++i) overlaps[ i * messages.K + i ] = 1.;
 
 #ifdef _OPENMP
 #pragma omp for collapse(2)
@@ -870,14 +870,14 @@ template<class Mag> void focusingBP(const long int &K,
                                     )
 {
   bool ok;
-  static long int it = 1;
+  long int it = 1;
   const  long int M  = patterns.Nrow,
                   N  = patterns.Ncol;
   long int        errs;
 #ifdef STATS
   double   S, q, betaF, Sint;
   Mag q_bar(0.);
-  static std::unique_ptr<double[]> mags(new double[K * K]);
+  std::unique_ptr<double[]> mags(new double[K * K]);
 #endif
   std::ofstream os;
 
@@ -949,7 +949,7 @@ template<class Mag> void focusingBP(const long int &K,
 #pragma omp master
 #endif
     std::cout << "mags overlaps =" << std::endl;
-    mags_symmetry(messages, mags);
+    mags_symmetry(messages, mags.get());
 #ifdef _OPENMP
 #pragma omp single
     {
@@ -987,7 +987,7 @@ template<class Mag> void focusingBP(const long int &K,
 #pragma omp master
 #endif
       std::cout << "mags overlaps =" << std::endl;
-      mags_symmetry(messages, mags);
+      mags_symmetry(messages, mags.get());
 #ifdef _OPENMP
 #pragma omp single
       {

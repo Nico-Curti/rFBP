@@ -8,6 +8,10 @@
 #include <cassert>
 #endif
 
+#ifdef STATS
+#include <iomanip>
+#endif
+
 #include <cavity_message.h>
 #include <fprotocol.h>
 #include <pattern.h>
@@ -26,6 +30,7 @@ template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, cons
 template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const Params<Mag> &params);
 template<class Mag> Mag compute_q_bar(const Cavity_Message<Mag> &messages, const Params<Mag> &params);
 template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const long int &nm_j_star, const long int &nm_j_star_col);
+template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, double *overlaps);
 #endif // STATS
 template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message, const long int *output, const double &beta);
 template<class Mag> void focusingBP(const long int &K, const Patterns &patterns, const long int &max_iters, const long int &max_steps, const long int &seed, const double &damping, const std::string &accuracy1, const std::string &accuracy2, const double &randfact, const FocusingProtocol &fprotocol, const double &epsil, std::string outfile = "", std::string outmessfiletmpl = "", std::string initmess = "", const bool &bin_mess = false);
