@@ -49,7 +49,14 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "abs function! Incompatible types found.");
-    return std::abs(a.mag);
+    if (std::is_same_v<Mag, MagP64>)
+    {
+      return std::abs(a.mag);
+    }
+    else
+    {
+      return std::abs(std::atanh(a.mag));
+    }
   }
   template double abs<MagP64>(const MagP64 &a);
   template double abs<MagT64>(const MagT64 &a);
@@ -207,9 +214,9 @@ namespace mag
     {
       double ax = std::atanh(x.mag),
              ay = std::atanh(y.mag);
-
+             
       return !std::isinf(ax) && !std::isinf(ay) ?
-              std::abs(ax + ay) - std::abs(ax) - std::abs(ay) + lr(ax + ay) - lr( ax) - lr( ay) :
+              std::abs(ax + ay) - std::abs(ax) - std::abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
               std::isinf(ax) && !std::isinf(ay) ? sign(ax) * ay - std::abs(ay) - lr(ay)         :
              !std::isinf(ax) &&  std::isinf(ay) ? sign(ay) * ax - std::abs(ax) - lr(ax)         :
               sign(ax) == sign(ay) ? 0. : -inf;
@@ -222,10 +229,10 @@ namespace mag
   {
     static_assert( std::is_same_v<Mag, MagP64> ||
                    std::is_same_v<Mag, MagT64>,
-                   "log1pxy function! Incompatible types found.");
+                   "mcrossentropy function! Incompatible types found.");
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
-      return x.mag * std::atanh(y.mag) - std::log(1. - y.mag * y.mag) * .5 + log_2;
+      return (-x.mag) * std::atanh(y.mag) - std::log(1. - y.mag * y.mag) * .5 + log_2;
     else
     {
       double tx = x.mag,
@@ -248,15 +255,17 @@ namespace mag
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
     {
-      static double zkip = std::log( (1. + u0.mag) * .5),
-                    zkim = std::log( (1. - u0.mag) * .5);
+      static double zkip = 0.,
+                    zkim = 0.;
+      zkip = std::log( (1. + u0.mag) * .5);
+      zkim = std::log( (1. - u0.mag) * .5);
 #ifdef _OPENMP
 #pragma omp for reduction(+ : zkip, zkim)
 #endif
       for (int i = 0; i < nu; ++i)
       {
-        zkip += std::log( (1. - u[i].mag) * .5);
-        zkim += std::log( (1. + u[i].mag) * .5);
+        zkip += std::log( (1. + u[i].mag) * .5);
+        zkim += std::log( (1. - u[i].mag) * .5);
       }
       return std::log( std::exp(zkip) + std::exp(zkim));
     }
@@ -266,11 +275,10 @@ namespace mag
              s1, s2, s3,
              ai, hasinf;
       bool is_inf = std::isinf(a0);
-      s1          = is_inf ? 0. : a0;
-      s2          = is_inf ? 0. : std::abs(a0);
-      s3          = is_inf ? 0. : lr(a0);
-      hasinf      = 0.;
-
+      s1          = is_inf ? 0.       : a0;
+      s2          = is_inf ? 0.       : std::abs(a0);
+      s3          = is_inf ? 0.       : lr(a0);
+      hasinf      = is_inf ? sign(a0) : 0.;
       for (int i = 0; i < nu; ++i)
       {
         ai = std::atanh(u[i].mag);
@@ -313,23 +321,31 @@ namespace mag
         }
         else if (inf_ap && !inf_am)
         {
-          t1 = ( sign(ap) == sign(am) ) ? -sign(aH) * am + a_am : -2. * H.mInf;
-          t2 = ( sign(ap) == sign(am) ) ? lr(am)                : 0.;
+          t1 = ( sign(ap) == sign(aH) ) ? -sign(aH) * am + a_am : -2. * H.mInf;
+          t2 = ( sign(ap) == sign(aH) ) ? lr(am)                : 0.;
         }
         else if (!inf_ap && inf_am)
         {
-          t1 = ( sign(am) == sign(aH) ) ? -sign(aH) * ap - a_ap : 2. * H.mInf;
+          t1 = ( sign(am) == sign(aH) ) ? sign(aH) * ap - a_ap : 2. * H.mInf;
           t2 = ( sign(am) == sign(aH) ) ? -lr(ap)               : 0.;
         }
         else
         {
           t2 = 0.;
-          if ( (sign(ap) == sign(aH) && sign(ap) == sign(aH)) || ((sign(ap) != sign(aH) && sign(ap) != sign(aH))) )
+          // if ( (sign(ap) == sign(aH) && sign(ap) == sign(aH)) || ((sign(ap) != sign(aH) && sign(ap) != sign(aH))) )
+          if ( (sign(ap) == sign(aH) && sign(am) == sign(aH)) || ((sign(ap) != sign(aH) && sign(am) != sign(aH))) )
+          {
             t1 = 0.;
+          }
           else if (sign(ap) == sign(aH))
+          {
             t1 = 2. * H.mInf;
+          }
           else
+          {
             t1 = -2. * H.mInf;
+          }
+
         }
     }
     else
@@ -363,7 +379,7 @@ namespace mag
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return MagP64( (pp.mag - pm.mag) * H.mag / (2. + (pp.mag + pm.mag) * H.mag) );
     else
-      return auxmix(H, pp.mag, pm.mag);
+      return auxmix(H, std::atanh(pp.mag), std::atanh(pm.mag));
   }
   template MagP64 exactmix<MagP64>(const MagP64 &H, const MagP64 &pp, const MagP64 &pm);
   template MagT64 exactmix<MagT64>(const MagT64 &H, const MagT64 &pp, const MagT64 &pm);

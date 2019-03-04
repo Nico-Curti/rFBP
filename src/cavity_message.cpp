@@ -84,6 +84,7 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
     if ( row != "fmt:") error_invalid_messages(filename);
 
     buff >> row;
+    buff >> row;
     if ( row != "N,M,K:") error_invalid_messages(filename);
 
     buff >> this->N;
@@ -480,7 +481,7 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
    std::ofstream os(filename);
    os << "fmt: "   << parameters.tan_gamma.magformat()
       << std::endl
-      << "N,M,K: " << this->N << " " << this->M << this->K
+      << "N,M,K: " << this->N << " " << this->M << " " << this->K
       << std::endl;
 
   for (long int i = 0L; i < this->K; ++i)

@@ -17,6 +17,8 @@ mkdir -p build
 cd build
 
 ##sudo apt-get install ninja-build
-cmake -G "Ninja" "-DOMP=ON" "-DCMAKE_BUILD_TYPE=Release" ..
-cmake --build . --target install
+# cmake -G "Ninja" "-DOMP=ON" "-DCMAKE_BUILD_TYPE=Release" ..
+# cmake --build . --target install
+cmake -G "Unix Makefiles" "-DOMP=OFF" "-DCMAKE_BUILD_TYPE=Debug" ..
+make -j2 install
 cd ..

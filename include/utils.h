@@ -7,7 +7,7 @@
 
 static constexpr double inf         = std::numeric_limits<double>::infinity();
 static constexpr double epsilon     = std::numeric_limits<double>::epsilon();
-static constexpr double log_2       = 0.30102999566;
+static constexpr double log_2       = 0.6931471805599453;
 static constexpr double log2_over_2 = 0.34657359027997264311;
 
 static inline auto sign(const double &x){ return (x > 0.) ? 1. : (x < 0. ? -1. : 0); }
