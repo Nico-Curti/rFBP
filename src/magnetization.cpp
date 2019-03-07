@@ -49,14 +49,8 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "abs function! Incompatible types found.");
-    if (std::is_same_v<Mag, MagP64>)
-    {
-      return std::abs(a.mag);
-    }
-    else
-    {
-      return std::abs(std::atanh(a.mag));
-    }
+    if constexpr (std::is_same_v<Mag, MagP64>) return std::abs(a.mag);
+    else return std::abs(std::atanh(a.mag));
   }
   template double abs<MagP64>(const MagP64 &a);
   template double abs<MagT64>(const MagT64 &a);
@@ -214,7 +208,7 @@ namespace mag
     {
       double ax = std::atanh(x.mag),
              ay = std::atanh(y.mag);
-             
+
       return !std::isinf(ax) && !std::isinf(ay) ?
               std::abs(ax + ay) - std::abs(ax) - std::abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
               std::isinf(ax) && !std::isinf(ay) ? sign(ax) * ay - std::abs(ay) - lr(ay)         :
@@ -333,19 +327,9 @@ namespace mag
         {
           t2 = 0.;
           // if ( (sign(ap) == sign(aH) && sign(ap) == sign(aH)) || ((sign(ap) != sign(aH) && sign(ap) != sign(aH))) )
-          if ( (sign(ap) == sign(aH) && sign(am) == sign(aH)) || ((sign(ap) != sign(aH) && sign(am) != sign(aH))) )
-          {
-            t1 = 0.;
-          }
-          else if (sign(ap) == sign(aH))
-          {
-            t1 = 2. * H.mInf;
-          }
-          else
-          {
-            t1 = -2. * H.mInf;
-          }
-
+          if ( (sign(ap) == sign(aH) && sign(am) == sign(aH)) || ((sign(ap) != sign(aH) && sign(am) != sign(aH))) ) t1 = 0.;
+          else if (sign(ap) == sign(aH))  t1 = 2. * H.mInf;
+          else  t1 = -2. * H.mInf;
         }
     }
     else

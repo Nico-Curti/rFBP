@@ -16,7 +16,9 @@ static constexpr int ERROR_PARSER_INPUTS   = 103;
 static constexpr int ERROR_PARSER_REQUIRED = 104;
 static constexpr int ERROR_PARSER_UNKNOWN  = 105;
 static constexpr int ERROR_PARSER_INVARG   = 106;
-static constexpr int ERROR_PARSER_OUTRANGE   = 107;
+static constexpr int ERROR_PARSER_OUTRANGE = 107;
+static constexpr int ERROR_PARSER_BOOL     = 108;
+static constexpr int ERROR_PARSER_CHAR     = 109;
 
 
 class argument
@@ -40,6 +42,8 @@ class ArgumentParser
     inline void error_parsing_unknown(const std::string &);
     inline void error_parsing_invarg(const std::string &, const std::string &);
     inline void error_parsing_outrng(const std::string &, const std::string &);
+    inline void error_parsing_bool(const std::string &, const std::string &);
+    inline void error_parsing_char(const std::string &, const std::string &);
 public:
     ArgumentParser(std::string description_) : description(description_){};
 
@@ -155,6 +159,19 @@ inline void ArgumentParser::error_parsing_outrng(const std::string &name, const 
   print_help(ERROR_PARSER_OUTRANGE);
 }
 
+inline void ArgumentParser::error_parsing_bool(const std::string &name, const std::string &val)
+{
+  std::cerr << "Error parsing! Invalid argument for bool variable " << name << ". Given: " << val <<" ." << std::endl;
+  print_help(ERROR_PARSER_BOOL);
+}
+
+inline void ArgumentParser::error_parsing_char(const std::string &name, const std::string &val)
+{
+  std::cerr << "Error parsing! Invalid argument for char variable " << name << ". Given: " << val <<" ." << std::endl;
+  print_help(ERROR_PARSER_CHAR);
+}
+
+
 template<typename T> void ArgumentParser::add_argument(const std::string &name, const std::string &shr_flag, const std::string &lng_flag, const std::string &help, const bool &req)
 {
     T def;
@@ -184,6 +201,14 @@ template<> void ArgumentParser::add_argument<std::string>(const std::string &nam
     if(type == "") type = "string";
     if(type != "int" && type != "float" && type != "double" && type != "string" && type != "char" && type != "bool") error_parsing_type(type);
     args.push_back(argument(name, shr_flag, lng_flag, help, req, def, type));
+    return;
+}
+
+template<> void ArgumentParser::add_argument<char>(const std::string &name, const std::string &shr_flag, const std::string &lng_flag, const std::string &help, const bool &req, char def, std::string type)
+{
+    if(type == "") type = "char";
+    if(type != "int" && type != "float" && type != "double" && type != "string" && type != "char" && type != "bool") error_parsing_type(type);
+    args.push_back(argument(name, shr_flag, lng_flag, help, req, std::string(1,def), type));
     return;
 }
 
@@ -250,6 +275,52 @@ template<> void ArgumentParser::get<std::string>(const std::string &name, std::v
     return;
 }
 
+template<> void ArgumentParser::get<bool>(const std::string &name, std::vector<bool> &vec)
+{
+    bool found = true;
+    for(int i = 0; i < (int)args.size(); ++i)
+        if(args[i].name == name)
+        {
+            for(auto &v : args[i].value)
+            {
+              try                            {
+                                               if (v.length() > 1) error_parsing_bool(name, v);
+                                               else{
+                                                 int val_  = std::stoi(v);
+                                                 if ( val_!= 0 && val_ != 1) error_parsing_bool(name, v);
+                                                 else vec.push_back( static_cast<bool>(val_) );
+                                               }
+                                             }
+              catch(std::invalid_argument &) { error_parsing_invarg(name, v);  }
+              catch(std::out_of_range &)     { error_parsing_outrng(name, v);  }
+            }
+            found = false;
+        }
+    if(found) error_parsing_unknown(name);
+    return;
+}
+
+template<> void ArgumentParser::get<char>(const std::string &name, std::vector<char> &vec)
+{
+    bool found = true;
+    for(int i = 0; i < (int)args.size(); ++i)
+        if(args[i].name == name)
+        {
+            for(auto &v : args[i].value)
+            {
+              try                            {
+                                                if (v.length() > 1) error_parsing_char(name, v);
+                                                else vec.push_back( v.c_str()[0] );
+                                             }
+              catch(std::invalid_argument &) { error_parsing_invarg(name, v);  }
+              catch(std::out_of_range &)     { error_parsing_outrng(name, v);  }
+            }
+            found = false;
+        }
+    if(found) error_parsing_unknown(name);
+    return;
+}
+
 template<typename T> void ArgumentParser::get(const std::string &name, T &val)
 {
     for(int i = 0; i < (int)args.size(); ++i)
@@ -273,5 +344,42 @@ template<> void ArgumentParser::get<std::string>(const std::string &name, std::s
     error_parsing_unknown(name);
 }
 
+template<> void ArgumentParser::get<bool>(const std::string &name, bool &val)
+{
+    for(int i = 0; i < (int)args.size(); ++i)
+        if(args[i].name == name)
+        {
+            try                            {
+                                              if (args[i].value[0].length() > 1) error_parsing_bool(name, args[i].value[0]);
+                                              else{
+                                                int val_  = std::stoi(args[i].value[0]);
+                                                if ( val_!= 0 && val_ != 1) error_parsing_bool(name, args[i].value[0]);
+                                                else {val = static_cast<bool>(val_); return;}
+                                              }
+                                            }
+            catch(std::invalid_argument &) { error_parsing_invarg(name, args[i].value[0]); }
+            catch(std::out_of_range &)     { error_parsing_outrng(name, args[i].value[0]); }
+        }
+    error_parsing_unknown(name);
+}
+
+template<> void ArgumentParser::get<char>(const std::string &name, char &val)
+{
+    for(int i = 0; i < (int)args.size(); ++i)
+        if(args[i].name == name)
+        {
+            try                            {
+                                              std::string val_ = args[i].value[0];
+                                              if (val_.length() > 1) error_parsing_char(name, val_);
+                                              else{
+                                                val = val_.c_str()[0];
+                                                return;
+                                              }
+                                            }
+            catch(std::invalid_argument &) { error_parsing_invarg(name, args[i].value[0]); }
+            catch(std::out_of_range &)     { error_parsing_outrng(name, args[i].value[0]); }
+        }
+    error_parsing_unknown(name);
+}
 
 #endif // PARSE_ARGS_H

@@ -413,6 +413,8 @@ template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &fi
      << "K,N: " << this->K << " " << this->N
      << std::endl;
 
+  os.precision(6);
+  os.setf( std::ios::fixed, std:: ios::floatfield );
   for (long int i = 0L; i < this->K; ++i)
   {
     std::copy_n(this->m_j_star[i], this->N, std::ostream_iterator<Mag>(os, " "));
@@ -483,7 +485,9 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
       << std::endl
       << "N,M,K: " << this->N << " " << this->M << " " << this->K
       << std::endl;
-
+      
+  os.precision(6);
+  os.setf( std::ios::fixed, std:: ios::floatfield );
   for (long int i = 0L; i < this->K; ++i)
   {
     std::copy_n(this->m_star_j[i], this->N, std::ostream_iterator<Mag>(os, " "));

@@ -17,11 +17,11 @@ int main(int argc, char *argv[]){
   long int K,
            max_iters,
            seed,
-           max_steps,
-           mag;
+           max_steps;
   double randfact,
          damping,
          epsil;
+  char mag;
 
   parse_training_fbp(argc, argv,
                      patternsfile,
@@ -47,9 +47,8 @@ int main(int argc, char *argv[]){
   FocusingProtocol fp(fprotocol, max_steps);
   Patterns patterns(patternsfile, bin, del);
 
-
   switch (mag) {
-    case 0:
+    case '0':
       {
         // std::cout << "MagP64" << std::endl;
         focusingBP<MagP64>(K,
@@ -69,7 +68,7 @@ int main(int argc, char *argv[]){
                binmess);
         break;
       }
-    case 1:
+    case '1':
       {
         // std::cout << "MagT64" << std::endl;
         focusingBP<MagT64>(K,

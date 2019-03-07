@@ -19,7 +19,7 @@ void parse_training_fbp(int argc, char *argv[],
                         std::string &fprotocol,
                         double &epsil,
                         long int &max_steps,
-                        long int &mag,
+                        char &mag,
                         std::string &inmess,
                         std::string &outmess,
                         std::string &delmess,
@@ -29,9 +29,9 @@ void parse_training_fbp(int argc, char *argv[],
 
   argparse.add_argument<std::string>("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true, "");
   argparse.add_argument<std::string>("oArg",  "o",  "output",      "Output Filename (with extension)",                       false, ""); // TODO: set true!
-  argparse.add_argument<std::string>("bArg",  "b",  "bin",         "File format: "
+  argparse.add_argument<bool>(       "bArg",  "b",  "bin",         "File format: "
                                                                    "(0) Textfile(default), "
-                                                                   "(1) Binary",                                             false, "0");
+                                                                   "(1) Binary",                                             false, false);
   argparse.add_argument<std::string>("dlArg", "dl", "delimiter",   "Delimiter for text files(default: \"\\t\")",             false, "\t");
   argparse.add_argument<int>(        "kArg",  "k",  "hidden",      "Number of Hidden Layers(default:3)",                     false, 3);
   argparse.add_argument<int>(        "iArg",  "i",  "iteration",   "Max Number of Iterations(default: 1000)",                false, 1000);
@@ -48,29 +48,22 @@ void parse_training_fbp(int argc, char *argv[],
                                                                    "(3) StandardReinforcement",                              false, "pseudo_reinforcement"); // TODO: set true!
   argparse.add_argument<double>(     "eArg",  "e", "epsilon",      "Threshold for convergence(default: 0.1)",               false, 0.1);
   argparse.add_argument<int>(        "sArg",  "s", "steps",        "Max Number of Steps for chosen protocol(default: 101)",  false, 101);
-  argparse.add_argument<std::string>("mArg",  "m", "mag",          "Specify Magnetization: "
+  argparse.add_argument<char>(       "mArg",  "m", "mag",          "Specify Magnetization: "
                                                                    "(0) MagnetizationP (MagP64), "
-                                                                   "(1) MagnetizationT (MagT64)",                            false, "1"); // TODO: set true!
+                                                                   "(1) MagnetizationT (MagT64)",                            false, '1'); // TODO: set true!
   argparse.add_argument<std::string>("imArg", "im", "inmess",      "Input Messages file",                                    false, "");
   argparse.add_argument<std::string>("omArg", "om", "outmess",     "Output Messages file",                                   false, "");
   argparse.add_argument<std::string>("dmArg", "dm", "delmess",     "Delimiter for Messages files(default: \"\\t\")",         false, "\t");
-  argparse.add_argument<std::string>("bmArg", "bm", "binmess",     "Messages files format: "
+  argparse.add_argument<bool>(       "bmArg", "bm", "binmess",     "Messages files format: "
                                                                    "(0) Textfile(default), "
-                                                                   "(1) Binary",                                             false, "0");
+                                                                   "(1) Binary",                                             false, false);
 
   argparse.parse_args(argc, argv);
 
   argparse.get<std::string>("fArg",  patternsfile);
   if(!std::filesystem::exists(std::filesystem::path(patternsfile))) error_pattern(patternsfile);
   argparse.get<std::string>("oArg",  output);
-  std::string b;
-  argparse.get<std::string>("bArg",  b);
-  if(b != "0" && b != "1")
-  {
-    std::cerr << "Invalid format files option found. Given : " << b << std::endl;
-    std::exit(11);
-  };
-  bin = (b!="0") ? true : false;
+  argparse.get<bool>("bArg",  bin);
   argparse.get<std::string>("dlArg", del);
   argparse.get<long int>("kArg",  K);
   argparse.get<long int>("iArg",  max_iters);
@@ -83,14 +76,14 @@ void parse_training_fbp(int argc, char *argv[],
   if(static_cast<int>(accuracy.size()) > 2)
   {
     std::cerr << "Too many accuracy variables given. Needed two." << std::endl;
-    std::exit(12);
+    std::exit(10);
   }
 
   for(auto &ac : accuracy)
     if(ac != "exact" && ac != "accurate" && ac != "approx" && ac != "none")
     {
       std::cerr << "Invalid accuracy variable given. Given : " << ac << std::endl;
-      std::exit(13);
+      std::exit(11);
     }
 
   if(static_cast<int>(accuracy.size()) == 1)
@@ -109,30 +102,23 @@ void parse_training_fbp(int argc, char *argv[],
   if (fprotocol != "scoping" && fprotocol != "pseudo_reinforcement" && fprotocol != "free_scoping" && fprotocol != "standard_reinforcement")
   {
     std::cerr << "Invalid focusing protocol found. Given : " << fprotocol << std::endl;
-    std::exit(14);
+    std::exit(12);
   }
 
   argparse.get<double>("eArg", epsil);
   argparse.get<long int>("sArg", max_steps);
 
-  argparse.get<std::string>("mArg", b);
-  if(b != "0" && b != "1")
+  argparse.get<char>("mArg", mag);
+  if(mag != '0' && mag != '1')
   {
-    std::cerr << "Invalid magnetization found. Given : " << b << std::endl;
-    std::exit(15);
+    std::cerr << "Invalid magnetization found. Given : " << mag << std::endl;
+    std::exit(13);
   };
-  mag = (b!="0") ? 1L : 0L;
 
   argparse.get<std::string>("imArg", inmess);
   argparse.get<std::string>("omArg", outmess);
   argparse.get<std::string>("dmArg", delmess);
-  argparse.get<std::string>("bmArg", b);
-  if(b != "0" && b != "1")
-  {
-    std::cerr << "Invalid format messages option found. Given : " << b << std::endl;
-    std::exit(16);
-  };
-  binmess = (b!="0") ? true : false;
+  argparse.get<bool>("bmArg", binmess);
 
   return;
 }

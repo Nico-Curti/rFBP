@@ -843,12 +843,15 @@ template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message
 {
   double t = std::tanh(beta * .5);
 
+  if constexpr      ( std::is_same_v<Mag, MagP64> )
 #ifdef _OPENMP
 #pragma omp for
 #endif
-  if constexpr      ( std::is_same_v<Mag, MagP64> )
     for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagP64(output[i] * t);
   else
+#ifdef _OPENMP
+#pragma omp for
+#endif
     for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagT64(std::atanh(output[i] * t));
 
 }
@@ -906,8 +909,6 @@ template<class Mag> void focusingBP(const long int &K,
   messages        = (initmess.empty())                           ?
                     Cavity_Message<Mag>(M, N, K, randfact, seed) :
                     Cavity_Message<Mag>(initmess, bin_mess)                ;
-
-  messages.save_messages("/mnt/c/Users/danie/Desktop/initmess.txt", params);
 
   outfile         = outfile.empty()                                                                                                                   ?
                     "results_BPCR_N" + std::to_string(N) + "_K" + std::to_string(K) + "_M" + std::to_string(M) + "_s" + std::to_string(seed) + ".txt" :
@@ -1069,7 +1070,7 @@ template<class Mag> void focusingBP(const long int &K,
 #endif // STATS
     if (errs == 0.)
     {
-      if(!outmessfiletmpl.empty()) messages.save_weights(outmessfiletmpl, params);
+      if(!outmessfiletmpl.empty()) messages.save_messages(outmessfiletmpl, params);
       break;
     }
 #ifdef _OPENMP

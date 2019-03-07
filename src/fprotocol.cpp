@@ -24,8 +24,9 @@ FocusingProtocol::FocusingProtocol(const std::string &prot, const long int &size
       std::generate_n(freeS, size, [](){return new double[3];});
       for (long int i = 0L; i < size; ++i)
       {
-        freeS[i][0] = std::atanh(std::sqrt(i * 1e-3));
-        freeS[i][1] = (2. - i * 1e-3) / (1. - i * 1e-3);
+        // freeS[i][0] = std::atanh(std::sqrt(i * 1e-3));
+        freeS[i][0] = 1. / (1. - i * 1e-2);
+        freeS[i][1] = (2. - i * 1e-2) / (1. - i * 1e-2);
         freeS[i][2] = inf;
       }
       FreeScoping(freeS, size);
@@ -121,6 +122,3 @@ void FocusingProtocol::FreeScoping(double **list, const long int &nlist)
   }
   return;
 }
-
-
-
