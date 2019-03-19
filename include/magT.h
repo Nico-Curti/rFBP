@@ -27,7 +27,7 @@ struct MagT64
                                                                                   MagT64(tmp)     ; // temporary solution of nan problem (see atanherf)
                                                                          }
 
-  // MagT64 operator+(const MagT64 &m)                                      { return MagT64(this->mag + m.mag); }
+  MagT64 operator+(const MagT64 &m)                                      { return MagT64(this->mag + m.mag); }
   // double operator+(const double &x)                                      { return x + this->mag; }
   // friend MagT64 operator+(const double &x, const MagT64 &m)              { return MagT64(x + m.mag); }
   MagT64& operator+=(const MagT64 &m)                                    { this->mag += m.mag; return *this; }

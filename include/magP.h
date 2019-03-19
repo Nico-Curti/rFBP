@@ -19,7 +19,7 @@ struct MagP64
   // math operators
   MagP64 operator%(const MagP64 &m)                           { return MagP64( mag::clamp( (this->mag + m.mag) / (1. + this->mag * m.mag), -1., 1.)); }
 
-  // MagP64 operator+(const MagP64 &m)                           { return MagP64(this->mag + m.mag); }
+  MagP64 operator+(const MagP64 &m)                           { return MagP64(this->mag + m.mag); }
   // double operator+(const double &x)                           { return x + this->mag; }
   // friend MagP64 operator+(const double &x, const MagP64 &m)   { return MagP64(x + m.mag); }
   MagP64& operator+=(const MagP64 &m)                         { this->mag += m.mag; return *this; }

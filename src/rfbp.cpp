@@ -212,13 +212,14 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   z = static_cast<long int>( (nm + 1L) * .5);
 
 #ifdef _OPENMP
-#pragma omp for reduction (+ : pp, pm)
+#pragma omp for reduction (+ : pm)
+  for (long int i = 0L; i < z;       ++i) pm += rightC[0][i];
+#pragma omp for reduction (+ : pp)
+  for (long int i = z ; i < nm + 1L; ++i) pp += rightC[0][i];
+#else
+  pm = std::accumulate( rightC[0], rightC[0] + z, 0. );
+  pp = std::accumulate( rightC[0] + z, rightC[0] + nm + 1L, 0. );
 #endif
-  for (long int i = 0L; i < nm + 1L; ++i)
-  {
-    pm += ( i <  z ) ? rightC[0][i] : 0.;
-    pp += ( i >= z ) ? rightC[0][i] : 0.;
-  }
 
   new_u = mag::couple<Mag>(pp, pm);
 
@@ -241,15 +242,15 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   pp = 0.;
   pz = 0.;
 #ifdef _OPENMP
-#pragma omp for private(p, pz) reduction (+ : pm, pp)
+#pragma omp for private(p, pz) reduction (+ : pm, pp) // TODO: REWRITE
+  for (long int j = 0L; j < z - 1L; ++j) pm += rightC[1][j];
+  for (long int j = z;  j < nm;     ++j) pp += rightC[1][j];
+#else
+  pm = std::accumulate(rightC[1],     rightC[1] + z - 1L, 0.);
+  pp = std::accumulate(rightC[1] + z, rightC[1] + nm,     0.);
 #endif
-  for (long int j = 0L; j < nm; ++j)
-  {
-      p   = rightC[1][j];
-      if (j < z - 1L)       pm += p;
-      else if (j == z - 1L) pz = p;
-      else                  pp += p;
-  }
+  pz = rightC[1][z - 1L];
+
   mp      = mag::convert<Mag>(mag::clamp(pp + xi[0] * pz - pm, -1., 1.));
   mm      = mag::convert<Mag>(mag::clamp(pp - xi[0] * pz - pm, -1., 1.));
   new_u   = mag::exactmix(old_m_on, mp, mm);
@@ -295,24 +296,25 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #endif
   }
   // last iteration
+  i = nm - 1L;
   pm = 0.;
   pz = 0.;
   pp = 0.;
-
 #ifdef DEBUG
   assert(xi[nm - 1L] * xi[nm - 1L] == 1.);
 #endif
-  i = nm - 1L;
+
 #ifdef _OPENMP
-#pragma omp for private(p, pz) reduction (+ : pm, pp)
+#pragma omp for private(p, pz) reduction (+ : pm, pp) // TODO: REWRITE
+  for (long int j = 0L; j < z - 1L; ++j) pm += leftC[i - 1L][j];
+  for (long int j = z;  j < nm;     ++j) pp += leftC[i - 1L][j];
+#else
+  pm = std::accumulate(leftC[i - 1L],     leftC[i - 1L] + z - 1L, 0.);
+  pp = std::accumulate(leftC[i - 1L] + z, leftC[i - 1L] + nm,     0.);
 #endif
-  for (long int j = 0L; j < nm; ++j)
-  {
-      p = leftC[i - 1L][j];
-      if (j < z - 1L)       pm += p;
-      else if (j == z - 1L) pz = p;
-      else                  pp += p;
-  }
+  pz = leftC[i - 1L][z - 1L];
+
+
   mp      = mag::convert<Mag>(mag::clamp(pp + xi[i] * pz - pm, -1., 1.));
   mm      = mag::convert<Mag>(mag::clamp(pp - xi[i] * pz - pm, -1., 1.));
   new_u   = mag::exactmix(old_m_on, mp, mm);
@@ -456,13 +458,13 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
   z = static_cast<long int>( (nm + 1L) * .5);
 
 #ifdef _OPENMP
-#pragma omp for reduction (+ : pm, pp)
+#pragma omp for reduction (+ : pm, pp) // TODO: REWRITE
+  for (long int i = 0; i < z;      ++i) pm += leftC[nm - 1L][i];
+  for (long int i = z; i < nm + 1; ++i) pp += leftC[nm - 1L][i];
+#else
+  pm = std::accumulate(leftC[nm - 1L],     leftC[nm - 1L] + z,      0.);
+  pp = std::accumulate(leftC[nm - 1L] + z, leftC[nm - 1L] + nm + 1, 0.);
 #endif
-  for (long int i = 0; i < nm + 1; ++i)
-  {
-    pm += (i <  z) ? leftC[nm - 1L][i] : 0.;
-    pp += (i >= z) ? leftC[nm - 1L][i] : 0.;
-  }
   b  = mag::couple<Mag>(pp, pm);
   f -= mag::log1pxy(old_m_on, b);
 #ifdef DEBUG
@@ -496,7 +498,7 @@ template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Ma
       new_m_star_j(0.),
       new_m_j_star(0.);
 
-  if      (params.r == 0. || params.tan_gamma == 0.) {} // already done in initialization
+  // if      (params.r == 0. || params.tan_gamma == 0.) {} // already done in initialization
   if (params.r == inf)  // to check
     params.tan_gamma = (old_m_j_star != 0.) ?
                        ( (mag::signbit(params.tan_gamma) != mag::signbit(old_m_j_star)) ? -params.tan_gamma : params.tan_gamma) :
