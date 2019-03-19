@@ -70,11 +70,11 @@ before_script:
   - mkdir build
   - cd build
   - cmake --version
-  - if [[ "$BUILD" == "linux-gcc" ]]; then cmake -G "Ninja" "-DCMAKE_BUILD_TYPE=Debug" "-DOMP=ON" ..                                     ;fi
+  - if [[ "$BUILD" == "linux-gcc" ]]; then cmake -G "Unix Makefiles" "-DOMP=OFF" "-DCMAKE_BUILD_TYPE=Debug" ..                                     ;fi
   - if [[ "$BUILD" == "osx-clang" ]]; then cmake "-DCMAKE_BUILD_TYPE=Debug" "-DOMP=OFF"  ..                                              ;fi
 
 script:
-  - cmake --build .
+  - make -j2 install
 
 after_success:
   - codecov --file coverage/lcov.info --disable search
