@@ -3,7 +3,6 @@
 template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filename, const bool &bin)
 {
   std::ifstream is;
-
   if (bin)
   {
     is.open(filename, std::ios::binary);
@@ -149,8 +148,6 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
     }
 
   }
-
-// new (this) Cavity_Message<Mag>(n, m, k, x, seed);
 }
 
 template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const long int &n, const long int &k, const double &x, const int &start)
@@ -162,61 +159,54 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
   this->M = m;
   this->K = k;
 
-#ifdef _OPENMP
-#pragma omp single
-  {
-#endif
-    this->m_star_j = new Mag* [this->K];
-    this->m_j_star = new Mag* [this->K];
-    this->m_in     = new Mag* [this->M];
-    this->weights  = new Mag**[this->M];
-    this->m_no     = new Mag* [this->M];
-    this->m_on     = new Mag  [this->M];
-    this->m_ni     = new Mag* [this->M];
-#ifdef _OPENMP
-  }
-#endif
+  this->m_star_j = new Mag* [this->K];
+  this->m_j_star = new Mag* [this->K];
+  this->m_in     = new Mag* [this->M];
+  this->weights  = new Mag**[this->M];
+  this->m_no     = new Mag* [this->M];
+  this->m_on     = new Mag  [this->M];
+  this->m_ni     = new Mag* [this->M];
 
-#ifdef _OPENMP
-#pragma omp for
-  for (long int i = 0L; i < this->K; ++i)
-  {
-    this->m_star_j[i] = new Mag[this->N];
-    this->m_j_star[i] = new Mag[this->N];
-
-    for (long int j = 0L; j < this->N; ++j)
-    {
-      this->m_star_j[i][j] = Mag(0.);
-      this->m_j_star[i][j] = Mag(0.);
-    }
-  }
-#pragma omp for
-  for (long int i = 0L; i < this->M; ++i)
-  {
-    this->m_in[i]    = new Mag [this->K];
-    this->m_no[i]    = new Mag [this->K];
-    this->m_ni[i]    = new Mag [this->K];
-    this->weights[i] = new Mag*[this->K];
-
-    this->m_on[i]    = Mag(0.);
-
-    for (long int j = 0L; j < this->K; ++j)
-    {
-      this->m_in[i][j] = Mag(0.);
-      this->m_no[i][j] = Mag(0.);
-      this->m_ni[i][j] = Mag(0.);
-
-      this->weights[i][j] = new Mag[this->N];
-      this->m_in[i][j] = this->m_in[i][j] % this->m_no[i][j] % this->m_ni[i][j]; // always 0 ?
-      std::generate_n(this->weights[i][j], this->N,
-                      [&]()
-                      {
-                        return mag::f2m<Mag>(x * (2. * dist(engine) - 1.)); // troubles with rng
-                      });
-    }
-  }
-
-#else
+// #ifdef _OPENMP
+// #pragma omp for
+//   for (long int i = 0L; i < this->K; ++i)
+//   {
+//     this->m_star_j[i] = new Mag[this->N];
+//     this->m_j_star[i] = new Mag[this->N];
+//
+//     for (long int j = 0L; j < this->N; ++j)
+//     {
+//       this->m_star_j[i][j] = Mag(0.);
+//       this->m_j_star[i][j] = Mag(0.);
+//     }
+//   }
+// #pragma omp for
+//   for (long int i = 0L; i < this->M; ++i)
+//   {
+//     this->m_in[i]    = new Mag [this->K];
+//     this->m_no[i]    = new Mag [this->K];
+//     this->m_ni[i]    = new Mag [this->K];
+//     this->weights[i] = new Mag*[this->K];
+//
+//     this->m_on[i]    = Mag(0.);
+//
+//     for (long int j = 0L; j < this->K; ++j)
+//     {
+//       this->m_in[i][j] = Mag(0.);
+//       this->m_no[i][j] = Mag(0.);
+//       this->m_ni[i][j] = Mag(0.);
+//
+//       this->weights[i][j] = new Mag[this->N];
+//       this->m_in[i][j] = this->m_in[i][j] % this->m_no[i][j] % this->m_ni[i][j]; // always 0 ?
+//       std::generate_n(this->weights[i][j], this->N,
+//                       [&]()
+//                       {
+//                         return mag::f2m<Mag>(x * (2. * dist(engine) - 1.)); // troubles with rng
+//                       });
+//     }
+//   }
+//
+// #else
   std::generate_n(this->m_star_j, this->K, [&n]{return new Mag [n];});
   std::generate_n(this->m_j_star, this->K, [&n]{return new Mag [n];});
   std::generate_n(this->m_in,     this->M, [&k]{return new Mag [k];});
@@ -247,11 +237,11 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
                       });
     }
   }
-#endif
+// #endif
 
-#ifdef _OPENMP
-#pragma omp for collapse(3)
-#endif
+// #ifdef _OPENMP
+// #pragma omp for collapse(3)
+// #endif
   for (long int i = 0L; i < this->K; ++i)
    for (long int j = 0L; j < this->N; ++j)
       for (long int k = 0L; k < this->M; ++k)
@@ -485,7 +475,7 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
       << std::endl
       << "N,M,K: " << this->N << " " << this->M << " " << this->K
       << std::endl;
-      
+
   os.precision(6);
   os.setf( std::ios::fixed, std:: ios::floatfield );
   for (long int i = 0L; i < this->K; ++i)

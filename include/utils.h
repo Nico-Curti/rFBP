@@ -8,12 +8,12 @@
 static constexpr double inf         = std::numeric_limits<double>::infinity();
 static constexpr double epsilon     = std::numeric_limits<double>::epsilon();
 
-#ifdef _MSC_VER
-  static constexpr double log_2       = 0.6931471805599453;
-  static constexpr double log2_over_2 = 0.34657359027997264311;
-#else
+#ifdef __GNUC__
   static constexpr double log_2       = log(2);
   static constexpr double log2_over_2 = log(2)*0.5;
+#else
+  static constexpr double log_2       = 0.6931471805599453;
+  static constexpr double log2_over_2 = 0.34657359027997264311;
 #endif
 
 

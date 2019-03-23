@@ -249,13 +249,11 @@ namespace mag
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
     {
-      static double zkip = 0.,
-                    zkim = 0.;
+      double zkip,
+             zkim;
       zkip = std::log( (1. + u0.mag) * .5);
       zkim = std::log( (1. - u0.mag) * .5);
-#ifdef _OPENMP
-#pragma omp for reduction(+ : zkip, zkim)
-#endif
+
       for (int i = 0; i < nu; ++i)
       {
         zkip += std::log( (1. + u[i].mag) * .5);
