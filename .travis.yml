@@ -44,7 +44,7 @@ matrix:
           packages:
             - clang-3.9
       env:
-        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9 && LINKER_FLAGS=\"-stdlib=libc++ -lc++abi\" && CXXFLAGS=-stdlib=libc++ && CMAKE_C_COMPILER=${CC} && CMAKE_CXX_COMPILER=${CXX} && CMAKE_LINKER=${CXX}"
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9 && LINKER_FLAGS=\"-stdlib=libstdc++ -lc++abi\" && CXXFLAGS=-stdlib=libstdc++ && CMAKE_C_COMPILER=${CC} && CMAKE_CXX_COMPILER=${CXX} && CMAKE_LINKER=${CXX}"
         - COMPILER_ID="clang"
 
     - os: linux
@@ -58,7 +58,7 @@ matrix:
           packages:
             - clang-4.0
       env:
-        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0 && LINKER_FLAGS=\"-stdlib=libc++ -lc++abi\" && CXXFLAGS=-stdlib=libc++ && CMAKE_C_COMPILER=${CC} && CMAKE_CXX_COMPILER=${CXX} && CMAKE_LINKER=${CXX}"
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0 && LINKER_FLAGS=\"-stdlib=libstdc++ -lc++abi\" && CXXFLAGS=-stdlib=libstdc++ && CMAKE_C_COMPILER=${CC} && CMAKE_CXX_COMPILER=${CXX} && CMAKE_LINKER=${CXX}"
         - COMPILER_ID="clang"
 
     - os: linux
@@ -72,7 +72,7 @@ matrix:
           packages:
             - clang-5.0
       env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && LINKER_FLAGS=\"-stdlib=libc++ -lc++abi\" && CXXFLAGS=-stdlib=libc++ && CMAKE_C_COMPILER=${CC} && CMAKE_CXX_COMPILER=${CXX} && CMAKE_LINKER=${CXX}"
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0 && LINKER_FLAGS=\"-stdlib=libstdc++ -lc++abi\" && CXXFLAGS=-stdlib=libstdc++ && CMAKE_C_COMPILER=${CC} && CMAKE_CXX_COMPILER=${CXX} && CMAKE_LINKER=${CXX}"
         - COMPILER_ID="clang"
 
     - os: linux
@@ -82,7 +82,8 @@ matrix:
         apt:
           update: true
           sources:
-            - llvm-toolchain-trusty-6.0
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-6
           packages:
             - clang-6.0
       env:
@@ -96,7 +97,8 @@ matrix:
         apt:
           update: true
           sources:
-            - llvm-toolchain-trusty-7.0
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-7
           packages:
             - clang-7.0
       env:
@@ -109,11 +111,11 @@ matrix:
       osx_image: xcode10.1
       compiler: gcc
       name: macOS - g++-7
-      addons:
-        homebrew:
-          #update: true
-          packages:
-            - g++-7
+#      addons:
+#        homebrew:
+#          #update: true
+#          packages:
+#            - g++-7
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
         - COMPILER_ID="gcc"
@@ -122,11 +124,11 @@ matrix:
       osx_image: xcode10.1
       compiler: gcc
       name: macOS - g++-8
-      addons:
-        homebrew:
-          #update: true
-          packages:
-            - g++-8
+#      addons:
+#        homebrew:
+#          #update: true
+#          packages:
+#            - g++-8
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
         - COMPILER_ID="gcc"
