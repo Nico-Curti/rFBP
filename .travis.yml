@@ -43,7 +43,7 @@ matrix:
             - llvm-toolchain-trusty-3.9
           packages:
             - clang-3.9
-            - libstdc++-devel
+            - libstdc++
 
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
@@ -64,7 +64,7 @@ matrix:
             - llvm-toolchain-trusty-4.0
           packages:
             - clang-4.0
-            - libstdc++-devel
+            - libstdc++
 
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
@@ -85,7 +85,7 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
-            - libstdc++-devel
+            - libstdc++
 
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
@@ -107,7 +107,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - clang-6.0
-            - libstdc++6
+            - libstdc++-7-dev
 
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
@@ -129,7 +129,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - clang-7.0
-            - libstdc++6
+            - libstdc++-7-dev
 
       env:
         - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
@@ -143,29 +143,27 @@ matrix:
 # osx + gcc
 
     - os: osx
-      osx_image: xcode9.4
       compiler: gcc
       name: macOS - g++-7
-      addons:
-        homebrew:
-          #update: true
-          packages:
-            - g++-7
+      #addons:
+      #  homebrew:
+      #    #update: true
+      #    packages:
+      #      - g++-7
       env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - MATRIX_EVAL="brew update && brew install gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
         - COMPILER_ID="gcc"
 
     - os: osx
-      osx_image: xcode9.4
       compiler: gcc
       name: macOS - g++-8
-      addons:
-        homebrew:
-          #update: true
-          packages:
-            - g++-8
+      #addons:
+      #  homebrew:
+      #    #update: true
+      #    packages:
+      #      - g++-8
       env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - MATRIX_EVAL="brew update && brew install gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
         - COMPILER_ID="gcc"
 
 # osx + clang
@@ -176,6 +174,17 @@ matrix:
       env:
         - MATRIX_EVAL=""
         - COMPILER_ID="clang"
+
+  allow_failures:
+    - name: ubuntu 14.04 - clang@3.9
+    - name: ubuntu 14.04 - clang@4.0
+    - name: ubuntu 14.04 - clang@5.0
+    - name: ubuntu 14.04 - clang@6.0
+    - name: ubuntu 14.04 - clang@7.0
+    - name: macOS - g++-7
+    - name: macOS - g++-8
+    - name: macOS - native clang (llvm backend)
+
 
 before_install:
   - travis_retry eval "${MATRIX_EVAL}"
