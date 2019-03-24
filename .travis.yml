@@ -153,7 +153,7 @@ before_script:
   - mkdir build_release
   - cd build_release
   - cmake .. -DCMAKE_BUILD_TYPE="Release" -DOMP=ON
-  - cd build_release
+  - cd ..
 
 script:
   - cd build_debug   && cmake --build . --target install -- -j8 && cd ..
