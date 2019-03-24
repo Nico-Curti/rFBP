@@ -49,6 +49,7 @@ You can also build with CMake or easier with the [build.sh](https://github.com/N
 ## Authors
 
 * **Nico Curti** [git](https://github.com/Nico-Curti), [unibo](https://www.unibo.it/sitoweb/nico.curti2)
+* **Daniele Dall'Olio** [git](https://github.com/DanieleDallOlio)
 
 See also the list of [contributors](https://github.com/Nico-Curti/rFBP/contributors) [![GitHub contributors](https://img.shields.io/github/contributors/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/graphs/contributors/) who partecipated in this project.
 

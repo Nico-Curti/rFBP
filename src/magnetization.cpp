@@ -185,11 +185,11 @@ namespace mag
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return ((m1.mag == m2.mag) ?
-              MagP64(0.)           :
+              MagP64(0.)         :
               MagP64(clamp( (m1.mag - m2.mag) / (1. - m1.mag * m2.mag), -1., 1.)));
     else
       return ((m1.mag == m2.mag) ?
-              MagT64(0.)           :
+              MagT64(0.)         :
               MagT64(std::atanh(m1.mag) -  std::atanh(m2.mag)));
   }
   template MagP64 bar<MagP64>(const MagP64 &m1, const MagP64 &m2);
@@ -206,8 +206,8 @@ namespace mag
       return std::log( ( 1. + (x.mag * y.mag)) * .5);
     else
     {
-      double ax = std::atanh(x.mag),
-             ay = std::atanh(y.mag);
+      const double ax = std::atanh(x.mag),
+                   ay = std::atanh(y.mag);
 
       return !std::isinf(ax) && !std::isinf(ay) ?
               std::abs(ax + ay) - std::abs(ax) - std::abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
@@ -229,8 +229,8 @@ namespace mag
       return (-x.mag) * std::atanh(y.mag) - std::log(1. - y.mag * y.mag) * .5 + log_2;
     else
     {
-      double tx = x.mag,
-             ay = std::atanh(y.mag);
+      const double tx = x.mag,
+                   ay = std::atanh(y.mag);
       return !std::isinf(ay)                                ?
              -std::abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
              (sign(tx) != sign(ay))                         ?
@@ -249,10 +249,8 @@ namespace mag
 
     if constexpr      ( std::is_same_v<Mag, MagP64> )
     {
-      double zkip,
-             zkim;
-      zkip = std::log( (1. + u0.mag) * .5);
-      zkim = std::log( (1. - u0.mag) * .5);
+      double zkip = std::log( (1. + u0.mag) * .5);
+      double zkim = std::log( (1. - u0.mag) * .5);
 
       for (int i = 0; i < nu; ++i)
       {
@@ -263,17 +261,15 @@ namespace mag
     }
     else
     {
-      double a0 = std::atanh(u0.mag),
-             s1, s2, s3,
-             ai, hasinf;
-      bool is_inf = std::isinf(a0);
-      s1          = is_inf ? 0.       : a0;
-      s2          = is_inf ? 0.       : std::abs(a0);
-      s3          = is_inf ? 0.       : lr(a0);
-      hasinf      = is_inf ? sign(a0) : 0.;
+      const double a0   = std::atanh(u0.mag);
+      const bool is_inf = std::isinf(a0);
+      double s1     = is_inf ? 0.       : a0;
+      double s2     = is_inf ? 0.       : std::abs(a0);
+      double s3     = is_inf ? 0.       : lr(a0);
+      double hasinf = is_inf ? sign(a0) : 0.;
       for (int i = 0; i < nu; ++i)
       {
-        ai = std::atanh(u[i].mag);
+        const double ai = std::atanh(u[i].mag);
         if (!std::isinf(ai))
         {
           s1 += ai;
@@ -293,17 +289,17 @@ namespace mag
   {
     static_assert( std::is_same_v<Mag, MagT64>, "auxmix function! Incompatible type found. You must use MagT64 variable for this function." );
 
-    double aH = std::atanh(H.mag),
-           t1, t2;
+    const double aH = std::atanh(H.mag);
+    double t1, t2;
     if (aH == 0.) return MagT64(0.);
     else
     {
-      double xH   = aH + ap,
-             xh   = aH + am,
-             a_ap = std::abs(ap),
-             a_am = std::abs(am);
-      bool inf_ap = std::isinf(ap),
-           inf_am = std::isinf(am);
+      const double xH   = aH + ap,
+                   xh   = aH + am,
+                   a_ap = std::abs(ap),
+                   a_am = std::abs(am);
+      const bool inf_ap = std::isinf(ap),
+                 inf_am = std::isinf(am);
       if (std::isinf(aH))
       {
         if (!inf_ap && !inf_am)
