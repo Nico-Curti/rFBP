@@ -63,7 +63,7 @@ else:
   about['__version__'] = VERSION
 
 
-extra_compile_args = ['-std=c++17', '-g0', '-fopenmp', '-DPYTHONIC']
+extra_compile_args = ['-std=c++17', '-g0', '-fopenmp', '-DPYTHONIC', '-Dregister']
 
 # Where the magic happens:
 setup(
