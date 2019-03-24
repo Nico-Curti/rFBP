@@ -43,10 +43,10 @@ matrix:
             - llvm-toolchain-trusty-3.9
           packages:
             - clang-3.9
-            - libstdc++
+            - libstdc++6
 
       env:
-        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+        - MATRIX_EVAL="brew install llvm && CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -64,10 +64,10 @@ matrix:
             - llvm-toolchain-trusty-4.0
           packages:
             - clang-4.0
-            - libstdc++
+            - libstdc++6
 
       env:
-        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - MATRIX_EVAL="brew install llvm && CC=clang-4.0 && CXX=clang++-4.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -85,10 +85,10 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
-            - libstdc++
+            - libstdc++6
 
       env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+        - MATRIX_EVAL="brew install llvm && CC=clang-5.0 && CXX=clang++-5.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -107,10 +107,10 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - clang-6.0
-            - libstdc++-7-dev
+            - libstdc++6
 
       env:
-        - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - MATRIX_EVAL="brew install llvm && CC=clang-6.0 && CXX=clang++-6.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -132,7 +132,7 @@ matrix:
             - libstdc++-7-dev
 
       env:
-        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+        - MATRIX_EVAL="brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -143,6 +143,7 @@ matrix:
 # osx + gcc
 
     - os: osx
+      osx_image: xcode10.1
       compiler: gcc
       name: macOS - g++-7
       #addons:
@@ -155,6 +156,7 @@ matrix:
         - COMPILER_ID="gcc"
 
     - os: osx
+      osx_image: xcode10.1
       compiler: gcc
       name: macOS - g++-8
       #addons:
@@ -175,6 +177,23 @@ matrix:
         - MATRIX_EVAL=""
         - COMPILER_ID="clang"
 
+    - os: osx
+      osx_image: xcode10.1
+      compiler: clang
+      name: macOS - clang@7.0
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-7
+          packages:
+            - clang-7.0
+      env:
+        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7 && CXX=clang++-7"
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - CXXFLAGS="-stdlib=libc++"
+        - COMPILER_ID="clang"
+
   allow_failures:
     - name: ubuntu 14.04 - clang@3.9
     - name: ubuntu 14.04 - clang@4.0
@@ -183,7 +202,6 @@ matrix:
     - name: ubuntu 14.04 - clang@7.0
     - name: macOS - g++-7
     - name: macOS - g++-8
-    - name: macOS - native clang (llvm backend)
 
 
 before_install:
@@ -192,6 +210,8 @@ before_install:
   - sudo pip install -r requirements.txt
 
 install:
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo softwareupdate -l                                                                          ;fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then softwareupdate -i "Command Line Tools (macOS High Sierra version 10.13) for Xcode-10.1"         ;fi
   # CMake upgrade
 
   - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Darwin-x86_64.tar.gz   ;fi
