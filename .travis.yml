@@ -233,4 +233,5 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
 script:
-  - ./build.sh
+  - chmod 777 ./build.sh
+  - bash ./build.sh
