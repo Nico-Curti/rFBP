@@ -40,6 +40,11 @@ ifneq ($(STD), -std=c++17)
 $(error $(RED)C++ minimum standard required is c++17$(RESET))
 endif
 
+omp_check := $(shell echo |cpp -fopenmp -dM | grep -i open | cut -d' ' -f 3)
+ifneq ($(shell expr $(omp_check) \>= 201511), 1)
+$(error $(RED)Your OpenMP is too old. Required OpenMP 4.5. Please upgrade.$(RESET))
+endif
+
 CFLAGS  += $(strip $(call config, $(OMP),     1, -fopenmp, ))
 CFLAGS  += $(strip $(call config, $(VERBOSE), 1, -DSTDOUT, ))
 CFLAGS  += $(strip $(call config, $(STATS),   1, -DSTATS,  ))
