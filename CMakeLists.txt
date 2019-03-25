@@ -16,9 +16,10 @@ add_definitions (-DMAJOR=${RFB_MAJOR} -DMINOR=${MINOR} -DREVISION=${REVISION})
 #                         COMPILE OPTIONS                       #
 #################################################################
 
-option (OMP     "Enable OpenMP                support" ON)
-option (VERBOSE "Enable verbose stdout        support" ON)
-option (STATS   "Enable verbose statistics    support" ON)
+option (OMP        "Enable OpenMP                support" ON)
+option (VERBOSE    "Enable verbose stdout        support" ON)
+option (STATS      "Enable verbose statistics    support" ON)
+option (BUILD_TEST "Enable tests build           support" ON)
 
 #################################################################
 #                         SETTING VARIABLES                     #
@@ -121,7 +122,8 @@ endif()
 
 set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH "Path where find cpp files"                 )
 set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"              )
-set(TST      ${CMAKE_SOURCE_DIR}/tst                                 CACHE PATH "Path where find test files"                )
+set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                                 CACHE PATH "Path where find main files"                )
+set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                )
 set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"              )         # cython directory
 set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed" FORCE)
 
@@ -130,7 +132,7 @@ set(rfbpmain main)
 
 file(GLOB SRC    "${SRC_DIR}/*.cpp")
 file(GLOB HEADER "${INC_DIR}/*.h"  )
-file(GLOB EXE    "${TST}/*.cpp")
+file(GLOB EXE    "${EXAMPLE}/*.cpp")
 
 include_directories(${INC_DIR})
 
@@ -179,6 +181,7 @@ message(STATUS ""                                                               
 message(STATUS "   OpenMP support : ${OMP}"                                         )
 message(STATUS "   VERBOSE level  : ${VERBOSE}"                                     )
 message(STATUS "   STATS   level  : ${STATS}"                                       )
+message(STATUS "   BUILD_TEST     : ${BUILD_TEST}"                                  )
 message(STATUS ""                                                                   )
 
 #################################################################
@@ -194,9 +197,15 @@ target_link_libraries(${rfbplib} ${linked_libs})
 add_executable(${rfbpmain} ${EXE})
 target_link_libraries(${rfbpmain} ${linked_libs} ${rfbplib})
 
+if (BUILD_TEST)
+  add_executable(spline ${TEST}/spline_test.cpp)
+  target_link_libraries(spline ${linked_libs} ${rfbplib})
+endif()
+
 #################################################################
 #                          INSTALLERS                           #
 #################################################################
 
 install(TARGETS ${rfbplib}         DESTINATION ${CMAKE_SOURCE_DIR})
 install(TARGETS ${rfbpmain}        DESTINATION ${OUT_DIR})
+install(TARGETS ${spline}          DESTINATION ${TEST}/bin)

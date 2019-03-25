@@ -132,7 +132,7 @@ private:
   inline void _assert_increasing(const float *t, const int &nt)
   {
     const auto check = std::inner_product(t, t + nt - 1,
-                                          t + 1, 0
+                                          t + 1, 0,
                                           [](const float &i, const float &j)
                                           {
                                             return i < j ? 1 : 0;
@@ -210,7 +210,7 @@ public:
     os.close();
   }
 
-  void set_points(float *&x, float *&y, const int &npts, spline_type type = cubic_spline)
+  void set_points(double *&x, double *&y, const int &npts, spline_type type = cubic_spline)
   {
     this->n  = npts;
     this->mx = std::make_unique<double[]>(npts);

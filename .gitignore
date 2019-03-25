@@ -38,3 +38,4 @@
 [Bb]uild/
 ReplicatedFocusingBeliefPropagation/*.cpp
 [Tt]st/
+[Tt]est/
