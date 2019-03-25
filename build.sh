@@ -52,7 +52,7 @@ elif [ "$build_type" == "Debug" ] || [ "$build_type" == "debug" ]; then
   build_type=Debug
   rm -rf build_debug
   mkdir -p build_debug
-  cd build_release
+  cd build_debug
 
   cmake .. -DCMAKE_BUILD_TYPE=$build_type -DOMP=$allow_omp
   cmake --build . --target install -- -j8

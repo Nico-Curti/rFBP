@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <fstream>
 #ifdef DEBUG
+#include <numeric>
 #include <cassert>
 #endif
 
@@ -129,11 +130,11 @@ private:
   std::unique_ptr<double[]> mx, my, ma, mb, mc;
 
 #ifdef DEBUG
-  inline void _assert_increasing(const float *t, const int &nt)
+  inline void _assert_increasing(const double *t, const int &nt)
   {
     const auto check = std::inner_product(t, t + nt - 1,
-                                          t + 1, 0,
-                                          [](const float &i, const float &j)
+                                          t + 1, 0, std::plus<int>(),
+                                          [](const auto &i, const auto &j)
                                           {
                                             return i < j ? 1 : 0;
                                           });
@@ -219,7 +220,7 @@ public:
     std::move(y, y + npts, this->my.get());
 
 #ifdef DEBUG
-    this->_assert_increasing(mx);
+    this->_assert_increasing(mx.get(), npts);
 #endif
 
     switch (type)
