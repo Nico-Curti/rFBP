@@ -46,7 +46,7 @@ matrix:
             - libstdc++6
 
       env:
-        - MATRIX_EVAL="brew install llvm && CC=clang-3.9 && CXX=clang++-3.9"
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -67,7 +67,7 @@ matrix:
             - libstdc++6
 
       env:
-        - MATRIX_EVAL="brew install llvm && CC=clang-4.0 && CXX=clang++-4.0"
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -88,7 +88,7 @@ matrix:
             - libstdc++6
 
       env:
-        - MATRIX_EVAL="brew install llvm && CC=clang-5.0 && CXX=clang++-5.0"
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -110,7 +110,7 @@ matrix:
             - libstdc++6
 
       env:
-        - MATRIX_EVAL="brew install llvm && CC=clang-6.0 && CXX=clang++-6.0"
+        - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -132,7 +132,7 @@ matrix:
             - libstdc++-7-dev
 
       env:
-        - MATRIX_EVAL="brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
+        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
@@ -189,10 +189,14 @@ matrix:
           packages:
             - clang-7.0
       env:
-        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7 && CXX=clang++-7"
+        - MATRIX_EVAL="brew update && brew install llvm"
+        - CXX=clang++-7
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS="-stdlib=libc++"
         - COMPILER_ID="clang"
+        - CMAKE_CXX_COMPILER=${CXX}
+        - CMAKE_C_COMPILER=${CC}
+        - CMAKE_LINKER=${CXX}
 
   allow_failures:
     - name: ubuntu 14.04 - clang@3.9
