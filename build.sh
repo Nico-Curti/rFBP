@@ -8,8 +8,11 @@ build_type=$1
 compiler=$(echo ${CXX##*/})
 number_of_build_workers=8
 
+allow_omp=$2
 
-if [[ "$compiler" == *"g++"* ]]; then
+if [ "$allow_omp" == "ON" ] || [ "$allow_omp" == "on" ] || [ "$allow_omp" == "OFF" ] || [ "$allow_omp" == "off" ]; then
+  allow_omp=$allow_omp
+elif [[ "$compiler" == *"g++"* ]]; then
   allow_omp=ON;
 else
   allow_omp=OFF;

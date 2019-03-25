@@ -195,7 +195,7 @@ matrix:
             - python3.6
             - python3.6-dev
       env:
-        - MATRIX_EVAL="brew update && brew install llvm"
+        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
         - CXX=clang++-7
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS="-stdlib=libc++"
@@ -234,4 +234,5 @@ install:
 
 script:
   - chmod 777 ./build.sh
-  - bash ./build.sh
+  - if [[ "$COMPILER_ID" == "clang" ]]; then bash ./build.sh "" OFF                                                                           ;fi
+  - if [[ "$COMPILER_ID" == "gcc"   ]]; then bash ./build.sh "" ON                                                                            ;fi
