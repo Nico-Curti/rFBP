@@ -1,7 +1,8 @@
 #include <cmd.h>
 #include <rfbp.h>
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
 
   std::string patternsfile,
               outfile,
@@ -90,4 +91,5 @@ int main(int argc, char *argv[]){
       }
   }
 
+  return 0;
 }

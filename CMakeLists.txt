@@ -120,12 +120,13 @@ endif()
 #                         SETTING DIRECTORIES                   #
 #################################################################
 
-set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH "Path where find cpp files"                 )
-set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"              )
-set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                                 CACHE PATH "Path where find main files"                )
-set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                )
-set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"              )         # cython directory
-set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed" FORCE)
+set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH "Path where find cpp files"                      )
+set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"                   )
+set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                             CACHE PATH "Path where find main files"                     )
+set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                     )
+set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"                   )         # cython directory
+set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"      FORCE)
+set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed" FORCE)
 
 set(rfbplib rfbp)
 set(rfbpmain main)
@@ -208,4 +209,4 @@ endif()
 
 install(TARGETS ${rfbplib}         DESTINATION ${CMAKE_SOURCE_DIR})
 install(TARGETS ${rfbpmain}        DESTINATION ${OUT_DIR})
-install(TARGETS ${spline}          DESTINATION ${TEST}/bin)
+install(TARGETS spline             DESTINATION ${OUT_TEST})

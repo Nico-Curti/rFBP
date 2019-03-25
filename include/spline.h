@@ -66,7 +66,7 @@ public:
     for (int i = 0; i < this->dim; ++i)
     {
       const int j_max = this->dim - 1 < i + 1 ? this->dim - 1 : i + 1;
-      for (int j = i + 1; j < j_max; ++j)
+      for (int j = i + 1; j <= j_max; ++j)
       {
         const double x = -this->operator()(j, i) / this->operator()(j, j);
         this->operator()(j, i) = -x;
@@ -153,7 +153,7 @@ public:
   void set_boundary(const bd_type &left, const double &left_value, const bd_type &right, const double &right_value, bool force_linear_extrapolation=false)
   {
 #ifdef DEBUG
-    assert(Nmx == 0);
+    assert(this->n == 0);
 #endif
     this->m_left_value  = left_value;
     this->m_right_value = right_value;
