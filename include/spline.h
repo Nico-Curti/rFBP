@@ -53,26 +53,26 @@ public:
   {
     // preconditioning
     // normalize column i so that a_ii=1
-    for (int i = 0; i < this->dim; ++i)
+    for (int i = 0, j = -1; i < this->dim; ++i, ++j)
     {
       this->m_lower[0][i] = 1. / this->operator()(i, i);
-      const int j_min = i - 1 > 0 ? i - 1 : 0;
+      const int j_min = j > 0 ? j : 0;
       const int j_max = this->dim - 1 < i + 1 ? this->dim - 1 : i + 1;
-      for (int j = j_min; j <= j_max; ++j)
-        this->operator()(i, j) *= this->m_lower[0][i];
+      for (int k = j_min; k <= j_max; ++k)
+        this->operator()(i, k) *= this->m_lower[0][i];
       this->operator()(i, i) = 1.; // prevents rounding errors
     }
 
     // Gauss LR-Decomposition
-    for (int i = 0; i < this->dim; ++i)
+    for (int i = 0, j = 1; i < this->dim; ++i, ++j)
     {
-      const int j_max = this->dim - 1 < i + 1 ? this->dim - 1 : i + 1;
-      for (int j = i + 1; j <= j_max; ++j)
+      const int j_max = this->dim - 1 < j ? this->dim - 1 : j;
+      for (int k = j; k <= j_max; ++k)
       {
-        const double x = -this->operator()(j, i) / this->operator()(j, j);
-        this->operator()(j, i) = -x;
-        for (int k = i + 1; k <= j_max; ++k)
-          this->operator()(j, k) = this->operator()(j, k) + x * this->operator()(i, k);
+        const double x = -this->operator()(k, i) / this->operator()(k, k);
+        this->operator()(k, i) = -x;
+        for (int l = j; l <= j_max; ++l)
+          this->operator()(k, l) = this->operator()(k, l) + x * this->operator()(i, l);
       }
     }
   }
@@ -80,12 +80,12 @@ public:
   auto l_solve(const double *b) const
   {
     std::unique_ptr<double[]> x(new double[this->dim]);
-    for (int i = 0; i < this->dim; ++i)
+    for (int i = 0, j = -1; i < this->dim; ++i, ++j)
     {
       double sum = 0.;
-      const int j_start = i - 1 > 0 ? i - 1 : 0;
-      for (int j = j_start; j < i; ++j)
-        sum += this->operator()(i, j) * x[j];
+      const int j_start = j > 0 ? j : 0;
+      for (int k = j_start; k < i; ++k)
+        sum += this->operator()(i, k) * x[j];
       x[i] = (b[i] - this->m_lower[0][i]) - sum;
     }
     return x;
@@ -93,12 +93,12 @@ public:
   auto r_solve(const double *b) const
   {
     std::unique_ptr<double[]> x(new double[this->dim]);
-    for (int i = this->dim - 1; i >= 0; --i)
+    for (int i = this->dim - 1, j = this->dim; i >= 0; --i, --j)
     {
       double sum = 0.;
-      const int j_stop = this->dim - 1 > i + 1 ? i + 1 : this->dim - 1;
-      for (int j = i + 1; j <= j_stop; ++j)
-        sum += this->operator()(i, j) * x[j];
+      const int j_stop = this->dim - 1 > j ? j : this->dim - 1;
+      for (int k = i + 1; k <= j_stop; ++k)
+        sum += this->operator()(i, k) * x[k];
       x[i] = (b[i] - sum) / this->operator()(i, i);
     }
     return x;
