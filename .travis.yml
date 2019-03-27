@@ -1,22 +1,211 @@
 language: cpp
 
+cache:
+  directories:
+    - ${TRAVIS_BUILD_DIR}/deps/llvm-3.9.0
+
+
 matrix:
+  fast_finish: true
   include:
+# linux + gcc
     - os: linux
       compiler: gcc
-      name: ubuntu - gcc
+      name: ubuntu 14.04 - gcc@7.0
       addons:
         apt:
+          update: true
           sources:
-            ubuntu-toolchain-r-test
+            - ubuntu-toolchain-r-test
           packages:
-            - gcc-8
+            - g++-7
+            - python3.4
+            - python3.4-dev
+      env:
+        - MATRIX_EVAL="CC=g++-7 && CXX=g++-7"
+        - COMPILER_ID="gcc"
+        - UNIT_TESTS=true
+
+    - os: linux
+      compiler: gcc
+      name: ubuntu 14.04 - gcc@8.0
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
             - g++-8
-            - ninja-build
-      env: BUILD=linux-gcc
+            - python3.5
+            - python3.5-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - COMPILER_ID="gcc"
+        - UNIT_TESTS=true
+
+# linux + clang
+
+
+
+    - os: linux
+      compiler: clang
+      name: ubuntu 14.04 - clang@3.9
+      addons:
+        apt:
+          update: true
+          sources:
+            - llvm-toolchain-trusty-3.9
+          packages:
+            - clang-3.9
+            - libstdc++6
+            - llvm-3.9-dev
+            - libclang-3.9-dev
+      env:
+        - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - CXXFLAGS=-stdlib=libc++
+        - CMAKE_C_COMPILER=${CC}
+        - CMAKE_CXX_COMPILER=${CXX}
+        - CMAKE_LINKER=${CXX}
+        - COMPILER_ID="clang"
+        - UNIT_TESTS=true
+        - LLVM_VERSION=3.9.0
+
+    - os: linux
+      compiler: clang
+      name: ubuntu 14.04 - clang@4.0
+      addons:
+        apt:
+          update: true
+          sources:
+            - llvm-toolchain-trusty-4.0
+          packages:
+            - clang-4.0
+            - libstdc++6
+            - llvm-4.0-dev
+            - libclang-4.0-dev
+
+      env:
+        - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - CXXFLAGS=-stdlib=libc++
+        - CMAKE_C_COMPILER=${CC}
+        - CMAKE_CXX_COMPILER=${CXX}
+        - CMAKE_LINKER=${CXX}
+        - COMPILER_ID="clang"
+        - UNIT_TESTS=true
+        - LLVM_VERSION=4.0.0
+
+    - os: linux
+      compiler: clang
+      name: ubuntu 14.04 - clang@5.0
+      addons:
+        apt:
+          update: true
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - clang-5.0
+            - libstdc++6
+            - llvm-5.0-dev
+            - libclang-5.0-dev
+
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - CXXFLAGS=-stdlib=libc++
+        - CMAKE_C_COMPILER=${CC}
+        - CMAKE_CXX_COMPILER=${CXX}
+        - CMAKE_LINKER=${CXX}
+        - COMPILER_ID="clang"
+        - UNIT_TESTS=true
+        - LLVM_VERSION=5.0.0
+
+    - os: linux
+      compiler: clang
+      name: ubuntu 14.04 - clang@6.0
+      addons:
+        apt:
+          update: true
+          sources:
+            - llvm-toolchain-trusty-6.0
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - clang-6.0
+            - libstdc++6
+            - llvm-6.0
+            - libclang-6.0-dev
+
+      env:
+        - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - CXXFLAGS=-stdlib=libc++
+        - CMAKE_C_COMPILER=${CC}
+        - CMAKE_CXX_COMPILER=${CXX}
+        - CMAKE_LINKER=${CXX}
+        - COMPILER_ID="clang"
+        - UNIT_TESTS=true
+        - LLVM_VERSION=6.0.0
+
+    - os: linux
+      compiler: clang
+      name: ubuntu 14.04 - clang@7.0
+      addons:
+        apt:
+          update: true
+          sources:
+            - llvm-toolchain-trusty-7.0
+            - sourceline: 'ppa:ubuntu-toolchain-r/test'
+          packages:
+            - clang-7.0
+            - libstdc++6
+            - llvm-7.0-dev
+            - libclang-7-dev
+
+      env:
+        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - CXXFLAGS=-stdlib=libc++
+        - CMAKE_C_COMPILER=${CC}
+        - CMAKE_CXX_COMPILER=${CXX}
+        - CMAKE_LINKER=${CXX}
+        - COMPILER_ID="clang"
+        - UNIT_TESTS=true
+        - LLVM_VERSION=7.0.0
+
+# osx + gcc
 
     - os: osx
+      osx_image: xcode10.1
+      compiler: gcc
+      name: macOS - g++-7
+      env:
+        - MATRIX_EVAL="brew update && brew install gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
+        - COMPILER_ID="gcc"
+
+    - os: osx
+      osx_image: xcode10.1
+      compiler: gcc
+      name: macOS - g++-8
+      env:
+        - MATRIX_EVAL="brew update && brew install gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
+        - COMPILER_ID="gcc"
+        - UNIT_TESTS=true
+
+# osx + clang
+    - os: osx
+      osx_image: xcode10.1
       compiler: clang
+      name: macOS - native clang (llvm backend)
+      env:
+        - MATRIX_EVAL=""
+        - COMPILER_ID="clang"
+        - UNIT_TESTS=true
+
+    - os: osx
+      osx_image: xcode10.1
+      compiler: clang
+      name: macOS - clang@7.0
       addons:
         apt:
           sources:
@@ -24,57 +213,49 @@ matrix:
             - llvm-toolchain-trusty-7
           packages:
             - clang-7.0
+            - python3.6
+            - python3.6-dev
       env:
+        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
         - CXX=clang++-7
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - CXXFLAGS="-stdlib=libc++"
-        - BUILD=osx-clang
+        - COMPILER_ID="clang"
+        - CMAKE_CXX_COMPILER=${CXX}
+        - CMAKE_C_COMPILER=${CC}
+        - CMAKE_LINKER=${CXX}
+        - UNIT_TESTS=true
+
+  allow_failures:
+    - name: ubuntu 14.04 - clang@3.9
+    - name: ubuntu 14.04 - clang@4.0
+    - name: ubuntu 14.04 - clang@5.0
+    - name: ubuntu 14.04 - clang@6.0
+    - name: ubuntu 14.04 - clang@7.0
+    - name: macOS - clang@7.0
+
 
 before_install:
+  - travis_retry eval "${MATRIX_EVAL}"
   - pip install --user codecov
   - sudo pip install -r requirements.txt
 
-  - if [[ "$BUILD" == "osx-clang" ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Darwin-x86_64.tar.gz   ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then tar -xzf cmake-3.13.1-Darwin-x86_64.tar.gz                                                    ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then export PATH=$PWD/cmake-3.13.1-Darwin-x86_64/CMake.app/Contents/bin:$PATH                      ;fi
-
-  ###############################################################################################################################################
-
-  - if [[ "$BUILD" == "linux-gcc" ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.tar.gz    ;fi
-  - if [[ "$BUILD" == "linux-gcc" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                     ;fi
-  - if [[ "$BUILD" == "linux-gcc" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
-
 install:
-  - if [[ "$BUILD" == "osx-clang" ]]; then brew update                                                                                   ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then brew install llvm                                                                             ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then brew install ninja                                                                            ;fi
-  #- if [[ "$BUILD" == "osx-clang" ]]; then export CC=/usr/local/bin/clang-7                                                              ;fi
-  #- if [[ "$BUILD" == "osx-clang" ]]; then export CXX=/usr/local/bin/clang-7                                                             ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then export CMAKE_C_COMPILER=${CC}                                                                 ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then export CMAKE_CXX_COMPILER=${CXX}                                                              ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then export CMAKE_LINKER=clang++-7                                                                 ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then ${CXX} --version                                                                              ;fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo softwareupdate -l                                                                          ;fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then softwareupdate -i "Command Line Tools (macOS High Sierra version 10.13) for Xcode-10.1"         ;fi
+  # CMake upgrade
+
+  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Darwin-x86_64.tar.gz   ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then tar -xzf cmake-3.13.1-Darwin-x86_64.tar.gz                                                    ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then export PATH=$PWD/cmake-3.13.1-Darwin-x86_64/CMake.app/Contents/bin:$PATH                      ;fi
 
   ###############################################################################################################################################
 
-  # Link gcc-7 and g++-7 to their standard commands
-  - if [[ "$BUILD" == "linux-gcc" ]]; then sudo ln -s /usr/bin/gcc-8 /usr/local/bin/gcc                                                  ;fi
-  - if [[ "$BUILD" == "linux-gcc" ]]; then sudo ln -s /usr/bin/g++-8 /usr/local/bin/g++                                                  ;fi
-  # Export CC and CXX to tell cmake which compiler to use
-  - if [[ "$BUILD" == "linux-gcc" ]]; then export CC=/usr/bin/gcc-8                                                                      ;fi
-  - if [[ "$BUILD" == "linux-gcc" ]]; then export CXX=/usr/bin/g++-8                                                                     ;fi
-  # Check versions of gcc, g++ and cmake
-  - if [[ "$BUILD" == "linux-gcc" ]]; then gcc -v && g++ -v && cmake --version                                                           ;fi
-
-before_script:
-  - mkdir build
-  - cd build
-  - cmake --version
-  - if [[ "$BUILD" == "linux-gcc" ]]; then cmake -G "Unix Makefiles" "-DOMP=OFF" "-DCMAKE_BUILD_TYPE=Debug" ..                                     ;fi
-  - if [[ "$BUILD" == "osx-clang" ]]; then cmake "-DCMAKE_BUILD_TYPE=Debug" "-DOMP=OFF"  ..                                              ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.tar.gz    ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                     ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
 script:
-  - make -j2 install
-
-after_success:
-  - codecov --file coverage/lcov.info --disable search
+  - chmod 777 ./build.sh
+  - if [[ "$COMPILER_ID" == "clang" ]]; then bash ./build.sh "" OFF                                                                           ;fi
+  - if [[ "$COMPILER_ID" == "gcc"   ]]; then bash ./build.sh "" ON                                                                            ;fi

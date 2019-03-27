@@ -1,21 +1,25 @@
 cmake_minimum_required (VERSION 3.8.2)
-project (rFBP LANGUAGES CXX VERSION 2.0.1 DESCRIPTION "Replicated Focusing Belief Propagation")
+
+# rFBP Version
+set (RFB_MAJOR    1)
+set (RFB_MINOR    0)
+set (RFB_REVISION 0)
+set (RFB_VERSION ${RFB_MAJOR}.${RFB_MINOR}.${RFB_REVISION})
+
+project (rFBP LANGUAGES CXX VERSION ${RFB_VERSION} DESCRIPTION "Replicated Focusing Belief Propagation")
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# rFBP Version
-set (MAJOR    1)
-set (MINOR    0)
-set (REVISION 0)
-add_definitions (-DMAJOR=${MAJOR} -DMINOR=${MINOR} -DREVISION=${REVISION})
+add_definitions (-DMAJOR=${RFB_MAJOR} -DMINOR=${MINOR} -DREVISION=${REVISION})
 
 #################################################################
 #                         COMPILE OPTIONS                       #
 #################################################################
 
-option (OMP     "Enable OpenMP                support" ON)
-option (VERBOSE "Enable verbose stdout        support" ON)
-option (STATS   "Enable verbose statistics    support" ON)
+option (OMP        "Enable OpenMP                support" ON)
+option (VERBOSE    "Enable verbose stdout        support" ON)
+option (STATS      "Enable verbose statistics    support" ON)
+option (BUILD_TEST "Enable tests build           support" ON)
 
 #################################################################
 #                         SETTING VARIABLES                     #
@@ -39,29 +43,41 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 if ( CMAKE_COMPILER_IS_GNUCXX )
-  add_compile_options (-Wall -Wextra -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors)
-  string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
-  if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
-    set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -DDEBUG" )
+  if ( OMP )
+    add_compile_options (-Wall -Wextra -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors)
   endif()
+  add_compile_options( -Wno-register )
+  string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+  string (REGEX REPLACE "-O0" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
+  set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG" )
+  list (APPEND linked_libs stdc++fs)
 endif()
-if ( MSVC )
-  add_compile_options (/wd4028)
-  add_compile_options (/wd4244)
-  add_compile_options (/wd4267)
-  add_compile_options (/wd4305)
-  add_compile_options (/wd4477)
-  add_compile_options (/wd4996)
-  set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRTD")
-  #set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:MSVCRT")
+
+
+if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+  set (CMAKE_CXX_FLAGS "-Wno-deprecated -Wno-writable-strings -Wno-register ${CMAKE_CXX_FLAGS}")
+  string (REGEX REPLACE "-O0" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
+  string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+  #list (APPEND linked_libs stdc++fs)
+endif()
+
+if (MSVC)
+  set (CMAKE_CXX_FLAGS "/wd4013 /wd4018 /wd4028 /wd4047 /wd4068 /wd4090 /wd4101 /wd4113 /wd4133 /wd4190 /wd4244 /wd4267 /wd4305 /wd4477 /wd4996 /wd4819 /fp:fast ${CMAKE_CXX_FLAGS}")
+  string (REGEX REPLACE "/O2" "/Ox" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+  add_definitions (-D_CRT_RAND_S)
+  add_definitions (-DNOMINMAX)
+  add_definitions (-D_USE_MATH_DEFINES)
+  add_definitions (-D_CRT_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS)
   set (CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
 
-if (CMAKE_COMPILER_IS_GNUCXX)
-  list (APPEND linked_libs stdc++fs)
-elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-  list (APPEND linked_libs c++experimental)
+
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-march=native" COMPILER_SUPPORTS_MARCH_NATIVE)
+if (COMPILER_SUPPORTS_MARCH_NATIVE)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
 endif()
+
 
 #################################################################
 #                         PARSE OPTIONS                         #
@@ -70,6 +86,10 @@ endif()
 if (OMP)
   find_package(OpenMP REQUIRED)
   if (OPENMP_FOUND)
+    message(STATUS "OpenMP found")
+    if (OpenMP_CXX_VERSION_MAJOR LESS 4 AND OpenMP_CXX_VERSION_MINOR LESS 5)
+      message(FATAL_ERROR " Your OpenMP is too old. Required OpenMP 4.5. Please upgrade.")
+    endif()
     message(STATUS "OpenMP found")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
     if (APPLE)
@@ -96,25 +116,24 @@ else()
   message (STATUS "Statistics print disabled")
 endif()
 
-if (MSVC)
-  add_definitions (-D_CRT_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS)
-endif()
-
 #################################################################
 #                         SETTING DIRECTORIES                   #
 #################################################################
 
-set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
-set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
-set(TST ${CMAKE_SOURCE_DIR}/tst)
-set(PYC_DIR ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation)         # cython directory
+set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH "Path where find cpp files"                      )
+set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"                   )
+set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                             CACHE PATH "Path where find main files"                     )
+set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                     )
+set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"                   )         # cython directory
+set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"      FORCE)
+set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed" FORCE)
 
 set(rfbplib rfbp)
 set(rfbpmain main)
 
 file(GLOB SRC    "${SRC_DIR}/*.cpp")
 file(GLOB HEADER "${INC_DIR}/*.h"  )
-file(GLOB EXE    "${TST}/*.cpp")
+file(GLOB EXE    "${EXAMPLE}/*.cpp")
 
 include_directories(${INC_DIR})
 
@@ -163,6 +182,7 @@ message(STATUS ""                                                               
 message(STATUS "   OpenMP support : ${OMP}"                                         )
 message(STATUS "   VERBOSE level  : ${VERBOSE}"                                     )
 message(STATUS "   STATS   level  : ${STATS}"                                       )
+message(STATUS "   BUILD_TEST     : ${BUILD_TEST}"                                  )
 message(STATUS ""                                                                   )
 
 #################################################################
@@ -178,9 +198,15 @@ target_link_libraries(${rfbplib} ${linked_libs})
 add_executable(${rfbpmain} ${EXE})
 target_link_libraries(${rfbpmain} ${linked_libs} ${rfbplib})
 
+if (BUILD_TEST)
+  add_executable(spline ${TEST}/spline_test.cpp)
+  target_link_libraries(spline ${linked_libs} ${rfbplib})
+endif()
+
 #################################################################
 #                          INSTALLERS                           #
 #################################################################
 
 install(TARGETS ${rfbplib}         DESTINATION ${CMAKE_SOURCE_DIR})
-install(TARGETS ${rfbpmain}        DESTINATION ${TST})
+install(TARGETS ${rfbpmain}        DESTINATION ${OUT_DIR})
+install(TARGETS spline             DESTINATION ${OUT_TEST})

@@ -1,7 +1,7 @@
 #ifndef CMD_H
 #define CMD_H
+#include <utils.h>
 #include <parse_args.h>
-#include <filesystem>
 #include <errors.h>
 
 void parse_training_fbp(int argc, char *argv[],
@@ -61,7 +61,7 @@ void parse_training_fbp(int argc, char *argv[],
   argparse.parse_args(argc, argv);
 
   argparse.get<std::string>("fArg",  patternsfile);
-  if(!std::filesystem::exists(std::filesystem::path(patternsfile))) error_pattern(patternsfile);
+  if(!file_exists(patternsfile)) error_pattern(patternsfile);
   argparse.get<std::string>("oArg",  output);
   argparse.get<bool>("bArg",  bin);
   argparse.get<std::string>("dlArg", del);
@@ -136,9 +136,9 @@ void parse_test_args(int argc, char *argv[],
   argparse.parse_args(argc, argv);
 
   argparse.get<std::string>("fArg", test_file);
-  if(!std::filesystem::exists(std::filesystem::path(test_file)))   error_pattern(test_file);
+  if(!file_exists(test_file))   error_pattern(test_file);
   argparse.get<std::string>("wArg", weight_file);
-  if(!std::filesystem::exists(std::filesystem::path(weight_file))) error_message_weights(weight_file);
+  if(!file_exists(weight_file)) error_message_weights(weight_file);
   argparse.get<std::string>("oArg", output_file);
   return;
 }

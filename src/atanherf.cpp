@@ -1,4 +1,5 @@
 #include <atanherf.h>
+#include <spline.h>
 
 namespace AtanhErf
 {
@@ -12,7 +13,7 @@ namespace AtanhErf
       int N = static_cast<int>((mm - 1.) / st);
       inp = std::make_unique<double[]>( N );
 
-      for(int i = 0; i < N; ++i) is.read((char*)&inp[i], sizeof(double));
+      is.read(reinterpret_cast<char*>(inp.get()), sizeof(double)*N);
       is.close();
       return inp;
     }
@@ -27,11 +28,8 @@ namespace AtanhErf
       int N = static_cast<int>((mm - 1.) / st);
       inp = std::make_unique<double[]>( N );
 
-      for (int i = 0; i < N; ++i)
-      {
-        inp[i] = std::atanh(std::erf(i * st + 1.));
-        os.write( (const char *) &inp[i], sizeof( double ));
-      }
+      for (int i = 0; i < N; ++i) inp[i] = std::atanh(std::erf(i * st + 1.));
+      os.write( reinterpret_cast<char*>(inp.get()), sizeof( double )*N);
 
       os.close();
       return inp;

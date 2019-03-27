@@ -88,11 +88,11 @@ Patterns::Patterns(const std::string &filename, bool bin, const std::string &del
 
 Patterns::Patterns(const long int &N, const long int &M)
 {
-  this->Nrow = N;
+  this->Nrow   = N;
   this->input  = new double*[this->Nrow];
   this->output = std::make_unique<long int[]>(this->Nrow);
-  this->Ncol = M;
-  this->Nout = this->Nrow;
+  this->Ncol   = M;
+  this->Nout   = this->Nrow;
 
   std::default_random_engine engine;
   std::bernoulli_distribution dist(.5);
@@ -110,7 +110,7 @@ Patterns::~Patterns()
 {
   if(this->Nrow)
   {
-     for(long int i = 0L; i < this->Nrow; ++i) delete[] this->input[i];
-      delete[] this->input;
+    for(long int i = 0L; i < this->Nrow; ++i) delete[] this->input[i];
+     delete[] this->input;
   }
 }

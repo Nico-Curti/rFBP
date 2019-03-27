@@ -40,6 +40,11 @@ ifneq ($(STD), -std=c++17)
 $(error $(RED)C++ minimum standard required is c++17$(RESET))
 endif
 
+omp_check := $(shell echo |cpp -fopenmp -dM | grep -i open | cut -d' ' -f 3)
+ifneq ($(shell expr $(omp_check) \>= 201511), 1)
+$(error $(RED)Your OpenMP is too old. Required OpenMP 4.5. Please upgrade.$(RESET))
+endif
+
 CFLAGS  += $(strip $(call config, $(OMP),     1, -fopenmp, ))
 CFLAGS  += $(strip $(call config, $(VERBOSE), 1, -DSTDOUT, ))
 CFLAGS  += $(strip $(call config, $(STATS),   1, -DSTATS,  ))
@@ -53,6 +58,7 @@ OPTS    := $(strip $(call config, $(DEBUG),   1, -O0 -g -DDEBUG, -Ofast))
 SRC_DIR    := ./src
 INC_DIR    := ./include
 EXAMPLE    := ./example
+TEST_DIR   := ./test
 OBJ_DIR    := ./obj
 OUT_DIR    := ./bin
 DEP_DIR    := ./.dep
@@ -100,6 +106,15 @@ all: help
 main: $(DEP_DIR) $(OBJ_DIR) $(OUT_DIR) $(OBJS)    ##@examples Compile main example.
 	@printf "%-80s " "Compiling main example ..."
 	@$(CXX) $(OBJS) $(EXAMPLE)/main.cpp -o $(OUT_DIR)/rfbp $(CFLAGS) $(LDFLAGS)
+	@printf "[done]\n"
+
+#################################################################
+#                         TEST RULES                            #
+#################################################################
+
+spline: $(DEP_DIR) $(OBJ_DIR) $(OUT_DIR) $(OBJS)  ##@test Compile spline test.
+	@printf "%-80s " "Compiling spline test ..."
+	@$(CXX) $(OBJS) $(TEST)/spline_test.cpp -o $(TEST)/bin/spline $(CFLAGS) $(LDFLAGS)
 	@printf "[done]\n"
 
 #################################################################
