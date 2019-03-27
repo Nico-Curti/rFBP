@@ -14,7 +14,7 @@ namespace mag
   template<class Mag> void     zeros         (Mag *x, const long int &n);
   template<class Mag> void     zero          (Mag &x);
   template<class Mag> double   abs           (const Mag &a);
-  template<class Mag> void     copysign      (Mag &x, const double &y);
+  template<class Mag> Mag      copysign      (Mag &x, const double &y);
   template<class Mag> Mag      arrow         (const Mag &m, const double &x);
   template<class Mag> long int sign0         (const Mag &x);
   template<class Mag> double   logmag2p      (const Mag &x);

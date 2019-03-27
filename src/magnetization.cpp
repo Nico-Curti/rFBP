@@ -55,13 +55,15 @@ namespace mag
   template double abs<MagP64>(const MagP64 &a);
   template double abs<MagT64>(const MagT64 &a);
 
-  template<class Mag> void     copysign      (Mag &x, const double &y)
+  template<class Mag> Mag     copysign      (Mag &x, const double &y)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "copysign function! Incompatible types found.");
-    signbit(x) != signbit(y) ? -x : x;
+    return signbit(x) != std::signbit(y) ? -x : x;
   }
+  template MagP64 copysign<MagP64>(MagP64 &x, const double &y);
+  template MagT64 copysign<MagT64>(MagT64 &x, const double &y);
 
   template<class Mag> Mag      arrow         (const Mag &m, const double &x)
   {
@@ -98,7 +100,7 @@ namespace mag
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return MagP64(x);
     else
-      return Mag(clamp(std::atanh(x), -30., 30.));
+      return MagT64(clamp(std::atanh(x), -30., 30.));
   }
   template MagP64 convert<MagP64>(const double &x);
   template MagT64 convert<MagT64>(const double &x);
@@ -108,10 +110,11 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "convert function! Incompatible types found.");
-    if constexpr      ( std::is_same_v<Mag, MagP64> )
-      return x.mag;
-    else
-      return std::atanh(x.mag);
+    // if constexpr      ( std::is_same_v<Mag, MagP64> )
+    //   return x.mag;
+    // else
+    //   return std::atanh(x.mag);
+    return x.mag; // check again
   }
 
   template<class Mag> Mag      couple        (const double &x1, const double &x2)

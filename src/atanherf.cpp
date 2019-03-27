@@ -2,8 +2,9 @@
 
 namespace AtanhErf
 {
-  void getinp(const double &mm, const double &st, std::unique_ptr<double[]> &inp)
+  auto getinp(const double &mm, const double &st)
   {
+    std::unique_ptr<double[]> inp = nullptr;
     std::string filename = "atanherf_interp.max_" + std::to_string(mm) + ".step_" + std::to_string(st) + ".txt";
     std::ifstream is(filename, std::ios::binary);
     if (is)
@@ -13,7 +14,7 @@ namespace AtanhErf
 
       for(int i = 0; i < N; ++i) is.read((char*)&inp[i], sizeof(double));
       is.close();
-      return;
+      return inp;
     }
     else
     {
@@ -33,21 +34,18 @@ namespace AtanhErf
       }
 
       os.close();
-      return;
+      return inp;
     }
   }
 
   double atanherf_interp(const double &x)
   {
     int N = static_cast<int>( 15. / 1e-4 ); // TODO
-    std::unique_ptr<double[]> r(new double[N]),
-                              inp = nullptr;
+    std::unique_ptr<double[]> r(new double[N]);
     double res = 0.;
-
     std::generate_n(r.get(), N, [&res](){return (res++) * 1e-4 + 1.;} ); // TODO
-    getinp(16., 1e-4, inp);
+    static auto inp = getinp(16., 1e-4);
     res = inp[static_cast<int>((x - r[0]) / 1e-4 + 1.)]; // TODO
-
     return res;
   }
 

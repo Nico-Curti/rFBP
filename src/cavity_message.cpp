@@ -476,7 +476,7 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
       << "N,M,K: " << this->N << " " << this->M << " " << this->K
       << std::endl;
 
-  os.precision(6);
+  os.precision(5);
   os.setf( std::ios::fixed, std:: ios::floatfield );
   for (long int i = 0L; i < this->K; ++i)
   {

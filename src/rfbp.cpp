@@ -116,7 +116,6 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
 #pragma omp single
 #endif
   h.reset(new Mag[nm]);
-
   old_m_on = mag::bar(M, new_U);
 
 #ifdef _OPENMP
@@ -352,6 +351,9 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   #endif
     }
     // last iteration
+
+  if (nm != 1L) // find more elegant way
+  {
     pm = 0.;
     pp = 0.;
     pz = 0.;
@@ -388,6 +390,8 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   #ifdef DEBUG
     assert(!std::isinf(u[nm - 1L].mag));
   #endif
+  }
+
 
   #ifdef _OPENMP
   #pragma omp single
@@ -567,17 +571,18 @@ template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Ma
   Mag old_m_j_star = mag::bar(m_j_star, m_star_j),
       new_m_star_j(0.),
       new_m_j_star(0.);
-
   if (params.r == inf)  // to check
-    params.tan_gamma = (old_m_j_star != 0.) ?
-                       ( (mag::signbit(params.tan_gamma) != mag::signbit(old_m_j_star)) ? -params.tan_gamma : params.tan_gamma) :
-                       params.tan_gamma;
+    new_m_star_j = (old_m_j_star != 0.)                                ?
+                   (mag::copysign(params.tan_gamma, old_m_j_star.mag)) :
+                   Mag(0.) ;
+    // params.tan_gamma = (old_m_j_star != 0.) ?
+    //                    ( (mag::signbit(params.tan_gamma) != mag::signbit(old_m_j_star)) ? -params.tan_gamma : params.tan_gamma) :
+    //                    params.tan_gamma;
   else    new_m_star_j = mag::arrow( (old_m_j_star ^ params.tan_gamma), params.r ) ^ params.tan_gamma;
 
   diff         = mag::abs(new_m_star_j - m_star_j);
   new_m_star_j = mag::damp(new_m_star_j, m_star_j, params.damping);
   new_m_j_star = old_m_j_star % new_m_star_j;
-
 #ifdef _OPENMP
 #pragma omp barrier
 #endif
@@ -1223,8 +1228,7 @@ template<class Mag> void focusingBP(const long int &K,
 #pragma omp single
 #endif
     ++it;
-
-    if (it >= max_steps)  break;
+    if (it > max_steps)  break;
   }
 
 #ifdef _OPENMP
