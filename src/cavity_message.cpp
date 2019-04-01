@@ -388,6 +388,22 @@ template<class Mag> Cavity_Message<Mag>::~Cavity_Message()
   }
 }
 
+template<class Mag> long int** Cavity_Message<Mag>::get_weights()
+{
+  static long int **sign_m_j_star;
+  sign_m_j_star = new long int*[this->K];
+  std::generate_n(sign_m_j_star, this->K, [&](){return new long int[this->N];});
+
+#ifdef _OPENMP
+#pragma omp barrier
+#pragma omp for collapse(2)
+#endif
+  for (long int i = 0L; i < this->K; ++i)
+    for (long int j = 0L; j < this->N; ++j)
+      sign_m_j_star[i][j] = 1L - 2L * static_cast<long int>(mag::signbit(this->m_j_star[i][j]));
+
+  return sign_m_j_star;
+}
 
 template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &filename, Params<Mag> &parameters)
 {

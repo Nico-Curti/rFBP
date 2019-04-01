@@ -128,14 +128,18 @@ set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH 
 set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"      FORCE)
 set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed" FORCE)
 
+set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/scorer/include             CACHE PATH "Path where to find scorer header" FORCE)
+
 set(rfbplib rfbp)
-set(rfbpmain main)
+set(rfbptestmain test_main)
+set(rfbptrainmain train_main)
 
 file(GLOB SRC    "${SRC_DIR}/*.cpp")
 file(GLOB HEADER "${INC_DIR}/*.h"  )
-file(GLOB EXE    "${EXAMPLE}/*.cpp")
+file(GLOB SCORER_HEADER "${INC_SCORER}/*.h"  )
+# file(GLOB EXE    "${EXAMPLE}/*.cpp")
 
-include_directories(${INC_DIR})
+include_directories(${INC_DIR} ${INC_SCORER})
 
 # Make the scripts available in the 'cmake' directory available for the
 # 'include()' command, 'find_package()' command.
@@ -191,12 +195,15 @@ message(STATUS ""                                                               
 
 add_subdirectory(${PYC_DIR})
 
-add_library(${rfbplib} SHARED ${SRC} ${HEADER})
+add_library(${rfbplib} SHARED ${SRC} ${HEADER} ${SCORER_HEADER})
 set_property(TARGET ${rfbplib} PROPERTY POSITION_INDEPENDENT_CODE ON)
 target_link_libraries(${rfbplib} ${linked_libs})
 
-add_executable(${rfbpmain} ${EXE})
-target_link_libraries(${rfbpmain} ${linked_libs} ${rfbplib})
+add_executable(${rfbptrainmain} ${EXAMPLE}/train_main.cpp)
+target_link_libraries(${rfbptrainmain} ${linked_libs} ${rfbplib})
+
+add_executable(${rfbptestmain} ${EXAMPLE}/test_main.cpp)
+target_link_libraries(${rfbptestmain} ${linked_libs} ${rfbplib})
 
 if (BUILD_TEST)
   add_executable(spline ${TEST}/spline_test.cpp)
@@ -208,5 +215,6 @@ endif()
 #################################################################
 
 install(TARGETS ${rfbplib}         DESTINATION ${CMAKE_SOURCE_DIR})
-install(TARGETS ${rfbpmain}        DESTINATION ${OUT_DIR})
+install(TARGETS ${rfbptrainmain}   DESTINATION ${OUT_DIR})
+install(TARGETS ${rfbptestmain}    DESTINATION ${OUT_DIR})
 install(TARGETS spline             DESTINATION ${OUT_TEST})

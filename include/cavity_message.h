@@ -42,6 +42,7 @@ template<class Mag> struct Cavity_Message
   Cavity_Message<Mag>& operator=(const Cavity_Message<Mag> &m);
   ~Cavity_Message();
 
+  long int ** get_weights();
   void save_weights(const std::string &filename, Params<Mag> &parameters);
   void save_weights(const std::string &filename);
   void read_weights(const std::string &filename, const bool &bin);

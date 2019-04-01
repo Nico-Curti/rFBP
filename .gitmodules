@@ -1,0 +1,3 @@
+[submodule "scorer"]
+	path = scorer
+	url = https://github.com/Nico-Curti/scorer.git

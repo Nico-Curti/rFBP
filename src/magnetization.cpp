@@ -5,6 +5,7 @@ namespace mag
                       double   clamp         (const double &x, const double &low, const double &high)  { return std::clamp(x, low, high); }
                       double   lr            (const double &x)                                         { return std::log1p(std::exp(-2. * std::abs(x))); }
                       long int sign0         (const double &x)                                         { return 1L - 2L * static_cast<long int>(std::signbit(x));}
+                      bool     isinf         (const double &x)                                         { return ( ( (x == inf) || (x == -inf) ) || (mag::isinf(x)) ); }
 
   template<class Mag> bool     signbit       (const Mag &m)
   {
@@ -141,7 +142,7 @@ namespace mag
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return MagP64(newx.mag * (1. - l) + oldx.mag * l);
     else
-      return MagT64(std::atanh(newx.mag) * (1. - l) + std::atanh(oldx.mag) * l);
+      return MagT64(clamp(std::atanh(newx.mag), -30., 30.) * (1. - l) + clamp(std::atanh(oldx.mag) * l, -30., 30.));
   }
   template MagP64 damp<MagP64>(const MagP64 &newx, const MagP64 &oldx, const double &l);
   template MagT64 damp<MagT64>(const MagT64 &newx, const MagT64 &oldx, const double &l);
@@ -212,10 +213,10 @@ namespace mag
       const double ax = std::atanh(x.mag),
                    ay = std::atanh(y.mag);
 
-      return !std::isinf(ax) && !std::isinf(ay) ?
+      return !mag::isinf(ax) && !mag::isinf(ay) ?
               std::abs(ax + ay) - std::abs(ax) - std::abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
-              std::isinf(ax) && !std::isinf(ay) ? sign(ax) * ay - std::abs(ay) - lr(ay)         :
-             !std::isinf(ax) &&  std::isinf(ay) ? sign(ay) * ax - std::abs(ax) - lr(ax)         :
+              mag::isinf(ax) && !mag::isinf(ay) ? sign(ax) * ay - std::abs(ay) - lr(ay)         :
+             !mag::isinf(ax) &&  mag::isinf(ay) ? sign(ay) * ax - std::abs(ax) - lr(ax)         :
               sign(ax) == sign(ay) ? 0. : -inf;
     }
   }
@@ -234,7 +235,7 @@ namespace mag
     {
       const double tx = x.mag,
                    ay = std::atanh(y.mag);
-      return !std::isinf(ay)                                ?
+      return !mag::isinf(ay)                                ?
              -std::abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
              (sign(tx) != sign(ay))                         ?
              inf                                            :
@@ -265,7 +266,7 @@ namespace mag
     else
     {
       const double a0   = std::atanh(u0.mag);
-      const bool is_inf = std::isinf(a0);
+      const bool is_inf = mag::isinf(a0);
       double s1     = is_inf ? 0.       : a0;
       double s2     = is_inf ? 0.       : std::abs(a0);
       double s3     = is_inf ? 0.       : lr(a0);
@@ -273,7 +274,7 @@ namespace mag
       for (int i = 0; i < nu; ++i)
       {
         const double ai = std::atanh(u[i].mag);
-        if (!std::isinf(ai))
+        if (!mag::isinf(ai))
         {
           s1 += ai;
           s2 += std::abs(ai);
@@ -301,9 +302,9 @@ namespace mag
                    xh   = aH + am,
                    a_ap = std::abs(ap),
                    a_am = std::abs(am);
-      const bool inf_ap = std::isinf(ap),
-                 inf_am = std::isinf(am);
-      if (std::isinf(aH))
+      const bool inf_ap = mag::isinf(ap),
+                 inf_am = mag::isinf(am);
+      if (mag::isinf(aH))
       {
         if (!inf_ap && !inf_am)
         {

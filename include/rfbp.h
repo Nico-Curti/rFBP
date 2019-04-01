@@ -23,7 +23,8 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m, const Mag &M, 
 template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Mag> &params);
 template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns &patterns, Params<Mag> &params);
 template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns &patterns, Params<Mag> &params);
-template<class Mag> long int nonbayes_test(const Cavity_Message<Mag> &messages, const Patterns &patterns);
+std::unique_ptr<long int[]> nonbayes_test(long int** const sign_m_j_star, const Patterns &patterns, const long int &K);
+template<class Mag> long int error_test(const Cavity_Message<Mag> &messages, const Patterns &patterns);
 template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, const Patterns &patterns, const Params<Mag> &params);
 #ifdef STATS
 template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const Params<Mag> &params);
@@ -32,7 +33,7 @@ template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const 
 template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, double *overlaps);
 #endif // STATS
 template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message, const long int *output, const double &beta);
-template<class Mag> void focusingBP(const long int &K, const Patterns &patterns, const long int &max_iters, const long int &max_steps, const long int &seed, const double &damping, const std::string &accuracy1, const std::string &accuracy2, const double &randfact, const FocusingProtocol &fprotocol, const double &epsil, std::string outfile = "", std::string outmessfiletmpl = "", std::string initmess = "", const bool &bin_mess = false);
+template<class Mag> long int** focusingBP(const long int &K, const Patterns &patterns, const long int &max_iters, const long int &max_steps, const long int &seed, const double &damping, const std::string &accuracy1, const std::string &accuracy2, const double &randfact, const FocusingProtocol &fprotocol, const double &epsil, std::string outfile = "", std::string outmessfiletmpl = "", std::string initmess = "", const bool &bin_mess = false);
 
 template<class Mag> using theta_function = double (*) (MagVec<Mag>, Mag &, const double*, MagVec<Mag>, Mag &, const Params<Mag> &, const long int &, const long int &);
 

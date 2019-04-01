@@ -124,20 +124,27 @@ void parse_training_fbp(int argc, char *argv[],
 }
 
 void parse_test_args(int argc, char *argv[],
-                     std::string &test_file,
+                     std::string &patternsfile,
+                     std::string &del,
+                     bool &bin,
                      std::string &weight_file,
                      std::string &output_file)
 {
   ArgumentParser argparse("Test BeliefPropagation 4.0");
-  argparse.add_argument<std::string>("fArg", "f", "test_file", "Test Filename (with extension)",           true, "");
-  argparse.add_argument<std::string>("wArg", "w", "weights",   "Weights Matrix Filename (with extension)", true, "");
-  argparse.add_argument<std::string>("oArg", "o", "output",    "Output Filename (with extension)",         false, "output.txt");
-
+  argparse.add_argument<std::string>("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true,  "");
+  argparse.add_argument<bool>(       "bArg",  "b",  "bin",         "File format: "
+                                                                   "(0) Textfile(default), "
+                                                                   "(1) Binary",                                             false, false);
+  argparse.add_argument<std::string>("wArg",  "w",  "weights",     "Weights Matrix Filename (with extension)",               true,  "");
+  argparse.add_argument<std::string>("dlArg", "dl", "delimiter",   "Delimiter for text files(default: \"\\t\")",             false, "\t");
+  argparse.add_argument<std::string>("oArg",  "o",  "output",      "Output Filename (no extension)",                         false, "");
   argparse.parse_args(argc, argv);
 
-  argparse.get<std::string>("fArg", test_file);
-  if(!file_exists(test_file))   error_pattern(test_file);
+  argparse.get<std::string>("fArg", patternsfile);
+  if(!file_exists(patternsfile))   error_pattern(patternsfile);
+  argparse.get<bool>("bArg",  bin);
   argparse.get<std::string>("wArg", weight_file);
+  argparse.get<std::string>("dlArg", del);
   if(!file_exists(weight_file)) error_message_weights(weight_file);
   argparse.get<std::string>("oArg", output_file);
   return;

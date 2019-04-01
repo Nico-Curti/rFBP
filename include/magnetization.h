@@ -10,6 +10,7 @@ namespace mag
                       double   clamp         (const double &x, const double &low, const double &high);
                       double   lr            (const double &x);
                       long int sign0         (const double &x);
+                      bool     isinf         (const double &x);
   template<class Mag> bool     signbit       (const Mag &m);
   template<class Mag> Mag      f2m           (const double &x);
   template<class Mag> void     zeros         (Mag *x, const long int &n);

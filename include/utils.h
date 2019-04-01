@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <vector>
 #include <cmath>
+#include <scorer.h>
 #if __has_include(<filesystem>)
 #  include <filesystem>
 #  define have_filesystem 1
@@ -15,7 +16,7 @@
 #include <chrono>
 #endif
 
-static constexpr double inf         = std::numeric_limits<double>::infinity();
+// static constexpr double inf         = std::numeric_limits<double>::infinity();
 static constexpr double epsilon     = std::numeric_limits<double>::epsilon();
 
 #if (defined(__GNUC__) && !defined(__clang__))

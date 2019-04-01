@@ -12,7 +12,7 @@ struct MagT64
 
   // constructor and destructor
   MagT64()                                                               {};
-  MagT64(const double &x, double m = 30.) : mag(std::tanh(x)), mInf(m)    {};
+  MagT64(const double &x, double m = 30.) : mag(std::tanh(x)), mInf(m)   {};
   ~MagT64()                                                              = default;
   MagT64(const MagT64 &m)                                                { this->mag = m.mag; this->mInf = m.mInf;}
   MagT64& operator=(const MagT64 &m)                                     { this->mag = m.mag; this->mInf = m.mInf; return *this; }
@@ -49,7 +49,7 @@ struct MagT64
                                                                                        (ax < ay && ax >= -ay)   ?
                                                                                        2. * ax                  :
                                                                                       -2. * ay,
-                                                                                  t2 = (std::isinf(ax) || std::isinf(ay)) ?
+                                                                                  t2 = (mag::isinf(ax) || mag::isinf(ay)) ?
                                                                                        0.                                 :
                                                                                        mag::lr(ax + ay) - mag::lr(ax - ay);
                                                                            return MagT64((t1 + t2) * .5);
