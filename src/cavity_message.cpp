@@ -20,25 +20,35 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
     this->m_on     = new Mag  [this->M];
     this->m_ni     = new Mag* [this->M];
 
+    double tmp;
     for (long int i = 0L; i < this->K; ++i)
     {
       this->m_star_j[i] = new Mag[this->N];
       for (long int j = 0L; j < this->N; ++j)
-        is.read( (char *) &this->m_star_j[i][j].mag, sizeof(double));
+      {
+        is.read( (char *) &tmp, sizeof(double));
+        this->m_star_j[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
     for (long int i = 0L; i < this->K; ++i)
     {
       this->m_j_star[i] = new Mag[this->N];
       for (long int j = 0L; j < this->N; ++j)
-        is.read( (char *) &this->m_j_star[i][j].mag, sizeof(double));
+        {
+          is.read( (char *) &tmp, sizeof(double));
+          this->m_j_star[i][j] = mag::convert<Mag>(tmp);
+        }
     }
 
     for (long int i = 0L; i < this->M; ++i)
     {
       this->m_in[i]    = new Mag [this->K];
       for (long int j = 0L; j < this->K; ++j)
-        is.read( (char *) &this->m_in[i][j].mag, sizeof(double));
+      {
+        is.read( (char *) &tmp, sizeof(double));
+        this->m_in[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
     for (long int i = 0L; i < this->M; ++i)
@@ -48,7 +58,10 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
       {
         this->weights[i][j] = new Mag[this->N];
         for (long int k = 0L; k < this->N; ++k)
-          is.read( (char *) &this->weights[i][j][k].mag, sizeof(double));
+        {
+          is.read( (char *) &tmp, sizeof(double));
+          this->weights[i][j][k] = mag::convert<Mag>(tmp);
+        }
       }
     }
 
@@ -56,17 +69,26 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
     {
       this->m_no[i]    = new Mag [this->K];
       for (long int j = 0L; j < this->K; ++j)
-        is.read( (char *) &this->m_no[i][j].mag, sizeof(double));
+      {
+        is.read( (char *) &tmp, sizeof(double));
+        this->m_no[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
     for (long int i = 0L; i < this->M; ++i)
-      is.read( (char *) &this->m_on[i].mag, sizeof(double));
+    {
+      is.read( (char *) &tmp, sizeof(double));
+      this->m_on[i] = mag::convert<Mag>(tmp);
+    }
 
     for (long int i = 0L; i < this->M; ++i)
     {
       this->m_ni[i]    = new Mag [this->K];
       for (long int j = 0L; j < this->K; ++j)
-        is.read( (char *) &this->m_ni[i][j].mag, sizeof(double));
+      {
+        is.read( (char *) &tmp, sizeof(double));
+        this->m_ni[i][j] = mag::convert<Mag>(tmp);
+      }
     }
     is.close();
   }
@@ -98,25 +120,35 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
     this->m_on     = new Mag  [this->M];
     this->m_ni     = new Mag* [this->M];
 
+    double tmp;
     for (long int i = 0L; i < this->K; ++i)
     {
       this->m_star_j[i] = new Mag[this->N];
       for (long int j = 0L; j < this->N; ++j)
-        buff >> this->m_star_j[i][j].mag;
+      {
+        buff >> tmp;
+        this->m_star_j[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
     for (long int i = 0L; i < this->K; ++i)
     {
       this->m_j_star[i] = new Mag[this->N];
       for (long int j = 0L; j < this->N; ++j)
-        buff >> this->m_j_star[i][j].mag;
+      {
+        buff >> tmp;
+        this->m_j_star[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
     for (long int i = 0L; i < this->M; ++i)
     {
       this->m_in[i]    = new Mag [this->K];
       for (long int j = 0L; j < this->K; ++j)
-        buff >> this->m_in[i][j].mag;
+      {
+        buff >> tmp;
+        this->m_in[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
     for (long int i = 0L; i < this->M; ++i)
@@ -126,7 +158,10 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
       {
         this->weights[i][j] = new Mag[this->N];
         for (long int k = 0L; k < this->N; ++k)
-          buff >> this->weights[i][j][k].mag;
+        {
+          buff >> tmp;
+          this->weights[i][j][k] = mag::convert<Mag>(tmp);
+        }
       }
     }
 
@@ -134,17 +169,26 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const std::string &filen
     {
       this->m_no[i]    = new Mag [this->K];
       for (long int j = 0L; j < this->K; ++j)
-        buff >> this->m_no[i][j].mag;
+      {
+        buff >> tmp;
+        this->m_no[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
     for (long int i = 0L; i < this->M; ++i)
-      buff >> this->m_on[i].mag;
+    {
+      buff >> tmp;
+      this->m_on[i] = mag::convert<Mag>(tmp);
+    }
 
     for (long int i = 0L; i < this->M; ++i)
     {
       this->m_ni[i]    = new Mag [this->K];
       for (long int j = 0L; j < this->K; ++j)
-        buff >> this->m_ni[i][j].mag;
+      {
+        buff >> tmp;
+        this->m_ni[i][j] = mag::convert<Mag>(tmp);
+      }
     }
 
   }
@@ -233,7 +277,7 @@ template<class Mag> Cavity_Message<Mag>::Cavity_Message(const long int &m, const
       std::generate_n(this->weights[i][j], this->N,
                       [&]()
                       {
-                        return mag::f2m<Mag>(x * (2. * dist(engine) - 1.));
+                        return Mag(x * (2. * dist(engine) - 1.));
                       });
     }
   }
@@ -392,7 +436,15 @@ template<class Mag> long int** Cavity_Message<Mag>::get_weights()
 {
   static long int **sign_m_j_star;
   sign_m_j_star = new long int*[this->K];
+
+#ifdef _OPENMP
+#pragma omp barrier
+#pragma omp for
+  for (int i = 0L; i< this->K; ++i)
+    sign_m_j_star[i] = new long int[this->N];
+#else
   std::generate_n(sign_m_j_star, this->K, [&](){return new long int[this->N];});
+#endif
 
 #ifdef _OPENMP
 #pragma omp barrier
@@ -436,7 +488,7 @@ template<class Mag> void Cavity_Message<Mag>::save_weights(const std::string &fi
   os.write( (const char *) &this->N, sizeof( long int ));
   for(long int i = 0L; i < this->K; ++i)
     for(long int j = 0L; j < this->N; ++j)
-      os.write( (const char *) &this->m_j_star[i][j].mag, sizeof( double ));
+      os.write( (const char *) &this->m_j_star[i][j].value, sizeof( double ));
   os.close();
 }
 
@@ -455,9 +507,13 @@ template<class Mag> void Cavity_Message<Mag>::read_weights(const std::string &fi
     assert(this->K == k);
     assert(this->N == n);
 #endif
+    double tmp;
     for (long int i = 0L; i < this->K; ++i)
       for (long int j = 0L; j < this->N; ++j)
-        is.read( (char *) &this->m_j_star[i][j].mag, sizeof(double));
+      {
+        is.read( (char *) &tmp, sizeof(double));
+        this->m_j_star[i][j] = mag::convert<Mag>(tmp);
+      }
     is.close();
   }
   else
@@ -477,9 +533,13 @@ template<class Mag> void Cavity_Message<Mag>::read_weights(const std::string &fi
     assert(this->K == k);
     assert(this->N == n);
 #endif
+    double tmp;
     for (long int i = 0L; i < this->K; ++i)
       for (long int j = 0L; j < this->N; ++j)
-        buff >> this->m_j_star[i][j].mag;
+      {
+        buff >> tmp;
+        this->m_j_star[i][j] = mag::convert<Mag>(tmp);
+      }
   }
 
 }
@@ -548,35 +608,35 @@ template<class Mag> void Cavity_Message<Mag>::save_messages(const std::string &f
 
   for(long int i = 0L; i < this->K; ++i)
     for(long int j = 0L; j < this->N; ++j)
-      os.write( (const char *) &this->m_j_star[i][j].mag, sizeof( double ));
+      os.write( (const char *) &this->m_j_star[i][j].value, sizeof( double ));
 
   for (long int i = 0L; i < this->K; ++i)
     for(long int j = 0L; j < this->N; ++j)
-      os.write( (const char *) &this->m_star_j[i][j].mag, sizeof( double ));
+      os.write( (const char *) &this->m_star_j[i][j].value, sizeof( double ));
 
   for (long int i = 0L; i < this->K; ++i)
     for(long int j = 0L; j < this->N; ++j)
-      os.write( (const char *) &this->m_j_star[i][j].mag, sizeof( double ));
+      os.write( (const char *) &this->m_j_star[i][j].value, sizeof( double ));
 
   for (long int i = 0L; i < this->M; ++i)
     for(long int j = 0L; j < this->K; ++j)
-      os.write( (const char *) &this->m_in[i][j].mag, sizeof( double ));
+      os.write( (const char *) &this->m_in[i][j].value, sizeof( double ));
 
   for (long int i = 0L; i < this->M; ++i)
     for(long int j = 0L; j < this->K; ++j)
       for(long int k = 0L; k < this->N; ++k)
-        os.write( (const char *) &this->weights[i][j][k].mag, sizeof( double ));
+        os.write( (const char *) &this->weights[i][j][k].value, sizeof( double ));
 
   for (long int i = 0L; i < this->M; ++i)
     for(long int j = 0L; j < this->K; ++j)
-      os.write( (const char *) &this->m_no[i][j].mag, sizeof( double ));
+      os.write( (const char *) &this->m_no[i][j].value, sizeof( double ));
 
   for (long int i = 0L; i < this->M; ++i)
-    os.write( (const char *) &this->m_on[i].mag, sizeof( double ));
+    os.write( (const char *) &this->m_on[i].value, sizeof( double ));
 
   for (long int i = 0L; i < this->M; ++i)
     for(long int j = 0L; j < this->K; ++j)
-      os.write( (const char *) &this->m_ni[i][j].mag, sizeof( double ));
+      os.write( (const char *) &this->m_ni[i][j].value, sizeof( double ));
 
   os.close();
 }

@@ -5,7 +5,7 @@ namespace mag
                       double   clamp         (const double &x, const double &low, const double &high)  { return std::clamp(x, low, high); }
                       double   lr            (const double &x)                                         { return std::log1p(std::exp(-2. * std::abs(x))); }
                       long int sign0         (const double &x)                                         { return 1L - 2L * static_cast<long int>(std::signbit(x));}
-                      bool     isinf         (const double &x)                                         { return ( ( (x == inf) || (x == -inf) ) || (mag::isinf(x)) ); }
+                      bool     isinf         (const double &x)                                         { return ( ( (x == inf) || (x == -inf) ) || (std::isinf(x)) ); }
 
   template<class Mag> bool     signbit       (const Mag &m)
   {
@@ -17,22 +17,22 @@ namespace mag
   template bool signbit<MagP64>(const MagP64 &m);
   template bool signbit<MagT64>(const MagT64 &m);
 
-  template<class Mag> Mag      f2m           (const double &x)
-  {
-    static_assert( (std::is_same_v<Mag, MagP64> ||
-                   (std::is_same_v<Mag, MagT64>)),
-                   "f2m function! Incompatible types found.");
-    return Mag(x);
-  }
-  template MagP64 f2m<MagP64>(const double &x);
-  template MagT64 f2m<MagT64>(const double &x);
+  // template<class Mag> Mag      f2m           (const double &x)
+  // {
+  //   static_assert( (std::is_same_v<Mag, MagP64> ||
+  //                  (std::is_same_v<Mag, MagT64>)),
+  //                  "f2m function! Incompatible types found.");
+  //   return Mag(x);
+  // }
+  // template MagP64 f2m<MagP64>(const double &x);
+  // template MagT64 f2m<MagT64>(const double &x);
 
   template<class Mag> void     zeros         (Mag *x, const long int &n)
   {
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "zeros function! Incompatible types found.");
-    std::fill_n(x, n, 0.f);
+    std::fill_n(x, n, 0.);
   }
   template void zeros<MagP64>(MagP64 *x, const long int &n);
   template void zeros<MagT64>(MagT64 *x, const long int &n);
@@ -50,8 +50,7 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "abs function! Incompatible types found.");
-    if constexpr (std::is_same_v<Mag, MagP64>) return std::abs(a.mag);
-    else return std::abs(std::atanh(a.mag));
+    return std::abs(a.mag);
   }
   template double abs<MagP64>(const MagP64 &a);
   template double abs<MagT64>(const MagT64 &a);
@@ -71,7 +70,10 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "arrow function! Incompatible types found.");
-    return mtanh<Mag>(x * std::atanh(m.mag));
+    if constexpr      ( std::is_same_v<Mag, MagP64> )
+      return mtanh<Mag>(x * std::atanh(m.mag));
+    else
+      return mtanh<Mag>(x * m.mag);
   }
   template MagP64 arrow<MagP64>(const MagP64 &m, const double &x);
   template MagT64 arrow<MagT64>(const MagT64 &m, const double &x);
@@ -111,11 +113,10 @@ namespace mag
     static_assert( (std::is_same_v<Mag, MagP64> ||
                    (std::is_same_v<Mag, MagT64>)),
                    "convert function! Incompatible types found.");
-    // if constexpr      ( std::is_same_v<Mag, MagP64> )
-    //   return x.mag;
-    // else
-    //   return std::atanh(x.mag);
-    return x.mag; // check again
+    if constexpr      ( std::is_same_v<Mag, MagP64> )
+      return x.mag;
+    else
+      return x.value;
   }
 
   template<class Mag> Mag      couple        (const double &x1, const double &x2)
@@ -139,10 +140,7 @@ namespace mag
                    (std::is_same_v<Mag, MagT64>)),
                    "damp function! Incompatible types found.");
 
-    if constexpr      ( std::is_same_v<Mag, MagP64> )
-      return MagP64(newx.mag * (1. - l) + oldx.mag * l);
-    else
-      return MagT64(clamp(std::atanh(newx.mag), -30., 30.) * (1. - l) + clamp(std::atanh(oldx.mag) * l, -30., 30.));
+    return Mag(newx.mag * (1. - l) + oldx.mag * l);
   }
   template MagP64 damp<MagP64>(const MagP64 &newx, const MagP64 &oldx, const double &l);
   template MagT64 damp<MagT64>(const MagT64 &newx, const MagT64 &oldx, const double &l);
@@ -161,11 +159,11 @@ namespace mag
   template MagP64 mtanh<MagP64>(const double &x);
   template MagT64 mtanh<MagT64>(const double &x);
 
-  template<class Mag> Mag      matanh        (const Mag &m)
-  {
-    static_assert( std::is_same_v<Mag, MagT64>, "matanh function! Incompatible type found. You must use MagT64 variable for this function." );
-    return MagT64(m.mag);
-  }
+  // template<class Mag> Mag      matanh        (const Mag &m)
+  // {
+  //   static_assert( std::is_same_v<Mag, MagT64>, "matanh function! Incompatible type found. You must use MagT64 variable for this function." );
+  //   return MagT64(m.mag);
+  // }
 
   template<class Mag> Mag      merf          (const double &x)
   {
@@ -191,10 +189,13 @@ namespace mag
       return ((m1.mag == m2.mag) ?
               MagP64(0.)         :
               MagP64(clamp( (m1.mag - m2.mag) / (1. - m1.mag * m2.mag), -1., 1.)));
-    else
+    else{
+      // std::cout << m1.value << " " << m2.value << std::endl;
+      // std::cout << m1.mag << " " << m2.mag << std::endl;
       return ((m1.mag == m2.mag) ?
-              MagT64(0.)         :
-              MagT64(std::atanh(m1.mag) -  std::atanh(m2.mag)));
+      MagT64(0.)         :
+      MagT64(m1.mag - m2.mag));
+    }
   }
   template MagP64 bar<MagP64>(const MagP64 &m1, const MagP64 &m2);
   template MagT64 bar<MagT64>(const MagT64 &m1, const MagT64 &m2);
@@ -210,8 +211,8 @@ namespace mag
       return std::log( ( 1. + (x.mag * y.mag)) * .5);
     else
     {
-      const double ax = std::atanh(x.mag),
-                   ay = std::atanh(y.mag);
+      const double ax = x.mag,
+                   ay = y.mag;
 
       return !mag::isinf(ax) && !mag::isinf(ay) ?
               std::abs(ax + ay) - std::abs(ax) - std::abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
@@ -233,8 +234,8 @@ namespace mag
       return (-x.mag) * std::atanh(y.mag) - std::log(1. - y.mag * y.mag) * .5 + log_2;
     else
     {
-      const double tx = x.mag,
-                   ay = std::atanh(y.mag);
+      const double tx = x.value,
+                   ay = y.mag;
       return !mag::isinf(ay)                                ?
              -std::abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
              (sign(tx) != sign(ay))                         ?
@@ -265,7 +266,7 @@ namespace mag
     }
     else
     {
-      const double a0   = std::atanh(u0.mag);
+      const double a0   = u0.mag;
       const bool is_inf = mag::isinf(a0);
       double s1     = is_inf ? 0.       : a0;
       double s2     = is_inf ? 0.       : std::abs(a0);
@@ -273,7 +274,7 @@ namespace mag
       double hasinf = is_inf ? sign(a0) : 0.;
       for (int i = 0; i < nu; ++i)
       {
-        const double ai = std::atanh(u[i].mag);
+        const double ai = u[i].mag;
         if (!mag::isinf(ai))
         {
           s1 += ai;
@@ -293,7 +294,7 @@ namespace mag
   {
     static_assert( std::is_same_v<Mag, MagT64>, "auxmix function! Incompatible type found. You must use MagT64 variable for this function." );
 
-    const double aH = std::atanh(H.mag);
+    const double aH = H.mag;
     double t1, t2;
     if (aH == 0.) return MagT64(0.);
     else
@@ -361,7 +362,7 @@ namespace mag
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return MagP64( (pp.mag - pm.mag) * H.mag / (2. + (pp.mag + pm.mag) * H.mag) );
     else
-      return auxmix(H, std::atanh(pp.mag), std::atanh(pm.mag));
+      return auxmix(H, pp.mag, pm.mag);
   }
   template MagP64 exactmix<MagP64>(const MagP64 &H, const MagP64 &pp, const MagP64 &pm);
   template MagT64 exactmix<MagT64>(const MagT64 &H, const MagT64 &pp, const MagT64 &pm);
@@ -376,7 +377,7 @@ std::ostream& operator<<(std::ostream& os, const MagP64 &m)
 
 std::ostream& operator<<(std::ostream& os, const MagT64 &m)
 {
-  os << m.mag;
+  os << m.value;
   return os;
 }
 

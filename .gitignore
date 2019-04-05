@@ -38,3 +38,9 @@
 [Bb]uild*/
 ReplicatedFocusingBeliefPropagation/*.cpp
 [Tt]st/
+
+
+# Utilities
+[Uu]tilities/
+
+

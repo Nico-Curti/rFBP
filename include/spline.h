@@ -9,6 +9,7 @@
 #include <numeric>
 #include <cassert>
 #endif
+#include <iostream>
 
 static constexpr double one_third = 1. / 3.;
 static constexpr double two_third = 2. / 3.;
@@ -69,7 +70,7 @@ public:
       const int j_max = this->dim - 1 < j ? this->dim - 1 : j;
       for (int k = j; k <= j_max; ++k)
       {
-        const double x = -this->operator()(k, i) / this->operator()(k, k);
+        const double x = -this->operator()(k, i) / this->operator()(i, i);
         this->operator()(k, i) = -x;
         for (int l = j; l <= j_max; ++l)
           this->operator()(k, l) = this->operator()(k, l) + x * this->operator()(i, l);
@@ -85,8 +86,8 @@ public:
       double sum = 0.;
       const int j_start = j > 0 ? j : 0;
       for (int k = j_start; k < i; ++k)
-        sum += this->operator()(i, k) * x[j];
-      x[i] = (b[i] - this->m_lower[0][i]) - sum;
+        sum += this->operator()(i, k) * x[k];
+      x[i] = (b[i] * this->m_lower[0][i]) - sum;
     }
     return x;
   }
@@ -149,6 +150,29 @@ public:
              mb0(0.), mc0(0.), m_left_value(0.), m_right_value(0.),
              mx(nullptr), my(nullptr), ma(nullptr), mb(nullptr), mc(nullptr)
   {};
+
+  spline (const spline &s)
+  {
+    this -> m_force_linear_extrapolation = s.m_force_linear_extrapolation;
+    this -> m_left = s.m_left;
+    this -> m_right = s.m_right;
+    this -> n = s.n;
+    this -> mb0 = s.mb0;
+    this -> mc0 = s.mc0;
+    this -> m_left_value  = s.m_left_value;
+    this -> m_right_value = s.m_right_value;
+    this -> mx = std::make_unique<double[]>(this -> n);
+    this -> my = std::make_unique<double[]>(this -> n);
+    this -> ma = std::make_unique<double[]>(this -> n);
+    this -> mb = std::make_unique<double[]>(this -> n);
+    this -> mc = std::make_unique<double[]>(this -> n);
+    std::copy_n(s.mx.get(), this -> n, this -> mx.get());
+    std::copy_n(s.my.get(), this -> n, this -> my.get());
+    std::copy_n(s.ma.get(), this -> n, this -> ma.get());
+    std::copy_n(s.mb.get(), this -> n, this -> mb.get());
+    std::copy_n(s.mc.get(), this -> n, this -> mc.get());
+  }
+
   ~spline() = default;
 
   void set_boundary(const bd_type &left, const double &left_value, const bd_type &right, const double &right_value, bool force_linear_extrapolation=false)
@@ -261,8 +285,8 @@ public:
         this->ma = std::make_unique<double[]>(npts);
         this->mb = std::make_unique<double[]>(npts);
         this->mc = std::make_unique<double[]>(npts);
-        std::fill_n(this->ma.get(), npts - 1, 0.f);
-        std::fill_n(this->mb.get(), npts - 1, 0.f);
+        std::fill_n(this->ma.get(), npts - 1, 0.);
+        std::fill_n(this->mb.get(), npts - 1, 0.);
         for (int i = 0, j = 1; i < npts - 1; ++i, ++j)
           this->mc[i] = (my[j] - my[i]) / (mx[j] - mx[i]);
       } break;
@@ -275,8 +299,8 @@ public:
 
     ma[npts - 1] = 0.;
     mc[npts - 1] = 3. * ma[npts - 2] * h * h + 2. * mb[npts - 2] * h + mc[npts - 2];
-    mb[npts - 1] = 0.;
-
+    if (m_force_linear_extrapolation)
+      mb[npts - 1] = 0.;
   }
 
   double operator() (const double &x) const
@@ -305,7 +329,7 @@ public:
     switch (order)
     {
       case 1:  return x < this->mx[0]           ? 2. * this->mb0 * h + this->mc0 :
-                      x > this->mx[this->n - 1] ? 2. * this->mb[this->n - 1]     :
+                      x > this->mx[this->n - 1] ? 2. * this->mb[this->n - 1] * h + this->mc[this->n - 1]     :
                                                  (3. * this->ma[idx] * h + 2. * this->mb[idx]) * h + this->mc[idx];
       break;
       case 2:  return x < this->mx[0]           ? 2. * this->mb0 * h :
@@ -319,6 +343,49 @@ public:
 
   }
 
+  spline& operator=(const spline &s)
+  {
+    this -> m_force_linear_extrapolation = s.m_force_linear_extrapolation;
+    this -> m_left = s.m_left;
+    this -> m_right = s.m_right;
+    this -> n = s.n;
+    this -> mb0 = s.mb0;
+    this -> mc0 = s.mc0;
+    this -> m_left_value  = s.m_left_value;
+    this -> m_right_value = s.m_right_value;
+    this -> mx.reset(new double[this -> n]);
+    this -> my.reset(new double[this -> n]);
+    this -> ma.reset(new double[this -> n]);
+    this -> mb.reset(new double[this -> n]);
+    this -> mc.reset(new double[this -> n]);
+    std::copy_n(s.mx.get(), this -> n, this -> mx.get());
+    std::copy_n(s.my.get(), this -> n, this -> my.get());
+    std::copy_n(s.ma.get(), this -> n, this -> ma.get());
+    std::copy_n(s.mb.get(), this -> n, this -> mb.get());
+    std::copy_n(s.mc.get(), this -> n, this -> mc.get());
+    return *this;
+  }
+
+  friend std::ostream& operator<<(std::ostream& os, const spline &s);
 };
+
+std::ostream& operator<<(std::ostream& os, const spline &s)
+{
+  std::cout << "a coefficients:" << std::endl;
+  std::for_each(s.ma.get(),s.ma.get() + s.n, [](auto &e){std::cout << e <<std::endl;});
+  std::cout << std::endl;
+
+  std::cout << "b coefficients:" << std::endl;
+  std::for_each(s.mb.get(),s.mb.get() + s.n, [](auto &e){std::cout << e <<std::endl;});
+  std::cout << std::endl;
+
+  std::cout << "c coefficients:" << std::endl;
+  std::for_each(s.mc.get(),s.mc.get() + s.n, [](auto &e){std::cout << e <<std::endl;});
+  std::cout << std::endl;
+
+  return os;
+}
+
+
 
 #endif

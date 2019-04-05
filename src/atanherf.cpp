@@ -3,47 +3,70 @@
 
 namespace AtanhErf
 {
-  auto getinp(const double &mm, const double &st)
+  auto getinp()
   {
-    std::unique_ptr<double[]> inp = nullptr;
-    std::string filename = "atanherf_interp.max_" + std::to_string(mm) + ".step_" + std::to_string(st) + ".txt";
+    // std::unique_ptr<double[]> inp = nullptr;
+    std::string filename = "atanherf_interp.max_16.step_0.0001.first_1.txt";
     std::ifstream is(filename, std::ios::binary);
-    if (is)
+    if (!is)
     {
-      int N = static_cast<int>((mm - 1.) / st);
-      inp = std::make_unique<double[]>( N );
-
-      is.read(reinterpret_cast<char*>(inp.get()), sizeof(double)*N);
-      is.close();
-      return inp;
+      std::cerr << "AtanhErf coefficients file not found! Given: " << filename << std::endl;
+      std::exit(201);
     }
-    else
-    {
-      // temporary solution without splines
-#ifdef VERBOSE
-      std::cout << "Computing atanh(erf(x)) table, this may take a while..." << std::endl;
-#endif
-      std::ofstream os(filename, std::ios::out | std::ios::binary);
-
-      int N = static_cast<int>((mm - 1.) / st);
-      inp = std::make_unique<double[]>( N );
-
-      for (int i = 0; i < N; ++i) inp[i] = std::atanh(std::erf(i * st + 1.));
-      os.write( reinterpret_cast<char*>(inp.get()), sizeof( double )*N);
-
-      os.close();
-      return inp;
-    }
+    spline inp;
+    inp.load_points(filename);
+    return inp;
+//     std::string filename = "atanherf_interp.max_" + std::to_string(mm) + ".step_" + std::to_string(st) + ".first_" + std::to_string(first) + ".txt";
+//     std::ifstream is(filename, std::ios::binary);
+//     if (is)
+//     {
+//       // int N = static_cast<int>((mm - 1.) / st);
+//       // inp = std::make_unique<double[]>( N );
+//       //
+//       // is.read(reinterpret_cast<char*>(inp.get()), sizeof(double)*N);
+//       // is.close();
+//       spline inp;
+//       inp.load_points(filename);
+//       return inp;
+//     }
+//     else
+//     {
+// // #ifdef VERBOSE
+//       std::cout << "Computing atanh(erf(x)) table, this may take a while..." << std::endl;
+// // #endif
+//       std::ofstream os(filename, std::ios::out | std::ios::binary);
+//       spline inp;
+//       int N = static_cast<int>((mm - first) / st);
+//       double * X = new double[N],
+//              * Y = new double[N];
+//       std::cout << "N = " << std::endl;
+//       for (int i = 0; i < N; ++i) X[i] = first + i * st;
+//       for (int i = 0; i < N; ++i) Y[i] = std::atanh(std::erf(X[i]));
+//       inp.set_boundary(spline::second_deriv, 0., spline::second_deriv, 0., false);
+//       inp.set_points(X, Y, N);
+//       std::cout << inp << std::endl;
+//       inp.dump_points(filename);
+//       // temporary solution without splines
+//       // inp = std::make_unique<double[]>( N );
+//       //
+//       // for (int i = 0; i < N; ++i) inp[i] = std::atanh(std::erf(i * st + 1.));
+//       // os.write( reinterpret_cast<char*>(inp.get()), sizeof( double )*N);
+//       //
+//       // os.close();
+//       return inp;
+//     }
   }
 
   double atanherf_interp(const double &x)
   {
-    int N = static_cast<int>( 15. / 1e-4 ); // TODO
-    std::unique_ptr<double[]> r(new double[N]);
-    double res = 0.;
-    std::generate_n(r.get(), N, [&res](){return (res++) * 1e-4 + 1.;} ); // TODO
-    static auto inp = getinp(16., 1e-4);
-    res = inp[static_cast<int>((x - r[0]) / 1e-4 + 1.)]; // TODO
+    // int N = static_cast<int>( 15. / 1e-4 ); // TODO
+    // std::unique_ptr<double[]> r(new double[N]);
+    // double res = 0.;
+    // std::generate_n(r.get(), N, [&res](){return (res++) * 1e-4 + 1.;} ); // TODO
+    // static auto inp = getinp(16., 1e-4);
+    // res = inp[static_cast<int>((x - r[0]) / 1e-4 + 1.)]; // TODO
+    static auto inp = getinp();
+    double res = inp(x);
     return res;
   }
 

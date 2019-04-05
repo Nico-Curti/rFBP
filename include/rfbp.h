@@ -28,7 +28,7 @@ template<class Mag> long int error_test(const Cavity_Message<Mag> &messages, con
 template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, const Patterns &patterns, const Params<Mag> &params);
 #ifdef STATS
 template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const Params<Mag> &params);
-template<class Mag> Mag compute_q_bar(const Cavity_Message<Mag> &messages, const Params<Mag> &params);
+template<class Mag> double compute_q_bar(const Cavity_Message<Mag> &messages, const Params<Mag> &params);
 template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const long int &nm_j_star, const long int &nm_j_star_col);
 template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, double *overlaps);
 #endif // STATS

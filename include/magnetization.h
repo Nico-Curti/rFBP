@@ -26,7 +26,7 @@ namespace mag
   template<class Mag> Mag      couple        (const double &x1, const double &x2);
   template<class Mag> Mag      damp          (const Mag &newx, const Mag &oldx, const double &l);
   template<class Mag> Mag      mtanh         (const double &x);
-  template<class Mag> Mag      matanh        (const Mag &m);
+  // template<class Mag> Mag      matanh        (const Mag &m);
   template<class Mag> Mag      merf          (const double &x);
   template<class Mag> Mag      bar           (const Mag &m1, const Mag &m2);
   template<class Mag> double   log1pxy       (const Mag &x, const Mag &y);

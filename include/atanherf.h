@@ -15,7 +15,7 @@
 
 namespace AtanhErf
 {
-  void getinp(const double &mm, const double &st, double *&inp);
+  auto getinp();
   double atanherf_largex(const double &x);
   double atanherf_interp(const double &x);
   double evalpoly(const double &x);

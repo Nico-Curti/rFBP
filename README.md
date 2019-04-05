@@ -26,7 +26,7 @@ Optimization and extension of the [**Replicated Focusing Belief Propagation**](h
 
 ## Prerequisites
 
-The project is written in c++ language with the support of c++17 standard (*make sure that your c++ compiler support it!*). If you want enable the OpenMP support (*no particular version is required*) compile the library with `-DOMP=ON`.
+The project is written in c++ language with the support of c++17 standard (*make sure that your c++ compiler support it!*). If you want enable the OpenMP support (*4.5 version is required*) compile the library with `-DOMP=ON`.
 
 ## Installation
 
