@@ -128,7 +128,7 @@ namespace mag
     if constexpr      ( std::is_same_v<Mag, MagP64> )
       return MagP64( (x1 - x2) / (x1 + x2) );
     else
-      return MagT64( (std::log(x1) - std::log(x2)) * .5 );
+      return convert<MagT64>((std::log(x1) - std::log(x2)) * .5);
   }
   template MagP64 couple<MagP64>(const double &x1, const double &x2);
   template MagT64 couple<MagT64>(const double &x1, const double &x2);
@@ -140,7 +140,10 @@ namespace mag
                    (std::is_same_v<Mag, MagT64>)),
                    "damp function! Incompatible types found.");
 
-    return Mag(newx.mag * (1. - l) + oldx.mag * l);
+    if constexpr      ( std::is_same_v<Mag, MagP64> )
+      return MagP64(newx.mag * (1. - l) + oldx.mag * l);
+    else
+      return convert<MagT64>( newx.value * (1. - l) + oldx.value * l );
   }
   template MagP64 damp<MagP64>(const MagP64 &newx, const MagP64 &oldx, const double &l);
   template MagT64 damp<MagT64>(const MagT64 &newx, const MagT64 &oldx, const double &l);
