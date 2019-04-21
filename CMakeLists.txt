@@ -1,16 +1,16 @@
 cmake_minimum_required (VERSION 3.8.2)
 
 # rFBP Version
-set (RFB_MAJOR    1)
-set (RFB_MINOR    0)
-set (RFB_REVISION 0)
-set (RFB_VERSION ${RFB_MAJOR}.${RFB_MINOR}.${RFB_REVISION})
+set (RFBP_MAJOR    1)
+set (RFBP_MINOR    0)
+set (RFBP_REVISION 0)
+set (RFBP_VERSION ${RFBP_MAJOR}.${RFBP_MINOR}.${RFBP_REVISION})
 
-project (rFBP LANGUAGES CXX VERSION ${RFB_VERSION} DESCRIPTION "Replicated Focusing Belief Propagation")
+project (rFBP LANGUAGES CXX VERSION ${RFBP_VERSION} DESCRIPTION "Replicated Focusing Belief Propagation")
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_definitions (-DMAJOR=${RFB_MAJOR} -DMINOR=${MINOR} -DREVISION=${REVISION})
+add_definitions (-DMAJOR=${RFBP_MAJOR} -DMINOR=${RFBP_MINOR} -DREVISION=${RFBP_REVISION})
 
 #################################################################
 #                         COMPILE OPTIONS                       #
@@ -20,12 +20,13 @@ option (OMP        "Enable OpenMP                support" ON)
 option (VERBOSE    "Enable verbose stdout        support" ON)
 option (STATS      "Enable verbose statistics    support" ON)
 option (BUILD_TEST "Enable tests build           support" ON)
+option (PYrfbp     "Enable Python wrap compilation      " OFF)
 
 #################################################################
 #                         SETTING VARIABLES                     #
 #################################################################
 
-set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/" ${CMAKE_MODULE_PATH})
+set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/" ${CMAKE_MODULE_PATH})
 
 if ( NOT APPLE )
   set (CMAKE_SKIP_BUILD_RPATH             FALSE )
@@ -44,21 +45,30 @@ endif()
 
 if ( CMAKE_COMPILER_IS_GNUCXX )
   if ( OMP )
-    add_compile_options (-Wall -Wextra -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors)
+    add_compile_options (-Wall -Wextra -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -Wno-narrowing -Wpedantic)
   endif()
-  add_compile_options( -Wno-register )
-  string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
-  string (REGEX REPLACE "-O0" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
-  set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG" )
+  if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    string (REGEX REPLACE "-O[0123]" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
+    set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG" )
+    set (CMAKE_CXX_FLAGS_RELEASE "")
+  elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
+    string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+    set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG" )
+    set (CMAKE_CXX_FLAGS_DEBUG "")
+  endif()
   list (APPEND linked_libs stdc++fs)
 endif()
 
-
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-  set (CMAKE_CXX_FLAGS "-Wno-deprecated -Wno-writable-strings -Wno-register ${CMAKE_CXX_FLAGS}")
-  string (REGEX REPLACE "-O0" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
-  string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
-  #list (APPEND linked_libs stdc++fs)
+  add_compile_options(-Wno-deprecated -Wno-writable-strings -stdlib=libstdc++ -std=c++1z)
+  if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    string (REGEX REPLACE "-O0" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
+    set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG" )
+  elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
+    string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
+    set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG" )
+  endif()
+  list (APPEND linked_libs stdc++fs)
 endif()
 
 if (MSVC)
@@ -120,80 +130,83 @@ endif()
 #                         SETTING DIRECTORIES                   #
 #################################################################
 
-set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH "Path where find cpp files"                      )
-set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"                   )
-set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                             CACHE PATH "Path where find main files"                     )
-set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                     )
-set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"                   )         # cython directory
-set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"      FORCE)
-set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed" FORCE)
+set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH "Path where find cpp files"                        )
+set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"                     )
+set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                             CACHE PATH "Path where find main files"                       )
+set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                       )
+set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"                     )         # cython directory
+set(LIB_DIR  ${CMAKE_SOURCE_DIR}/lib                                 CACHE PATH "Path where lib will be installed"            FORCE)
+set(INST_DIR ${CMAKE_SOURCE_DIR}/share/rfbp                          CACHE PATH "Path where cmake configs will be installed"  FORCE)
+set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"        FORCE)
+set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed"   FORCE)
 
-set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/scorer/include             CACHE PATH "Path where to find scorer header" FORCE)
+set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/scorer/include             CACHE PATH "Path where to find scorer header"            FORCE)
 
 set(rfbplib rfbp)
 set(rfbptestmain test_main)
 set(rfbptrainmain train_main)
 
-file(GLOB SRC    "${SRC_DIR}/*.cpp")
-file(GLOB HEADER "${INC_DIR}/*.h"  )
-file(GLOB SCORER_HEADER "${INC_SCORER}/*.h"  )
+file(GLOB SRC           "${SRC_DIR}/*.cpp" )
+file(GLOB HEADER        "${INC_DIR}/*.h"   )
+file(GLOB SCORER_HEADER "${INC_SCORER}/*.h")
 # file(GLOB EXE    "${EXAMPLE}/*.cpp")
 
 include_directories(${INC_DIR} ${INC_SCORER})
 
-# Make the scripts available in the 'cmake' directory available for the
-# 'include()' command, 'find_package()' command.
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
-# Include the CMake script UseCython.cmake.  This defines add_cython_module().
-# Instruction for use can be found at the top of cmake/UseCython.cmake.
-include( UseCython )
-
-# With CMake, a clean separation can be made between the source tree and the
-# build tree.  When all source is compiled, as with pure C/C++, the source is
-# no-longer needed in the build tree.  However, with pure *.py source, the
-# source is processed directly.  To handle this, we reproduce the availability
-# of the source files in the build tree.
+if (PYrfbp)
+  include( UseCython )
+endif()
 
 #################################################################
 #                          SUMMARY                              #
 #################################################################
 
-message(STATUS ""                                                                   )
-message(STATUS "=================== rFBP configuration Summary =================="  )
-message(STATUS "   rFBP version: ${MAJOR}.${MINOR}.${REVISION}"                     )
-message(STATUS ""                                                                   )
-message(STATUS "   C++ :"                                                           )
-message(STATUS "      C++ Compiler : ${CMAKE_CXX_COMPILER}"                         )
-message(STATUS "      C++ flags    :"                                               )
-foreach(FLAG ${CMAKE_CXX_FLAGS})
-  message(STATUS "                    * ${FLAG}"                                    )
+message(STATUS ""                                                                    )
+message(STATUS "=================== rFBP configuration Summary =================="   )
+message(STATUS "   rFBP version: ${RFBP_MAJOR}.${RFBP_MINOR}.${RFBP_REVISION}"       )
+message(STATUS ""                                                                    )
+message(STATUS "   Build type : ${CMAKE_BUILD_TYPE}"                                 )
+message(STATUS "   C++ :"                                                            )
+message(STATUS "      C++ Compiler : ${CMAKE_CXX_COMPILER}"                          )
+message(STATUS "      C++ flags    :"                                                )
+foreach(FLAG ${CMAKE_CXX_FLAGS_LIST})
+  message(STATUS "                    * ${FLAG}"                                     )
 endforeach(FLAG)
-if (${CMAKE_BUILD_TYPE} STREQUAL "Release")
-  foreach(FLAG ${CMAKE_CXX_FLAGS_RELEASE})
-    message(STATUS "                    * ${FLAG}"                                  )
-  endforeach(FLAG)
-elseif (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+  message(STATUS "      C++ Debug flags:"                                            )
   foreach(FLAG ${CMAKE_CXX_FLAGS_DEBUG})
-    message(STATUS "                    * ${FLAG}"                                  )
+    message(STATUS "                    * ${FLAG}"                                   )
+  endforeach(FLAG)
+elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
+  message(STATUS "      C++ Release flags  :"                                        )
+  foreach(FLAG ${CMAKE_CXX_FLAGS_RELEASE})
+    message(STATUS "                    * ${FLAG}"                                   )
   endforeach(FLAG)
 endif()
-message(STATUS "      Linker flags : "                                              )
+message(STATUS "      Linker flags : "                                               )
 foreach(FLAG ${linked_libs})
-  message(STATUS "                    * ${FLAG}"                                    )
+  message(STATUS "                    * ${FLAG}"                                     )
 endforeach(FLAG)
-message(STATUS ""                                                                   )
-message(STATUS "   OpenMP support : ${OMP}"                                         )
-message(STATUS "   VERBOSE level  : ${VERBOSE}"                                     )
-message(STATUS "   STATS   level  : ${STATS}"                                       )
-message(STATUS "   BUILD_TEST     : ${BUILD_TEST}"                                  )
-message(STATUS ""                                                                   )
+message(STATUS ""                                                                    )
+message(STATUS "   OpenMP support : ${OMP}"                                          )
+message(STATUS "   VERBOSE level  : ${VERBOSE}"                                      )
+message(STATUS "   STATS   level  : ${STATS}"                                        )
+message(STATUS "   BUILD_TEST     : ${BUILD_TEST}"                                   )
+message(STATUS ""                                                                    )
+message(STATUS ""                                                                    )
+message(STATUS "   Compile Pythonize version : ${PYrfbp}"                            )
+message(STATUS ""                                                                    )
+
 
 #################################################################
 #                         MAIN RULES                            #
 #################################################################
 
-add_subdirectory(${PYC_DIR})
+if (PYrfbp)
+  add_subdirectory(${PYC_DIR}/source)
+endif()
 
 add_library(${rfbplib} SHARED ${SRC} ${HEADER} ${SCORER_HEADER})
 set_property(TARGET ${rfbplib} PROPERTY POSITION_INDEPENDENT_CODE ON)
@@ -214,7 +227,47 @@ endif()
 #                          INSTALLERS                           #
 #################################################################
 
-install(TARGETS ${rfbplib}         DESTINATION ${CMAKE_SOURCE_DIR})
+install(TARGETS ${rfbplib}          EXPORT rFBPTargets
+                                    RUNTIME DESTINATION ${OUT_DIR}
+                                    LIBRARY DESTINATION ${LIB_DIR}
+                                    ARCHIVE DESTINATION ${LIB_DIR}
+                                    PUBLIC_HEADER DESTINATION ${LIB_DIR}/include
+                                    COMPONENT dev
+                                    )
 install(TARGETS ${rfbptrainmain}   DESTINATION ${OUT_DIR})
 install(TARGETS ${rfbptestmain}    DESTINATION ${OUT_DIR})
 install(TARGETS spline             DESTINATION ${OUT_TEST})
+
+
+#################################################################
+#                          EXPORT RFBP                          #
+#################################################################
+
+install (EXPORT rFBPTargets
+         FILE rFBPTargets.cmake
+         NAMESPACE rFBP::
+         DESTINATION "${INST_DIR}"
+        )
+
+# Export the package for use from the build-tree (this registers the build-tree with a global CMake-registry)
+export (PACKAGE rFBP)
+
+# Create the rFBPConfig.cmake
+# First of all we compute the relative path between the cmake config file and the include path
+file (RELATIVE_PATH REL_INCLUDE_DIR "${INST_DIR}" "${LIB_DIR}/include")
+set (CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
+configure_file (rFBPConfig.cmake.in "${PROJECT_BINARY_DIR}/rFBPConfig.cmake" @ONLY)
+set (CONF_INCLUDE_DIRS "\${rFBP_CMAKE_DIR}/${REL_INCLUDE_DIR}")
+configure_file (rFBPConfig.cmake.in "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/rFBPConfig.cmake" @ONLY)
+
+# Create the rFBPConfigVersion.cmake
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file ("${PROJECT_BINARY_DIR}/rFBPConfigVersion.cmake"
+                                  COMPATIBILITY SameMajorVersion
+                                 )
+
+install (FILES
+         "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/rFBPConfig.cmake"
+         "${PROJECT_BINARY_DIR}/rFBPConfigVersion.cmake"
+         DESTINATION "${INST_DIR}"
+         )

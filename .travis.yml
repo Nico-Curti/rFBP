@@ -9,6 +9,35 @@ matrix:
   fast_finish: true
   include:
 # linux + gcc
+
+    - os: linux
+      compiler: gcc
+      name: ubuntu 14.04 - gcc@5.0
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env:
+        - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+        - COMPILER_ID="gcc"
+
+    - os: linux
+      compiler: gcc
+      name: ubuntu 14.04 - gcc@6.0
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+        - COMPILER_ID="gcc"
+
     - os: linux
       compiler: gcc
       name: ubuntu 14.04 - gcc@7.0
@@ -22,9 +51,8 @@ matrix:
             - python3.4
             - python3.4-dev
       env:
-        - MATRIX_EVAL="CC=g++-7 && CXX=g++-7"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
         - COMPILER_ID="gcc"
-        - UNIT_TESTS=true
 
     - os: linux
       compiler: gcc
@@ -41,7 +69,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
         - COMPILER_ID="gcc"
-        - UNIT_TESTS=true
 
 # linux + clang
 
@@ -57,18 +84,14 @@ matrix:
             - llvm-toolchain-trusty-3.9
           packages:
             - clang-3.9
-            - libstdc++6
-            - llvm-3.9-dev
+            - libstdc++-4.8-dev
             - libclang-3.9-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
         - CMAKE_CXX_COMPILER=${CXX}
         - CMAKE_LINKER=${CXX}
         - COMPILER_ID="clang"
-        - UNIT_TESTS=true
         - LLVM_VERSION=3.9.0
 
     - os: linux
@@ -81,19 +104,15 @@ matrix:
             - llvm-toolchain-trusty-4.0
           packages:
             - clang-4.0
-            - libstdc++6
-            - llvm-4.0-dev
+            - libstdc++-4.8-dev
             - libclang-4.0-dev
 
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
-        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
         - CMAKE_CXX_COMPILER=${CXX}
         - CMAKE_LINKER=${CXX}
         - COMPILER_ID="clang"
-        - UNIT_TESTS=true
         - LLVM_VERSION=4.0.0
 
     - os: linux
@@ -106,19 +125,15 @@ matrix:
             - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
-            - libstdc++6
-            - llvm-5.0-dev
+            - libstdc++-4.8-dev
             - libclang-5.0-dev
 
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
         - CMAKE_CXX_COMPILER=${CXX}
         - CMAKE_LINKER=${CXX}
         - COMPILER_ID="clang"
-        - UNIT_TESTS=true
         - LLVM_VERSION=5.0.0
 
     - os: linux
@@ -132,19 +147,15 @@ matrix:
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
             - clang-6.0
-            - libstdc++6
-            - llvm-6.0
+            - libstdc++6-4.4-dev
             - libclang-6.0-dev
 
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
         - CMAKE_CXX_COMPILER=${CXX}
         - CMAKE_LINKER=${CXX}
         - COMPILER_ID="clang"
-        - UNIT_TESTS=true
         - LLVM_VERSION=6.0.0
 
     - os: linux
@@ -158,19 +169,15 @@ matrix:
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
             - clang-7.0
-            - libstdc++6
-            - llvm-7.0-dev
+            - libstdc++6-4.4-dev
             - libclang-7-dev
 
       env:
         - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
-        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - CXXFLAGS=-stdlib=libc++
         - CMAKE_C_COMPILER=${CC}
         - CMAKE_CXX_COMPILER=${CXX}
         - CMAKE_LINKER=${CXX}
         - COMPILER_ID="clang"
-        - UNIT_TESTS=true
         - LLVM_VERSION=7.0.0
 
 # osx + gcc
@@ -190,7 +197,6 @@ matrix:
       env:
         - MATRIX_EVAL="brew update && brew install gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
         - COMPILER_ID="gcc"
-        - UNIT_TESTS=true
 
 # osx + clang
     - os: osx
@@ -200,7 +206,6 @@ matrix:
       env:
         - MATRIX_EVAL=""
         - COMPILER_ID="clang"
-        - UNIT_TESTS=true
 
     - os: osx
       osx_image: xcode10.1
@@ -224,7 +229,6 @@ matrix:
         - CMAKE_CXX_COMPILER=${CXX}
         - CMAKE_C_COMPILER=${CC}
         - CMAKE_LINKER=${CXX}
-        - UNIT_TESTS=true
 
   allow_failures:
     - name: ubuntu 14.04 - clang@3.9

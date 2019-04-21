@@ -1,9 +1,7 @@
 site_name:          rFBP
 repo_url:           https://github.com/Nico-Curti/rFBP
 site_description:   Replicated Focusing Belief Propagation algorithm
-size_author:        https://www.unibo.it/sitoweb/nico.curti2
-
-theme:              jekyll-theme-slate
+site_author:        https://www.unibo.it/sitoweb/nico.curti2
 
 extra_css:          assets/Documenter.css
 
@@ -16,3 +14,17 @@ markdown_extensions:
   - tables
   - fenced_code
   - mdx_math
+
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+
+include:
+  - index.md
+  - cpp_install.md
+  - python_install.md
+  - authors.md
+
+theme:              jekyll-theme-slate

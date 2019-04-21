@@ -11,6 +11,15 @@
 #include <iomanip>
 #endif
 
+#ifdef _MSC_VER
+  #ifndef __unused
+  #define __unused
+  #endif
+#else
+  #ifndef __unused
+  #define __unused __attribute__((__unused__))
+  #endif
+#endif
 #include <cavity_message.h>
 #include <fprotocol.h>
 #include <pattern.h>
@@ -23,7 +32,7 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m, const Mag &M, 
 template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Mag> &params);
 template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns &patterns, Params<Mag> &params);
 template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns &patterns, Params<Mag> &params);
-std::unique_ptr<long int[]> nonbayes_test(long int** const sign_m_j_star, const Patterns &patterns, const long int &K);
+long int* nonbayes_test(long int** const sign_m_j_star, const Patterns &patterns, const long int &K);
 template<class Mag> long int error_test(const Cavity_Message<Mag> &messages, const Patterns &patterns);
 template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, const Patterns &patterns, const Params<Mag> &params);
 #ifdef STATS

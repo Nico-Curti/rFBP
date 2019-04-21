@@ -196,8 +196,8 @@ namespace mag
       // std::cout << m1.value << " " << m2.value << std::endl;
       // std::cout << m1.mag << " " << m2.mag << std::endl;
       return ((m1.mag == m2.mag) ?
-      MagT64(0.)         :
-      MagT64(m1.mag - m2.mag));
+              MagT64(0.)         :
+              MagT64(m1.mag - m2.mag));
     }
   }
   template MagP64 bar<MagP64>(const MagP64 &m1, const MagP64 &m2);
@@ -384,16 +384,3 @@ std::ostream& operator<<(std::ostream& os, const MagT64 &m)
   return os;
 }
 
-std::vector<std::string> split(const std::string &txt, const std::string &del)
-{
-  std::vector<std::string> token;
-  std::size_t pos = txt.find_first_of(del), start = 0, end = txt.size();
-  while(pos != std::string::npos)
-  {
-    if(pos) token.push_back(txt.substr(start, pos));
-    start += pos + 1;
-    pos = txt.substr(start, end).find_first_of(del);
-  }
-  if(start != end) token.push_back(txt.substr(start, pos));
-  return token;
-}

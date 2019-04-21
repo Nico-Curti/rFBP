@@ -1,6 +1,9 @@
-#!usr/bin/env python
+#!/usr/bin/env python
 
-from .ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation
+from lib.ReplicatedFocusingBeliefPropagation.rFBP import Mag
+from ReplicatedFocusingBeliefPropagation.source.ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation
+from ReplicatedFocusingBeliefPropagation.source.Patterns import Pattern
+from ReplicatedFocusingBeliefPropagation.source.FocusingProtocol import Focusing_Protocol
 
 __all__ = ["ReplicatedFocusingBeliefPropagation"]
 

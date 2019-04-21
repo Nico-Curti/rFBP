@@ -15,7 +15,9 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
                 mu    ,
                 sigma2;
   static Mag new_U;
+#ifdef _OPENMP
 #pragma omp barrier
+#endif
   new_U = U;
   maxdiff = 0.;
   mu      = 0.;
@@ -102,7 +104,9 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
   static double maxdiff,
                 mu     ,
                 sigma2 ;
+#ifdef _OPENMP
 #pragma omp barrier
+#endif
   maxdiff = 0.;
   mu      = 0.;
   sigma2  = 0.;
@@ -180,7 +184,9 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
                   **rightC = nullptr;
     static Mag new_U;
     static std::unique_ptr<Mag[]> h;
+#ifdef _OPENMP
 #pragma omp barrier
+#endif
 
 #ifdef _OPENMP
 #pragma omp single
@@ -579,7 +585,9 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 {
   bool ok = false;
 
+#ifdef VERBOSE
   const auto start_time = what_time_is_it_now();
+#endif
 
   for (long int it = 0L; it < params.max_iters; ++it)
   {
@@ -623,9 +631,9 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 }
 
 
-std::unique_ptr<long int[]> nonbayes_test(long int** const sign_m_j_star, const Patterns &patterns, const long int &K)
+long int* nonbayes_test(long int** const sign_m_j_star, const Patterns &patterns, const long int &K)
 {
-  std::unique_ptr<long int[]> predicted_labels(new long int[patterns.Nrow]);
+  long int* predicted_labels = new long int[patterns.Nrow];
   double s, s2, trsf0;
 
 #ifdef _OPENMP
@@ -634,23 +642,16 @@ std::unique_ptr<long int[]> nonbayes_test(long int** const sign_m_j_star, const 
 #endif
   for (long int i = 0L; i < patterns.Nrow; ++i)
   {
-    s = std::accumulate(sign_m_j_star, sign_m_j_star + K, 0., [&patterns, &i, &trsf0, &s2](const double &val, const auto wk) {
-                                                                                                                      trsf0 = static_cast<double>(std::inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std::plus<double>(), [](const auto &wki, const auto &pi) { return wki * pi; }));
-                                                                                                                      s2    = static_cast<double>(std::inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std::plus<double>(), [](const auto &wki, const auto &pi) { return (1L - wki * wki) * (pi * pi); }));
-                                                                                                                      return val + std::erf( trsf0 / std::sqrt(2. * s2) );
-                                                                                                                    });
+    s = std::accumulate(sign_m_j_star, sign_m_j_star + K,
+                        0., [&](const double &val, const auto wk)
+                        {
+                          trsf0 = static_cast<double>(std::inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std::plus<double>(), [](const auto &wki, const auto &pi) { return wki * pi; }));
+                          s2    = static_cast<double>(std::inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std::plus<double>(), [](const auto &wki, const auto &pi) { return (1L - wki * wki) * (pi * pi); }));
+                          return val + std::erf( trsf0 / std::sqrt(2. * s2) );
+                        });
     predicted_labels[i] = static_cast<long int>(sign(s));
   }
 
-#ifdef _OPENMP
-#pragma omp single
-  {
-#endif
-    for (long int i = 0L; i < K; ++i) delete[] sign_m_j_star[i];
-    delete[] sign_m_j_star;
-#ifdef _OPENMP
-  }
-#endif
   return predicted_labels;
 }
 
@@ -666,8 +667,14 @@ template<class Mag> long int error_test(Cavity_Message<Mag> &messages, const Pat
   for (long int i = 0L; i < patterns.Nrow; ++i)
     t += static_cast<long int>( lbls[i] != patterns.output[i] );
 #else
-  t = std::inner_product(lbls.get(), lbls.get() + patterns.Nrow, patterns.output.get(), 0L, std::plus<long int>(), [](const long int &lbli, const long int &oi){ return static_cast<long int>( lbli != oi );});
+  t = std::inner_product(lbls, lbls + patterns.Nrow, patterns.output, 0L, std::plus<long int>(), [](const long int &lbli, const long int &oi){ return static_cast<long int>( lbli != oi );});
 #endif
+
+#ifdef _OPENMP
+#pragma omp single
+#endif
+  delete[] lbls;
+
   return t;
 }
 
@@ -878,7 +885,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
                                            const bool &bin_mess
                                            )
 {
-  bool ok;
+  __unused bool ok;
   long int it = 1;
   const  long int M  = patterns.Nrow,
                   N  = patterns.Ncol;
@@ -1010,7 +1017,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #ifdef _OPENMP
 #pragma omp barrier
 #endif
-    set_outfields(messages, patterns.output.get(), fprotocol.beta[i]);
+    set_outfields(messages, patterns.output, fprotocol.beta[i]);
 #ifdef _OPENMP
 #pragma omp barrier
 #endif

@@ -2,10 +2,7 @@
 
 import io
 import os
-import sys
-from shutil import rmtree
 from Cython.Distutils import build_ext
-from Cython.Build import cythonize
 
 try:
   from setuptools import setup, Extension, find_packages
@@ -39,10 +36,13 @@ class my_build_ext(build_ext):
       pass
     build_ext.build_extensions(self)
 
-# What packages are optional?
-EXTRAS = {
-  'tests': [],
-}
+def read_description():
+  try:
+    with open('README.md') as r:
+      description = '\n'
+      description += r.read()
+  except Exception:
+    return ''
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -63,82 +63,62 @@ else:
   about['__version__'] = VERSION
 
 
-extra_compile_args = ['-std=c++17', '-g0', '-fopenmp', '-DPYTHONIC']
+extra_compile_args = ['-std=c++17', '-g0', '-DSTATS', '-DVERBOSE', '-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION']
 
 # Where the magic happens:
 setup(
-  name=NAME,
-  version=about['__version__'],
-  description=DESCRIPTION,
-  long_description=long_description,
-  long_description_content_type='text/markdown',
-  author=AUTHOR,
-  author_email=EMAIL,
-  maintainer=AUTHOR,
-  maintainer_email=EMAIL,
-  python_requires=REQUIRES_PYTHON,
-  url=URL,
-  download_url=URL,
-  keywords=KEYWORDS,
-  packages=find_packages(include=['ReplicatedFocusingBeliefPropagation', 'ReplicatedFocusingBeliefPropagation.*'], exclude=('wip', 'test',)),
-  # If your package is a single module, use this instead of 'packages':
-  #py_modules=['walkers'],
-  #
-  # entry_points={
-  #     'console_scripts': ['mycli=mymodule:cli'],
-  # },
-  install_requires=get_requires(),
-  extras_require=EXTRAS,
+  name                = NAME,
+  version             = about['__version__'],
+  description         = DESCRIPTION,
+  long_description    = long_description,
+  long_description_content_type = 'text/markdown',
+  author              = AUTHOR,
+  author_email        = EMAIL,
+  maintainer          = AUTHOR,
+  maintainer_email    = EMAIL,
+  python_requires     = REQUIRES_PYTHON,
+  install_requires    = get_requires(),
+  url                 = URL,
+  download_url        = URL,
+  keywords            = KEYWORDS,
+  packages            = find_packages(include=['ReplicatedFocusingBeliefPropagation', 'ReplicatedFocusingBeliefPropagation.*'], exclude=('test',)),
   include_package_data=True,
-  license='GNU Lesser General Public License v2 or later (LGPLv2+)',
-  platforms='any',
+  platforms           = 'any',
   classifiers=[
     # Trove classifiers
     # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-    'License :: OSI Approved :: GPL License',
+    #'License :: OSI Approved :: GPL License',
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: Implementation :: CPython',
     'Programming Language :: Python :: Implementation :: PyPy'
   ],
-  cmdclass = {'build_ext': my_build_ext},
+  license             = 'None',
+  cmdclass            = {'build_ext': my_build_ext},
   ext_modules = [
-      Extension(name='ReplicatedFocusingBeliefPropagation',
+      Extension(name='.'.join(['lib', 'ReplicatedFocusingBeliefPropagation', 'rFBP']),
                 sources=[
-                         os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'ReplicatedFocusingBeliefPropagation.pyx')
+                         os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx'),
+                         os.path.join(os.getcwd(), 'src', 'cavity_message.cpp'),
+                         os.path.join(os.getcwd(), 'src', 'magnetization.cpp'),
+                         os.path.join(os.getcwd(), 'src', 'fprotocol.cpp'),
+                         os.path.join(os.getcwd(), 'src', 'atanherf.cpp'),
+                         os.path.join(os.getcwd(), 'src', 'pattern.cpp'),
+                         os.path.join(os.getcwd(), 'src', 'utils.cpp'),
+                         os.path.join(os.getcwd(), 'src', 'rfbp.cpp'),
                 ],
                 include_dirs=[
                     '.',
+                    os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'include'),
                     os.path.join(os.getcwd(), 'include'),
+                    os.path.join(os.getcwd(), 'scorer', 'scorer', 'include')
                 ],
-                library_dirs = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation')],  # path to .a or .so file(s)
-                extra_compile_args = extra_compile_args,
-                extra_link_args = ['-fopenmp'],
-                language='c++',
-                ),
-      Extension(name='Pattern',
-                sources=[
-                         os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'Pattern.pyx')
-                ],
-                include_dirs=[
-                    '.',
-                    os.path.join(os.getcwd(), 'include'),
-                ],
-                library_dirs = [os.path.join(os.getcwd(), 'Pattern')],  # path to .a or .so file(s)
-                extra_compile_args = extra_compile_args,
-                extra_link_args = ['-fopenmp'],
-                language='c++',
-                ),
-      Extension(name='FProtocol',
-                sources=[
-                         os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'FProtocol.pyx')
-                ],
-                include_dirs=[
-                    '.',
-                    os.path.join(os.getcwd(), 'include'),
-                ],
-                library_dirs = [os.path.join(os.getcwd(), 'FProtocol')],  # path to .a or .so file(s)
+                library_dirs=[
+                              os.path.join(os.getcwd(), 'lib'),
+                              os.path.join('usr', 'lib'),
+                              os.path.join('usr', 'local', 'lib'),
+                ],  # path to .a or .so file(s)
                 extra_compile_args = extra_compile_args,
                 extra_link_args = ['-fopenmp'],
                 language='c++',

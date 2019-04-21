@@ -12,7 +12,7 @@ void Patterns::check_binary()
                           return std::abs(v);
                          });
   assert(cnt == this->Nrow * this->Ncol);
-  cnt = std::accumulate(this->output.get(), this->output.get() + this->Nout,
+  cnt = std::accumulate(this->output, this->output + this->Nout,
                         0, [](const int &res, const long int &v)
                         {
                           return res + static_cast<int>(std::abs(v));
@@ -31,7 +31,7 @@ Patterns::Patterns(const std::string &filename, bool bin, const std::string &del
     is.read((char*)&this->Ncol, sizeof(long int));
     this->Nout   = this->Nrow;
     this->input  = new double*[this->Nrow];
-    this->output = std::make_unique<long int[]>(this->Nout);
+    this->output = new long int[this->Nout];
     for (long int i = 0L; i < this->Nout; ++i)
       is.read((char*)&this->output[i], sizeof(long int));
 
@@ -58,8 +58,8 @@ Patterns::Patterns(const std::string &filename, bool bin, const std::string &del
     this->Nrow = this->Nout;
 
     // Read outputs
-    this->output = std::make_unique<long int[]>(this->Nout);
-    std::transform( row_.begin(), row_.end(), this->output.get(), [](std::string &i){return std::stod(i);} );
+    this->output = new long int [this->Nout];
+    std::transform( row_.begin(), row_.end(), this->output, [](std::string &i){return std::stod(i);} );
 
     // Get N
     this->input = new double*[this->Nrow];
@@ -90,13 +90,13 @@ Patterns::Patterns(const long int &N, const long int &M)
 {
   this->Nrow   = N;
   this->input  = new double*[this->Nrow];
-  this->output = std::make_unique<long int[]>(this->Nrow);
+  this->output = new long int [this->Nrow];
   this->Ncol   = M;
   this->Nout   = this->Nrow;
 
   std::default_random_engine engine;
   std::bernoulli_distribution dist(.5);
-  std::fill_n(this->output.get(), this->Nout, 1L);
+  std::fill_n(this->output, this->Nout, 1L);
   std::generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
   for (long int i = 0L; i < this->Nrow; ++i)
     std::generate_n(this->input[i], this->Ncol,
@@ -106,6 +106,47 @@ Patterns::Patterns(const long int &N, const long int &M)
                     });
 }
 
+Patterns::Patterns(long double **data, long int *label, const int &Nrow, const int &Ncol)
+{
+  this->Nrow   = Nrow;
+  this->Nout   = Nrow;
+  this->Ncol   = Ncol;
+  this->input  = new double*[this->Nrow];
+  this->output = new long int[this->Nrow];
+
+  std::generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
+  for (int i = 0; i < this->Nrow; ++i) std::copy_n(data[i], this->Ncol, this->input[i]);
+  std::copy_n(label, this->Nrow, this->output);
+}
+
+Patterns& Patterns::operator=(const Patterns &p)
+{
+  this->Nrow   = p.Nrow;
+  this->Nout   = p.Nrow;
+  this->Ncol   = p.Ncol;
+  this->input  = new double*[this->Nrow];
+  this->output = new long int[this->Nrow];
+
+  std::generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
+  for (int i = 0; i < this->Nrow; ++i) std::copy_n(p.input[i], this->Ncol, this->input[i]);
+  std::copy_n(p.output, this->Nrow, this->output);
+
+  return *this;
+}
+
+Patterns::Patterns(const Patterns &p)
+{
+  this->Nrow   = p.Nrow;
+  this->Nout   = p.Nrow;
+  this->Ncol   = p.Ncol;
+  this->input  = new double*[this->Nrow];
+  this->output = new long int[this->Nrow];
+
+  std::generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
+  for (int i = 0; i < this->Nrow; ++i) std::copy_n(p.input[i], this->Ncol, this->input[i]);
+  std::copy_n(p.output, this->Nrow, this->output);
+}
+
 Patterns::~Patterns()
 {
   if(this->Nrow)
@@ -113,4 +154,5 @@ Patterns::~Patterns()
     for(long int i = 0L; i < this->Nrow; ++i) delete[] this->input[i];
      delete[] this->input;
   }
+  if(this->Nout) delete[] this->output;
 }

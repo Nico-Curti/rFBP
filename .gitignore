@@ -36,11 +36,15 @@
 [Oo]bj/
 .[Dd]ep/
 [Bb]uild*/
-ReplicatedFocusingBeliefPropagation/*.cpp
 [Tt]st/
-
+*.egg-info
+ReplicatedFocusingBeliefPropagation/[Ss]ource/*.c*
+ReplicatedFocusingBeliefPropagation/[Ss]ource/*.h
+__pycache__/
+[Dd]ata/
 
 # Utilities
 [Uu]tilities/
+[Ss]hare/
 
 

@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+import os
+import sys
+
+# https://stackoverflow.com/questions/14197009/how-can-i-redirect-print-output-of-a-function-in-python
+try:
+  import contextlib
+
+  @contextlib.contextmanager
+  def stdout_redirect(where):
+    sys.stdout = where
+    try:
+      yield where
+    finally:
+      sys.stdout = sys.__stdout__
+
+  def redirect(where, func):
+    with stdout_redirect(where) as new_stdout:
+      func()
+
+except:
+  import StringIO
+  def stdout_redirect(where, func):
+    stdout = sys.stdout
+    sys.stdout = StringIO.StringIO()
+    func()
+    sys.stdout = stdout
+
+  def redirect(where, func):
+    stdout_redirect(where, func)
+
+
+
+
+def _check_string(_string, exist=True):
+
+  if not isinstance(_string, str) and not isinstance(_string, bytes):
+    raise TypeError('{} must be in string format'.format(_string))
+
+  if exist: _check_exist(_string)
+
+  if isinstance(_string, str):
+    return _string.encode('utf-8')
+
+  return _string
+
+def _check_exist(_file):
+  if not os.path.isfile(_file):
+    raise ValueError('{} file not found'.format(_file))

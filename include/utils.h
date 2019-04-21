@@ -41,6 +41,10 @@ enum {scoping_ = 0L,
       standard_
       };
 
+enum {magP = 0,
+      magT = 1
+      };
+
 static std::unordered_map<std::string, long int> protocol{
   {"scoping",                scoping_},
   {"pseudo_reinforcement",   pseudo_},
