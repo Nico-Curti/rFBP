@@ -60,7 +60,7 @@ if ( CMAKE_COMPILER_IS_GNUCXX )
 endif()
 
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
-  add_compile_options(-Wno-deprecated -Wno-writable-strings -stdlib=libstdc++ -std=c++1z)
+  add_compile_options(-Wno-deprecated -Wno-writable-strings -stdlib=libstdc++)
   if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     string (REGEX REPLACE "-O0" "-Og" CMAKE_CXX_FLAGS_DEBUG ${CMAKE_CXX_FLAGS_DEBUG})
     set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG" )

@@ -231,6 +231,8 @@ matrix:
         - CMAKE_LINKER=${CXX}
 
   allow_failures:
+    - name: ubuntu 14.04 - gcc@5.0 # not support the full std=c++17
+    - name: ubuntu 14.04 - gcc@6.0 # not support the full std=c++17
     - name: ubuntu 14.04 - clang@3.9
     - name: ubuntu 14.04 - clang@4.0
     - name: ubuntu 14.04 - clang@5.0
