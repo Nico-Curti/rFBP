@@ -88,11 +88,8 @@ matrix:
             - libclang-3.9-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
-        - CMAKE_C_COMPILER=${CC}
-        - CMAKE_CXX_COMPILER=${CXX}
-        - CMAKE_LINKER=${CXX}
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
-        - LLVM_VERSION=3.9.0
 
     - os: linux
       compiler: clang
@@ -109,12 +106,8 @@ matrix:
 
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
-        - CXXFLAGS="-stdlib=libc++"
-        - CMAKE_C_COMPILER=${CC}
-        - CMAKE_CXX_COMPILER=${CXX}
-        - CMAKE_LINKER=${CXX}
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
-        - LLVM_VERSION=4.0.0
 
     - os: linux
       compiler: clang
@@ -131,12 +124,8 @@ matrix:
 
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-        - CXXFLAGS="-stdlib=libc++"
-        - CMAKE_C_COMPILER=${CC}
-        - CMAKE_CXX_COMPILER=${CXX}
-        - CMAKE_LINKER=${CXX}
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
-        - LLVM_VERSION=5.0.0
 
     - os: linux
       compiler: clang
@@ -154,12 +143,8 @@ matrix:
 
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
-        - CXXFLAGS="-stdlib=libc++"
-        - CMAKE_C_COMPILER=${CC}
-        - CMAKE_CXX_COMPILER=${CXX}
-        - CMAKE_LINKER=${CXX}
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
-        - LLVM_VERSION=6.0.0
 
     - os: linux
       compiler: clang
@@ -177,12 +162,8 @@ matrix:
 
       env:
         - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
-        - CXXFLAGS="-stdlib=libc++"
-        - CMAKE_C_COMPILER=${CC}
-        - CMAKE_CXX_COMPILER=${CXX}
-        - CMAKE_LINKER=${CXX}
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
-        - LLVM_VERSION=7.0.0
 
 # osx + gcc
 
@@ -209,6 +190,7 @@ matrix:
       name: macOS - native clang (llvm backend)
       env:
         - MATRIX_EVAL=""
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
 
     - os: osx
@@ -226,13 +208,8 @@ matrix:
             - python3.6-dev
       env:
         - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
-        - CXX=clang++-7
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - CXXFLAGS="-stdlib=libc++"
         - COMPILER_ID="clang"
-        - CMAKE_CXX_COMPILER=${CXX}
-        - CMAKE_C_COMPILER=${CC}
-        - CMAKE_LINKER=${CXX}
 
   allow_failures:
     - name: ubuntu 14.04 - gcc@5.0 # not support the full std=c++17
@@ -251,8 +228,6 @@ before_install:
   - sudo pip install -r requirements.txt
 
 install:
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo softwareupdate -l                                                                          ;fi
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then softwareupdate -i "Command Line Tools (macOS High Sierra version 10.13) for Xcode-10.1"         ;fi
   # CMake upgrade
 
   - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Darwin-x86_64.tar.gz   ;fi
