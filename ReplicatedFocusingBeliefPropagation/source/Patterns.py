@@ -42,6 +42,6 @@ class Pattern(_Pattern):
 
   def __repr__(self):
     class_name = self.__class__.__name__
-    return '<{} Class (Ndata: {} Nfeatures: {}) >'.format(class_name, self.ndata, self.nfeature)
+    return '<{0} Class (Ndata: {1} Nfeatures: {2}) >'.format(class_name, self.ndata, self.nfeature)
 
 

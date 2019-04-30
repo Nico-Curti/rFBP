@@ -1,9 +1,8 @@
 #include <cmd.h>
 #include <rfbp.h>
 
-int main(int argc, char *argv[])
+int main (int argc, char *argv[])
 {
-
   bool bin,
        binmess;
   char mag;
@@ -14,15 +13,15 @@ int main(int argc, char *argv[])
   double randfact,
          damping,
          epsil;
-  std::string patternsfile,
-              outfile,
-              del,
-              accuracy1,
-              accuracy2,
-              fprotocol,
-              inmess,
-              outmess,
-              delmess;
+  std :: string patternsfile,
+                outfile,
+                del,
+                accuracy1,
+                accuracy2,
+                fprotocol,
+                inmess,
+                outmess,
+                delmess;
 
   parse_training_fbp(argc, argv,
                      patternsfile,
@@ -48,52 +47,49 @@ int main(int argc, char *argv[])
   FocusingProtocol fp(fprotocol, max_steps);
   Patterns patterns(patternsfile, bin, del);
 
-  long int **bin_weights = nullptr;
+  long int ** bin_weights = nullptr;
 
   switch (mag)
   {
     case magP:
-        bin_weights = focusingBP<MagP64>(K,
-                                         patterns,
-                                         max_iters,
-                                         max_steps,
-                                         seed,
-                                         damping,
-                                         accuracy1,
-                                         accuracy2,
-                                         randfact,
-                                         fp,
-                                         epsil,
-                                         outfile,
-                                         outmess,
-                                         inmess,
-                                         binmess);
+        bin_weights = focusingBP < MagP64 >(K,
+                                            patterns,
+                                            max_iters,
+                                            max_steps,
+                                            seed,
+                                            damping,
+                                            accuracy1,
+                                            accuracy2,
+                                            randfact,
+                                            fp,
+                                            epsil,
+                                            outfile,
+                                            outmess,
+                                            inmess,
+                                            binmess);
       break;
     case magT:
-        bin_weights = focusingBP<MagT64>(K,
-                                         patterns,
-                                         max_iters,
-                                         max_steps,
-                                         seed,
-                                         damping,
-                                         accuracy1,
-                                         accuracy2,
-                                         randfact,
-                                         fp,
-                                         epsil,
-                                         outfile,
-                                         outmess,
-                                         inmess,
-                                         binmess);
+        bin_weights = focusingBP < MagT64 >(K,
+                                            patterns,
+                                            max_iters,
+                                            max_steps,
+                                            seed,
+                                            damping,
+                                            accuracy1,
+                                            accuracy2,
+                                            randfact,
+                                            fp,
+                                            epsil,
+                                            outfile,
+                                            outmess,
+                                            inmess,
+                                            binmess);
       break;
   }
 
   auto predicted_labels = nonbayes_test(bin_weights, patterns, K);
   scorer score;
-  //int *true_labels = new int[patterns.Nrow];
-  //int *pred_labels = new int[patterns.Nrow];
-  //std::transform(patterns.output,  patterns.output  + patterns.Nrow, true_labels, [](long int &i){ return static_cast<int>(i); } );
-  //std::transform(predicted_labels, predicted_labels + patterns.Nrow, pred_labels, [](long int &i){ return static_cast<int>(i); } );
+
 #ifdef _OPENMP
 #pragma omp parallel shared(score)
   {
@@ -102,7 +98,10 @@ int main(int argc, char *argv[])
 #ifdef _OPENMP
   }
 #endif
-  // score.print();
+
+#ifdef VERBOSE
+  score.print();
+#endif
 
   for (int i = 0; i < K; ++i) delete[] bin_weights[i];
   delete[] bin_weights;

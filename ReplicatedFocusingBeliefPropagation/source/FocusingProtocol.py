@@ -24,6 +24,6 @@ class Focusing_Protocol(_FocusingProtocol):
 
   def __repr__(self):
     class_name = self.__class__.__name__
-    return '<{} Class (protocol: {}, number of replicas: {}) >'.format(class_name, self.protocol, self.nrep)
+    return '<{0} Class (protocol: {1}, number of replicas: {2}) >'.format(class_name, self.protocol, self.nrep)
 
 

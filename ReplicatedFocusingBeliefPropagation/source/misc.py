@@ -37,7 +37,7 @@ except:
 def _check_string(_string, exist=True):
 
   if not isinstance(_string, str) and not isinstance(_string, bytes):
-    raise TypeError('{} must be in string format'.format(_string))
+    raise TypeError('{0} must be in string format'.format(_string))
 
   if exist: _check_exist(_string)
 
@@ -48,4 +48,4 @@ def _check_string(_string, exist=True):
 
 def _check_exist(_file):
   if not os.path.isfile(_file):
-    raise ValueError('{} file not found'.format(_file))
+    raise ValueError('{0} file not found'.format(_file))

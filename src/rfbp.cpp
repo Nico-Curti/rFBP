@@ -1,15 +1,10 @@
 #include <rfbp.h>
 
-template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
-                                                    const double *xi,
-                                                    MagVec<Mag> u,
-                                                    Mag &U,
-                                                    const Params<Mag> &params,
-                                                    const long int &nxi,
-                                                    const long int &nm)
+template < class Mag >
+double theta_node_update_approx (MagVec < Mag > m, Mag & M, const double * xi, MagVec < Mag > u, Mag & U, const Params < Mag > & params, const long int & nxi, const long int & nm)
 {
 #ifdef DEBUG
-  assert(nxi == nm);
+  assert (nxi == nm);
 #endif
   static double maxdiff,
                 mu    ,
@@ -27,45 +22,45 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
       new_u(0.),
       new_m(0.);
 
-  static std::unique_ptr<Mag[]> h;
+  static std :: unique_ptr < Mag[] > h;
 #ifdef _OPENMP
 #pragma omp single
 #endif
   h.reset(new Mag[nm]);
 
-  old_m_on = mag::bar(M, new_U);
+  old_m_on = mag :: bar(M, new_U);
 
 #ifdef _OPENMP
 #pragma omp barrier
 #pragma omp for reduction (+ : mu, sigma2)
   for (long int i = 0L; i < nxi; ++i)
   {
-    h[i] = mag::bar(m[i], u[i]);
+    h[i] = mag :: bar(m[i], u[i]);
     mu  += h[i].value * xi[i];
     sigma2 += (1. - h[i].value * h[i].value) * (xi[i] * xi[i]);
   }
 #else
-  std::transform(m, m + nm, u,
-                 h.get(), [](const Mag &mi, const Mag &ui)
-                 {
-                  return mag::bar(mi, ui);
-                 });
-  mu     = std::inner_product(h.get(), h.get() + nm, xi, 0., std::plus<double>(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
-  sigma2 = std::inner_product(h.get(), h.get() + nxi, xi, 0., std::plus<double>(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
+  std :: transform(m, m + nm, u,
+                   h.get(), [](const Mag &mi, const Mag &ui)
+                   {
+                    return mag :: bar(mi, ui);
+                   });
+  mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
+  sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
 #endif
 
   dsigma2 = 2. * sigma2;
-  new_u   = mag::merf<Mag>( mu / std::sqrt(dsigma2) );
-  maxdiff = std::abs( new_U - new_u );
+  new_u   = mag :: merf<Mag>( mu / std :: sqrt(dsigma2) );
+  maxdiff = std :: abs( new_U - new_u );
 
 #ifdef _OPENMP
 #pragma omp single
 #endif
-  new_U   = mag::damp(new_u, new_U, params.damping);
+  new_U   = mag :: damp(new_u, new_U, params.damping);
   new_m   = old_m_on % new_U;
   M       = new_m;
 
-  g       = std::exp(- (mu * mu) / dsigma2) / std::sqrt(M_PI * dsigma2);
+  g       = std :: exp(- (mu * mu) / dsigma2) / std :: sqrt(M_PI * dsigma2);
 
   p0      = 2. * old_m_on.value * g / (1. + old_m_on.value * new_U.value);
   pmu     = p0 * (p0 + mu / sigma2);
@@ -78,27 +73,21 @@ template<class Mag> double theta_node_update_approx(MagVec<Mag> m, Mag &M,
 #endif
   for (long int i = 0L; i < nm; ++i)
   {
-    new_u   = mag::convert<Mag>(mag::clamp(xi[i] * (p0 + xi[i] * (h[i].value * pmu + xi[i] * (1. - h[i].value * h[i].value) * psigma)),
-                                                               -1. + epsilon, 1. - epsilon));
-    maxdiff = std::max(maxdiff, std::abs(new_u - u[i]) );
-    u[i] = mag::damp(new_u, u[i], params.damping);
+    new_u   = mag :: convert < Mag >(mag :: clamp(xi[i] * (p0 + xi[i] * (h[i].value * pmu + xi[i] * (1. - h[i].value * h[i].value) * psigma)),
+                                                  -1. + epsilon, 1. - epsilon));
+    maxdiff = std :: max(maxdiff, std :: abs(new_u - u[i]) );
+    u[i] = mag :: damp(new_u, u[i], params.damping);
     m[i] = h[i] % u[i];
   }
 
   return maxdiff;
 }
 
-template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
-                                                      Mag &M,
-                                                      const double *xi,
-                                                      MagVec<Mag> u,
-                                                      Mag &U,
-                                                      const Params<Mag> &params,
-                                                      const long int &nxi,
-                                                      const long int &nm)
+template < class Mag >
+double theta_node_update_accurate (MagVec < Mag > m, Mag & M, const double * xi, MagVec < Mag > u, Mag & U, const Params < Mag > & params, const long int & nxi, const long int & nm)
 {
 #ifdef DEBUG
-  assert(nxi == nm);
+  assert (nxi == nm);
 #endif
 
   static double maxdiff,
@@ -115,37 +104,37 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
       new_u(0.);
   static Mag new_U;
   new_U = U;
-  static std::unique_ptr<Mag[]> h;
+  static std :: unique_ptr < Mag[] > h;
 #ifdef _OPENMP
 #pragma omp single
 #endif
   h.reset(new Mag[nm]);
-  old_m_on = mag::bar(M, new_U);
+  old_m_on = mag :: bar(M, new_U);
 
 #ifdef _OPENMP
 #pragma omp barrier
 #pragma omp for reduction (+ : mu, sigma2)
   for (long int i = 0L; i < nxi; ++i)
   {
-    h[i]    = mag::bar(m[i], u[i]);
+    h[i]    = mag :: bar(m[i], u[i]);
     mu     += h[i].value * xi[i];
     sigma2 += (1. - h[i].value * h[i].value) * (xi[i] * xi[i]);
   }
 #else
-  std::transform(m, m + nm, u,
-                 h.get(), [](const Mag &mi, const Mag &ui)
-                 {
-                  return mag::bar(mi, ui);
-                 });
-  mu     = std::inner_product(h.get(), h.get() + nm, xi, 0., std::plus<double>(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
-  sigma2 = std::inner_product(h.get(), h.get() + nxi, xi, 0., std::plus<double>(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
+  std :: transform(m, m + nm, u,
+                   h.get(), [](const Mag &mi, const Mag &ui)
+                   {
+                    return mag :: bar(mi, ui);
+                   });
+  mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
+  sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
 #endif
 
-  new_u = mag::merf<Mag>( mu / std::sqrt(2. * sigma2));
+  new_u = mag :: merf < Mag >( mu / std :: sqrt(2. * sigma2));
 #ifdef _OPENMP
 #pragma omp single
 #endif
-  new_U     = mag::damp(new_u, new_U, params.damping);
+  new_U     = mag :: damp(new_u, new_U, params.damping);
   M         = old_m_on % new_U;
   U         = new_U;
 
@@ -154,10 +143,10 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
 #endif
   for (long int i = 0L; i < nm; ++i)
   {
-    tmp     = std::sqrt( 2. * (sigma2 - (1. - h[i].value * h[i].value) * xi[i] * xi[i]));
-    new_u   = mag::erfmix(old_m_on, ((mu - h[i].value * xi[i]) + xi[i]) / tmp , ((mu - h[i].value * xi[i]) - xi[i]) / tmp);
-    maxdiff = std::max(maxdiff, std::abs(new_u - u[i]));
-    u[i]    = mag::damp(new_u, u[i], params.damping);
+    tmp     = std :: sqrt( 2. * (sigma2 - (1. - h[i].value * h[i].value) * xi[i] * xi[i]));
+    new_u   = mag :: erfmix(old_m_on, ((mu - h[i].value * xi[i]) + xi[i]) / tmp , ((mu - h[i].value * xi[i]) - xi[i]) / tmp);
+    maxdiff = std :: max(maxdiff, std :: abs(new_u - u[i]));
+    u[i]    = mag :: damp(new_u, u[i], params.damping);
     m[i]    = h[i] % u[i];
   }
 
@@ -165,25 +154,19 @@ template<class Mag> double theta_node_update_accurate(MagVec<Mag> m,
 }
 
 
-template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
-                                                   Mag &M,
-                                                   const double *xi,
-                                                   MagVec<Mag> u,
-                                                   Mag &U,
-                                                   const Params<Mag> &params,
-                                                   const long int &nxi,
-                                                   const long int &nm)
+template < class Mag >
+double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, MagVec < Mag > u, Mag & U, const Params < Mag > & params, const long int & nxi, const long int & nm)
 {
-  #ifdef DEBUG
-    assert(nxi == nm);
-  #endif
-    static double maxdiff,
-                  pm,
-                  pp;
-    static double **leftC  = nullptr,
-                  **rightC = nullptr;
-    static Mag new_U;
-    static std::unique_ptr<Mag[]> h;
+#ifdef DEBUG
+  assert (nxi == nm);
+#endif
+  static double maxdiff,
+                pm,
+                pp;
+  static double **leftC  = nullptr,
+                **rightC = nullptr;
+  static Mag new_U;
+  static std :: unique_ptr < Mag[] > h;
 #ifdef _OPENMP
 #pragma omp barrier
 #endif
@@ -205,16 +188,16 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
     long int z;
     double pz, p;
 
-    z = static_cast<long int>( (nm + 1L) * .5);
+    z = static_cast < long int >( (nm + 1L) * .5);
     Mag old_m_on(0.),
         new_u(0.),
         mp(0.), mm(0.);
     old_m_on = mag::bar(M, new_U);
 
     leftC[0] = new double[nm];
-    std::generate_n(leftC[0], nm, [](){return 1.;});
+    std :: generate_n(leftC[0], nm, [](){return 1.;});
     rightC[nm] = new double[nm];
-    std::generate_n(rightC[nm], nm, [](){return 1.;});
+    std :: generate_n(rightC[nm], nm, [](){return 1.;});
 
 #ifdef _OPENMP
 #pragma omp barrier
@@ -222,7 +205,7 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #endif
     for (long int i = 0L; i < nm; ++i)
     {
-      h[i]      = mag::bar(m[i], u[i]);
+      h[i]      = mag :: bar(m[i], u[i]);
       leftC[i + 1L]  = new double[i + 2L];
       rightC[i] = new double[nm - i + 1L];
     }
@@ -250,7 +233,7 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
     }
 
 #ifdef DEBUG
-  assert(nm % 2L);
+  assert (nm % 2L);
 #endif
 
 #ifdef _OPENMP
@@ -259,20 +242,20 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 #pragma omp for reduction (+ : pp)
     for (long int i = z ; i < nm + 1L; ++i) pp += rightC[0][i];
 #else
-    pm = std::accumulate( rightC[0], rightC[0] + z, 0. );
-    pp = std::accumulate( rightC[0] + z, rightC[0] + nm + 1L, 0. );
+    pm = std :: accumulate( rightC[0], rightC[0] + z, 0. );
+    pp = std :: accumulate( rightC[0] + z, rightC[0] + nm + 1L, 0. );
 #endif
 
-    new_u = mag::couple<Mag>(pp, pm);
+    new_u = mag :: couple < Mag >(pp, pm);
 
 #ifdef DEBUG
-  assert(!mag::isinf(new_u.mag));
+  assert ( !mag :: isinf(new_u.mag) );
 #endif
 
 #ifdef _OPENMP
 #pragma omp single
 #endif
-    new_U = mag::damp(new_u, new_U, params.damping);
+    new_U = mag :: damp(new_u, new_U, params.damping);
     M     = old_m_on % new_U;
 #ifdef _OPENMP
 #pragma omp single
@@ -280,7 +263,7 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
     U     = new_U;
 
   #ifdef DEBUG
-    assert(!mag::isinf(M.mag));
+    assert ( !mag :: isinf(M.mag) );
   #endif
 
   double pp_,
@@ -300,22 +283,22 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
       for (long int j = 0L; j < nm; ++j)
       {
         p = 0.;
-        for (long int k = static_cast<long int>(std::max(0L, j + i - nm + 1L));
-                      k < static_cast<long int>(std::min(j, i) + 1L);
+        for (long int k = static_cast < long int >(std :: max(0L, j + i - nm + 1L));
+                      k < static_cast < long int >(std :: min(j, i) + 1L);
                       ++k)
           p += leftC[i][k] * rightC[i + 1L][j - k];
         if (j < z - 1L)       pm_ += p;
         else if (j == z - 1L) pz = p;
         else                  pp_ += p;
       }
-      mp      = mag::convert<Mag>(mag::clamp(pp_ + xi[i] * pz - pm_, -1., 1.));
-      mm      = mag::convert<Mag>(mag::clamp(pp_ - xi[i] * pz - pm_, -1., 1.));
-      new_u   = mag::exactmix(old_m_on, mp, mm);
-      maxdiff = static_cast<double>(std::max(maxdiff, std::abs(new_u - u[i])));
-      u[i]    = mag::damp(new_u, u[i], params.damping);
+      mp      = mag :: convert < Mag >(mag :: clamp(pp_ + xi[i] * pz - pm_, -1., 1.));
+      mm      = mag :: convert < Mag >(mag :: clamp(pp_ - xi[i] * pz - pm_, -1., 1.));
+      new_u   = mag :: exactmix(old_m_on, mp, mm);
+      maxdiff = static_cast < double >(std :: max(maxdiff, std :: abs(new_u - u[i])));
+      u[i]    = mag :: damp(new_u, u[i], params.damping);
       m[i]    = h[i] % u[i];
 #ifdef DEBUG
-    assert(!mag::isinf(u[i].mag));
+    assert ( !mag :: isinf(u[i].mag) );
 #endif
     }
 
@@ -323,7 +306,7 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
   #pragma omp single
     {
   #endif
-      for (int i = 0L; i < nm; ++i)
+      for (long int i = 0L; i < nm; ++i)
       {
         delete[] leftC[i];
         delete[] rightC[i];
@@ -338,95 +321,86 @@ template<class Mag> double theta_node_update_exact(MagVec<Mag> m,
 
 
 
-template<class Mag> double free_energy_theta(const MagVec<Mag> m,
-                                             const Mag &M,
-                                             const double *xi,
-                                             const MagVec<Mag> u,
-                                             const Mag &U,
-                                             const long int &nxi,
-                                             const long int &nm)
+template < class Mag >
+double free_energy_theta(const MagVec < Mag > m, const Mag & M, const double * xi, const MagVec < Mag > u, const Mag & U, const long int & nxi, const long int & nm)
 {
 #ifdef DEBUG
-  assert(nm == nxi);
+  assert (nm == nxi);
 #endif
-  std::unique_ptr<Mag[]> h(new Mag[nm]);
-  const auto old_m_on = mag::bar(M, U);
+  std :: unique_ptr < Mag[] > h(new Mag[nm]);
+  const auto old_m_on = mag :: bar(M, U);
 
 // #ifdef _OPENMP
 // #pragma omp barrier
 // #pragma omp for reduction (+ : mu, sigma)
 //   for (long int i = 0L; i < nxi; ++i)
 //   {
-//     h[i]   = mag::bar(m[i], u[i]);
+//     h[i]   = mag :: bar(m[i], u[i]);
 //     mu    += h[i] * xi[i];
 //     sigma += (1. - h[i].value * h[i].value) * (xi[i] * xi[i]);
 //   }
 // #else
 
-  std::transform(m, m + nm, u,
-                 h.get(), [](const Mag &mi, const Mag &ui)
-                 {
-                   return mag::bar(mi, ui);
-                 });
-  const double mu    = std::inner_product(h.get(), h.get() + nm,  xi, 0., std::plus<double>(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
-  const double sigma = std::inner_product(h.get(), h.get() + nxi, xi, 0., std::plus<double>(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
+  std :: transform(m, m + nm, u,
+                   h.get(), [](const Mag &mi, const Mag &ui)
+                   {
+                     return mag :: bar(mi, ui);
+                   });
+  const double mu    = std :: inner_product(h.get(), h.get() + nm,  xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
+  const double sigma = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
 // #endif
 
-  const auto b = mag::merf<Mag>( mu / std::sqrt( 2. * sigma ) );
-  double f     = -mag::log1pxy(old_m_on, b);
+  const auto b = mag :: merf < Mag >( mu / std :: sqrt( 2. * sigma ) );
+  double f     = -mag :: log1pxy(old_m_on, b);
 
 #ifdef DEBUG
-  assert( !mag::isinf(f) );
+  assert( !mag :: isinf(f) );
 #endif
 
 // #ifdef _OPENMP
 // #pragma omp for reduction (+ : f)
-//   for (long int i = 0L; i < nm; ++i) f += mag::log1pxy(h[i], u[i]);
+//   for (long int i = 0L; i < nm; ++i) f += mag :: log1pxy(h[i], u[i]);
 // #else
-  f = std::inner_product(h.get(), h.get() + nm, u, f, std::plus<double>(), [](auto &&hi, const Mag &ui){return mag::log1pxy(hi, ui);});
+  f = std :: inner_product(h.get(), h.get() + nm, u, f, std :: plus < double >(), [](auto &&hi, const Mag &ui){return mag :: log1pxy(hi, ui);});
 // #endif
 
   return f;
 }
 
-template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
-                                                   const Mag &M,
-                                                   const double *xi,
-                                                   MagVec<Mag> u,
-                                                   const Mag &U,
-                                                   const long int &nm)
+template < class Mag >
+double free_energy_theta_exact(MagVec < Mag > m, const Mag & M, const double * xi, MagVec < Mag > u, const Mag & U, const long int & nm)
 {
   long int z;
   double pm, pp, f;
   pm = 0.;
   pp = 0.;
   f  = 0.;
-  double **leftC = nullptr;
+  double ** leftC = nullptr;
   leftC = new double*[nm];
 
   Mag old_m_on(0.),
       b(0.);
 
-  std::unique_ptr<Mag[]> h(new Mag[nm]);
-  old_m_on = mag::bar(M, U);
+  std :: unique_ptr < Mag[] > h(new Mag[nm]);
+  old_m_on = mag :: bar(M, U);
 
-  z = static_cast<long int>( (nm + 1L) * .5);
+  z = static_cast < long int >( (nm + 1L) * .5);
 
 // #ifdef _OPENMP
 // #pragma omp barrier
 // #pragma omp for
 //   for (long int i = 0L; i < nm; ++i)
 //   {
-//     h[i] = mag::bar(m[i], u[i]);
+//     h[i] = mag :: bar(m[i], u[i]);
 //     leftC[i] = new double[i + 2L];
-//     // leftC[i] = std::make_unique< double[] > (i + 2L);
+//     // leftC[i] = std :: make_unique < double[] > (i + 2L);
 //   }
 // #else
-  std::transform(m, m + nm, u,
-                 h.get(), [](const Mag &mi, const Mag &ui)
-                 {
-                  return mag::bar(mi, ui);
-                 });
+  std :: transform(m, m + nm, u,
+                   h.get(), [](const Mag &mi, const Mag &ui)
+                   {
+                    return mag :: bar(mi, ui);
+                   });
   for (long int i = 0L; i < nm; ++i)
     leftC[i] = new double[i + 2L];
 // #endif
@@ -442,7 +416,7 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
     leftC[i][i + 1L] = leftC[i - 1L][i] * (1. + (h[i].value * xi[i])) * .5;
   }
 #ifdef DEBUG
-  assert(nm % 2L);
+  assert (nm % 2L);
 #endif
 
 // #ifdef _OPENMP
@@ -451,21 +425,21 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
 // #pragma omp for reduction (+ : pp)
 //   for (long int i = z; i < nm + 1; ++i) pp += leftC[nm - 1L][i];
 // #else
-  pm = std::accumulate(leftC[nm - 1L],     leftC[nm - 1L] + z,      0.);
-  pp = std::accumulate(leftC[nm - 1L] + z, leftC[nm - 1L] + nm + 1, 0.);
+  pm = std :: accumulate(leftC[nm - 1L],     leftC[nm - 1L] + z,      0.);
+  pp = std :: accumulate(leftC[nm - 1L] + z, leftC[nm - 1L] + nm + 1, 0.);
 // #endif
-  b  = mag::couple<Mag>(pp, pm);
-  f -= mag::log1pxy(old_m_on, b);
+  b  = mag :: couple < Mag >(pp, pm);
+  f -= mag :: log1pxy(old_m_on, b);
 
 #ifdef DEBUG
-  assert(!mag::isinf(f));
+  assert ( !mag :: isinf(f) );
 #endif
 
 // #ifdef _OPENMP
 // #pragma omp for reduction (+ : f)
-//   for (long int i = 0; i < nm; ++i) f += mag::log1pxy(h[i], u[i]);
+//   for (long int i = 0; i < nm; ++i) f += mag :: log1pxy(h[i], u[i]);
 // #else
-  f = std::inner_product(h.get(), h.get() + nm, u, f, std::plus<double>(), [](auto &&h, const Mag &u){return mag::log1pxy(h, u);});
+  f = std :: inner_product(h.get(), h.get() + nm, u, f, std :: plus < double >(), [](auto &&h, const Mag &u){return mag :: log1pxy(h, u);});
 // #endif
 
 // #ifdef _OPENMP
@@ -481,23 +455,24 @@ template<class Mag> double free_energy_theta_exact(MagVec<Mag> m,
   return f;
 }
 
-template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Mag> &params) //old entro_node_update
+template < class Mag >
+double m_star_update(Mag & m_j_star, Mag & m_star_j, Params < Mag > & params) //old entro_node_update
 {
 #ifdef _OPENMP
 #pragma omp barrier
 #endif
   double diff;
-  Mag old_m_j_star = mag::bar(m_j_star, m_star_j),
+  Mag old_m_j_star = mag :: bar(m_j_star, m_star_j),
       new_m_star_j(0.),
       new_m_j_star(0.);
-  if (mag::isinf(params.r))  // to check
-      new_m_star_j = (old_m_j_star != 0.)                                ?
-                   (mag::copysign(params.tan_gamma, old_m_j_star.value)) :
+  if (mag :: isinf(params.r))  // to check
+      new_m_star_j = (old_m_j_star != 0.)                                  ?
+                   (mag :: copysign(params.tan_gamma, old_m_j_star.value)) :
                    Mag(0.) ;
-  else    new_m_star_j = mag::arrow( (old_m_j_star ^ params.tan_gamma), params.r ) ^ params.tan_gamma;
+  else new_m_star_j = mag :: arrow( (old_m_j_star ^ params.tan_gamma), params.r ) ^ params.tan_gamma;
 
-  diff         = std::abs(new_m_star_j - m_star_j);
-  new_m_star_j = mag::damp(new_m_star_j, m_star_j, params.damping);
+  diff         = std :: abs(new_m_star_j - m_star_j);
+  new_m_star_j = mag :: damp(new_m_star_j, m_star_j, params.damping);
   new_m_j_star = old_m_j_star % new_m_star_j;
 #ifdef _OPENMP
 #pragma omp barrier
@@ -509,14 +484,15 @@ template<class Mag> double m_star_update(Mag &m_j_star, Mag &m_star_j, Params<Ma
 }
 
 
-template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns &patterns, Params<Mag> &params)
+template < class Mag >
+double iterate(Cavity_Message < Mag > & messages, const Patterns & patterns, Params < Mag > & params)
 {
   const long int size = messages.M + messages.N * messages.K;
   long int i, j, k;
   double maxdiff = 0.;
   Mag z(0.);
-  static std::unique_ptr<long int[]> randperm;
-  static std::unique_ptr<double[]> ones;
+  static std :: unique_ptr < long int[] > randperm;
+  static std :: unique_ptr < double[] > ones;
 #ifdef _OPENMP
 #pragma omp single
   {
@@ -532,28 +508,28 @@ template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns
 #pragma omp for
   for (long int i = 0L; i < messages.K; ++i) ones[i] = 1L;
 #else
-  std::fill_n(ones.get(), messages.K, 1L);
+  std :: fill_n(ones.get(), messages.K, 1L);
 #endif
 
 #ifdef _OPENMP
 #pragma omp for
   for (long int i = 0L; i < size; ++i) randperm[i] = i;
 #else
-  std::iota(randperm.get(), randperm.get() + size, 0L);
+  std :: iota(randperm.get(), randperm.get() + size, 0L);
 #endif
 
 // #ifdef _OPENMP
 // #pragma omp single
 //   {
 // #endif
-//     std::mt19937 eng;
-//     std::shuffle(randperm.get(), randperm.get() + size, eng);
+//     std :: mt19937 eng;
+//     std :: shuffle(randperm.get(), randperm.get() + size, eng);
 // #ifdef _OPENMP
 //   }
 // #endif
 
-  auto tnu1 = accuracy<Mag>[params.accuracy1];
-  auto tnu2 = accuracy<Mag>[params.accuracy2];
+  auto tnu1 = accuracy < Mag >[params.accuracy1];
+  auto tnu2 = accuracy < Mag >[params.accuracy2];
 
   for (long int a = 0L; a < size; ++a)
   {
@@ -564,15 +540,15 @@ template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns
     {
       z = Mag(0.);
       for (k = 0L; k < messages.K; ++k)
-        maxdiff = std::max(maxdiff, tnu1(messages.m_j_star[k],       messages.m_in[randperm[a]][k], patterns.input[randperm[a]], messages.weights[randperm[a]][k], messages.m_no[randperm[a]][k], params, patterns.Ncol, messages.N));
-      maxdiff   = std::max(maxdiff, tnu2(messages.m_in[randperm[a]], messages.m_on[randperm[a]],    ones.get(),                  messages.m_ni[randperm[a]],       z,                             params, messages.K,    messages.K));
+        maxdiff = std :: max(maxdiff, tnu1(messages.m_j_star[k],       messages.m_in[randperm[a]][k], patterns.input[randperm[a]], messages.weights[randperm[a]][k], messages.m_no[randperm[a]][k], params, patterns.Ncol, messages.N));
+      maxdiff   = std :: max(maxdiff, tnu2(messages.m_in[randperm[a]], messages.m_on[randperm[a]],    ones.get(),                  messages.m_ni[randperm[a]],       z,                             params, messages.K,    messages.K));
     }
     else
       if (!(params.r == 0. || params.tan_gamma.value == 0.) )
       {
-        j = static_cast<long int>(randperm[a] - messages.M);
-        k = static_cast<long int>(static_cast<double>(j) / messages.N);
-        i = static_cast<long int>(j % messages.N);
+        j = static_cast < long int >(randperm[a] - messages.M);
+        k = static_cast < long int >(static_cast < double >(j) / messages.N);
+        i = static_cast < long int >(j % messages.N);
         maxdiff = std::max(maxdiff, m_star_update(messages.m_j_star[k][i], messages.m_star_j[k][i], params));
       }
   }
@@ -581,7 +557,8 @@ template<class Mag> double iterate(Cavity_Message<Mag> &messages, const Patterns
 
 
 
-template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns &patterns, Params<Mag> &params)
+template < class Mag >
+bool converge( Cavity_Message < Mag > & messages, const Patterns & patterns, Params < Mag > & params)
 {
   bool ok = false;
 
@@ -600,7 +577,7 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 #ifdef _OPENMP
 #pragma omp single
 #endif
-      std::cout << "\r[it=" << it << " Delta=" << diff << " lambda=" << params.damping << "]\r";
+      std :: cout << "\r\x1B[K[it=" << it << " Delta=" << diff << " lambda=" << params.damping << "]";
 #endif // verbose
 
     if (diff < params.epsil)
@@ -611,7 +588,7 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 #ifdef _OPENMP
 #pragma omp single
 #endif
-      std::cout << std::endl << "ok" << std::endl;
+      std :: cout << std :: endl << "ok" << std :: endl;
 #endif // verbose
       break;
     }
@@ -621,17 +598,17 @@ template<class Mag> bool converge( Cavity_Message<Mag> &messages, const Patterns
 #ifdef _OPENMP
 #pragma omp single
 #endif
-  std::cout << ( !ok ? "\nfailed\n" : "")
-            << "elapsed time = "
-            << duration(start_time)
-            << " milliseconds"
-            << std::endl;
+  std :: cout << ( !ok ? "\nfailed\n" : "")
+              << "elapsed time = "
+              << duration(start_time)
+              << " milliseconds"
+              << std :: endl;
 #endif
   return ok;
 }
 
 
-long int* nonbayes_test(long int** const sign_m_j_star, const Patterns &patterns, const long int &K)
+long int * nonbayes_test (long int ** const sign_m_j_star, const Patterns & patterns, const long int & K)
 {
   long int* predicted_labels = new long int[patterns.Nrow];
   double s, s2, trsf0;
@@ -642,22 +619,23 @@ long int* nonbayes_test(long int** const sign_m_j_star, const Patterns &patterns
 #endif
   for (long int i = 0L; i < patterns.Nrow; ++i)
   {
-    s = std::accumulate(sign_m_j_star, sign_m_j_star + K,
-                        0., [&](const double &val, const auto wk)
-                        {
-                          trsf0 = static_cast<double>(std::inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std::plus<double>(), [](const auto &wki, const auto &pi) { return wki * pi; }));
-                          s2    = static_cast<double>(std::inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std::plus<double>(), [](const auto &wki, const auto &pi) { return (1L - wki * wki) * (pi * pi); }));
-                          return val + std::erf( trsf0 / std::sqrt(2. * s2) );
-                        });
-    predicted_labels[i] = static_cast<long int>(sign(s));
+    s = std :: accumulate(sign_m_j_star, sign_m_j_star + K,
+                          0., [&](const double &val, const auto wk)
+                          {
+                            trsf0 = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const auto &wki, const auto &pi) { return wki * pi; }));
+                            s2    = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const auto &wki, const auto &pi) { return (1L - wki * wki) * (pi * pi); }));
+                            return val + std :: erf( trsf0 / std :: sqrt(2. * s2) );
+                          });
+    predicted_labels[i] = static_cast < long int >(sign(s));
   }
 
   return predicted_labels;
 }
 
-template<class Mag> long int error_test(Cavity_Message<Mag> &messages, const Patterns &patterns)
+template < class Mag >
+long int error_test(Cavity_Message < Mag > & messages, const Patterns & patterns)
 {
-  long int **bin_weights = messages.get_weights();
+  long int ** bin_weights = messages.get_weights();
   auto lbls = nonbayes_test(bin_weights, patterns, messages.K);
   static long int t;
   t = 0.;
@@ -665,9 +643,9 @@ template<class Mag> long int error_test(Cavity_Message<Mag> &messages, const Pat
 #pragma omp barrier
 #pragma omp for reduction (+ : t)
   for (long int i = 0L; i < patterns.Nrow; ++i)
-    t += static_cast<long int>( lbls[i] != patterns.output[i] );
+    t += static_cast < long int >( lbls[i] != patterns.output[i] );
 #else
-  t = std::inner_product(lbls, lbls + patterns.Nrow, patterns.output, 0L, std::plus<long int>(), [](const long int &lbli, const long int &oi){ return static_cast<long int>( lbli != oi );});
+  t = std :: inner_product(lbls, lbls + patterns.Nrow, patterns.output, 0L, std :: plus < long int >(), [](const long int &lbli, const long int &oi){ return static_cast < long int >( lbli != oi );});
 #endif
 
 #ifdef _OPENMP
@@ -678,25 +656,26 @@ template<class Mag> long int error_test(Cavity_Message<Mag> &messages, const Pat
   return t;
 }
 
-template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, const Patterns &patterns, const Params<Mag> &params)
+template < class Mag >
+double free_energy(const Cavity_Message < Mag > & messages, const Patterns & patterns, const Params < Mag > & params)
 {
   static double f;
   f = 0.;
   Mag z(0.);
 
-  static std::unique_ptr<double[]> ones;
+  static std :: unique_ptr < double[] > ones;
 #ifdef _OPENMP
 #pragma omp single
 #endif
   ones.reset(new double[messages.K]);
-  std::unique_ptr<Mag[]> v(new Mag[messages.M]);
+  std :: unique_ptr < Mag[] > v(new Mag[messages.M]);
 
 #ifdef _OPENMP
 #pragma omp barrier
 #pragma omp for
   for (long int i = 0L; i < messages.K; ++i) ones[i] = 1.;
 #else
-  std::fill_n(ones.get(), messages.K, 1.);
+  std :: fill_n(ones.get(), messages.K, 1.);
 #endif
 
 #ifdef _OPENMP
@@ -719,21 +698,22 @@ template<class Mag> double free_energy(const Cavity_Message<Mag> &messages, cons
     for (long int j = 0L; j < messages.N; ++j)
     {
       for (long int k = 0L; k < messages.M; ++k) v[k] = messages.weights[k][i][j];
-      f -= mag::logZ(messages.m_star_j[i][j], v.get(), messages.M);
+      f -= mag :: logZ(messages.m_star_j[i][j], v.get(), messages.M);
       f -= log2_over_2;
-      f += mag::log1pxy(params.tan_gamma, -params.tan_gamma) * .5;
-      auto old_m_j_star = mag::bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
-      f += mag::log1pxy(old_m_j_star, messages.m_star_j[i][j]);
+      f += mag :: log1pxy(params.tan_gamma, -params.tan_gamma) * .5;
+      auto old_m_j_star = mag :: bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
+      f += mag :: log1pxy(old_m_j_star, messages.m_star_j[i][j]);
 
-      f += mag::mcrossentropy( mag::arrow(old_m_j_star ^ params.tan_gamma, params.r + 1.),
-                                          old_m_j_star ^ params.tan_gamma);
+      f += mag :: mcrossentropy( mag :: arrow(old_m_j_star ^ params.tan_gamma, params.r + 1.),
+                                              old_m_j_star ^ params.tan_gamma);
     }
   return f / (messages.N * messages.K);
 }
 
 #ifdef STATS
 
-template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const Params<Mag> &params)
+template < class Mag >
+double compute_S (const Cavity_Message < Mag > & messages, const Params < Mag > & params)
 {
   static double S;
   S = 0.;
@@ -745,14 +725,15 @@ template<class Mag> double compute_S(const Cavity_Message<Mag> &messages, const 
   for (long int i = 0L; i < messages.K; ++i)
     for (long int j = 0L; j < messages.N; ++j)
     {
-      auto old_m_j_star = mag::bar(messages.m_star_j[i][j], messages.m_j_star[i][j]);
-      S += ( ( old_m_j_star ^ mag::arrow( (old_m_j_star ^ params.tan_gamma), params.r ) ) % params.tan_gamma ).value;
+      auto old_m_j_star = mag :: bar(messages.m_star_j[i][j], messages.m_j_star[i][j]);
+      S += ( ( old_m_j_star ^ mag :: arrow( (old_m_j_star ^ params.tan_gamma), params.r ) ) % params.tan_gamma ).value;
     }
 
   return S / (messages.N * messages.K);
 }
 
-template<class Mag> double compute_q_bar(const Cavity_Message<Mag> &messages, const Params<Mag> &params)
+template < class Mag >
+double compute_q_bar (const Cavity_Message < Mag > & messages, const Params < Mag > & params)
 {
   static double q_bar;
   q_bar = 0.;
@@ -766,14 +747,15 @@ template<class Mag> double compute_q_bar(const Cavity_Message<Mag> &messages, co
   for (long int i = 0L; i < messages.K; ++i)
     for (long int j = 0L; j < messages.N; ++j)
     {
-      auto old_m_j_star = mag::bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
-      auto mx           = mag::arrow( old_m_j_star ^ params.tan_gamma, params.r + 1.);
+      auto old_m_j_star = mag :: bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
+      auto mx           = mag :: arrow( old_m_j_star ^ params.tan_gamma, params.r + 1.);
       q_bar            += (mx ^ mx).value;
     }
   return q_bar / (messages.N * messages.K);
 }
 
-template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const long int &nm_j_star, const long int &nm_j_star_col)
+template < class Mag >
+double compute_q (const Cavity_Message < Mag > & messages, const long int & nm_j_star, const long int & nm_j_star_col)
 {
   static double q;
   q = 0.;
@@ -789,7 +771,8 @@ template<class Mag> double compute_q(const Cavity_Message<Mag> &messages, const 
   return q / (messages.N * messages.K);
 }
 
-template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, double *overlaps)
+template < class Mag >
+void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps)
 {
   static double* qs;
   qs = new double[messages.K];
@@ -799,7 +782,7 @@ template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, doub
 #pragma omp for
   for (long int i = 0L; i < messages.K; ++i) qs[i] = 0.;
 #else
-  std::fill_n(qs, messages.K, 0.);
+  std :: fill_n(qs, messages.K, 0.);
 #endif
 
 #ifdef _OPENMP
@@ -807,14 +790,14 @@ template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, doub
 #endif
   for (long int it = 0L; it < messages.K * messages.N; ++it)
   {
-    std::ldiv_t dv = std::div(it, messages.N);
+    std::ldiv_t dv = std :: div(it, messages.N);
     qs[dv.quot] += messages.m_j_star[dv.quot][dv.rem].value * messages.m_j_star[dv.quot][dv.rem].value;
   }
 
 #ifdef _OPENMP
 #pragma omp for
 #endif
-  for (long int i = 0L; i < messages.K; ++i) qs[i] = std::sqrt(qs[i]);
+  for (long int i = 0L; i < messages.K; ++i) qs[i] = std :: sqrt(qs[i]);
 
 #ifdef _OPENMP
 #pragma omp for
@@ -824,16 +807,16 @@ template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, doub
 #ifdef _OPENMP
 #pragma omp for
 #endif
-  for (int k1 = 0; k1 < messages.K; ++k1)
-    for (int k2 = k1 + 1; k2 < messages.K; ++k2)
+  for (long int k1 = 0L; k1 < messages.K; ++k1)
+    for (long int k2 = k1 + 1L; k2 < messages.K; ++k2)
     {
-      const double s = std::inner_product(messages.m_j_star[k1], messages.m_j_star[k1] + messages.N,
-                                          messages.m_j_star[k2],
-                                          0., std::plus<double>(),
-                                          [](const Mag &a, const Mag &b)
-                                          {
-                                           return a.value * b.value;
-                                          }) / (qs[k1] * qs[k2]);
+      const double s = std :: inner_product(messages.m_j_star[k1], messages.m_j_star[k1] + messages.N,
+                                            messages.m_j_star[k2],
+                                            0., std :: plus < double >(),
+                                            [](const Mag &a, const Mag &b)
+                                            {
+                                             return a.value * b.value;
+                                            }) / (qs[k1] * qs[k2]);
       overlaps[k1*messages.K + k2] = s;
       overlaps[k2*messages.K + k1] = s;
    }
@@ -846,12 +829,13 @@ template<class Mag> void mags_symmetry(const Cavity_Message<Mag> &messages, doub
 
 #endif // STATS
 
-template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message, const long int *output, const double &beta)
+template < class Mag >
+void set_outfields(const Cavity_Message < Mag > & message, const long int * output, const double & beta)
 {
   static double t;
-  t = std::tanh(beta * .5);
+  t = std :: tanh(beta * .5);
 
-  if constexpr      ( std::is_same_v<Mag, MagP64> )
+  if constexpr ( std :: is_same_v < Mag, MagP64 > )
   {
 #ifdef _OPENMP
 #pragma omp for
@@ -863,27 +847,13 @@ template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message
 #ifdef _OPENMP
 #pragma omp for
 #endif
-    for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagT64(std::atanh(output[i] * t));
+    for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagT64(std :: atanh(output[i] * t));
   }
 
 }
 
-template<class Mag> long int ** focusingBP(const long int &K,
-                                           const Patterns &patterns,
-                                           const long int &max_iters,
-                                           const long int &max_steps,
-                                           const long int &seed,
-                                           const double &damping,
-                                           const std::string &accuracy1,
-                                           const std::string &accuracy2,
-                                           const double &randfact,
-                                           const FocusingProtocol &fprotocol,
-                                           const double &epsil,
-                                           std::string outfile,
-                                           std::string outmessfiletmpl,
-                                           std::string initmess,
-                                           const bool &bin_mess
-                                           )
+template < class Mag >
+long int ** focusingBP(const long int &K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess )
 {
   __unused bool ok;
   long int it = 1;
@@ -891,13 +861,13 @@ template<class Mag> long int ** focusingBP(const long int &K,
                   N  = patterns.Ncol;
   long int        errs;
 #ifdef STATS
-  double   S, q, betaF, Sint, q_bar;
-  std::unique_ptr<double[]> mags(new double[K * K]);
+  double S, q, betaF, Sint, q_bar;
+  std :: unique_ptr < double[] > mags(new double[K * K]);
 #endif
-  std::ofstream os;
+  std :: ofstream os;
 
-  Cavity_Message<Mag> messages;
-  Params<Mag> params(max_iters, damping, epsil, static_cast<double>(NAN), 0., 0., accuracy1, accuracy2);
+  Cavity_Message < Mag > messages;
+  Params < Mag > params(max_iters, damping, epsil, static_cast<double>(NAN), 0., 0., accuracy1, accuracy2);
   long int **weights;
 #ifdef DEBUG
   if (N <= 0L)                                                                      error_Npositive(N);
@@ -926,12 +896,12 @@ template<class Mag> long int ** focusingBP(const long int &K,
                       Cavity_Message<Mag>(M, N, K, randfact, seed) :
                       Cavity_Message<Mag>(initmess, bin_mess)      ;
 
-    outfile         = outfile.empty()                                                                                                                   ?
-                      "results_BPCR_N" + std::to_string(N) + "_K" + std::to_string(K) + "_M" + std::to_string(M) + "_s" + std::to_string(seed) + ".txt" :
+    outfile         = outfile.empty()                                                                                                                           ?
+                      "results_BPCR_N" + std :: to_string(N) + "_K" + std :: to_string(K) + "_M" + std :: to_string(M) + "_s" + std :: to_string(seed) + ".txt" :
                       outfile;
 
-    outmessfiletmpl = outmessfiletmpl.empty()                                                                                                                  ?
-                      "messages_BPCR_N" + std::to_string(N) + "_K" + std::to_string(K) + "_M" + std::to_string(M) + "_gamma_s" + std::to_string(seed) + ".txt" :
+    outmessfiletmpl = outmessfiletmpl.empty()                                                                                                                          ?
+                      "messages_BPCR_N" + std :: to_string(N) + "_K" + std :: to_string(K) + "_M" + std :: to_string(M) + "_gamma_s" + std :: to_string(seed) + ".txt" :
                       outmessfiletmpl;
 #ifdef _OPENMP
   } // parallel section
@@ -942,13 +912,13 @@ template<class Mag> long int ** focusingBP(const long int &K,
   if (!outfile.empty())
   {
 #ifdef VERBOSE
-    std::cout << "writing outfile '" << outfile << "'" << std::endl;
+    std :: cout << "writing outfile '" << outfile << "'" << std :: endl;
 #endif // verbose
     os.open(outfile);
 #ifdef STATS
-    os << "pol y beta S q q_bar betaF S_int E" << std::endl;
+    os << "pol y beta S q q_bar betaF S_int E" << std :: endl;
 #else
-    os << "it pol y beta ok E" << std::endl;
+    os << "it pol y beta ok E" << std :: endl;
 #endif
     os.close();
   }
@@ -960,7 +930,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #ifdef _OPENMP
 #pragma omp single
 #endif
-    std::cout << "initial errors = " << errs << std::endl;
+    std :: cout << "initial errors = " << errs << std :: endl;
 #endif
   }
 
@@ -970,7 +940,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #ifdef _OPENMP
 #pragma omp single
 #endif
-    std::cout << "mags overlaps =" << std::endl;
+    std :: cout << "mags overlaps =" << std :: endl;
     mags_symmetry(messages, mags.get());
 #ifdef _OPENMP
 #pragma omp single
@@ -979,10 +949,10 @@ template<class Mag> long int ** focusingBP(const long int &K,
       for (long int i = 0L; i < K; ++i)
       {
         for(long int j = 0L; j < K; ++j)
-          std::cout << std::setprecision(6) << std::fixed << mags[i * K + j] << " ";
-        std::cout << std::endl;
+          std :: cout << std :: setprecision(6) << std :: fixed << mags[i * K + j] << " ";
+        std :: cout << std :: endl;
       }
-      std::cout << std::endl;
+      std :: cout << std :: endl;
 #ifdef _OPENMP
     }
 #endif
@@ -996,22 +966,22 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #endif
 
 #ifdef DEBUG
-    if (!mag::isinf(fprotocol.beta[i])) error_infinite(fprotocol.beta[i]);
+    if (!mag :: isinf(fprotocol.beta[i])) error_infinite(fprotocol.beta[i]);
 #endif
 
 #ifdef _OPENMP
 #pragma omp sections
     {
       #pragma omp section
-      params.tan_gamma = mag::mtanh<Mag>(fprotocol.gamma[i]);
+      params.tan_gamma = mag :: mtanh < Mag >(fprotocol.gamma[i]);
       #pragma omp section
-      params.r         = static_cast<double>(fprotocol.n_rep[i] - 1L);
+      params.r         = static_cast < double >(fprotocol.n_rep[i] - 1L);
       #pragma omp section
       params.beta      = fprotocol.beta[i];
     }
 #else
-    params.tan_gamma = mag::mtanh<Mag>(fprotocol.gamma[i]);
-    params.r         = static_cast<double>(fprotocol.n_rep[i] - 1L);
+    params.tan_gamma = mag :: mtanh < Mag >(fprotocol.gamma[i]);
+    params.r         = static_cast < double >(fprotocol.n_rep[i] - 1L);
     params.beta      = fprotocol.beta[i];
 #endif
 #ifdef _OPENMP
@@ -1029,7 +999,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #ifdef _OPENMP
 #pragma omp single
 #endif
-      std::cout << "mags overlaps =" << std::endl;
+      std :: cout << "mags overlaps =" << std :: endl;
       mags_symmetry(messages, mags.get());
 #ifdef _OPENMP
 #pragma omp single
@@ -1038,10 +1008,10 @@ template<class Mag> long int ** focusingBP(const long int &K,
         for (long int i = 0L; i < K; ++i)
         {
           for(long int j = 0L; j < K; ++j)
-            std::cout << std::setprecision(6) << std::fixed << mags[i * K + j] << " ";
-          std::cout << std::endl;
+            std :: cout << std :: setprecision(6) << std :: fixed << mags[i * K + j] << " ";
+          std :: cout << std :: endl;
         }
-        std::cout << std::endl;
+        std :: cout << std :: endl;
 #ifdef _OPENMP
       }
 #endif
@@ -1061,18 +1031,18 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #ifdef _OPENMP
 #pragma omp single
 #endif
-    std::cout <<  "it="    << it
-              << " pol="   << params.tan_gamma
-              << " y="     << fprotocol.n_rep[i]
-              << " beta="  << fprotocol.beta[i]
-              << " (ok="   << ok
-              << ") S="    << S
-              << " betaF=" << betaF
-              << " S_int=" << Sint
-              << " q="     << q
-              << " q_bar=" << q_bar
-              << " E="     << errs
-              << std::endl;
+    std :: cout <<  "it="    << it
+                << " pol="   << params.tan_gamma
+                << " y="     << fprotocol.n_rep[i]
+                << " beta="  << fprotocol.beta[i]
+                << " (ok="   << ok
+                << ") S="    << S
+                << " betaF=" << betaF
+                << " S_int=" << Sint
+                << " q="     << q
+                << " q_bar=" << q_bar
+                << " E="     << errs
+                << std :: endl;
 #endif
     if (ok && !outfile.empty())
     {
@@ -1080,7 +1050,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #pragma omp single
       {
 #endif
-        os.open(outfile, std::ios_base::app);
+        os.open(outfile, std :: ios_base :: app);
 #ifdef STATS
         os << params.tan_gamma   << " "
            << fprotocol.n_rep[i] << " "
@@ -1091,7 +1061,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
            << betaF              << " "
            << Sint               << " "
            << errs
-           << std::endl;
+           << std :: endl;
 #else
         os << it                << " "
            << params.tan_gamma  << " "
@@ -1099,7 +1069,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
            << fprotocol.beta[i] << " "
            << ok                << " "
            << errs
-           << std::endl;
+           << std :: endl;
 #endif
       os.close();
 #ifdef _OPENMP
@@ -1111,13 +1081,13 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #ifdef _OPENMP
 #pragma omp single
 #endif
-    std::cout <<  "it="   << it
-              << " pol="  << params.tan_gamma
-              << " y="    << fprotocol.n_rep[i]
-              << " beta=" << fprotocol.beta[i]
-              << " (ok="  << ok
-              << ") E="   << errs
-              << std::endl;
+    std :: cout <<  "it="   << it
+                << " pol="  << params.tan_gamma
+                << " y="    << fprotocol.n_rep[i]
+                << " beta=" << fprotocol.beta[i]
+                << " (ok="  << ok
+                << ") E="   << errs
+                << std :: endl;
 #endif
 #endif // STATS
     if (errs == 0.)
@@ -1125,7 +1095,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
 #ifdef _OPENMP
 #pragma omp single
 #endif
-      if(!outmessfiletmpl.empty()) messages.save_messages(outmessfiletmpl, params);
+      if (!outmessfiletmpl.empty()) messages.save_messages(outmessfiletmpl, params);
       break;
     }
 #ifdef _OPENMP
@@ -1141,5 +1111,5 @@ template<class Mag> long int ** focusingBP(const long int &K,
   return weights;
 }
 
-template long int** focusingBP<MagP64>(const long int &K, const Patterns &patterns, const long int &max_iters, const long int &max_steps, const long int &seed, const double &damping, const std::string &accuracy1, const std::string &accuracy2, const double &randfact, const FocusingProtocol &fprotocol, const double &epsil, std::string outfile, std::string outmessfiletmpl, std::string initmess, const bool &bin_mess);
-template long int** focusingBP<MagT64>(const long int &K, const Patterns &patterns, const long int &max_iters, const long int &max_steps, const long int &seed, const double &damping, const std::string &accuracy1, const std::string &accuracy2, const double &randfact, const FocusingProtocol &fprotocol, const double &epsil, std::string outfile, std::string outmessfiletmpl, std::string initmess, const bool &bin_mess);
+template long int** focusingBP < MagP64 >(const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);
+template long int** focusingBP < MagT64 >(const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);

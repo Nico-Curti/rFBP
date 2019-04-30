@@ -13,27 +13,43 @@
 #include <cassert>
 #endif
 
-struct Patterns
+class Patterns
 {
-  long int Nrow,  // number of input vectors (rows of input)
-           Ncol,  // number of cols in input
-           Nout;  // lenght of output labels
-  long int* output; // output vector
-  double **input;
+public:
 
-  Patterns(const std::string &filename, bool bin = false, const std::string &del = "\t");
-  Patterns(const long int &N, const long int &M);
-  Patterns(long double **data, long int *label, const int &Nrow, const int &Ncol);
+  // Members
 
-  Patterns& operator=(const Patterns &p);
-  Patterns(const Patterns &p);
-  Patterns() : Nrow(0L), Ncol(0L), Nout(0L), output(nullptr), input(nullptr){};
+  long int Nrow,     // number of input vectors (rows of input)
+           Ncol,     // number of cols in input
+           Nout;     // lenght of output labels
+  long int * output; // output vector
+  double ** input;   // input matrix
+
+  // Constructors
+
+  Patterns ();
+  Patterns (const std :: string & filename, bool bin = false, const std :: string & del = "\t");
+  Patterns (const long int & N, const long int &M);
+  Patterns (long double ** data, long int * label, const int & Nrow, const int & Ncol);
+
+  // Copy Constructors and Copy operators
+
+  Patterns & operator = (const Patterns & p);
+  Patterns (const Patterns & p);
+
+  // Destructors
+
   ~Patterns();
 
-#ifdef DEBUG
+
 private:
+
+  // Private members
+
+#ifdef DEBUG
   void check_binary();
 #endif
+
 };
 
 #endif // PATTERNS_H

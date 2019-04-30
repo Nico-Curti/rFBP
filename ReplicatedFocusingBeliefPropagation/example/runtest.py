@@ -73,7 +73,7 @@ def test():
   predicted_labels = rfbp.predict(pattern)
   elapsed_time = time.time() - start_time
 
-  print ('{}: Predicted in {} seconds'.format(args.patterns, elapsed_time))
+  print ('{0}: Predicted in {1:.2f} seconds'.format(args.patterns, elapsed_time))
 
   if USE_SCORER:
     scorer = Pyscorer(pattern.labels, predicted_labels)

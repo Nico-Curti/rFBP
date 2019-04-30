@@ -81,10 +81,11 @@ matrix:
         apt:
           update: true
           sources:
+            - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-3.9
           packages:
             - clang-3.9
-            - libstdc++-4.8-dev
+            - libstdc++-7-dev
             - libclang-3.9-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
@@ -98,10 +99,11 @@ matrix:
         apt:
           update: true
           sources:
+            - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-4.0
           packages:
             - clang-4.0
-            - libstdc++-4.8-dev
+            - libstdc++-7-dev
             - libclang-4.0-dev
 
       env:
@@ -116,10 +118,11 @@ matrix:
         apt:
           update: true
           sources:
+            - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-5.0
           packages:
             - clang-5.0
-            - libstdc++-4.8-dev
+            - libstdc++-7-dev
             - libclang-5.0-dev
 
       env:
@@ -134,11 +137,12 @@ matrix:
         apt:
           update: true
           sources:
+            - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-6.0
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
             - clang-6.0
-            - libstdc++6-4.4-dev
+            - libstdc++-7-dev
             - libclang-6.0-dev
 
       env:

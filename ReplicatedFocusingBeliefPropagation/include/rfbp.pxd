@@ -1,12 +1,10 @@
 # distutils: language = c++
 # cython: language_level=2
 
-cimport cython
 from libcpp.string cimport string
-from libcpp.memory cimport unique_ptr
 from pattern cimport Patterns
 from fprotocol cimport FocusingProtocol
-from libcpp cimport bool
+#from libcpp cimport bool
 
 cdef extern from "rfbp.h":
   cdef long int ** focusingBP[Mag](const long int &K,
