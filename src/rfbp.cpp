@@ -851,7 +851,7 @@ template<class Mag> inline void set_outfields(const Cavity_Message<Mag> &message
   static double t;
   t = std::tanh(beta * .5);
 
-  if constexpr      ( std::is_same<Mag, MagP64>::value )
+  if constexpr      ( std::is_same_v<Mag, MagP64> )
   {
 #ifdef _OPENMP
 #pragma omp for
@@ -897,7 +897,7 @@ template<class Mag> long int ** focusingBP(const long int &K,
   std::ofstream os;
 
   Cavity_Message<Mag> messages;
-  Params<Mag> params(max_iters, damping, epsil, static_cast<double>(NAN), 0., 0., accuracy1, accuracy2); // ?????
+  Params<Mag> params(max_iters, damping, epsil, static_cast<double>(NAN), 0., 0., accuracy1, accuracy2);
   long int **weights;
 #ifdef DEBUG
   if (N <= 0L)                                                                      error_Npositive(N);

@@ -193,8 +193,6 @@ namespace mag
               MagP64(0.)         :
               MagP64(clamp( (m1.mag - m2.mag) / (1. - m1.mag * m2.mag), -1., 1.)));
     else{
-      // std::cout << m1.value << " " << m2.value << std::endl;
-      // std::cout << m1.mag << " " << m2.mag << std::endl;
       return ((m1.mag == m2.mag) ?
               MagT64(0.)         :
               MagT64(m1.mag - m2.mag));
@@ -323,7 +321,7 @@ namespace mag
         else if (!inf_ap && inf_am)
         {
           t1 = ( sign(am) == sign(aH) ) ? sign(aH) * ap - a_ap : 2. * H.mInf;
-          t2 = ( sign(am) == sign(aH) ) ? -lr(ap)               : 0.;
+          t2 = ( sign(am) == sign(aH) ) ? -lr(ap)              : 0.;
         }
         else
         {
