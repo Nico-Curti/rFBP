@@ -326,7 +326,7 @@ spline & spline :: operator = (const spline & s)
 void spline :: _assert_increasing(const double * t, const int & nt)
 {
   const auto check = std :: inner_product(t, t + nt - 1,
-                                          t + 1, 0, std : :plus < int >(),
+                                          t + 1, 0, std :: plus < int >(),
                                           [](const auto &i, const auto &j)
                                           {
                                             return i < j ? 1 : 0;
