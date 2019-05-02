@@ -87,6 +87,9 @@ matrix:
             - clang-3.9
             - libstdc++-7-dev
             - libclang-3.9-dev
+            - libc++abi-dev
+            - libc++-dev
+            - llvm-4.0-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -105,6 +108,9 @@ matrix:
             - clang-4.0
             - libstdc++-7-dev
             - libclang-4.0-dev
+            - libc++abi-dev
+            - libc++-dev
+            - llvm-4.0-dev
 
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
@@ -157,15 +163,18 @@ matrix:
         apt:
           update: true
           sources:
-            - llvm-toolchain-trusty-7.0
+            - llvm-toolchain-trusty-7
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
-            - clang-7.0
-            - libstdc++6-4.4-dev
+            - clang-7
+            - libstdc++6-4.6-dev
             - libclang-7-dev
+            - llvm-7-dev
+            - libc++-dev
+            - libc++abi-dev
 
       env:
-        - MATRIX_EVAL="CC=clang-7.0 && CXX=clang++-7.0"
+        - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
 
@@ -192,6 +201,13 @@ matrix:
       osx_image: xcode10.1
       compiler: clang
       name: macOS - native clang (llvm backend)
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-7
+          packages:
+            - libc++-dev
+            - libc++abi-dev
       env:
         - MATRIX_EVAL=""
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -211,7 +227,7 @@ matrix:
             - python3.6
             - python3.6-dev
       env:
-        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
+        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7 && CXX=clang++-7"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
 
@@ -220,9 +236,8 @@ matrix:
     - name: ubuntu 14.04 - gcc@6.0 # not support the full std=c++17
     - name: ubuntu 14.04 - clang@3.9
     - name: ubuntu 14.04 - clang@4.0
-    - name: ubuntu 14.04 - clang@5.0
-    - name: ubuntu 14.04 - clang@6.0
     - name: ubuntu 14.04 - clang@7.0
+    - name: macOS - native clang (llvm backend)
     - name: macOS - clang@7.0
 
 
