@@ -1,6 +1,7 @@
 #include <cmd.h>
 
 void parse_training_fbp(int argc, char *argv[],
+                        int & nth,
                         std :: string & patternsfile,
                         std :: string & output,
                         bool & bin,
@@ -22,6 +23,12 @@ void parse_training_fbp(int argc, char *argv[],
                         bool & binmess)
 {
   ArgumentParser argparse("Training BeliefPropagation 4.0");
+
+#ifdef _OPENMP
+  int nth_def = omp_get_max_threads();
+  nth_def -= nth_def % 2;
+  argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth_def);
+#endif
 
   argparse.add_argument < std :: string >("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true, "");
   argparse.add_argument < std :: string >("oArg",  "o",  "output",      "Output Filename (with extension)",                       false, ""); // TODO: set true!
@@ -58,6 +65,11 @@ void parse_training_fbp(int argc, char *argv[],
 
   std :: vector < std :: string > accuracy;
 
+#ifdef _OPENMP
+  argparse.get < int >(          "tArg",  nth);
+#else
+  nth = 1;
+#endif
   argparse.get < std :: string >("fArg",  patternsfile);
   argparse.get < std :: string >("oArg",  output);
   argparse.get < bool >(         "bArg",  bin);
@@ -120,6 +132,7 @@ void parse_training_fbp(int argc, char *argv[],
 }
 
 void parse_test_args(int argc, char *argv[],
+                     int & nth,
                      std :: string & patternsfile,
                      std :: string & del,
                      bool & bin,
@@ -127,6 +140,12 @@ void parse_test_args(int argc, char *argv[],
                      std :: string & output_file)
 {
   ArgumentParser argparse("Test BeliefPropagation 4.0");
+#ifdef _OPENMP
+  int nth_def = omp_get_max_threads();
+  nth_def -= nth_def % 2;
+  argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth_def);
+#endif
+
   argparse.add_argument < std :: string >("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true,  "");
   argparse.add_argument < bool >(         "bArg",  "b",  "bin",         "File format: "
                                                                         "(0) Textfile(default), "
@@ -144,5 +163,12 @@ void parse_test_args(int argc, char *argv[],
 
   if ( !file_exists(patternsfile) ) error_pattern(patternsfile);
   if ( !file_exists(weight_file)  ) error_message_weights(weight_file);
+
+#ifdef _OPENMP
+  argparse.get < int >(          "tArg",  nth);
+#else
+  nth = 1;
+#endif
+
   return;
 }

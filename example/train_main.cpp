@@ -5,6 +5,7 @@ int main (int argc, char *argv[])
 {
   bool bin,
        binmess;
+  int  nth;
   char mag;
   long int K,
            max_iters,
@@ -24,6 +25,7 @@ int main (int argc, char *argv[])
                 delmess;
 
   parse_training_fbp(argc, argv,
+                     nth,
                      patternsfile,
                      outfile,
                      bin,
@@ -52,7 +54,8 @@ int main (int argc, char *argv[])
   switch (mag)
   {
     case magP:
-        bin_weights = focusingBP < MagP64 >(K,
+        bin_weights = focusingBP < MagP64 >(nth,
+                                            K,
                                             patterns,
                                             max_iters,
                                             max_steps,
@@ -69,7 +72,8 @@ int main (int argc, char *argv[])
                                             binmess);
       break;
     case magT:
-        bin_weights = focusingBP < MagT64 >(K,
+        bin_weights = focusingBP < MagT64 >(nth,
+                                            K,
                                             patterns,
                                             max_iters,
                                             max_steps,
@@ -91,7 +95,7 @@ int main (int argc, char *argv[])
   scorer score;
 
 #ifdef _OPENMP
-#pragma omp parallel shared(score)
+#pragma omp parallel shared(score) num_threads(nth)
   {
 #endif
     score.compute_score(reinterpret_cast<int*>(patterns.output), reinterpret_cast<int*>(predicted_labels), patterns.Nrow, patterns.Nrow);

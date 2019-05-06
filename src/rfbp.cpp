@@ -518,15 +518,15 @@ double iterate(Cavity_Message < Mag > & messages, const Patterns & patterns, Par
   std :: iota(randperm.get(), randperm.get() + size, 0L);
 #endif
 
-// #ifdef _OPENMP
-// #pragma omp single
-//   {
-// #endif
-//     std :: mt19937 eng;
-//     std :: shuffle(randperm.get(), randperm.get() + size, eng);
-// #ifdef _OPENMP
-//   }
-// #endif
+#ifdef _OPENMP
+#pragma omp single
+  {
+#endif
+    std :: mt19937 eng;
+    std :: shuffle(randperm.get(), randperm.get() + size, eng);
+#ifdef _OPENMP
+  }
+#endif
 
   auto tnu1 = accuracy < Mag >[params.accuracy1];
   auto tnu2 = accuracy < Mag >[params.accuracy2];
@@ -853,7 +853,7 @@ void set_outfields(const Cavity_Message < Mag > & message, const long int * outp
 }
 
 template < class Mag >
-long int ** focusingBP(const long int &K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess )
+long int ** focusingBP(const int & nth, const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess )
 {
   __unused bool ok;
   long int it = 1;
@@ -883,7 +883,7 @@ long int ** focusingBP(const long int &K, const Patterns & patterns, const long 
 #endif
 
 #ifdef _OPENMP
-#pragma omp parallel
+#pragma omp parallel num_threads(nth)
   { // start parallel section
 #endif
 
@@ -1091,13 +1091,7 @@ long int ** focusingBP(const long int &K, const Patterns & patterns, const long 
 #endif
 #endif // STATS
     if (errs == 0.)
-    {
-#ifdef _OPENMP
-#pragma omp single
-#endif
-      if (!outmessfiletmpl.empty()) messages.save_messages(outmessfiletmpl, params);
       break;
-    }
 #ifdef _OPENMP
 #pragma omp single
 #endif
@@ -1108,8 +1102,9 @@ long int ** focusingBP(const long int &K, const Patterns & patterns, const long 
 #ifdef _OPENMP
   } // parallel section
 #endif
+  if (!outmessfiletmpl.empty()) messages.save_messages(outmessfiletmpl, params);
   return weights;
 }
 
-template long int** focusingBP < MagP64 >(const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);
-template long int** focusingBP < MagT64 >(const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);
+template long int** focusingBP < MagP64 >(const int & nth, const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);
+template long int** focusingBP < MagT64 >(const int & nth, const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);

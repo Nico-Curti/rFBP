@@ -4,6 +4,7 @@
 int main (int argc, char *argv[])
 {
   bool bin;
+  int  nth;
   std :: string patternsfile,
                 del,
                 weight_file,
@@ -11,6 +12,7 @@ int main (int argc, char *argv[])
 
   parse_test_args(argc,
                   argv,
+                  nth,
                   patternsfile,
                   del,
                   bin,
@@ -22,15 +24,14 @@ int main (int argc, char *argv[])
   Cavity_Message < MagP64 > messages(weight_file, bin);
   long int ** bin_weights = messages.get_weights();
 
-  auto predicted_labels = nonbayes_test(bin_weights, patterns, messages.K);
-
   scorer score;
-
 #ifdef _OPENMP
-#pragma omp parallel shared(score)
+#pragma omp parallel shared(score) num_threads(nth)
   {
 #endif
+    auto predicted_labels = nonbayes_test(bin_weights, patterns, messages.K);
     score.compute_score(reinterpret_cast<int*>(patterns.output), reinterpret_cast<int*>(predicted_labels), patterns.Nrow, patterns.Nrow);
+    delete[] predicted_labels;
 #ifdef _OPENMP
   }
 #endif
@@ -39,7 +40,6 @@ int main (int argc, char *argv[])
 
   for (long int i = 0L; i < messages.K; ++i) delete[] bin_weights[i];
   delete[] bin_weights;
-  delete[] predicted_labels;
 
   return 0;
 }
