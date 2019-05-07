@@ -11,7 +11,7 @@ from ReplicatedFocusingBeliefPropagation.source.Patterns import Pattern
 from ReplicatedFocusingBeliefPropagation import Mag
 
 from ReplicatedFocusingBeliefPropagation.source.misc import _check_string
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import _rfbp#, _nonbayes_test
+from lib.ReplicatedFocusingBeliefPropagation.rFBP import _rfbp, NTH#, _nonbayes_test
 
 __package__ = "ReplicatedFocusingBeliefPropagation"
 __author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
@@ -66,7 +66,7 @@ class ReplicatedFocusingBeliefPropagation():
     return predicted_labels
 
 
-  def fit(self, X, y = None, protocol = Focusing_Protocol(protocol='pseudo_reinforcement', size=101)):
+  def fit(self, X, y = None, protocol = Focusing_Protocol(protocol='pseudo_reinforcement', size=101), nth = NTH):
     if isinstance(X, Pattern):
       pattern = X
     else:
@@ -82,7 +82,8 @@ class ReplicatedFocusingBeliefPropagation():
                          damping = self.damping,
                          epsil = self.epsil,
                          accuracy = self.accuracy,
-                         seed = self.seed
+                         seed = self.seed,
+                         nth = nth
                          )
 
 

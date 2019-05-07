@@ -5,8 +5,8 @@ int main (int argc, char *argv[])
 {
   bool bin,
        binmess;
-  int  nth;
-  char mag;
+  int  nth,
+       mag;
   long int K,
            max_iters,
            seed,
@@ -25,7 +25,6 @@ int main (int argc, char *argv[])
                 delmess;
 
   parse_training_fbp(argc, argv,
-                     nth,
                      patternsfile,
                      outfile,
                      bin,
@@ -39,6 +38,7 @@ int main (int argc, char *argv[])
                      accuracy2,
                      fprotocol,
                      epsil,
+                     nth,
                      max_steps,
                      mag,
                      inmess,
@@ -54,8 +54,7 @@ int main (int argc, char *argv[])
   switch (mag)
   {
     case magP:
-        bin_weights = focusingBP < MagP64 >(nth,
-                                            K,
+        bin_weights = focusingBP < MagP64 >(K,
                                             patterns,
                                             max_iters,
                                             max_steps,
@@ -66,14 +65,14 @@ int main (int argc, char *argv[])
                                             randfact,
                                             fp,
                                             epsil,
+                                            nth,
                                             outfile,
                                             outmess,
                                             inmess,
                                             binmess);
       break;
     case magT:
-        bin_weights = focusingBP < MagT64 >(nth,
-                                            K,
+        bin_weights = focusingBP < MagT64 >(K,
                                             patterns,
                                             max_iters,
                                             max_steps,
@@ -84,10 +83,13 @@ int main (int argc, char *argv[])
                                             randfact,
                                             fp,
                                             epsil,
+                                            nth,
                                             outfile,
                                             outmess,
                                             inmess,
                                             binmess);
+      break;
+      default: error_magnetization(mag);
       break;
   }
 

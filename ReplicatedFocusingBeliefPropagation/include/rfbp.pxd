@@ -17,7 +17,8 @@ cdef extern from "rfbp.h":
                                    const string &accuracy2,
                                    const double &randfact,
                                    const FocusingProtocol &fprotocol,
-                                   const double &epsil
+                                   const double &epsil,
+                                   int nth
                                    #string outfile=*,
                                    #string outmessfiletmpl=*,
                                    #string initmess=*,

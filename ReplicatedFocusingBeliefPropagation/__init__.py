@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import Mag
-from ReplicatedFocusingBeliefPropagation.source.ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation
+from ReplicatedFocusingBeliefPropagation.source.ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation, NTH
 from ReplicatedFocusingBeliefPropagation.source.Patterns import Pattern
 from ReplicatedFocusingBeliefPropagation.source.FocusingProtocol import Focusing_Protocol
 

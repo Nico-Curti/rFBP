@@ -14,6 +14,7 @@ static constexpr int ERROR_PROTOCOL         = 8;
 static constexpr int ERROR_MESSAGES         = 91;
 static constexpr int ERROR_INVALID_MESSAGES = 92;
 // ERRORS 101-105 are related to raising errors in parse_args.h
+static constexpr int ERROR_MAGNETIZATION    = 111;
 
 inline void error_Npositive(const long int & N)
 {
@@ -49,6 +50,18 @@ inline void error_randfact(const double & randfact)
 {
   std :: cerr << "randfact must be in [0,1); given: " << randfact << std :: endl;
   std :: exit(ERROR_RANGE);
+}
+
+inline void error_accuracy(const std :: string & accuracy)
+{
+  std :: cerr << "Invalid accuracy variable given. Given : " << accuracy << std :: endl;
+  std :: exit(ERROR_ACCURACY);
+}
+
+inline void error_num_accuracy()
+{
+  std :: cerr << "Too many accuracy variables given. Needed two." << std :: endl;
+  std :: exit(ERROR_ACCURACY);
 }
 
 inline void error_accuracy1(const std :: string & accuracy1)
@@ -117,6 +130,12 @@ inline void error_invalid_messages(const std :: string & filename)
 {
   std :: cerr << "Invalid messages file! Given: " << filename << std :: endl;
   std :: exit(ERROR_INVALID_MESSAGES);
+}
+
+inline void error_magnetization(const int & mag)
+{
+  std :: cerr << "Invalid magnetization found. Given : " << mag << std :: endl;
+  std :: exit(ERROR_MAGNETIZATION);
 }
 
 #endif // ERRORS_H

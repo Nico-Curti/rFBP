@@ -853,7 +853,7 @@ void set_outfields(const Cavity_Message < Mag > & message, const long int * outp
 }
 
 template < class Mag >
-long int ** focusingBP(const int & nth, const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess )
+long int ** focusingBP(const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, int nth, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess )
 {
   __unused bool ok;
   long int it = 1;
@@ -1106,5 +1106,5 @@ long int ** focusingBP(const int & nth, const long int & K, const Patterns & pat
   return weights;
 }
 
-template long int** focusingBP < MagP64 >(const int & nth, const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);
-template long int** focusingBP < MagT64 >(const int & nth, const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);
+template long int** focusingBP < MagP64 >(const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, int nth, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);
+template long int** focusingBP < MagT64 >(const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, int nth, std :: string outfile, std :: string outmessfiletmpl, std :: string initmess, const bool & bin_mess);

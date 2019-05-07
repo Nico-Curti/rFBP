@@ -1,7 +1,6 @@
 #include <cmd.h>
 
 void parse_training_fbp(int argc, char *argv[],
-                        int & nth,
                         std :: string & patternsfile,
                         std :: string & output,
                         bool & bin,
@@ -15,8 +14,9 @@ void parse_training_fbp(int argc, char *argv[],
                         std :: string & accuracy2,
                         std :: string & fprotocol,
                         double & epsil,
+                        int & nth,
                         long int & max_steps,
-                        char & mag,
+                        int & mag,
                         std :: string & inmess,
                         std :: string & outmess,
                         std :: string & delmess,
@@ -25,9 +25,11 @@ void parse_training_fbp(int argc, char *argv[],
   ArgumentParser argparse("Training BeliefPropagation 4.0");
 
 #ifdef _OPENMP
-  int nth_def = omp_get_max_threads();
-  nth_def -= nth_def % 2;
-  argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth_def);
+  nth  = omp_get_max_threads();
+  nth -= nth % 2;
+  argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth);
+#else
+  nth = 1;
 #endif
 
   argparse.add_argument < std :: string >("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true, "");
@@ -51,9 +53,9 @@ void parse_training_fbp(int argc, char *argv[],
                                                                         "(3) StandardReinforcement",                              false, "pseudo_reinforcement"); // TODO: set true!
   argparse.add_argument < double >(       "eArg",  "e", "epsilon",      "Threshold for convergence(default: 0.1)",                false, 0.1);
   argparse.add_argument < int >(          "sArg",  "s", "steps",        "Max Number of Steps for chosen protocol(default: 101)",  false, 101);
-  argparse.add_argument < char >(         "mArg",  "m", "mag",          "Specify Magnetization: "
+  argparse.add_argument < int >(          "mArg",  "m", "mag",          "Specify Magnetization: "
                                                                         "(0) MagnetizationP (MagP64), "
-                                                                        "(1) MagnetizationT (MagT64)",                            false, '1'); // TODO: set true!
+                                                                        "(1) MagnetizationT (MagT64)",                            false, 1); // TODO: set true!
   argparse.add_argument < std :: string >("imArg", "im", "inmess",      "Input Messages file",                                    false, "");
   argparse.add_argument < std :: string >("omArg", "om", "outmess",     "Output Messages file",                                   false, "");
   argparse.add_argument < std :: string >("dmArg", "dm", "delmess",     "Delimiter for Messages files(default: \"\\t\")",         false, "\t");
@@ -67,8 +69,6 @@ void parse_training_fbp(int argc, char *argv[],
 
 #ifdef _OPENMP
   argparse.get < int >(          "tArg",  nth);
-#else
-  nth = 1;
 #endif
   argparse.get < std :: string >("fArg",  patternsfile);
   argparse.get < std :: string >("oArg",  output);
@@ -83,7 +83,7 @@ void parse_training_fbp(int argc, char *argv[],
   argparse.get < std :: string >("pArg",  fprotocol);
   argparse.get < double >(       "eArg",  epsil);
   argparse.get < long int >(     "sArg",  max_steps);
-  argparse.get < char >(         "mArg",  mag);
+  argparse.get < int >(          "mArg",  mag);
   argparse.get < std :: string >("imArg", inmess);
   argparse.get < std :: string >("omArg", outmess);
   argparse.get < std :: string >("dmArg", delmess);
@@ -91,18 +91,10 @@ void parse_training_fbp(int argc, char *argv[],
 
   if( !file_exists(patternsfile) ) error_pattern(patternsfile);
 
-  if ( static_cast < int >(accuracy.size()) > 2 )
-  {
-    std :: cerr << "Too many accuracy variables given. Needed two." << std :: endl;
-    std :: exit(10);
-  }
+  if ( static_cast < int >(accuracy.size()) > 2 ) error_num_accuracy();
 
   for (auto &ac : accuracy)
-    if(ac != "exact" && ac != "accurate" && ac != "approx" && ac != "none")
-    {
-      std :: cerr << "Invalid accuracy variable given. Given : " << ac << std :: endl;
-      std :: exit(11);
-    }
+    if(ac != "exact" && ac != "accurate" && ac != "approx" && ac != "none") error_accuracy(ac);
 
   if (static_cast < int >(accuracy.size()) == 1 )
   {
@@ -116,34 +108,28 @@ void parse_training_fbp(int argc, char *argv[],
   }
   accuracy.clear();
 
-  if (fprotocol != "scoping" && fprotocol != "pseudo_reinforcement" && fprotocol != "free_scoping" && fprotocol != "standard_reinforcement")
-  {
-    std :: cerr << "Invalid focusing protocol found. Given : " << fprotocol << std :: endl;
-    std :: exit(12);
-  }
+  if (fprotocol != "scoping" && fprotocol != "pseudo_reinforcement" && fprotocol != "free_scoping" && fprotocol != "standard_reinforcement") error_protocol(fprotocol);
 
-  if (mag != '0' && mag != '1')
-  {
-    std :: cerr << "Invalid magnetization found. Given : " << mag << std :: endl;
-    std :: exit(13);
-  };
+  if (mag != 0 && mag != 1) error_magnetization(mag);
 
   return;
 }
 
 void parse_test_args(int argc, char *argv[],
-                     int & nth,
                      std :: string & patternsfile,
                      std :: string & del,
                      bool & bin,
                      std :: string & weight_file,
-                     std :: string & output_file)
+                     std :: string & output_file,
+                     int & nth)
 {
   ArgumentParser argparse("Test BeliefPropagation 4.0");
 #ifdef _OPENMP
-  int nth_def = omp_get_max_threads();
-  nth_def -= nth_def % 2;
-  argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth_def);
+  nth  = omp_get_max_threads();
+  nth -= nth % 2;
+  argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth);
+#else
+  nth = 1;
 #endif
 
   argparse.add_argument < std :: string >("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true,  "");
@@ -166,8 +152,6 @@ void parse_test_args(int argc, char *argv[],
 
 #ifdef _OPENMP
   argparse.get < int >(          "tArg",  nth);
-#else
-  nth = 1;
 #endif
 
   return;

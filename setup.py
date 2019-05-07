@@ -2,6 +2,7 @@
 
 import io
 import os
+import numpy as np
 from Cython.Distutils import build_ext
 
 try:
@@ -112,7 +113,8 @@ setup(
                     '.',
                     os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'include'),
                     os.path.join(os.getcwd(), 'include'),
-                    os.path.join(os.getcwd(), 'scorer', 'scorer', 'include')
+                    os.path.join(os.getcwd(), 'scorer', 'scorer', 'include'),
+                    np.get_include()
                 ],
                 library_dirs=[
                               os.path.join(os.getcwd(), 'lib'),

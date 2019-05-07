@@ -16,6 +16,9 @@ from enum import Enum
 import numpy as np
 cimport numpy as np
 
+import multiprocessing
+NTH = multiprocessing.cpu_count()
+
 class Mag(Enum):
   magP = 1
   magT = 0
@@ -91,7 +94,7 @@ cdef class _Pattern:
 
 
 
-def _rfbp(mag, _Pattern pattern, _FocusingProtocol protocol, hidden = 3, max_iter = 1000, max_steps = 101, randfact = 1e-1, damping = 5e-1, epsil = 1e-1, accuracy = ['accurate', 'exact'], seed = 135) :
+def _rfbp(mag, _Pattern pattern, _FocusingProtocol protocol, hidden = 3, max_iter = 1000, max_steps = 101, randfact = 1e-1, damping = 5e-1, epsil = 1e-1, accuracy = ['accurate', 'exact'], seed = 135, nth = NTH) :
   acc1, acc2 = accuracy
   acc1 = _check_string(acc1, exist=False)
   acc2 = _check_string(acc2, exist=False)
@@ -99,9 +102,9 @@ def _rfbp(mag, _Pattern pattern, _FocusingProtocol protocol, hidden = 3, max_ite
   cdef long int **weights
 
   if mag == Mag.magP:
-    weights = focusingBP[MagP64](hidden, deref(pattern.thisptr.get()), max_iter, max_steps, seed, damping, acc1, acc2, randfact, deref(protocol.thisptr.get()), epsil)
+    weights = focusingBP[MagP64](hidden, deref(pattern.thisptr.get()), max_iter, max_steps, seed, damping, acc1, acc2, randfact, deref(protocol.thisptr.get()), epsil, nth)
   elif mag == Mag.magT:
-    weights = focusingBP[MagT64](hidden, deref(pattern.thisptr.get()), max_iter, max_steps, seed, damping, acc1, acc2, randfact, deref(protocol.thisptr.get()), epsil)
+    weights = focusingBP[MagT64](hidden, deref(pattern.thisptr.get()), max_iter, max_steps, seed, damping, acc1, acc2, randfact, deref(protocol.thisptr.get()), epsil, nth)
   else:
     raise TypeError('Invalid Magnetization given. Possible values are stored in Mag Enum {magP, magT}')
 
