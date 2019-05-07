@@ -68,7 +68,8 @@ def get_atanherf(Id):
   try:
     os.makedirs(os.path.join(here, '../data'), exist_ok=True)
   except:
-    pass
+    os.makedirs(os.path.join(here, '../data'))
+
   os.rename('./{}.dat'.format(file.lower()), os.path.join(here, '../data/{}.dat'.format(file.lower())) )
 
   os.remove('./{}.zip'.format(file.lower()))
