@@ -28,6 +28,8 @@ Optimization and extension of the [**Replicated Focusing Belief Propagation**](h
 
 The project is written in c++ language with the support of c++17 standard (*make sure that your c++ compiler support it!*). If you want enable the OpenMP support (*4.5 version is required*) compile the library with `-DOMP=ON`.
 
+If you use MagT configuration, please download the `atanherf coefficients` file before running. You can find a downloader script inside the [scripts](https://github.com/Nico-Curti/rFBP/tree/master/scripts) folder. Enter in that folder and just run `python dowload_atanherf.py`.
+
 ## Installation
 
 To build the executables, clone the repo and then type

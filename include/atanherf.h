@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include <utils.h>
+#include <spline.h>
 
 namespace AtanhErf
 {

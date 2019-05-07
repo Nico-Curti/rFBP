@@ -16,12 +16,10 @@ from enum import Enum
 import numpy as np
 cimport numpy as np
 
-import multiprocessing
-NTH = multiprocessing.cpu_count()
 
 class Mag(Enum):
-  magP = 1
-  magT = 0
+  magP = 0
+  magT = 1
 
 
 
@@ -94,7 +92,7 @@ cdef class _Pattern:
 
 
 
-def _rfbp(mag, _Pattern pattern, _FocusingProtocol protocol, hidden = 3, max_iter = 1000, max_steps = 101, randfact = 1e-1, damping = 5e-1, epsil = 1e-1, accuracy = ['accurate', 'exact'], seed = 135, nth = NTH) :
+def _rfbp(mag, _Pattern pattern, _FocusingProtocol protocol, hidden = 3, max_iter = 1000, max_steps = 101, randfact = 1e-1, damping = 5e-1, epsil = 1e-1, accuracy = ['accurate', 'exact'], seed = 135, nth = 1) :
   acc1, acc2 = accuracy
   acc1 = _check_string(acc1, exist=False)
   acc2 = _check_string(acc2, exist=False)

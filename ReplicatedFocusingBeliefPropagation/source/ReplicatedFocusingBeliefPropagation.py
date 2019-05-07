@@ -11,10 +11,13 @@ from ReplicatedFocusingBeliefPropagation.source.Patterns import Pattern
 from ReplicatedFocusingBeliefPropagation import Mag
 
 from ReplicatedFocusingBeliefPropagation.source.misc import _check_string
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import _rfbp, NTH#, _nonbayes_test
+from lib.ReplicatedFocusingBeliefPropagation.rFBP import _rfbp#, _nonbayes_test
 
 __package__ = "ReplicatedFocusingBeliefPropagation"
 __author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+
+import multiprocessing
+NTH = multiprocessing.cpu_count()
 
 class ReplicatedFocusingBeliefPropagation():
 

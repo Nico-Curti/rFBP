@@ -2,6 +2,7 @@
 
 import io
 import os
+import platform
 import numpy as np
 from Cython.Distutils import build_ext
 
@@ -22,6 +23,8 @@ REQUIRES_PYTHON = '>=2.7'
 VERSION = None
 KEYWORDS = "belief-propagation deep-neural-networks spin-glass"
 
+cpp_compiler = platform.python_compiler()
+
 # What packages are required for this module to be executed?
 def get_requires():
   with open('requirements.txt', 'r') as f:
@@ -32,7 +35,8 @@ class my_build_ext(build_ext):
   def build_extensions(self):
     customize_compiler(self.compiler)
     try:
-      self.compiler.compiler_so.remove("-Wstrict-prototypes")
+      if 'GCC' in cpp_compiler or 'CLANG' in cpp_compiler:
+        self.compiler.compiler_so.remove("-Wstrict-prototypes")
     except (AttributeError, ValueError):
       pass
     build_ext.build_extensions(self)
@@ -46,6 +50,23 @@ def read_description():
     return ''
 
 here = os.path.abspath(os.path.dirname(__file__))
+
+if not os.path.isfile(os.path.join(here, 'lib', 'librfbp.so')):
+  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx'),
+                  os.path.join(os.getcwd(), 'src', 'cavity_message.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'magnetization.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'fprotocol.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'atanherf.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'pattern.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'spline.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'utils.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'rfbp.cpp')
+                  ]
+  rfbp_lib = []
+else:
+  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx')]
+  rfbp_lib = ['rfbp']
+
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.md' is present in your MANIFEST.in file!
@@ -63,8 +84,14 @@ if not VERSION:
 else:
   about['__version__'] = VERSION
 
-
-extra_compile_args = ['-std=c++17', '-g0', '-DSTATS', '-DVERBOSE', '-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION']
+if 'GCC' in cpp_compiler or 'CLANG' in cpp_compiler:
+  cpp_compiler_args = ['-std=c++17', '-g0', '-fopenmp']
+elif 'MSC' in cpp_compiler:
+  cpp_compiler_args = ['/std:c++17', '/openmp']
+else:
+  print('Unknown c++ compiler arg', file=sys.stderr)
+  cpp_compiler_args = []
+extra_compile_args = cpp_compiler_args + ['-DSTATS', '-DNDEBUG', '-DVERBOSE', '-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION']
 
 # Where the magic happens:
 setup(
@@ -99,16 +126,7 @@ setup(
   cmdclass            = {'build_ext': my_build_ext},
   ext_modules = [
       Extension(name='.'.join(['lib', 'ReplicatedFocusingBeliefPropagation', 'rFBP']),
-                sources=[
-                         os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx'),
-                         os.path.join(os.getcwd(), 'src', 'cavity_message.cpp'),
-                         os.path.join(os.getcwd(), 'src', 'magnetization.cpp'),
-                         os.path.join(os.getcwd(), 'src', 'fprotocol.cpp'),
-                         os.path.join(os.getcwd(), 'src', 'atanherf.cpp'),
-                         os.path.join(os.getcwd(), 'src', 'pattern.cpp'),
-                         os.path.join(os.getcwd(), 'src', 'utils.cpp'),
-                         os.path.join(os.getcwd(), 'src', 'rfbp.cpp'),
-                ],
+                sources=rfbp_sources,
                 include_dirs=[
                     '.',
                     os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'include'),
@@ -116,6 +134,7 @@ setup(
                     os.path.join(os.getcwd(), 'scorer', 'scorer', 'include'),
                     np.get_include()
                 ],
+                libraries=rfbp_lib,
                 library_dirs=[
                               os.path.join(os.getcwd(), 'lib'),
                               os.path.join('usr', 'lib'),

@@ -6,10 +6,10 @@
 #include <vector>
 #include <cmath>
 #include <scorer.h>
-#if __has_include(<filesystem>)
-#  include <filesystem>
-#  define have_filesystem 1
-#endif
+//#if __has_include(<filesystem>)
+//#  include <filesystem>
+//#  define have_filesystem 1
+//#endif
 #ifdef _OPENMP
 #include <omp.h>
 #else
@@ -57,16 +57,16 @@ std :: vector < std :: string > split (const std :: string & txt, const std :: s
 
 inline bool file_exists (const std :: string & filename)
 {
-#if have_filesystem == 1
-  return std :: filesystem :: exists(std :: filesystem :: path(filename));
-#else
+//#if have_filesystem == 1
+//  return std :: filesystem :: exists(std :: filesystem :: path(filename));
+//#else
   if (FILE *file = fopen(filename.c_str(), "r"))
   {
     fclose(file);
     return true;
   }
   return false;
-#endif
+//#endif
 }
 
 inline const auto what_time_is_it_now()

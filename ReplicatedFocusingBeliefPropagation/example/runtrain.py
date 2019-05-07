@@ -1,7 +1,7 @@
 #!usr/bin/env python
 
 import argparse
-from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
+from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP, NTH
 from ReplicatedFocusingBeliefPropagation import Focusing_Protocol
 from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import Mag
@@ -145,7 +145,14 @@ def parse_args():
                       action='store',
                       help = 'Messages files fmt: (0) Textfile(default) (1) Binary',
                       default=False,
-                      choices=[0, 1])
+                      choices=[0, 1]),
+  parser.add_argument('--nth',
+                      dest='nth',
+                      required = False,
+                      type=int,
+                      action='store',
+                      help = 'Number of thread to use',
+                      default=NTH)
 
   args = parser.parse_args()
 

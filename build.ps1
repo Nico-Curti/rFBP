@@ -46,3 +46,8 @@ cmake -G "Visual Studio 15 2017" -T "host=x64" -A "x64" "-DCMAKE_BUILD_TYPE=Rele
 cmake --build . --config Release --parallel ${number_of_build_workers} --target install
 Set-Location ..
 
+# Download atanherf file
+Write-Host "Downloading atanherf interpolation coefficients..."
+Set-Location scripts
+python download_atanherf.py
+Set-Location ..

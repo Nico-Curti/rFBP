@@ -64,3 +64,5 @@ else
 
 fi
 
+echo ${green}"Downloading atanherf interpolation coefficients..."
+cd scripts && python download_atanherf.py && cd ..

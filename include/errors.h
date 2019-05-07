@@ -15,6 +15,7 @@ static constexpr int ERROR_MESSAGES         = 91;
 static constexpr int ERROR_INVALID_MESSAGES = 92;
 // ERRORS 101-105 are related to raising errors in parse_args.h
 static constexpr int ERROR_MAGNETIZATION    = 111;
+static constexpr int ERROR_ATANHERF_FILE    = 112;
 
 inline void error_Npositive(const long int & N)
 {
@@ -136,6 +137,16 @@ inline void error_magnetization(const int & mag)
 {
   std :: cerr << "Invalid magnetization found. Given : " << mag << std :: endl;
   std :: exit(ERROR_MAGNETIZATION);
+}
+
+inline void error_atanherf_file()
+{
+  std :: cerr << "Atanherf interpolation coefficients file not found."
+                 " Please download it before running to prevent some troubles."
+                 " The appropriated script could be used and you can find it in the 'scripts' directory."
+                 " Just run 'python download_atanherf.py'"
+              << std :: endl;
+  std :: exit(ERROR_ATANHERF_FILE);
 }
 
 #endif // ERRORS_H
