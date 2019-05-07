@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from __future__ import print_function, division
 from zipfile import ZipFile
 import requests
 import time
