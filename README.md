@@ -57,7 +57,7 @@ See also the list of [contributors](https://github.com/Nico-Curti/rFBP/contribut
 
 ## License
 
-NO LICENCEs are available.
+The `rFBP` package is licensed under the MIT "Expat" License. [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Nico-Curti/rFBP/blob/master/LICENSE.md)
 
 ### Acknowledgement
 

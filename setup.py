@@ -122,7 +122,7 @@ setup(
     'Programming Language :: Python :: Implementation :: CPython',
     'Programming Language :: Python :: Implementation :: PyPy'
   ],
-  license             = 'None',
+  license             = 'MIT',
   cmdclass            = {'build_ext': my_build_ext},
   ext_modules = [
       Extension(name='.'.join(['lib', 'ReplicatedFocusingBeliefPropagation', 'rFBP']),

@@ -68,6 +68,41 @@ matrix:
 
 # linux + clang
 
+    - os: linux
+      compiler: clang
+      name: ubuntu 14.04 - clang@3.6
+      addons:
+        apt:
+          update: true
+          packages:
+            - clang-3.6
+            - libstdc++-4.8-dev
+            - libclang-3.6-dev
+            - libc++-dev
+            - libc++abi-dev
+      env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+        - LINKER_FLAGS="-stdlib=libstdc++ -lc++abi"
+
+    - os: linux
+      compiler: clang
+      name: ubuntu 14.04 - clang@3.8
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.8
+          packages:
+            - g++-7
+            - clang-3.8
+            - libstdc++-4.8-dev
+            - libclang-3.8-dev
+            - libc++-dev
+            - libc++abi-dev
+      env:
+        - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
+        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
 
 
     - os: linux
@@ -82,11 +117,10 @@ matrix:
           packages:
             - g++-7
             - clang-3.9
-            - libstdc++-7-dev
+            - libstdc++-4.8-dev
             - libclang-3.9-dev
-            - libc++abi-dev
             - libc++-dev
-            - llvm-3.9-dev
+            - libc++abi-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -103,11 +137,11 @@ matrix:
           packages:
             - g++-7
             - clang-4.0
-            - libstdc++-7-dev
+            - libstdc++-4.8-dev
             - libclang-4.0-dev
-            - libc++abi-dev
-            - libc++-dev
             - llvm-4.0-dev
+            - libc++-dev
+            - libc++abi-dev
 
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
@@ -221,9 +255,10 @@ matrix:
   allow_failures:
     - name: ubuntu 14.04 - gcc@5.0 # not support the full std=c++17
     - name: ubuntu 14.04 - gcc@6.0 # not support the full std=c++17
+    - name: ubuntu 14.04 - clang@3.6
+    - name: ubuntu 14.04 - clang@3.8
     - name: ubuntu 14.04 - clang@3.9
     - name: ubuntu 14.04 - clang@4.0
-    - name: ubuntu 14.04 - clang@7.0
     - name: macOS - clang@7.0
 
 
