@@ -89,7 +89,7 @@ matrix:
             - libclang-3.9-dev
             - libc++abi-dev
             - libc++-dev
-            - llvm-4.0-dev
+            - llvm-3.9-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -224,10 +224,8 @@ matrix:
             - llvm-toolchain-trusty-7
           packages:
             - clang-7.0
-            - python3.6
-            - python3.6-dev
       env:
-        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7 && CXX=clang++-7"
+        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
         - COMPILER_ID="clang"
 
