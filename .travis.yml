@@ -22,7 +22,6 @@ matrix:
             - g++-5
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-        - COMPILER_ID="gcc"
 
     - os: linux
       compiler: gcc
@@ -36,7 +35,6 @@ matrix:
             - g++-6
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-        - COMPILER_ID="gcc"
 
     - os: linux
       compiler: gcc
@@ -52,7 +50,6 @@ matrix:
             - python3.4-dev
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-        - COMPILER_ID="gcc"
 
     - os: linux
       compiler: gcc
@@ -68,7 +65,6 @@ matrix:
             - python3.5-dev
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-        - COMPILER_ID="gcc"
 
 # linux + clang
 
@@ -84,6 +80,7 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-3.9
           packages:
+            - g++-7
             - clang-3.9
             - libstdc++-7-dev
             - libclang-3.9-dev
@@ -93,7 +90,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - COMPILER_ID="clang"
 
     - os: linux
       compiler: clang
@@ -105,6 +101,7 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-4.0
           packages:
+            - g++-7
             - clang-4.0
             - libstdc++-7-dev
             - libclang-4.0-dev
@@ -115,7 +112,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - COMPILER_ID="clang"
 
     - os: linux
       compiler: clang
@@ -134,7 +130,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - COMPILER_ID="clang"
 
     - os: linux
       compiler: clang
@@ -154,7 +149,6 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - COMPILER_ID="clang"
 
     - os: linux
       compiler: clang
@@ -163,20 +157,18 @@ matrix:
         apt:
           update: true
           sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-6.0
             - llvm-toolchain-trusty-7
             - sourceline: 'ppa:ubuntu-toolchain-r/test'
           packages:
             - clang-7
-            - libstdc++6-4.6-dev
+            - libstdc++-7-dev
             - libclang-7-dev
-            - llvm-7-dev
-            - libc++-dev
-            - libc++abi-dev
 
       env:
         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - COMPILER_ID="clang"
 
 # osx + gcc
 
@@ -194,7 +186,6 @@ matrix:
       name: macOS - g++-8
       env:
         - MATRIX_EVAL="brew update && brew install gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
-        - COMPILER_ID="gcc"
 
 # osx + clang
     - os: osx
@@ -211,7 +202,6 @@ matrix:
       env:
         - MATRIX_EVAL=""
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - COMPILER_ID="clang"
 
     - os: osx
       osx_image: xcode10.1
@@ -227,7 +217,6 @@ matrix:
       env:
         - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-        - COMPILER_ID="clang"
 
   allow_failures:
     - name: ubuntu 14.04 - gcc@5.0 # not support the full std=c++17
@@ -235,7 +224,6 @@ matrix:
     - name: ubuntu 14.04 - clang@3.9
     - name: ubuntu 14.04 - clang@4.0
     - name: ubuntu 14.04 - clang@7.0
-    - name: macOS - native clang (llvm backend)
     - name: macOS - clang@7.0
 
 
@@ -259,5 +247,5 @@ install:
 
 script:
   - chmod 777 ./build.sh
-  - if [[ "$COMPILER_ID" == "clang" ]]; then bash ./build.sh "" OFF                                                                           ;fi
-  - if [[ "$COMPILER_ID" == "gcc"   ]]; then bash ./build.sh "" ON                                                                            ;fi
+  - if [[ "$TRAVIS_COMPILER" == "clang" ]]; then bash ./build.sh "" OFF                                                                       ;fi
+  - if [[ "$TRAVIS_COMPILER" == "gcc"   ]]; then bash ./build.sh "" ON                                                                        ;fi
