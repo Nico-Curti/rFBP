@@ -93,25 +93,8 @@ int main (int argc, char *argv[])
       break;
   }
 
-  auto predicted_labels = nonbayes_test(bin_weights, patterns, K);
-  scorer score;
-
-#ifdef _OPENMP
-#pragma omp parallel shared(score) num_threads(nth)
-  {
-#endif
-    score.compute_score(reinterpret_cast<int*>(patterns.output), reinterpret_cast<int*>(predicted_labels), patterns.Nrow, patterns.Nrow);
-#ifdef _OPENMP
-  }
-#endif
-
-#ifdef VERBOSE
-  score.print();
-#endif
-
   for (int i = 0; i < K; ++i) delete[] bin_weights[i];
   delete[] bin_weights;
-  delete[] predicted_labels;
 
   return 0;
 }
