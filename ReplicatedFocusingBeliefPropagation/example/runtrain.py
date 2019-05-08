@@ -20,13 +20,6 @@ def parse_args():
                       type=str,
                       action='store',
                       help = 'Pattern Filename' )
-  parser.add_argument('--output',
-                      dest='output',
-                      required = False,
-                      type=str,
-                      action='store',
-                      help = 'Output filename',
-                      default='')
   parser.add_argument('--bin',
                       dest='bin',
                       required = False,

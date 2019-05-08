@@ -10,12 +10,8 @@ list(APPEND CMAKE_MODULE_PATH "${rFBP_CMAKE_DIR}")
 
 include(CMakeFindDependencyMacro)
 
-if(@ENABLE_OPENCV@)
-  find_dependency(OpenCV REQUIRED)
-endif()
-
-if(@ENABLE_CUDA@)
-  find_dependency(CUDNN)
+if(@OMP@)
+  find_dependency(OpenMP)
 endif()
 
 set(CMAKE_THREAD_PREFER_PTHREAD ON)

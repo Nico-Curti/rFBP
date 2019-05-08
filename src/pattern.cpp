@@ -69,13 +69,10 @@ Patterns :: Patterns (const std :: string & filename, bool bin, const std :: str
 }
 
 
-Patterns :: Patterns(const long int & N, const long int & M)
+Patterns :: Patterns(const long int & N, const long int & M) : Nrow (N), Ncol (M), Nout (N)
 {
-  this->Nrow   = N;
   this->input  = new double*[this->Nrow];
   this->output = new long int [this->Nrow];
-  this->Ncol   = M;
-  this->Nout   = this->Nrow;
 
   std :: default_random_engine engine;
   std :: bernoulli_distribution dist(.5);
@@ -92,8 +89,8 @@ Patterns :: Patterns(const long int & N, const long int & M)
 Patterns :: Patterns (long double ** data, long int * label, const int & Nrow, const int & Ncol)
 {
   this->Nrow   = Nrow;
-  this->Nout   = Nrow;
   this->Ncol   = Ncol;
+  this->Nout   = Nrow;
   this->input  = new double*[this->Nrow];
   this->output = new long int[this->Nrow];
 
@@ -105,8 +102,8 @@ Patterns :: Patterns (long double ** data, long int * label, const int & Nrow, c
 Patterns & Patterns :: operator = (const Patterns & p)
 {
   this->Nrow   = p.Nrow;
-  this->Nout   = p.Nrow;
   this->Ncol   = p.Ncol;
+  this->Nout   = p.Nrow;
   this->input  = new double*[this->Nrow];
   this->output = new long int[this->Nrow];
 
@@ -120,8 +117,8 @@ Patterns & Patterns :: operator = (const Patterns & p)
 Patterns :: Patterns (const Patterns & p)
 {
   this->Nrow   = p.Nrow;
-  this->Nout   = p.Nrow;
   this->Ncol   = p.Ncol;
+  this->Nout   = p.Nrow;
   this->input  = new double*[this->Nrow];
   this->output = new long int[this->Nrow];
 

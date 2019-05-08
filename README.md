@@ -1,6 +1,6 @@
 | **Authors**  | **Project** | **Documentation**                                                                   | **Build Status**              |
 |:------------:|:-----------:|:-----------------------------------------------------------------------------------:|:-----------------------------:|
-| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio)   |    rFBP    | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : *miss* |
+| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio)   |  **rFBP**  | [![docs](https://img.shields.io/readthedocs/:packageName/:version.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : *miss* |
 
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/issues)
@@ -23,6 +23,7 @@ Optimization and extension of the [**Replicated Focusing Belief Propagation**](h
 3. [Authors](#authors)
 4. [License](#license)
 5. [Acknowledgments](#acknowledgments)
+6. [Citation](#citation)
 
 ## Prerequisites
 
@@ -62,3 +63,17 @@ The `rFBP` package is licensed under the MIT "Expat" License. [![License](https:
 ### Acknowledgement
 
 Thanks goes to all contributors of this project.
+
+### Citation
+
+Please cite `rFBP` if you use it in your research.
+
+```tex
+@misc{ReplicatedFocusingBeliefPropagation,
+  author = {Nico Curti, Daniele Dall'Olio},
+  title = {{R}eplicated {F}ocusing {B}elief {P}ropagation},
+  year = {2019},
+  publisher = {GitHub},
+  howpublished = {\url{https://github.com/Nico-Curti/rFBP}},
+}
+```

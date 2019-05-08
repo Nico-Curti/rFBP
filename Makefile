@@ -23,7 +23,7 @@ STATS   ?= 1
 
 STD     := -std=c++17
 
-CFLAGS  := -DMAJOR=$(MAJOR) -DMINOR=$(MINOR) -DREVISION=$(REVISION) -Wall -Wextra -Wno-unused-result -lstdc++fs
+CFLAGS  := -DRFBP_MAJOR=$(MAJOR) -DRFBP_MINOR=$(MINOR) -DRFBP_REVISION=$(REVISION) -Wall -Wextra -Wno-unused-result -lstdc++fs
 LDFLAGS := -fPIC
 AR      := ar
 ARFLAGS := rcs
@@ -103,9 +103,15 @@ all: help
 #                         MAIN RULES                            #
 #################################################################
 
-main: $(DEP_DIR) $(OBJ_DIR) $(OUT_DIR) $(OBJS)    ##@examples Compile main example.
-	@printf "%-80s " "Compiling main example ..."
-	@$(CXX) $(OBJS) $(EXAMPLE)/main.cpp -o $(OUT_DIR)/rfbp $(CFLAGS) $(LDFLAGS)
+train: $(DEP_DIR) $(OBJ_DIR) $(OUT_DIR) $(OBJS)    ##@examples Compile train example.
+	@printf "%-80s " "Compiling train example ..."
+	@$(CXX) $(OBJS) $(EXAMPLE)/train_main.cpp -o $(OUT_DIR)/train_main $(CFLAGS) $(LDFLAGS)
+	@printf "[done]\n"
+
+
+test: $(DEP_DIR) $(OBJ_DIR) $(OUT_DIR) $(OBJS)     ##@examples Compile test example.
+	@printf "%-80s " "Compiling train example ..."
+	@$(CXX) $(OBJS) $(EXAMPLE)/test_main.cpp -o $(OUT_DIR)/test_main $(CFLAGS) $(LDFLAGS)
 	@printf "[done]\n"
 
 #################################################################
