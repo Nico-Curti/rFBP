@@ -74,12 +74,14 @@ matrix:
       addons:
         apt:
           update: true
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-5.0
           packages:
+            - g++-8
             - clang-3.6
-            - libstdc++-4.8-dev
-            - libclang-3.6-dev
-            - libc++-dev
-            - libc++abi-dev
+            - libstdc++-7-dev
+            - libclang-5.0-dev
       env:
         - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
         - LINKER_FLAGS="-stdlib=libstdc++ -lc++abi"
@@ -92,14 +94,12 @@ matrix:
           update: true
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-precise-3.8
+            - llvm-toolchain-trusty-5.0
           packages:
-            - g++-7
+            - g++-8
             - clang-3.8
-            - libstdc++-4.8-dev
-            - libclang-3.8-dev
-            - libc++-dev
-            - libc++abi-dev
+            - libstdc++-7-dev
+            - libclang-5.0-dev
       env:
         - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -113,14 +113,12 @@ matrix:
           update: true
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-3.9
+            - llvm-toolchain-trusty-5.0
           packages:
             - g++-7
             - clang-3.9
-            - libstdc++-4.8-dev
-            - libclang-3.9-dev
-            - libc++-dev
-            - libc++abi-dev
+            - libstdc++-7-dev
+            - libclang-5.0-dev
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -133,15 +131,12 @@ matrix:
           update: true
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-4.0
+            - llvm-toolchain-trusty-5.0
           packages:
             - g++-7
             - clang-4.0
-            - libstdc++-4.8-dev
-            - libclang-4.0-dev
-            - llvm-4.0-dev
-            - libc++-dev
-            - libc++abi-dev
+            - libstdc++-7-dev
+            - libclang-5.0-dev
 
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
