@@ -76,7 +76,7 @@ cdef class _Pattern:
         delimiter = _check_string(delimiter, exist=False)
         self.thisptr.reset(new Patterns(filename, binary, delimiter))
       elif len(_X) and len(_y):
-        _X, _y = check_X_y(_X, _y)
+        _X, _y = check_X_y(*_X, _y)
         n, m = _X.shape
         X = _X.astype('float64')
         y = _y
