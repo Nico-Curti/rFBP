@@ -16,9 +16,9 @@ def read_version(CMakeLists):
   return tuple(version)
 
 __package__ = 'version'
-__author__  = ['Nico Curti (nico.curit2@unibo.it)', "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 VERSION = read_version('./CMakeLists.txt')
 
 __version__ = '.'.join(map(str, VERSION))
-

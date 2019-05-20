@@ -4,6 +4,10 @@ from __future__ import print_function
 import os
 import sys
 
+__package__ = "rFBP miscellaneous"
+__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
+
 # https://stackoverflow.com/questions/14197009/how-can-i-redirect-print-output-of-a-function-in-python
 try:
   import contextlib

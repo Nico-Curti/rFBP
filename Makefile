@@ -24,6 +24,7 @@ STATS   ?= 1
 STD     := -std=c++17
 
 CFLAGS  := -DRFBP_MAJOR=$(MAJOR) -DRFBP_MINOR=$(MINOR) -DRFBP_REVISION=$(REVISION) -Wall -Wextra -Wno-unused-result -lstdc++fs
+CFLAGS  += -DPWD="$(shell pwd)"
 LDFLAGS := -fPIC
 AR      := ar
 ARFLAGS := rcs

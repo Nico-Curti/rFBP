@@ -11,6 +11,7 @@ set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_definitions (-DMAJOR=${RFBP_MAJOR} -DMINOR=${RFBP_MINOR} -DREVISION=${RFBP_REVISION})
+add_definitions (-DPWD="${CMAKE_SOURCE_DIR}")
 
 #################################################################
 #                         COMPILE OPTIONS                       #

@@ -30,7 +30,7 @@ public:
   Patterns ();
   Patterns (const std :: string & filename, bool bin = false, const std :: string & del = "\t");
   Patterns (const long int & N, const long int &M);
-  Patterns (long double ** data, long int * label, const int & Nrow, const int & Ncol);
+  Patterns (double ** data, long int * label, const int & Nrow, const int & Ncol);
 
   // Copy Constructors and Copy operators
 

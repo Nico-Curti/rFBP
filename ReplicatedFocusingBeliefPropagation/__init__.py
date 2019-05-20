@@ -10,7 +10,8 @@ from ReplicatedFocusingBeliefPropagation.source.FocusingProtocol import Focusing
 __all__ = ["ReplicatedFocusingBeliefPropagation"]
 
 __package__ = "rFBP"
-__author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 ATANHERF_INTERP_FILE = os.path.join(os.path.dirname(__file__),
                                     '..', 'data', 'atanherf_interp.max_16.step_0.0001.first_1.dat')

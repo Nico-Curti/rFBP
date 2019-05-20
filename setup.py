@@ -64,7 +64,8 @@ if not os.path.isfile(os.path.join(here, 'lib', 'librfbp.so')):
                   ]
   rfbp_lib = []
 else:
-  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx')]
+  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx')
+                 ]
   rfbp_lib = ['rfbp']
 
 

@@ -1,6 +1,10 @@
 #ifndef ATANHERF_H
 #define ATANHERF_H
 
+#ifndef PWD
+#define PWD '.'
+#endif
+
 #include <cmath>
 #include <fstream>
 #include <algorithm>

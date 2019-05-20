@@ -4,7 +4,7 @@ namespace AtanhErf
 {
   auto getinp()
   {
-    std :: string filename = "./data/atanherf_interp.max_16.step_0.0001.first_1.dat";
+    std :: string filename = std :: string(PWD) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat";
     std :: ifstream is(filename, std :: ios :: binary);
 
     spline inp;

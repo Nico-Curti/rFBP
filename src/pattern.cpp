@@ -76,7 +76,7 @@ Patterns :: Patterns(const long int & N, const long int & M) : Nrow (N), Ncol (M
 
   std :: default_random_engine engine;
   std :: bernoulli_distribution dist(.5);
-  std :: fill_n(this->output, this->Nout, 1L);
+  std :: generate_n(this->output, this->Nout, [&](){return (dist(engine)) ? 1L : -1L;});
   std :: generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
   for (long int i = 0L; i < this->Nrow; ++i)
     std :: generate_n(this->input[i], this->Ncol,
@@ -86,7 +86,7 @@ Patterns :: Patterns(const long int & N, const long int & M) : Nrow (N), Ncol (M
                       });
 }
 
-Patterns :: Patterns (long double ** data, long int * label, const int & Nrow, const int & Ncol)
+Patterns :: Patterns (double ** data, long int * label, const int & Nrow, const int & Ncol)
 {
   this->Nrow   = Nrow;
   this->Ncol   = Ncol;

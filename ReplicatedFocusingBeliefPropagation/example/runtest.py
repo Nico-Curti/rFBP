@@ -13,7 +13,8 @@ except ImportError:
 
 
 __package__ = "rFBP_test_example"
-__author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 
 def parse_args():
@@ -63,8 +64,7 @@ def parse_args():
 def test():
   args = parse_args()
 
-  pattern = Pattern()
-  pattern.load(args.patterns, args.bin, args.delimiter)
+  pattern = Pattern(args.patterns, args.bin, args.delimiter)
 
   rfbp = rFBP()
   rfbp.load_weights(args.weights)
@@ -81,6 +81,5 @@ def test():
 
 
 if __name__ == '__main__':
-
+  # run test
   test()
-

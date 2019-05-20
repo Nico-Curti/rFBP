@@ -1,21 +1,23 @@
 # distutils: language = c++
 # cython: language_level=2
 
-cimport cython
 from libcpp.memory cimport unique_ptr
 from cython.operator cimport dereference as deref
 from libc.stdlib cimport malloc, free
+cimport numpy as np
 
 from rfbp cimport focusingBP, nonbayes_test
 from pattern cimport Patterns
 from fprotocol cimport FocusingProtocol
 from mag cimport MagP64, MagT64
+from misc cimport double_pointers_for_cython
 
 from ReplicatedFocusingBeliefPropagation.source.misc import _check_string
 from enum import Enum
 import numpy as np
-cimport numpy as np
-
+import numbers
+from sklearn.utils import check_X_y, check_array
+import warnings
 
 class Mag(Enum):
   magP = 0
@@ -55,19 +57,32 @@ cdef class _Pattern:
     long int Nrow, Ncol
 
   def __init__(self, other = None, binary=False, delimiter='\t'):
-
-    try:
-      N, M = other
-      if not isinstance(N, int) or not isinstance(M, int):
-        raise TypeError('N and M must be an integer')
-      self.thisptr.reset(new Patterns(N, M))
-    except ValueError:
-      filename = other
-      filename = _check_string(filename, exist=False)
-      delimiter = _check_string(delimiter, exist=False)
-      self.thisptr.reset(new Patterns(filename, binary, delimiter))
-    except:
+    cdef int m, n
+    cdef np.ndarray[double, ndim=2, mode="c"] X
+    cdef np.ndarray[long int, ndim=1, mode="c"] y
+    if other is None:
       self.thisptr.reset(new Patterns())
+    else:
+      *_X, _y = other
+      if isinstance(*_X, numbers.Number) and isinstance(_y, numbers.Number):
+        _X = _X[0]
+        if not isinstance(_X, int) or not isinstance(_y, int):
+          warnings.warn('N and M are supposed to be integers.')
+          _X, _y = int(_X), int(_y)
+        self.thisptr.reset(new Patterns(_X, _y))
+      elif not _X and isinstance(_y, str):
+        filename = _y
+        filename = _check_string(filename, exist=False)
+        delimiter = _check_string(delimiter, exist=False)
+        self.thisptr.reset(new Patterns(filename, binary, delimiter))
+      elif len(_X) and len(_y):
+        _X, _y = check_X_y(_X, _y)
+        n, m = _X.shape
+        X = _X.astype('float64')
+        y = _y
+        self.thisptr.reset(new Patterns(double_pointers_for_cython[double,double](&X[0,0], n, m), &y[0], n, m))
+      else:
+        raise ValueError('Wrong input variable supplied. Either X must be a string or (X, y) must be (number, number) or (array-like, array-like).')
 
     self.Nrow = deref(self.thisptr).Nrow
     self.Ncol = deref(self.thisptr).Ncol
@@ -81,7 +96,6 @@ cdef class _Pattern:
   def data(self):
     data = [[deref(self.thisptr).input[i][j] for j in range(self.Ncol)] for i in range(self.Nrow)]
     return data
-
 
   def __repr__(self):
     class_name = self.__class__.__name__
@@ -109,26 +123,12 @@ def _rfbp(mag, _Pattern pattern, _FocusingProtocol protocol, hidden = 3, max_ite
   return [[int(weights[i][j]) for j in range(pattern.Ncol)] for i in range(hidden)]
 
 def _nonbayes_test(weights, _Pattern pattern, K):
-  nlabel = pattern.ndata
-  # convert variables
-  row_size, column_size = np.shape(weights)
-
-  cdef np.ndarray[long int, ndim=2, mode="c"] tmp_weights = np.ascontiguousarray(weights, dtype = np.int_)
-  cdef long int ** weights_pointer = <long int **>malloc(row_size * sizeof(long int*))
-  if not weights_pointer:
-    raise MemoryError
-  cdef int i
-  cdef long int * predicted_labels
-  try:
-    for i in range(row_size):
-      weights_pointer[i] = &tmp_weights[i, 0]
-
-    # NOT WORKS BUT I DON'T KNOW WHY!!!
-    predicted_labels = nonbayes_test(<long int **> &weights_pointer[0], deref(pattern.thisptr.get()), K)
-    pred_labels = [int(predicted_labels[i]) for i in range(nlabel)]
-
-  finally:
-    free(weights_pointer)
-
+  nlabel = pattern.Nrow
+  weights = check_array(weights)
+  cdef int row_size, column_size
+  cdef np.ndarray["long int", ndim=2, mode="c"] weights_pointer = weights
+  row_size, column_size = weights.shape
+  cdef long int ** c_weights  = double_pointers_for_cython["long int","long int"](&weights_pointer[0,0], row_size, column_size)
+  cdef long int * predicted_labels = nonbayes_test(c_weights, pattern.thisptr.get()[0], K)
+  pred_labels = np.asarray([int(predicted_labels[i]) for i in range(nlabel)])
   return pred_labels
-

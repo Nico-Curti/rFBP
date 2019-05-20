@@ -7,7 +7,8 @@ from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import Mag
 
 __package__ = "rFBP_train_example"
-__author__  = ["Nico Curti (nico.curit2@unibo.it)", "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 
 def parse_args():
@@ -160,12 +161,10 @@ def parse_args():
 def train():
   args = parse_args()
 
-  fp = Focusing_Protocol(args.protocol, args.steps)
-  pattern = Pattern()
-  pattern.load(args.patterns, args.bin, args.delimiter)
+  pattern = Pattern(args.patterns, args.bin, args.delimiter)
 
-  if args.mag == 0: args.mag = Mag.magT
-  else:             args.mag = Mag.magP
+  if args.mag == 0: args.mag = Mag.magP
+  else:             args.mag = Mag.magT
 
   rfbp = rFBP(magnetization=args.mag,
               hidden_layers=args.hidden,
@@ -174,11 +173,14 @@ def train():
               damping=args.damping,
               accuracy=args.accuracy,
               randfact=args.randfact,
-              epsil=args.epsilon)
+              epsil=args.epsilon,
+              protocol=args.protocol,
+              size=args.steps,
+              nth=args.nth)
 
-  rfbp.fit(pattern)#.data, pattern.labels)
+  rfbp.fit(pattern)
   rfbp.save_weights(args.outweights, args.delweights, args.binweights)
 
 if __name__ == '__main__':
-
+  # run train
   train()

@@ -9,7 +9,7 @@ cdef extern from "pattern.h":
     Patterns() except +
     Patterns(const string &, bool, const string &) except +
     Patterns(const long int &, const long int &) except +
-    Patterns(long int **, long int *, const int &, const int &) except +
+    Patterns(double **, long int *, const int &, const int &) except +
 
     # Attributes
     long int Nrow, Ncol, Nout
