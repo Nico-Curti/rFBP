@@ -13,6 +13,7 @@ from ReplicatedFocusingBeliefPropagation import Mag
 from sklearn.utils import check_array
 from ReplicatedFocusingBeliefPropagation.source.misc import _check_string
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import _rfbp, _nonbayes_test
+from sklearn.base import BaseEstimator
 
 __package__ = "ReplicatedFocusingBeliefPropagation"
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
@@ -21,7 +22,7 @@ __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 import multiprocessing
 NTH = multiprocessing.cpu_count()
 
-class ReplicatedFocusingBeliefPropagation():
+class ReplicatedFocusingBeliefPropagation(BaseEstimator):
 
   def __init__(self,
                      magnetization = Mag.magP,
