@@ -5,8 +5,7 @@
 #include <string>
 #include <algorithm>
 
-#ifndef __clang__
-#if __GNUC__ <= 6
+#if !defined __clang__ && __GNUC__ <= 6
 
 #include <magnetization_oldgcc.h>
 
@@ -43,8 +42,6 @@ namespace mag
   template < class Mag > Mag      erfmix        (const Mag & H,  const double & mp, const double & mm);
   template < class Mag > Mag      exactmix      (const Mag & H,  const Mag & pp,    const Mag & pm);
 }
-
-#endif // old gcc
 
 #endif // __clang__
 

@@ -17,7 +17,7 @@ add_definitions (-DPWD="${CMAKE_SOURCE_DIR}")
 #                         COMPILE OPTIONS                       #
 #################################################################
 
-option (OMP        "Enable OpenMP                support" ON)
+option (OMP        "Enable OpenMP                support" OFF)
 option (VERBOSE    "Enable verbose stdout        support" ON)
 option (STATS      "Enable verbose statistics    support" ON)
 option (BUILD_TEST "Enable tests build           support" ON)

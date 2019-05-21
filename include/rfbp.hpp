@@ -833,9 +833,7 @@ void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps)
 #endif // STATS
 
 
-#ifndef __clang__
-
-#if __GNUC__ <= 6
+#if !defined __clang__ && __GNUC__ <= 6
 
 template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
 void set_outfields(const Cavity_Message < Mag > & message, const long int * output, const double & beta)
@@ -861,7 +859,6 @@ void set_outfields(const Cavity_Message < Mag > & message, const long int * outp
   for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagT64(std :: atanh(output[i] * t));
 }
 
-
 #else
 
 template < class Mag >
@@ -886,7 +883,6 @@ void set_outfields(const Cavity_Message < Mag > & message, const long int * outp
   }
 }
 
-#endif // old gcc
 
 #endif // __clang__
 

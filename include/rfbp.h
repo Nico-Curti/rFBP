@@ -42,9 +42,7 @@ template < class Mag > double compute_q (const Cavity_Message < Mag > & messages
 template < class Mag > void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps);
 #endif // STATS
 
-#ifndef __clang__
-
-#if __GNUC__ <= 6
+#if !defined __clang__ &&  __GNUC__ <= 6
 
 #include <type_traits>
 template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
@@ -56,8 +54,6 @@ void set_outfields (const Cavity_Message < Mag > & message, const long int * out
 #else
 
 template < class Mag > void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
-
-#endif // old gcc
 
 #endif // __clang__
 

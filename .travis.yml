@@ -12,6 +12,38 @@ matrix:
 
     - os: linux
       compiler: gcc
+      name: ubuntu 14.04 - native gcc
+      env:
+        - MATRIX_EVAL=""
+
+    - os: linux
+      compiler: gcc
+      name: ubuntu 14.04 - gcc@4.8.5
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.8
+      env:
+        - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
+
+    - os: linux
+      compiler: gcc
+      name: ubuntu 14.04 - gcc@4.9
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env:
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+
+    - os: linux
+      compiler: gcc
       name: ubuntu 14.04 - gcc@5.0
       addons:
         apt:
@@ -251,8 +283,8 @@ matrix:
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
 
   allow_failures:
-    - name: ubuntu 14.04 - gcc@5.0 # not support the full std=c++17
-    - name: ubuntu 14.04 - gcc@6.0 # not support the full std=c++17
+    - name: ubuntu 14.04 - gcc@5.0
+    - name: ubuntu 14.04 - gcc@6.0
     - name: ubuntu 14.04 - clang@3.6
     - name: ubuntu 14.04 - clang@3.8
     - name: ubuntu 14.04 - clang@3.9
@@ -281,4 +313,4 @@ install:
 script:
   - chmod 777 ./build.sh
   - if [[ "$TRAVIS_COMPILER" == "clang" ]]; then bash ./build.sh "" OFF                                                                       ;fi
-  - if [[ "$TRAVIS_COMPILER" == "gcc"   ]]; then bash ./build.sh "" ON                                                                        ;fi
+  - if [[ "$TRAVIS_COMPILER" == "gcc"   ]]; then bash ./build.sh "" OFF                                                                       ;fi

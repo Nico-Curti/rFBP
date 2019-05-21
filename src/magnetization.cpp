@@ -1,6 +1,4 @@
-#ifndef __clang__
-
-#if __GNUC__ <= 6
+#if !defined __clang__ && __GNUC__ <= 6
 
 #include <magnetization_oldgcc.hpp>
 
@@ -8,7 +6,6 @@
 
 #include <magnetization.hpp>
 
-#endif
 #endif
 
 
