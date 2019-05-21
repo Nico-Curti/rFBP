@@ -25,8 +25,8 @@ NTH = multiprocessing.cpu_count()
 class ReplicatedFocusingBeliefPropagation(BaseEstimator):
 
   def __init__(self,
-                     magnetization = Mag.magP,
-                     hidden_layers = 3,
+                     mag = Mag.magP,
+                     hidden = 3,
                      max_iter = 1000,
                      seed = 135,
                      damping = 0.5,
@@ -36,11 +36,11 @@ class ReplicatedFocusingBeliefPropagation(BaseEstimator):
                      protocol = 'pseudo_reinforcement',
                      size = 101,
                      nth = NTH):
-    if not isinstance(magnetization, Mag):
+    if not isinstance(mag, Mag):
       raise TypeError('Magnetization must be an instance of Mag Enum')
 
-    self.mag = magnetization
-    self.hidden = hidden_layers
+    self.mag = mag
+    self.hidden = hidden
     self.max_iter = max_iter
     self.seed = seed
     self.damping = damping
@@ -62,7 +62,7 @@ class ReplicatedFocusingBeliefPropagation(BaseEstimator):
       testset = X # use this with c++ version
     else:
       X = check_array(X)
-      testset = Pattern(X, [None] * X.shape[0]) # use this with c++ version
+      testset = Pattern(X, [0] * X.shape[0]) # use this with c++ version
       # testset = X
     return _nonbayes_test(self.weights, testset.pattern, self.hidden)
 

@@ -166,8 +166,8 @@ def train():
   if args.mag == 0: args.mag = Mag.magP
   else:             args.mag = Mag.magT
 
-  rfbp = rFBP(magnetization=args.mag,
-              hidden_layers=args.hidden,
+  rfbp = rFBP(mag=args.mag,
+              hidden=args.hidden,
               max_iter=args.iteration,
               seed=args.seed,
               damping=args.damping,

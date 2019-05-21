@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.8.2)
+cmake_minimum_required (VERSION 3.9)
 
 # rFBP Version
 set (RFBP_MAJOR    1)
@@ -98,7 +98,7 @@ if (OMP)
   find_package(OpenMP REQUIRED)
   if (OPENMP_FOUND)
     message(STATUS "OpenMP found")
-    if (OpenMP_CXX_VERSION_MAJOR LESS 4 AND OpenMP_CXX_VERSION_MINOR LESS 5)
+    if (OpenMP_CXX_VERSION_MAJOR LESS_EQUAL 4 AND OpenMP_CXX_VERSION_MINOR LESS 5)
       message(FATAL_ERROR " Your OpenMP is too old. Required OpenMP 4.5. Please upgrade.")
     endif()
     message(STATUS "OpenMP found")

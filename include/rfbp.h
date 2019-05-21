@@ -41,7 +41,26 @@ template < class Mag > double compute_q_bar (const Cavity_Message<Mag> & message
 template < class Mag > double compute_q (const Cavity_Message < Mag > & messages, const long int & nm_j_star, const long int & nm_j_star_col);
 template < class Mag > void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps);
 #endif // STATS
+
+#ifndef __clang__
+
+#if __GNUC__ <= 6
+
+#include <type_traits>
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
+void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
+
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
+void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
+
+#else
+
 template < class Mag > void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
+
+#endif // old gcc
+
+#endif // __clang__
+
 template < class Mag > long int ** focusingBP (const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, int nth = 1, std :: string outfile = "", std :: string outmessfiletmpl = "", std :: string initmess = "", const bool & bin_mess = false);
 
 template < class Mag > using theta_function = double (*) (MagVec < Mag >, Mag &, const double *, MagVec < Mag >, Mag &, const Params < Mag > &, const long int &, const long int &);
