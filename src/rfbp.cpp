@@ -882,7 +882,7 @@ long int ** focusingBP(const long int & K, const Patterns & patterns, const long
   if (accuracy2 == "exact" && !(K % 2L))                                            error_Kexact(K);
 #endif
   if constexpr ( std :: is_same_v < Mag, MagT64 > )
-    if ( !file_exists("./data/atanherf_interp.max_16.step_0.0001.first_1.dat") )
+    if ( !file_exists(std :: string(PWD) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat") )
       error_atanherf_file();
 
 #ifdef _OPENMP

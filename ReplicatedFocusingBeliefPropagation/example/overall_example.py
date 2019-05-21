@@ -26,7 +26,7 @@ if __name__ == '__main__':
               seed=135,
               damping=0.5,
               accuracy=['accurate','exact'],
-              randfact=101,
+              randfact=0.1,
               epsil=0.5,
               protocol="pseudo_reinforcement",
               size=101,
