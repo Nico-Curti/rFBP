@@ -5,10 +5,10 @@
 
 band_matrix :: band_matrix (const int & dim) : dim(dim)
 {
-  this->m_upper[0] = std::make_unique<double[]>(dim);
-  this->m_upper[1] = std::make_unique<double[]>(dim);
-  this->m_lower[0] = std::make_unique<double[]>(dim);
-  this->m_lower[1] = std::make_unique<double[]>(dim);
+  this->m_upper[0] = std :: make_unique < double[] >(dim);
+  this->m_upper[1] = std :: make_unique < double[] >(dim);
+  this->m_lower[0] = std :: make_unique < double[] >(dim);
+  this->m_lower[1] = std :: make_unique < double[] >(dim);
 }
 
 double & band_matrix :: operator () (const int & i, const int & j)

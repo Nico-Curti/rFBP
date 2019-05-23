@@ -28,7 +28,12 @@ int main (int argc, char *argv[])
   std :: unique_ptr < int[] > temp_labels(  new int [patterns.Nrow] );
   std :: unique_ptr < int[] > temp_predict( new int [patterns.Nrow] );
 
+#if __GNUC__ > 4
+
   scorer score;
+
+#endif
+
 #ifdef _OPENMP
 #pragma omp parallel shared(score) num_threads(nth)
   {
@@ -57,14 +62,28 @@ int main (int argc, char *argv[])
     }
 #endif
 
+#if __GNUC__ > 4
+
     score.compute_score( temp_labels.get(), temp_predict.get(), patterns.Nrow, patterns.Nrow);
+
+#endif
 
 #ifdef _OPENMP
   }
 #endif
 
+#if __GNUC__ > 4
+
   if ( !output_file.empty() ) score.dump(output_file);
   else score.print();
+
+#else
+
+  std :: cout << "true_label\tpredict_label" << std :: endl;
+  for(int i = 0; i < pattern.Nrow; ++i)
+    std :: cout << pattern.output[i] << "\t" << temp_predict[i] << std :: endl;
+
+#endif
 
   for (long int i = 0L; i < messages.K; ++i) delete[] bin_weights[i];
   delete[] bin_weights;
