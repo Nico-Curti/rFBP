@@ -53,7 +53,7 @@ void FocusingProtocol :: StandardReinforcement (const double * rho, const long i
   this->n_rep = std :: make_unique < double[] >(Nrho);
   this->beta  = std :: make_unique < double[] >(Nrho);
   std :: fill_n(this->gamma.get(), Nrho, inf);
-  std :: transform(rho, rho + Nrho, this->n_rep.get(), [](const auto &i){ return 1. / (1. - i);});
+  std :: transform(rho, rho + Nrho, this->n_rep.get(), [](const double & i){ return 1. / (1. - i);});
   std :: fill_n(this->beta.get(), Nrho, inf);
   return;
 }
@@ -89,8 +89,8 @@ void FocusingProtocol :: PseudoReinforcement (const double * rho, const long int
   this->gamma = std :: make_unique < double[] >(this->Nrep);
   this->beta  = std :: make_unique < double[] >(this->Nrep);
   this->n_rep = std :: make_unique < double[] >(this->Nrep);
-  std :: transform(rho, rho + nrho, this->gamma.get(), [&x](const auto &i){return std :: atanh(std :: pow(i, x));});
-  std :: transform(rho, rho + nrho, this->n_rep.get(), [&x](const auto &i){return 1. + std :: pow(i, 1. - 2. * x) / (1. - i);});
+  std :: transform(rho, rho + nrho, this->gamma.get(), [&x](const double & i){return std :: atanh(std :: pow(i, x));});
+  std :: transform(rho, rho + nrho, this->n_rep.get(), [&x](const double & i){return 1. + std :: pow(i, 1. - 2. * x) / (1. - i);});
   std :: fill_n(this->beta.get(), this->Nrep, inf);
   return;
 }

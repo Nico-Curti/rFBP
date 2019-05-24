@@ -91,8 +91,8 @@ std :: unique_ptr < double[] > band_matrix :: r_solve(const double * b) const
 std :: unique_ptr < double[] > band_matrix :: lu_solve(const double * b)
 {
   this->lu_decompose();
-  auto y = this->l_solve(b);
-  auto x = this->r_solve(y.get());
+  std :: unique_ptr < double[] > y = this->l_solve(b);
+  std :: unique_ptr < double[] > x = this->r_solve(y.get());
   return x;
 }
 
@@ -261,7 +261,7 @@ void spline :: set_points(double * & x, double * & y, const int & npts, spline_t
 
 double spline :: operator() (const double & x) const
 {
-  const auto it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
+  const double it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
   const int pos  = it - this->mx.get() - 1;
   const int idx  = pos > 0 ? pos : 0;
   const double h = x - this->mx[idx];
@@ -277,7 +277,7 @@ double spline :: deriv (const int & order, const double & x) const
 #ifdef DEBUG
   assert (order > 0);
 #endif
-  const auto it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
+  const double it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
   const int pos  = it - this->mx.get() - 1;
   const int idx  = pos > 0 ? pos : 0;
   const double h = x - this->mx[idx];
@@ -325,12 +325,12 @@ spline & spline :: operator = (const spline & s)
 #ifdef DEBUG
 void spline :: _assert_increasing(const double * t, const int & nt)
 {
-  const auto check = std :: inner_product(t, t + nt - 1,
-                                          t + 1, 0, std :: plus < int >(),
-                                          [](const auto &i, const auto &j)
-                                          {
-                                            return i < j ? 1 : 0;
-                                          });
+  const int check = std :: inner_product(t, t + nt - 1,
+                                         t + 1, 0, std :: plus < int >(),
+                                         [](const double & i, const double & j)
+                                         {
+                                           return i < j ? 1 : 0;
+                                         });
   assert (check == nt - 1);
 }
 #endif
