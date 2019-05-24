@@ -40,7 +40,7 @@ namespace mag
 
   bool isinf (const double & x)
   {
-    return ( ( (x == INF) || (x == -inf) ) || (std :: isinf(x)) );
+    return ( ( (x == INF) || (x == -INF) ) || (std :: isinf(x)) );
   }
 
 
@@ -250,7 +250,7 @@ namespace mag
             std :: abs(ax + ay) - std :: abs(ax) - std :: abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
             mag :: isinf(ax) && !mag :: isinf(ay) ? sign(ax) * ay - std :: abs(ay) - lr(ay)       :
            !mag :: isinf(ax) &&  mag :: isinf(ay) ? sign(ay) * ax - std :: abs(ax) - lr(ax)       :
-            sign(ax) == sign(ay) ? 0. : -inf;
+            sign(ax) == sign(ay) ? 0. : -INF;
   }
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
@@ -302,7 +302,7 @@ namespace mag
         s3 += lr(ai);
       }
       else if (hasinf == 0)        hasinf = sign(ai);
-      else if (hasinf != sign(ai)) return -inf;
+      else if (hasinf != sign(ai)) return -INF;
     }
     return std :: abs(s1) - s2 + lr(s1) - s3;
   }
