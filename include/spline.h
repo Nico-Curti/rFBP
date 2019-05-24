@@ -11,6 +11,7 @@
 #endif
 #include <iostream>
 #include <iterator>
+#include <utils.h>
 
 static constexpr double one_third = 1. / 3.;
 static constexpr double two_third = 2. / 3.;
