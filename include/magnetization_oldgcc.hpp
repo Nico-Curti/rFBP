@@ -9,9 +9,6 @@
 #include <atanherf.h>
 #include <climits>
 
-static const double INF = std :: numeric_limits < double > :: infinity();
-
-
 namespace std
 {
   double clamp (const double & x, const double & low, const double & high)

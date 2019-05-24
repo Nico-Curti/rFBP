@@ -1,6 +1,6 @@
 #include <cmd.h>
 #include <rfbp.h>
-#if __GNUC__ > 4
+#if defined __clang__ || (!defined __clang__ && __GNUC__ > 4)
 #include <scorer.h>
 #endif
 

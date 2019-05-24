@@ -16,8 +16,8 @@
 #include <chrono>
 #endif
 
-static constexpr double inf = std :: numeric_limits < double > :: infinity();
-static constexpr double epsilon     = std :: numeric_limits < double > :: epsilon();
+static constexpr double INF     = std :: numeric_limits < double > :: infinity();
+static constexpr double epsilon = std :: numeric_limits < double > :: epsilon();
 
 #if (defined(__GNUC__) && !defined(__clang__))
   static constexpr double log_2       = std :: log(2);
@@ -55,7 +55,7 @@ static std :: unordered_map < std :: string, long int > protocol
 
 std :: vector < std :: string > split (const std :: string & txt, const std :: string & del);
 
-#if !defined __clang__ && __GNUC__ == 4 && __GNUC_MINOR__ <= 9
+#if !defined __clang__ && __GNUC__ == 4 && __GNUC_MINOR__ < 9
 namespace std
 {
 

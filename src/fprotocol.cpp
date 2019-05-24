@@ -31,7 +31,7 @@ FocusingProtocol :: FocusingProtocol (const std :: string & prot, const long int
         // freeS[i][0] = std::atanh(std::sqrt(i * 1e-3));
         freeS[i][0] = 1. / (1. - i * 1e-2);
         freeS[i][1] = (2. - i * 1e-2) / (1. - i * 1e-2);
-        freeS[i][2] = inf;
+        freeS[i][2] = INF;
       }
       FreeScoping(freeS, size);
       for (long int i = 0L; i < size; ++i) delete[] freeS[i];
@@ -52,9 +52,9 @@ void FocusingProtocol :: StandardReinforcement (const double * rho, const long i
   this->gamma = std :: make_unique < double[] >(Nrho);
   this->n_rep = std :: make_unique < double[] >(Nrho);
   this->beta  = std :: make_unique < double[] >(Nrho);
-  std :: fill_n(this->gamma.get(), Nrho, inf);
+  std :: fill_n(this->gamma.get(), Nrho, INF);
   std :: transform(rho, rho + Nrho, this->n_rep.get(), [](const double & i){ return 1. / (1. - i);});
-  std :: fill_n(this->beta.get(), Nrho, inf);
+  std :: fill_n(this->beta.get(), Nrho, INF);
   return;
 }
 
@@ -64,9 +64,9 @@ void FocusingProtocol :: StandardReinforcement (const double & drho)
   this->gamma = std :: make_unique < double[] >(this->Nrep);
   this->beta  = std :: make_unique < double[] >(this->Nrep);
   this->n_rep = std :: make_unique < double[] >(this->Nrep);
-  std :: fill_n(this->gamma.get(), this->Nrep, inf);
+  std :: fill_n(this->gamma.get(), this->Nrep, INF);
   for (long int i = 0L; i < this->Nrep; ++i) this->n_rep[i] = 1. / (1. - (drho * i));
-  std :: fill_n(this->beta.get(), this->Nrep, inf);
+  std :: fill_n(this->beta.get(), this->Nrep, INF);
   return;
 }
 
@@ -78,7 +78,7 @@ void FocusingProtocol :: Scoping (const double * gr, const double & x, const lon
   this->n_rep = std :: make_unique < double[] >(this->Nrep);
   std :: copy_n(gr,                ngr, this->gamma.get());
   std :: fill_n(this->n_rep.get(), ngr, x);
-  std :: fill_n(this->beta.get(),  ngr, inf);
+  std :: fill_n(this->beta.get(),  ngr, INF);
   return;
 }
 
@@ -91,7 +91,7 @@ void FocusingProtocol :: PseudoReinforcement (const double * rho, const long int
   this->n_rep = std :: make_unique < double[] >(this->Nrep);
   std :: transform(rho, rho + nrho, this->gamma.get(), [&x](const double & i){return std :: atanh(std :: pow(i, x));});
   std :: transform(rho, rho + nrho, this->n_rep.get(), [&x](const double & i){return 1. + std :: pow(i, 1. - 2. * x) / (1. - i);});
-  std :: fill_n(this->beta.get(), this->Nrep, inf);
+  std :: fill_n(this->beta.get(), this->Nrep, INF);
   return;
 }
 
@@ -107,7 +107,7 @@ void FocusingProtocol :: PseudoReinforcement(const double & drho, double x)
     this->gamma[i] = std :: atanh(std :: pow(drho * i, x));
     this->n_rep[i] = 1. + std :: pow(drho * i, 1. - 2. * x) / (1. - drho * i);
   }
-  std :: fill_n(this->beta.get(), this->Nrep, inf);
+  std :: fill_n(this->beta.get(), this->Nrep, INF);
   return;
 }
 
