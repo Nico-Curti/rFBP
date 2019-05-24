@@ -61,11 +61,23 @@ template < class Mag > long int ** focusingBP (const long int & K, const Pattern
 
 template < class Mag > using theta_function = double (*) (MagVec < Mag >, Mag &, const double *, MagVec < Mag >, Mag &, const Params < Mag > &, const long int &, const long int &);
 
+#if !defined __clang__ &&  __GNUC__ <= 6
+
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
+theta_function < Mag > get_accuracy ( const std :: string & acc );
+
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
+theta_function < Mag > get_accuracy ( const std :: string & acc );
+
+#else
+
 template < class Mag > static std :: unordered_map < std :: string, theta_function < Mag > > accuracy
 {
   {"accurate", & theta_node_update_accurate},
   {"exact",    & theta_node_update_exact   },
   {"none" ,    & theta_node_update_approx  }
 };
+
+#endif
 
 #endif // RFBP_H

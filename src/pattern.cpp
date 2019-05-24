@@ -41,7 +41,7 @@ Patterns :: Patterns (const std :: string & filename, bool bin, const std :: str
 
     // Read outputs
     this->output = new long int [this->Nout];
-    std :: transform( row_.begin(), row_.end(), this->output, [](auto & i){return std :: stod(i);} );
+    std :: transform( row_.begin(), row_.end(), this->output, [](std :: string & i){return std :: stod(i);} );
 
     // Get N
     this->input = new double*[this->Nrow];
@@ -51,14 +51,14 @@ Patterns :: Patterns (const std :: string & filename, bool bin, const std :: str
     std :: generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
 
     // Read first pattern
-    std :: transform( row_.begin(), row_.end(), this->input[0L], [](auto & i){return std :: stod(i);} );
+    std :: transform( row_.begin(), row_.end(), this->input[0L], [](std :: string & i){return std :: stod(i);} );
 
     // Read all others
     for (long int i = 1L; i < this->Nrow; ++i)
     {
       std :: getline(buff, row);
       row_ = split(row, del);
-      std :: transform( row_.begin(), row_.end(), this->input[i], [](auto & rr){return std :: stod(rr);} );
+      std :: transform( row_.begin(), row_.end(), this->input[i], [](std :: string & rr){return std :: stod(rr);} );
     }
 
   }
@@ -145,13 +145,13 @@ void Patterns :: check_binary ()
   int cnt = 0;
   for (long int i = 0L; i < this->Nrow; ++i)
     cnt += std :: count_if(this->input[i], this->input[i] + this->Ncol,
-                           [](const auto &v)
+                           [](const double & v)
                            {
                             return std :: abs(v);
                            });
   assert(cnt == this->Nrow * this->Ncol);
   cnt = std :: accumulate(this->output, this->output + this->Nout,
-                          0, [](const int &res, const long int &v)
+                          0, [](const int & res, const long int & v)
                           {
                             return res + static_cast < int >(std :: abs(v));
                           });

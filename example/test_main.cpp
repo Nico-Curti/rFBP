@@ -1,5 +1,9 @@
 #include <cmd.h>
 #include <rfbp.h>
+#if __GNUC__ > 4
+#include <scorer.h>
+#endif
+
 
 int main (int argc, char *argv[])
 {

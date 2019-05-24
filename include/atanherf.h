@@ -17,7 +17,7 @@
 
 namespace AtanhErf
 {
-  auto getinp();
+  spline getinp();
   double atanherf_largex(const double & x);
   double atanherf_interp(const double & x);
   double evalpoly(const double & x);

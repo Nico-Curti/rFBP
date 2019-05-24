@@ -2,7 +2,7 @@
 
 namespace AtanhErf
 {
-  auto getinp()
+  spline getinp()
   {
     std :: string filename = std :: string(PWD) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat";
     std :: ifstream is(filename, std :: ios :: binary);
@@ -14,7 +14,7 @@ namespace AtanhErf
 
   double atanherf_interp (const double & x)
   {
-    static auto inp = getinp();
+    static spline inp = getinp();
     double res = inp(x);
     return res;
   }

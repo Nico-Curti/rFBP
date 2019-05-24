@@ -48,8 +48,8 @@ double theta_node_update_approx (MagVec < Mag > m, Mag & M, const double * xi, M
                    {
                     return mag :: bar(mi, ui);
                    });
-  mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
-  sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
+  mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](const Mag & hi, const double & xi_i){return hi.value * xi_i;});
+  sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](const Mag & hi, const double & xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
 #endif
 
   dsigma2 = 2. * sigma2;
@@ -129,8 +129,8 @@ double theta_node_update_accurate (MagVec < Mag > m, Mag & M, const double * xi,
                    {
                     return mag :: bar(mi, ui);
                    });
-  mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
-  sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
+  mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return hi.value * xi_i;});
+  sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
 #endif
 
   new_u = mag :: merf < Mag >( mu / std :: sqrt(2. * sigma2));
@@ -331,7 +331,7 @@ double free_energy_theta(const MagVec < Mag > m, const Mag & M, const double * x
   assert (nm == nxi);
 #endif
   std :: unique_ptr < Mag[] > h(new Mag[nm]);
-  const auto old_m_on = mag :: bar(M, U);
+  const Mag old_m_on = mag :: bar(M, U);
 
 // #ifdef _OPENMP
 // #pragma omp barrier
@@ -349,11 +349,11 @@ double free_energy_theta(const MagVec < Mag > m, const Mag & M, const double * x
                    {
                      return mag :: bar(mi, ui);
                    });
-  const double mu    = std :: inner_product(h.get(), h.get() + nm,  xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return hi.value * xi_i;});
-  const double sigma = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](auto &&hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
+  const double mu    = std :: inner_product(h.get(), h.get() + nm,  xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return hi.value * xi_i;});
+  const double sigma = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return (1. - hi.value * hi.value) * (xi_i * xi_i);});
 // #endif
 
-  const auto b = mag :: merf < Mag >( mu / std :: sqrt( 2. * sigma ) );
+  const Mag b = mag :: merf < Mag >( mu / std :: sqrt( 2. * sigma ) );
   double f     = -mag :: log1pxy(old_m_on, b);
 
 #ifdef DEBUG
@@ -364,7 +364,7 @@ double free_energy_theta(const MagVec < Mag > m, const Mag & M, const double * x
 // #pragma omp for reduction (+ : f)
 //   for (long int i = 0L; i < nm; ++i) f += mag :: log1pxy(h[i], u[i]);
 // #else
-  f = std :: inner_product(h.get(), h.get() + nm, u, f, std :: plus < double >(), [](auto &&hi, const Mag &ui){return mag :: log1pxy(hi, ui);});
+  f = std :: inner_product(h.get(), h.get() + nm, u, f, std :: plus < double >(), [](const Mag & hi, const Mag &ui){return mag :: log1pxy(hi, ui);});
 // #endif
 
   return f;
@@ -442,7 +442,7 @@ double free_energy_theta_exact(MagVec < Mag > m, const Mag & M, const double * x
 // #pragma omp for reduction (+ : f)
 //   for (long int i = 0; i < nm; ++i) f += mag :: log1pxy(h[i], u[i]);
 // #else
-  f = std :: inner_product(h.get(), h.get() + nm, u, f, std :: plus < double >(), [](auto &&h, const Mag &u){return mag :: log1pxy(h, u);});
+  f = std :: inner_product(h.get(), h.get() + nm, u, f, std :: plus < double >(), [](const Mag & h, const Mag &u){return mag :: log1pxy(h, u);});
 // #endif
 
 // #ifdef _OPENMP
@@ -531,8 +531,13 @@ double iterate(Cavity_Message < Mag > & messages, const Patterns & patterns, Par
   }
 #endif
 
+#if !defined __clang__ &&  __GNUC__ <= 6
+  auto tnu1 = get_accuracy < Mag >(params.accuracy1);
+  auto tnu2 = get_accuracy < Mag >(params.accuracy2);
+#else
   auto tnu1 = accuracy < Mag >[params.accuracy1];
   auto tnu2 = accuracy < Mag >[params.accuracy2];
+#endif
 
   for (long int a = 0L; a < size; ++a)
   {
@@ -623,10 +628,10 @@ long int * nonbayes_test (long int ** const sign_m_j_star, const Patterns & patt
   for (long int i = 0L; i < patterns.Nrow; ++i)
   {
     s = std :: accumulate(sign_m_j_star, sign_m_j_star + K,
-                          0., [&](const double &val, const auto wk)
+                          0., [&](const double &val, const long int * wk)
                           {
-                            trsf0 = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const auto &wki, const auto &pi) { return wki * pi; }));
-                            s2    = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const auto &wki, const auto &pi) { return (1L - wki * wki) * (pi * pi); }));
+                            trsf0 = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const long int & wki, const double & pi) { return wki * pi; }));
+                            s2    = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const long int & wki, const double & pi) { return (1L - wki * wki) * (pi * pi); }));
                             return val + std :: erf( trsf0 / std :: sqrt(2. * s2) );
                           });
     predicted_labels[i] = static_cast < long int >(sign(s));
@@ -639,7 +644,7 @@ template < class Mag >
 long int error_test(Cavity_Message < Mag > & messages, const Patterns & patterns)
 {
   long int ** bin_weights = messages.get_weights();
-  auto lbls = nonbayes_test(bin_weights, patterns, messages.K);
+  long int * lbls = nonbayes_test(bin_weights, patterns, messages.K);
   static long int t;
   t = 0.;
 #ifdef _OPENMP
@@ -704,7 +709,7 @@ double free_energy(const Cavity_Message < Mag > & messages, const Patterns & pat
       f -= mag :: logZ(messages.m_star_j[i][j], v.get(), messages.M);
       f -= log2_over_2;
       f += mag :: log1pxy(params.tan_gamma, -params.tan_gamma) * .5;
-      auto old_m_j_star = mag :: bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
+      Mag old_m_j_star = mag :: bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
       f += mag :: log1pxy(old_m_j_star, messages.m_star_j[i][j]);
 
       f += mag :: mcrossentropy( mag :: arrow(old_m_j_star ^ params.tan_gamma, params.r + 1.),
@@ -728,7 +733,7 @@ double compute_S (const Cavity_Message < Mag > & messages, const Params < Mag > 
   for (long int i = 0L; i < messages.K; ++i)
     for (long int j = 0L; j < messages.N; ++j)
     {
-      auto old_m_j_star = mag :: bar(messages.m_star_j[i][j], messages.m_j_star[i][j]);
+      Mag old_m_j_star = mag :: bar(messages.m_star_j[i][j], messages.m_j_star[i][j]);
       S += ( ( old_m_j_star ^ mag :: arrow( (old_m_j_star ^ params.tan_gamma), params.r ) ) % params.tan_gamma ).value;
     }
 
@@ -750,8 +755,8 @@ double compute_q_bar (const Cavity_Message < Mag > & messages, const Params < Ma
   for (long int i = 0L; i < messages.K; ++i)
     for (long int j = 0L; j < messages.N; ++j)
     {
-      auto old_m_j_star = mag :: bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
-      auto mx           = mag :: arrow( old_m_j_star ^ params.tan_gamma, params.r + 1.);
+      Mag old_m_j_star = mag :: bar(messages.m_j_star[i][j], messages.m_star_j[i][j]);
+      Mag mx           = mag :: arrow( old_m_j_star ^ params.tan_gamma, params.r + 1.);
       q_bar            += (mx ^ mx).value;
     }
   return q_bar / (messages.N * messages.K);
@@ -859,7 +864,35 @@ void set_outfields(const Cavity_Message < Mag > & message, const long int * outp
   for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagT64(std :: atanh(output[i] * t));
 }
 
-#else
+
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
+theta_function < Mag > get_accuracy ( const std :: string & acc )
+{
+  if ( acc == "accurate" ) return theta_node_update_accurate;
+  else if ( acc == "exact" ) return theta_node_update_exact;
+  else if ( acc == "none" ) return theta_node_update_accurate;
+  else
+  {
+    error_accuracy(acc);
+    return theta_node_update_exact;
+  }
+}
+
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
+theta_function < Mag > get_accuracy ( const std :: string & acc )
+{
+  if ( acc == "accurate" ) return theta_node_update_accurate;
+  else if ( acc == "exact" ) return theta_node_update_exact;
+  else if ( acc == "none" ) return theta_node_update_accurate;
+  else
+  {
+    error_accuracy(acc);
+    return theta_node_update_exact;
+  }
+}
+
+
+#else /// NEW GCC VERSION
 
 template < class Mag >
 void set_outfields(const Cavity_Message < Mag > & message, const long int * output, const double & beta)

@@ -89,12 +89,26 @@ else:
 
 if 'GCC' in cpp_compiler or 'CLANG' in cpp_compiler:
   cpp_compiler_args = ['-std=c++17', '-g0', '-fopenmp']
+  compiler, compiler_version = cpp_compiler.split()
+  if compiler == 'GCC':
+    BUILD_SCORER = True if int(compiler_version[0]) > 4 else False
+  if compiler == 'CLANG':
+    BUILD_SCORER = True
+
 elif 'MSC' in cpp_compiler:
   cpp_compiler_args = ['/std:c++17', '/openmp']
+  BUILD_SCORER = True
 else:
   print('Unknown c++ compiler arg', file=sys.stderr)
   cpp_compiler_args = []
-extra_compile_args = cpp_compiler_args + ['-DSTATS', '-DNDEBUG', '-DVERBOSE', '-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION']
+  BUILD_SCORER = False
+
+extra_compile_args = cpp_compiler_args + ['-DSTATS', '-DNDEBUG', '-DVERBOSE', '-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION', '-DPWD="{}"'.format(here)]
+
+if BUILD_SCORER:
+  scorer_include = [os.path.join(os.getcwd(), 'scorer', 'scorer', 'include')]
+else:
+  scorer_include = []
 
 # Where the magic happens:
 setup(
@@ -134,7 +148,7 @@ setup(
                     '.',
                     os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'include'),
                     os.path.join(os.getcwd(), 'include'),
-                    os.path.join(os.getcwd(), 'scorer', 'scorer', 'include'),
+                    *scorer_include,
                     np.get_include()
                 ],
                 libraries=rfbp_lib,

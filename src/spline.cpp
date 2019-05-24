@@ -261,7 +261,7 @@ void spline :: set_points(double * & x, double * & y, const int & npts, spline_t
 
 double spline :: operator() (const double & x) const
 {
-  const double it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
+  const auto it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
   const int pos  = it - this->mx.get() - 1;
   const int idx  = pos > 0 ? pos : 0;
   const double h = x - this->mx[idx];
@@ -277,7 +277,7 @@ double spline :: deriv (const int & order, const double & x) const
 #ifdef DEBUG
   assert (order > 0);
 #endif
-  const double it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
+  const auto it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
   const int pos  = it - this->mx.get() - 1;
   const int idx  = pos > 0 ? pos : 0;
   const double h = x - this->mx[idx];
