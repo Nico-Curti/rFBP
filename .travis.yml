@@ -1,10 +1,5 @@
 language: cpp
 
-cache:
-  directories:
-    - ${TRAVIS_BUILD_DIR}/deps/llvm-3.9.0
-
-
 matrix:
   fast_finish: true
   include:

@@ -80,8 +80,8 @@ int main (int argc, char *argv[])
 #else
 
   std :: cout << "true_label\tpredict_label" << std :: endl;
-  for(int i = 0; i < pattern.Nrow; ++i)
-    std :: cout << pattern.output[i] << "\t" << temp_predict[i] << std :: endl;
+  for(int i = 0; i < patterns.Nrow; ++i)
+    std :: cout << patterns.output[i] << "\t" << temp_predict[i] << std :: endl;
 
 #endif
 

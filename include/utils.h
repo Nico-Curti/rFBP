@@ -4,9 +4,12 @@
 #include <limits>
 #include <unordered_map>
 #include <vector>
+#include <memory>
 #include <cmath>
 #if __GNUC__ > 4
 #include <scorer.h>
+#else
+static constexpr double inf = std :: numeric_limits < double > :: infinity();
 #endif
 //#if __has_include(<filesystem>)
 //#  include <filesystem>
@@ -18,7 +21,6 @@
 #include <chrono>
 #endif
 
-// static constexpr double inf         = std::numeric_limits<double>::infinity();
 static constexpr double epsilon     = std :: numeric_limits < double > :: epsilon();
 
 #if (defined(__GNUC__) && !defined(__clang__))
