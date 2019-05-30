@@ -51,7 +51,7 @@ def read_description():
   except Exception:
     return ''
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = os.path.join(os.path.abspath(os.path.dirname(__file__)),"")
 
 if not os.path.isfile(os.path.join(here, 'lib', 'librfbp.so')):
   rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx'),

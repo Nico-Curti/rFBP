@@ -8,18 +8,21 @@ FocusingProtocol :: FocusingProtocol (const std :: string & prot, const long int
 {
   long int p = protocol.at(prot),
            i = 0;
+  double step = 1. / (size - 1L);
   switch ( p )
   {
     case scoping_:
     {
+      step = 7. / (size - 1L);
       std :: unique_ptr < double[] > scop(new double[size]);
-      std :: generate_n(scop.get(), size, [&](){ return (i++) * 1.;});
+      std :: generate_n(scop.get(), size - 1L, [&](){ return (i++) * step ;});
+      scop[size - 1L] = INF;
       Scoping(scop.get(), 21L, size);
     } break;
     case pseudo_:
     {
       std :: unique_ptr < double[] > pseudo(new double[size]);
-      std :: generate_n(pseudo.get(), size, [&](){ return (i++) * 1e-2;});
+      std :: generate_n(pseudo.get(), size, [&](){ return (i++) * step;});
       PseudoReinforcement(pseudo.get(), size);
     } break;
     case free_scoping_:
@@ -29,8 +32,8 @@ FocusingProtocol :: FocusingProtocol (const std :: string & prot, const long int
       for (long int i = 0L; i < size; ++i)
       {
         // freeS[i][0] = std::atanh(std::sqrt(i * 1e-3));
-        freeS[i][0] = 1. / (1. - i * 1e-2);
-        freeS[i][1] = (2. - i * 1e-2) / (1. - i * 1e-2);
+        freeS[i][0] = 1. / (1. - i * step);
+        freeS[i][1] = (2. - i * step) / (1. - i * step);
         freeS[i][2] = INF;
       }
       FreeScoping(freeS, size);
@@ -39,7 +42,7 @@ FocusingProtocol :: FocusingProtocol (const std :: string & prot, const long int
     } break;
     case standard_:
     {
-      StandardReinforcement(1e-2);
+      StandardReinforcement(step);
     } break;
     default: error_protocol(prot);
     break;
@@ -60,7 +63,7 @@ void FocusingProtocol :: StandardReinforcement (const double * rho, const long i
 
 void FocusingProtocol :: StandardReinforcement (const double & drho)
 {
-  this->Nrep  = static_cast < int >((1. - drho) / drho);
+  this->Nrep  = static_cast < int >((1. - drho) / drho + 1.);
   this->gamma = std :: make_unique < double[] >(this->Nrep);
   this->beta  = std :: make_unique < double[] >(this->Nrep);
   this->n_rep = std :: make_unique < double[] >(this->Nrep);
@@ -97,7 +100,7 @@ void FocusingProtocol :: PseudoReinforcement (const double * rho, const long int
 
 void FocusingProtocol :: PseudoReinforcement(const double & drho, double x)
 {
-  this->Nrep  = static_cast < long int >((1. - drho) / drho);
+  this->Nrep  = static_cast < long int >((1. - drho) / drho + 1.);
   this->gamma = std :: make_unique < double[] >(this->Nrep);
   this->n_rep = std :: make_unique < double[] >(this->Nrep);
   this->beta  = std :: make_unique < double[] >(this->Nrep);
