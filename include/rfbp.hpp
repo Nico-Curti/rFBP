@@ -948,7 +948,7 @@ long int ** focusingBP(const long int & K, const Patterns & patterns, const long
   if (accuracy1 == "exact" && !(N % 2L))                                            error_Nexact(N);
   if (accuracy2 == "exact" && !(K % 2L))                                            error_Kexact(K);
 #endif
-  if ( std :: is_same < Mag, MagT64 > :: value && !file_exists( std :: string(PWD) + "atanherf_interp.max_16.step_0.0001.first_1.dat") )
+  if ( std :: is_same < Mag, MagT64 > :: value && !file_exists( std :: string(PWD) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat") )
     error_atanherf_file();
 
 #ifdef _OPENMP
@@ -985,9 +985,9 @@ long int ** focusingBP(const long int & K, const Patterns & patterns, const long
 #endif // verbose
     os.open(outfile);
 #ifdef STATS
-    os << "pol y beta S q q_bar betaF S_int E" << std :: endl;
+    os << "it ok pol y beta S q q_bar betaF S_int E" << std :: endl;
 #else
-    os << "it pol y beta ok E" << std :: endl;
+    os << "it ok pol y beta E" << std :: endl;
 #endif
     os.close();
   }
@@ -1121,7 +1121,9 @@ long int ** focusingBP(const long int & K, const Patterns & patterns, const long
 #endif
         os.open(outfile, std :: ios_base :: app);
 #ifdef STATS
-        os << params.tan_gamma   << " "
+        os << it                 << " "
+           << ok                 << " "
+           << params.tan_gamma   << " "
            << fprotocol.n_rep[i] << " "
            << fprotocol.beta[i]  << " "
            << S                  << " "
@@ -1133,10 +1135,10 @@ long int ** focusingBP(const long int & K, const Patterns & patterns, const long
            << std :: endl;
 #else
         os << it                << " "
+           << ok                << " "
            << params.tan_gamma  << " "
            << fprotocol.nrep[i] << " "
            << fprotocol.beta[i] << " "
-           << ok                << " "
            << errs
            << std :: endl;
 #endif
@@ -1165,7 +1167,7 @@ long int ** focusingBP(const long int & K, const Patterns & patterns, const long
 #pragma omp single
 #endif
     ++it;
-    if (it > max_steps)  break;
+    if ( it > max_steps || !ok )  break;
   }
   weights = messages.get_weights();
 #ifdef _OPENMP
