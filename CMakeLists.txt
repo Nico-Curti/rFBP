@@ -158,7 +158,9 @@ file(GLOB HEADER        "${INC_DIR}/*.h"   )
 file(GLOB SCORER_HEADER "${INC_SCORER}/*.h")
 # file(GLOB EXE    "${EXAMPLE}/*.cpp")
 
-list (APPEND SRC ${CMAKE_SOURCE_DIR}/scorer/src/scorer.cpp)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "4")
+  list (APPEND SRC ${CMAKE_SOURCE_DIR}/scorer/src/scorer.cpp)
+endif()
 
 include_directories(${INC_DIR} ${INC_SCORER})
 
