@@ -1,14 +1,19 @@
-#!usr/bin/env python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import time
 import argparse
-from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 from ReplicatedFocusingBeliefPropagation import Pattern
+from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 
 try:
-  from Pyscorer import Pyscorer
+
+  from scorer import Scorer
+
   USE_SCORER = True
+
 except ImportError:
+
   USE_SCORER = False
 
 
@@ -23,37 +28,37 @@ def parse_args():
   parser = argparse.ArgumentParser(description = description)
   parser.add_argument('--patterns',
                       dest='patterns',
-                      required = True,
+                      required=True,
                       type=str,
                       action='store',
-                      help = 'Pattern Filename' )
+                      help='Pattern Filename' )
   parser.add_argument('--output',
                       dest='output',
-                      required = False,
+                      required=False,
                       type=str,
                       action='store',
-                      help = 'Output filename',
+                      help='Output filename',
                       default='')
   parser.add_argument('--bin',
                       dest='bin',
-                      required = False,
+                      required=False,
                       type=bool,
                       action='store',
-                      help = 'File format: (0) Textfile(default), (1) Binary',
+                      help='File format: (0) Textfile(default), (1) Binary',
                       default=False,
                       choices=[0, 1])
   parser.add_argument('--weights',
                       dest='weights',
-                      required = True,
+                      required=True,
                       type=str,
                       action='store',
-                      help = 'Weights Matrix filename')
+                      help='Weights Matrix filename')
   parser.add_argument('--delimiter',
                       dest='delimiter',
-                      required = False,
+                      required=False,
                       type=str,
                       action='store',
-                      help = 'Delimiter for text file(default: \"\\t\")',
+                      help='Delimiter for text file(default: \"\\t\")',
                       default='\t')
 
   args = parser.parse_args()
@@ -62,6 +67,7 @@ def parse_args():
 
 
 def test():
+
   args = parse_args()
 
   pattern = Pattern(args.patterns, args.bin, args.delimiter)
@@ -76,7 +82,9 @@ def test():
   print ('{0}: Predicted in {1:.2f} seconds'.format(args.patterns, elapsed_time))
 
   if USE_SCORER:
-    scorer = Pyscorer(pattern.labels, predicted_labels)
+
+    scorer = Scorer()
+    scorer.evaluate(pattern.labels, predicted_labels)
     print(scorer)
 
 

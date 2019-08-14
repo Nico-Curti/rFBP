@@ -1,13 +1,21 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from __future__ import print_function
 
 import os
 import warnings
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import Mag
-from ReplicatedFocusingBeliefPropagation.source.ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation, NTH
-from ReplicatedFocusingBeliefPropagation.source.Patterns import Pattern
-from ReplicatedFocusingBeliefPropagation.source.FocusingProtocol import Focusing_Protocol
+
+try:
+
+  from .rfbp.ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation
+  from .rfbp.ReplicatedFocusingBeliefPropagation import NTH
+  from .rfbp.Patterns import Pattern
+  from .rfbp.FocusingProtocol import Focusing_Protocol
+  from lib.ReplicatedFocusingBeliefPropagation.rFBP import Mag
+
+except ImportError:
+  pass
 
 __all__ = ["ReplicatedFocusingBeliefPropagation"]
 

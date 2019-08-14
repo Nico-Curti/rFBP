@@ -278,8 +278,6 @@ matrix:
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
 
   allow_failures:
-    - name: ubuntu 14.04 - gcc@5.0
-    - name: ubuntu 14.04 - gcc@6.0
     - name: ubuntu 14.04 - clang@3.6
     - name: ubuntu 14.04 - clang@3.8
     - name: ubuntu 14.04 - clang@3.9

@@ -1,14 +1,16 @@
-#!usr/bin/env python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import time
-from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
+
+from ReplicatedFocusingBeliefPropagation import Mag
 from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import Focusing_Protocol
-from ReplicatedFocusingBeliefPropagation import Mag
+from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 
 try:
 
-  from Pyscorer import Pyscorer
+  from scorer import Scorer
 
   USE_SCORER = True
 
@@ -48,7 +50,8 @@ if __name__ == '__main__':
 
   if USE_SCORER:
 
-    scorer = Pyscorer(pattern.labels, predicted_labels)
+    scorer = Scorer()
+    scorer.evaluate(pattern.labels, predicted_labels)
     print(scorer)
 
   else:
