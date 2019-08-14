@@ -626,5 +626,5 @@ void Cavity_Message < Mag > :: save_messages(const std :: string & filename)
   os.close();
 }
 
-template struct Cavity_Message < MagP64 >;
-template struct Cavity_Message < MagT64 >;
+template class Cavity_Message < MagP64 >;
+template class Cavity_Message < MagT64 >;

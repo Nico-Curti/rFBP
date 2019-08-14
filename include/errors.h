@@ -2,6 +2,7 @@
 #define ERRORS_H
 
 #include <iostream>
+#include <string>
 
 static constexpr int ERROR_POSITIVE         = 1;
 static constexpr int ERROR_RANGE            = 2;

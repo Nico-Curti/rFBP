@@ -6,6 +6,8 @@
 #include <fstream>
 #include <sstream>
 #include <iterator>
+#include <vector>
+#include <string>
 
 #include <magnetization.h>
 #include <errors.h>
