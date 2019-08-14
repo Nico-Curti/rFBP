@@ -24,9 +24,11 @@ private:
 
   // Member variables
 
+  std :: array < std :: unique_ptr < double[] >, 2> m_upper;
+  std :: array < std :: unique_ptr < double[] >, 2> m_lower;
+
   int dim;
-  std :: array < std :: unique_ptr < double[] >, 2> m_upper,
-                                                    m_lower;
+
 public:
 
   // Constructors
@@ -61,32 +63,60 @@ class spline
 {
 
 public:
+
   enum bd_type { first_deriv = 1, second_deriv = 2};
   enum spline_type { linear_spline = 1, cubic_spline = 2};
 
 private:
-  bool m_force_linear_extrapolation;
-  bd_type m_left, m_right;
+
+  std :: unique_ptr < double[] > mx;
+  std :: unique_ptr < double[] > my;
+  std :: unique_ptr < double[] > ma;
+  std :: unique_ptr < double[] > mb;
+  std :: unique_ptr < double[] > mc;
+
+  double mb0;
+  double mc0;
+  double m_left_value;
+  double m_right_value;
+
   int n;
-  double mb0, mc0, m_left_value, m_right_value;
-  std :: unique_ptr < double[] > mx, my, ma, mb, mc;
+
+  bd_type m_left, m_right;
+
+  bool m_force_linear_extrapolation;
+
 
 #ifdef DEBUG
+
   void _assert_increasing(const double * t, const int & nt);
+
 #endif
 
 public:
 
+  // Constructors
+
   spline ();
 
+  // Copy constructors
+
   spline (const spline &s);
+  spline & operator = (const spline & s);
+
+  // Destructors
+
   ~spline() = default;
+
+  // Operators
+
+  double operator() (const double & x) const;
+
+  // Public members
 
   void set_boundary(const bd_type & left, const double & left_value, const bd_type & right, const double & right_value, bool force_linear_extrapolation = false);
   void set_points(double * & x, double * & y, const int & npts, spline_type type = cubic_spline);
-  double operator() (const double & x) const;
   double deriv(const int & order, const double & x) const;
-  spline & operator = (const spline & s);
 
   void load_points (const std :: string & filename);
   void dump_points (const std :: string & filename);

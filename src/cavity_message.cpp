@@ -1,19 +1,19 @@
 #include <cavity_message.h>
 
 template < class Mag >
-Cavity_Message < Mag > :: Cavity_Message() : M(0L), N(0L), K(0L), seed(0L),
-                                             weights(nullptr),
-                                             m_star_j(nullptr),
-                                             m_j_star(nullptr),
-                                             m_in(nullptr),
-                                             m_no(nullptr),
-                                             m_ni(nullptr),
-                                             m_on(nullptr)
+Cavity_Message < Mag > :: Cavity_Message () : M(0L), N(0L), K(0L), seed(0L),
+                                              weights(nullptr),
+                                              m_star_j(nullptr),
+                                              m_j_star(nullptr),
+                                              m_in(nullptr),
+                                              m_no(nullptr),
+                                              m_ni(nullptr),
+                                              m_on(nullptr)
 {
 }
 
 template < class Mag >
-Cavity_Message < Mag > :: Cavity_Message(const std :: string & filename, const bool &bin)
+Cavity_Message < Mag > :: Cavity_Message (const std :: string & filename, const bool &bin)
 {
   std :: ifstream is;
 
@@ -177,7 +177,7 @@ Cavity_Message < Mag > :: Cavity_Message(const std :: string & filename, const b
 }
 
 template < class Mag >
-Cavity_Message < Mag > :: Cavity_Message(const long int & m, const long int & n, const long int & k, const double & x, const int &start) : M(m), N(n), K(k)
+Cavity_Message < Mag > :: Cavity_Message (const long int & m, const long int & n, const long int & k, const double & x, const int &start) : M(m), N(n), K(k)
 {
   std :: mt19937 engine(start);
   std :: uniform_real_distribution < double > dist(0., 1.);
@@ -382,7 +382,7 @@ Cavity_Message < Mag > & Cavity_Message < Mag > :: operator = (const Cavity_Mess
 }
 
 template < class Mag >
-Cavity_Message < Mag > :: ~Cavity_Message()
+Cavity_Message < Mag > :: ~Cavity_Message ()
 {
   if (this->K != 0L)
   {
@@ -415,7 +415,7 @@ Cavity_Message < Mag > :: ~Cavity_Message()
 }
 
 template < class Mag >
-long int** Cavity_Message < Mag > :: get_weights()
+long int** Cavity_Message < Mag > :: get_weights ()
 {
   static long int **sign_m_j_star;
   sign_m_j_star = new long int*[this->K];
@@ -441,7 +441,7 @@ long int** Cavity_Message < Mag > :: get_weights()
 }
 
 template < class Mag >
-void Cavity_Message < Mag > :: save_weights(const std::string & filename, Params < Mag > & parameters)
+void Cavity_Message < Mag > :: save_weights (const std::string & filename, Params < Mag > & parameters)
 {
   std :: ofstream os(filename);
   os << "fmt: "         << parameters.tan_gamma.magformat()
@@ -466,7 +466,7 @@ void Cavity_Message < Mag > :: save_weights(const std::string & filename, Params
 }
 
 template < class Mag >
-void Cavity_Message < Mag > :: save_weights(const std :: string & filename)
+void Cavity_Message < Mag > :: save_weights (const std :: string & filename)
 {
   std :: ofstream os(filename, std :: ios :: out | std :: ios :: binary);
   os.write( (const char *) &this->K, sizeof( long int ));
@@ -478,7 +478,7 @@ void Cavity_Message < Mag > :: save_weights(const std :: string & filename)
 }
 
 template < class Mag >
-void Cavity_Message < Mag > :: read_weights(const std :: string & filename, const bool & bin)
+void Cavity_Message < Mag > :: read_weights (const std :: string & filename, const bool & bin)
 {
   long int k, n;
   std :: ifstream is;
@@ -530,7 +530,7 @@ void Cavity_Message < Mag > :: read_weights(const std :: string & filename, cons
 }
 
 template < class Mag >
-void Cavity_Message < Mag > :: save_messages(const std :: string & filename, Params < Mag > & parameters)
+void Cavity_Message < Mag > :: save_messages (const std :: string & filename, Params < Mag > & parameters)
 {
    std :: ofstream os(filename);
    os << "fmt: "   << parameters.tan_gamma.magformat()
@@ -584,7 +584,7 @@ void Cavity_Message < Mag > :: save_messages(const std :: string & filename, Par
 }
 
 template < class Mag >
-void Cavity_Message < Mag > :: save_messages(const std :: string & filename)
+void Cavity_Message < Mag > :: save_messages (const std :: string & filename)
 { // WHAT ABOUT FMT???
   std :: ofstream os(filename, std :: ios :: out | std :: ios :: binary);
   os.write( reinterpret_cast <const char *>(&this->N), sizeof( long int ));

@@ -41,7 +41,7 @@ public:
 
   // Constructors
 
-  Cavity_Message();
+  Cavity_Message ();
   Cavity_Message (const std :: string & filename, const bool & bin);
   Cavity_Message (const long int & m, const long int & n, const long int & k, const double & x, const int & start);
 
@@ -56,19 +56,16 @@ public:
 
   // Methods
 
-  long int ** get_weights();
+  long int ** get_weights ();
 
-  void save_weights(const std :: string & filename, Params < Mag > & parameters);
-  void save_weights(const std :: string & filename);
+  void save_weights (const std :: string & filename, Params < Mag > & parameters);
+  void save_weights (const std :: string & filename);
 
-  void read_weights(const std :: string & filename, const bool & bin);
+  void read_weights (const std :: string & filename, const bool & bin);
 
-  void save_messages(const std :: string & filename, Params < Mag > & parameters);
-  void save_messages(const std :: string & filename);
+  void save_messages (const std :: string & filename, Params < Mag > & parameters);
+  void save_messages (const std :: string & filename);
 
-private:
-
-  std :: vector <std :: string> split(const std :: string & txt, const std :: string & del);
 };
 
 #endif // MESSAGE_H

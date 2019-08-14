@@ -865,7 +865,7 @@ void set_outfields(const Cavity_Message < Mag > & message, const long int * outp
 }
 
 
-template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type >
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
 theta_function < Mag > get_accuracy ( const std :: string & acc )
 {
   if ( acc == "accurate" ) return theta_node_update_accurate;
@@ -878,7 +878,7 @@ theta_function < Mag > get_accuracy ( const std :: string & acc )
   }
 }
 
-template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type >
+template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
 theta_function < Mag > get_accuracy ( const std :: string & acc )
 {
   if ( acc == "accurate" ) return theta_node_update_accurate;

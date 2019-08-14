@@ -101,10 +101,12 @@ std :: unique_ptr < double[] > band_matrix :: lu_solve(const double * b)
 // Spline Class
 
 
-spline :: spline () : m_left(second_deriv), m_right(second_deriv),
-                      n(0),
+spline :: spline () : mx(nullptr), my(nullptr), ma(nullptr), mb(nullptr), mc(nullptr),
                       mb0(0.), mc0(0.), m_left_value(0.), m_right_value(0.),
-                      mx(nullptr), my(nullptr), ma(nullptr), mb(nullptr), mc(nullptr)
+                      n(0),
+                      m_left(second_deriv), m_right(second_deriv),
+                      m_force_linear_extrapolation(false)
+
 {
 }
 
@@ -134,8 +136,11 @@ spline :: spline (const spline & s)
 void spline :: set_boundary(const bd_type & left, const double & left_value, const bd_type & right, const double & right_value, bool force_linear_extrapolation)
 {
 #ifdef DEBUG
+
   assert(this->n == 0);
+
 #endif
+
   this->m_left_value  = left_value;
   this->m_right_value = right_value;
   this->m_left        = left;
@@ -146,6 +151,7 @@ void spline :: set_boundary(const bd_type & left, const double & left_value, con
 void spline :: load_points (const std :: string & filename)
 {
   std :: ifstream is(filename, std :: ios :: binary);
+
   is.read((char*)&this->m_force_linear_extrapolation, sizeof(bool));
   is.read((char*)&this->m_left,                       sizeof(int));
   is.read((char*)&this->m_right,                      sizeof(int));
@@ -173,6 +179,7 @@ void spline :: load_points (const std :: string & filename)
 void spline :: dump_points (const std :: string & filename)
 {
   std :: ofstream os(filename, std :: ios :: out | std :: ios :: binary);
+
   os.write((char*)&this->m_force_linear_extrapolation, sizeof(bool));
   os.write((char*)&this->m_left,                       sizeof(int));
   os.write((char*)&this->m_right,                      sizeof(int));
@@ -200,7 +207,9 @@ void spline :: set_points(double * & x, double * & y, const int & npts, spline_t
   std :: move(y, y + npts, this->my.get());
 
 #ifdef DEBUG
+
   this->_assert_increasing(mx.get(), npts);
+
 #endif
 
   switch (type)
@@ -275,8 +284,11 @@ double spline :: operator() (const double & x) const
 double spline :: deriv (const int & order, const double & x) const
 {
 #ifdef DEBUG
+
   assert (order > 0);
+
 #endif
+
   const auto it  = std :: lower_bound(this->mx.get(), this->mx.get() + this->n, x);
   const int pos  = it - this->mx.get() - 1;
   const int idx  = pos > 0 ? pos : 0;
@@ -323,6 +335,7 @@ spline & spline :: operator = (const spline & s)
 }
 
 #ifdef DEBUG
+
 void spline :: _assert_increasing(const double * t, const int & nt)
 {
   const int check = std :: inner_product(t, t + nt - 1,
@@ -333,6 +346,7 @@ void spline :: _assert_increasing(const double * t, const int & nt)
                                          });
   assert (check == nt - 1);
 }
+
 #endif
 
 
