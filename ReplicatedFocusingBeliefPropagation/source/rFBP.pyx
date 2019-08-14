@@ -3,19 +3,21 @@
 
 from libcpp.memory cimport unique_ptr
 from cython.operator cimport dereference as deref
-from libc.stdlib cimport malloc, free
 cimport numpy as np
 
-from rfbp cimport focusingBP, nonbayes_test
+from rfbp cimport focusingBP
+from rfbp cimport nonbayes_test
 from pattern cimport Patterns
 from fprotocol cimport FocusingProtocol
-from mag cimport MagP64, MagT64
+from mag cimport MagP64
+from mag cimport MagT64
 from misc cimport double_pointers_for_cython
 
 from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
 import numpy as np
 import numbers
-from sklearn.utils import check_X_y, check_array
+from sklearn.utils import check_X_y
+from sklearn.utils import check_array
 import warnings
 
 from enum import Enum
@@ -33,18 +35,22 @@ cdef class _FocusingProtocol:
     long int Nrep
 
   def __init__(self, other=None):
+
     try:
+
       protocol, size = other
       protocol = _check_string(protocol, exist=False)
       self.thisptr.reset(new FocusingProtocol(protocol, size))
+
     except:
+
       self.thisptr.reset(new FocusingProtocol())
 
     self.Nrep  = deref(self.thisptr).Nrep
 
   def __repr__(self):
     class_name = self.__class__.__name__
-    return '<%s Class>'%(class_name)
+    return '<{} Class>'.format(class_name)
 
 
 
@@ -78,7 +84,7 @@ cdef class _Pattern:
 
       elif not _X and isinstance(_y, str):
         filename = _y
-        filename = _check_string(filename, exist=False)
+        filename = _check_string(filename, exist=True)
         delimiter = _check_string(delimiter, exist=False)
         self.thisptr.reset(new Patterns(filename, binary, delimiter))
 

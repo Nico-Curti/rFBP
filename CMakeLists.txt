@@ -147,7 +147,7 @@ set(INST_DIR ${CMAKE_SOURCE_DIR}/share/rfbp                          CACHE PATH 
 set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"        FORCE)
 set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed"   FORCE)
 
-set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/scorer/include             CACHE PATH "Path where to find scorer header"            FORCE)
+set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/include             CACHE PATH "Path where to find scorer header"            FORCE)
 
 set(rfbplib rfbp)
 set(rfbptestmain test_main)
@@ -157,6 +157,8 @@ file(GLOB SRC           "${SRC_DIR}/*.cpp" )
 file(GLOB HEADER        "${INC_DIR}/*.h"   )
 file(GLOB SCORER_HEADER "${INC_SCORER}/*.h")
 # file(GLOB EXE    "${EXAMPLE}/*.cpp")
+
+list (APPEND SRC ${CMAKE_SOURCE_DIR}/scorer/src/scorer.cpp)
 
 include_directories(${INC_DIR} ${INC_SCORER})
 

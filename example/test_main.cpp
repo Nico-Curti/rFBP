@@ -1,7 +1,7 @@
 #include <cmd.h>
 #include <rfbp.h>
 #if defined __clang__ || (!defined __clang__ && __GNUC__ > 4)
-#include <scorer.h>
+#include <scorer.hpp>
 #endif
 
 
