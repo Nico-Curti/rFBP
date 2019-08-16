@@ -57,7 +57,7 @@ template < class Mag > void set_outfields (const Cavity_Message < Mag > & messag
 
 #endif // __clang__
 
-template < class Mag > long int ** focusingBP (const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, int nth = 1, std :: string outfile = "", std :: string outmessfiletmpl = "", std :: string initmess = "", const bool & bin_mess = false);
+template < class Mag > long int ** focusingBP (const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, __unused int nth = 1, std :: string outfile = "", std :: string outmessfiletmpl = "", std :: string initmess = "", const bool & bin_mess = false);
 
 template < class Mag > using theta_function = double (*) (MagVec < Mag >, Mag &, const double *, MagVec < Mag >, Mag &, const Params < Mag > &, const long int &, const long int &);
 
