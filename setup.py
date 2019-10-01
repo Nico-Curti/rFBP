@@ -4,6 +4,7 @@
 from __future__ import print_function
 
 import os
+import sys
 import platform
 import numpy as np
 import multiprocessing
@@ -34,11 +35,15 @@ REQUIRES_PYTHON = '>=2.7'
 VERSION = None
 KEYWORDS = "belief-propagation deep-neural-networks spin-glass"
 
-
 CPP_COMPILER = platform.python_compiler()
 README_FILENAME = os.path.join(here, 'README.md')
 REQUIREMENTS_FILENAME = os.path.join(here, 'requirements.txt')
 VERSION_FILENAME = os.path.join(here, 'ReplicatedFocusingBeliefPropagation', '__version__.py')
+
+current_python = sys.executable.split('/bin')[0]
+numpy_dir = current_python + '/lib/python{}.{}/site-packages/numpy/core/include'.format(sys.version_info.major, sys.version_info.minor)
+if os.path.isdir(numpy_dir):
+  os.environ['CFLAGS'] = '-I' + numpy_dir
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.md' is present in your MANIFEST.in file!
@@ -79,12 +84,12 @@ else:
   rfbp_lib = ['rfbp']
 
 
-if 'GCC' in CPP_COMPILER or 'CLANG' in CPP_COMPILER:
+if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
   cpp_compiler_args = ['-std=c++17', '-g0', '-fopenmp']
   compiler, compiler_version = CPP_COMPILER.split()
   if compiler == 'GCC':
     BUILD_SCORER = True if int(compiler_version[0]) > 4 else False
-  if compiler == 'CLANG':
+  if compiler == 'Clang':
     BUILD_SCORER = True
 
 elif 'MSC' in CPP_COMPILER:
