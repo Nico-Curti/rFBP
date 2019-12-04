@@ -65,7 +65,11 @@ def get_atanherf(Id):
     zipper.extractall('.')
   print ('[done]')
 
-  os.makedirs(os.path.join(here, '../data'), exist_ok=True)
+  try:
+    os.makedirs(os.path.join(here, '../data'), exist_ok=True)
+
+  except TypeError: # Python 2 version
+    os.makedirs(os.path.join(here, '../data'))
 
   os.rename('./{}.dat'.format(file.lower()), os.path.join(here, '../data/{}.dat'.format(file.lower())) )
 
