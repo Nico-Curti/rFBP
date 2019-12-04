@@ -5,7 +5,7 @@ The [Anaconda/Miniconda](https://www.anaconda.com/) python version is recomended
 
 Download the project or the latest release:
 
-```
+```bash
 git clone https://github.com/Nico-Curti/rFBP
 cd rFBP
 ```
@@ -15,7 +15,7 @@ cd rFBP
 
 To install the prerequisites type:
 
-```
+```bash
 pip install -r ./requirements.txt
 ```
 
@@ -23,12 +23,12 @@ pip install -r ./requirements.txt
 
 In the `rFBP` directory execute:
 
-```
+```bash
 python setup.py install
 ```
 
 or for installing in development mode:
 
-```
+```bash
 python setup.py develop --user
 ```

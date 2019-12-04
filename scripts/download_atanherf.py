@@ -7,8 +7,8 @@ import time
 import sys
 import os
 
-__package__ = "download rFBP atanherf coefficients"
-__author__  = ['Nico Curti (nico.curti2@unibo.it)', "Daniele Dall'Olio (daniele.dallolio@studio.unibo.it)"]
+__author__  = ['Nico Curti', "Daniele Dall'Olio"]
+__email__ = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 def download_file_from_google_drive(Id, destination, total_length = 230636758):
 

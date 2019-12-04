@@ -163,13 +163,13 @@ setup(
   ext_modules                   = [
                                     Extension(name='.'.join(['lib', 'ReplicatedFocusingBeliefPropagation', 'rFBP']),
                                               sources=rfbp_sources,
-                                              include_dirs=[
+                                              include_dirs=sum([
                                                   '.',
                                                   os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'include'),
                                                   os.path.join(os.getcwd(), 'include'),
-                                                  *scorer_include,
-                                                  np.get_include()
-                                              ],
+                                                  np.get_include()],
+                                                  scorer_include, []
+                                              ),
                                               libraries=rfbp_lib,
                                               library_dirs=[
                                                             os.path.join(os.getcwd(), 'lib'),

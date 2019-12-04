@@ -234,7 +234,7 @@ matrix:
       compiler: gcc
       name: macOS - g++-7
       env:
-        - MATRIX_EVAL="brew update && brew install gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
+        - MATRIX_EVAL="brew update && brew reinstall gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
         - COMPILER_ID="gcc"
 
     - os: osx
@@ -242,7 +242,7 @@ matrix:
       compiler: gcc
       name: macOS - g++-8
       env:
-        - MATRIX_EVAL="brew update && brew install gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
+        - MATRIX_EVAL="brew update && brew reinstall gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
 
 # osx + clang
     - os: osx
