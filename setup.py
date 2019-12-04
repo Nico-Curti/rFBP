@@ -7,7 +7,6 @@ import os
 import sys
 import platform
 import numpy as np
-import multiprocessing
 
 try:
   from setuptools import setup
@@ -97,8 +96,6 @@ elif 'MSC' in CPP_COMPILER:
   BUILD_SCORER = True
 else:
   raise ValueError('Unknown c++ compiler arg')
-  cpp_compiler_args = []
-  BUILD_SCORER = False
 
 define_args = [ '-DMAJOR={}'.format(Version[0]),
                 '-DMINOR={}'.format(Version[1]),
@@ -129,7 +126,7 @@ if BUILD_SCORER:
 else:
   scorer_include = []
 
-whole_compiler_args = [ *cpp_compiler_args, *compile_args, *define_args ]
+whole_compiler_args = sum([cpp_compiler_args, compile_args, define_args], [])
 
 # Where the magic happens:
 setup(
@@ -147,7 +144,9 @@ setup(
   url                           = URL,
   download_url                  = URL,
   keywords                      = KEYWORDS,
-  packages                      = find_packages(include=['ReplicatedFocusingBeliefPropagation', 'ReplicatedFocusingBeliefPropagation.*'], exclude=('test', 'example')),
+  packages                      = find_packages(include=['ReplicatedFocusingBeliefPropagation',
+                                                         'ReplicatedFocusingBeliefPropagation.*'],
+                                                exclude=('test', 'example')),
   include_package_data          =True,
   platforms                     = 'any',
   classifiers                   = [

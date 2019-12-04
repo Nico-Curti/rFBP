@@ -6,7 +6,6 @@ from __future__ import division
 
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import _Pattern
 
-__package__ = "Pattern_wrap"
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
@@ -40,9 +39,9 @@ class Pattern(_Pattern):
 
       pattern : Return the Cython Pattern object
     '''
-    if not X is None:
+    if X is not None:
 
-      if not y is None:
+      if y is not None:
         self._pattern = _Pattern(other=[X, y])
 
       elif isinstance(X, str):

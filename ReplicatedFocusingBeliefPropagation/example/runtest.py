@@ -17,7 +17,6 @@ except ImportError:
   USE_SCORER = False
 
 
-__package__ = "rFBP_test_example"
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
@@ -25,7 +24,7 @@ __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 def parse_args():
   description = "rFBP test example"
 
-  parser = argparse.ArgumentParser(description = description)
+  parser = argparse.ArgumentParser(description=description)
   parser.add_argument('--patterns',
                       dest='patterns',
                       required=True,

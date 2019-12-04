@@ -6,7 +6,6 @@ from __future__ import division
 
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import _FocusingProtocol
 
-__package__ = "FocusingProtocol_wrap"
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 

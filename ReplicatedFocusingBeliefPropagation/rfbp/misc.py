@@ -7,7 +7,6 @@ from __future__ import division
 import os
 import sys
 
-__package__ = "rFBP miscellaneous"
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
@@ -25,10 +24,10 @@ try:
       sys.stdout = sys.__stdout__
 
   def redirect(where, func):
-    with stdout_redirect(where) as new_stdout:
+    with stdout_redirect(where):
       func()
 
-except:
+except ImportError:
 
   import StringIO
 

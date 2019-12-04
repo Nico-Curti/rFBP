@@ -5,11 +5,9 @@ import argparse
 
 from ReplicatedFocusingBeliefPropagation import Mag
 from ReplicatedFocusingBeliefPropagation import Pattern
-from ReplicatedFocusingBeliefPropagation import Focusing_Protocol
-from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as NTH
+from ReplicatedFocusingBeliefPropagation import NTH
 from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 
-__package__ = "rFBP_train_example"
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 

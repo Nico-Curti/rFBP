@@ -13,7 +13,6 @@ import pandas as pd
 from .FocusingProtocol import Focusing_Protocol
 from .Patterns import Pattern
 
-from .misc import _check_string
 from sklearn.utils import check_array
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import Mag
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import _rfbp
@@ -25,7 +24,6 @@ import multiprocessing
 NTH = multiprocessing.cpu_count()
 
 
-__package__ = "ReplicatedFocusingBeliefPropagation"
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
@@ -33,7 +31,17 @@ __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 class ReplicatedFocusingBeliefPropagation(BaseEstimator):
 
-  def __init__(self, mag=Mag.magP, hidden=3, max_iter=1000, seed=135, damping=0.5, accuracy=['accurate', 'exact'], randfact=1e-1, epsil=1e-1, protocol='pseudo_reinforcement', size=101, nth=NTH):
+  def __init__(self, mag=Mag.magP,
+                     hidden=3,
+                     max_iter=1000,
+                     seed=135,
+                     damping=0.5,
+                     accuracy=['accurate', 'exact'],
+                     randfact=1e-1,
+                     epsil=1e-1,
+                     protocol='pseudo_reinforcement',
+                     size=101,
+                     nth=NTH):
     '''
     ReplicatedFocusingBeliefPropagation classifier
 

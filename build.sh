@@ -1,11 +1,12 @@
 #!/bin/bash
 
-red=`tput setaf 1`
-reset=`tput sgr0`
+red=$(tput setaf 1)
+green=$(tput setaf 1)
+reset=$(tput sgr0)
 
 # $1 debug or release
 build_type=$1
-compiler=$(echo ${CXX##*/})
+compiler=$(echo "${CXX##*/}")
 number_of_build_workers=8
 
 allow_omp=$2
@@ -37,7 +38,7 @@ if [ "$build_type" == "" ]; then
 
 
 elif [ "$build_type" == "Release" ] || [ "$build_type" == "release" ]; then
-  echo ${green}"Building Release project"${reset}
+  echo "${green}Building Release project${reset}"
   build_type=Release
   rm -rf build_release
   mkdir -p build_release
@@ -48,7 +49,7 @@ elif [ "$build_type" == "Release" ] || [ "$build_type" == "release" ]; then
   cd ..
 
 elif [ "$build_type" == "Debug" ] || [ "$build_type" == "debug" ]; then
-  echo ${green}"Building Debug project"${reset}
+  echo "${green}Building Debug project${reset}"
   build_type=Debug
   rm -rf build_debug
   mkdir -p build_debug
@@ -59,10 +60,10 @@ elif [ "$build_type" == "Debug" ] || [ "$build_type" == "debug" ]; then
   cd ..
 
 else
-  echo ${red}"Unknown build type - Allowed only [Debug, Release]"${reset}
+  echo "${red}Unknown build type - Allowed only [Debug, Release]${reset}"
   exit 1
 
 fi
 
-echo ${green}"Downloading atanherf interpolation coefficients..."
+echo "${green}Downloading atanherf interpolation coefficients...${reset}"
 cd scripts && python download_atanherf.py && cd ..

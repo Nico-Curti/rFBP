@@ -10,7 +10,7 @@ WORKDIR /usr/src/workspace
 
 ## Installing common dependencies
 RUN echo "*** Installing common dependecies ***"
-RUN cd /usr/src/workspace
+WORKDIR /usr/src/workspace
 RUN apt-get update
 RUN apt-get install -y apt-utils
 
