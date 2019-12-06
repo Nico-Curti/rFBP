@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Nico Curti
+    url: https://github.com/Nico-Curti
+    about: Please report numerical issues and questions here
+  - name: Daniele Dall'Olio
+    url: https://github.com/DanieleDallOlio
+    about: Please report theoretical issues and questions here.

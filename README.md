@@ -51,7 +51,7 @@ The learning rule which controls the weight updates is given by the Belief Propa
 A first implementation of the algorithm was proposed in the original paper [[BaldassiE7655](https://www.pnas.org/content/113/48/E7655)] jointly with an open-source Github repository.
 The original version of the code was written in `Julia` language and despite it is a quite efficient implementation the `Julia` programming language stays on difficult and far from many users.
 To broaden the scope and use of the method, a `C++` implementation was developed with a joint `Cython` wrap for `Python` users.
-The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enlarge its usability.
+The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enhance its usability.
 This implementation is optimized for parallel computing and is endowed with a custom `C++` library called [`Scorer`](https://github.com/Nico-Curti/scorer) for further details), which is able to compute a large number of statistical measurements based on a hierarchical graph scheme.
 With this optimized implementation we try to encourage researchers to approach these alternative algorithms and to use them more frequently on real context.
 
@@ -185,6 +185,8 @@ However, the improvements performed to the code allow us to use this algorithm w
 
 ### Python Version
 
+The `rfbp` object is totally equivalent to a `scikit-learn` classifier and thus it provides the member functions `fit` (to train your model) and `predict` (to test a trained model on new samples).
+
 First of all you need to import the `rFBP` modules.
 
 ```python
@@ -199,7 +201,7 @@ If your want to run your script with multiple cores you can simply import also
 from ReplicatedFocusingBeliefPropagation import NTH
 ```
 
-which set to the maximum number of core in your computer.
+which is set to the maximum number of core in your computer.
 
 We encourage to use the `Scorer` package for the evaluation of performances but all the simulation can be performed also without it
 
@@ -240,9 +242,7 @@ rfbp = rFBP(mag=Mag.magT,
             nth=NTH)
 ```
 
-The `rfbp` object is totally equivalent to a `scikit-learn` classifier and thus it provides the member functions `fit` (to train your model) and `predict` (to test a trained model on new samples).
-
-So you can run:
+Now you can fit your model and predict:
 
 ```python
 rfbp.fit(pattern)
