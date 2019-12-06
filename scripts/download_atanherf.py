@@ -1,6 +1,9 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
-from __future__ import print_function, division
+from __future__ import print_function
+from __future__ import division
+
 from zipfile import ZipFile
 import requests
 import time
@@ -10,7 +13,7 @@ import os
 __author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__ = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
-def download_file_from_google_drive(Id, destination, total_length = 230636758):
+def download_file_from_google_drive(Id, destination, total_length=230636758):
 
   url = 'https://docs.google.com/uc?export=download'
 

@@ -1,6 +1,6 @@
 ## Python Installation
 
-First of all ensure that a right Python version is installed (Python >= 3.6 is required).
+First of all ensure that a right Python version is installed (Python >= 3.5 is required).
 The [Anaconda/Miniconda](https://www.anaconda.com/) python version is recomended.
 
 Download the project or the latest release:

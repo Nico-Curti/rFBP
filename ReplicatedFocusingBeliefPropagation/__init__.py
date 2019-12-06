@@ -5,6 +5,7 @@ from __future__ import print_function
 
 import os
 import warnings
+from .__version__ import __version__
 
 try:
 
