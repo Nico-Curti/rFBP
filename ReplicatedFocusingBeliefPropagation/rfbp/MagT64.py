@@ -5,8 +5,7 @@ from __future__ import print_function
 from __future__ import division
 
 import numpy as np
-from functools import wraps
-# miss import MagP64
+from .Mag import BaseMag
 # miss import magnetization
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
@@ -20,19 +19,23 @@ class MagT64 (BaseMag):
     super(MagT64, self).__init__(x)
     self.mInf = m
 
-  def magformat (self):
-    return 'tanh'
-
   @property
   def value(self):
     return np.tanh(self.mag)
 
-  @_require_mag
+  @property
+  def magformat (self):
+    return 'tanh'
+
+  @BaseMag._require_mag
   def __mod__ (self, m):
     return self.__class__(self.mag + m.mag)
 
-  @_require_mag
+  @BaseMag._require_mag
   def __xor__ (self, m):
+
+    ax, ay = map(abs, (self.mag, m.mag))
+    t1 = None
 
     t2 = 0. if np.isinf(ax) or np.isinf(ay) else lr(ax + ay) - lr(ax - ay)
 

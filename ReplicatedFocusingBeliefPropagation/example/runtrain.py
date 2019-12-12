@@ -12,7 +12,8 @@ __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 
-def parse_args():
+def parse_args ():
+
   description = "rFBP train example"
 
   parser = argparse.ArgumentParser(description=description)
@@ -160,10 +161,10 @@ def parse_args():
   return args
 
 
-def train():
+def train ():
   args = parse_args()
 
-  pattern = Pattern(args.patterns, args.bin, args.delimiter)
+  pattern = Pattern().load(filename=args.patterns, binary=args.bin, delimiter=args.delimiter)
 
   if args.mag == 0: args.mag = Mag.magP
   else:             args.mag = Mag.magT

@@ -331,14 +331,15 @@ before_install:
   - travis_retry eval "${MATRIX_EVAL}"
 
   # install python packages
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install numpy==1.14.3                                                                  ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install cython==0.29                                                                   ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install scipy==1.2.1                                                                   ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install scikit-learn==0.20.3                                                           ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install numpy==1.14.3                                                                  ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install cython==0.29                                                                   ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install scipy==1.2.1                                                                   ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install scikit-learn==0.20.3                                                           ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install requests==2.22.0                                                           ;fi
 
   # testing libraries
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install pytest==3.0.7                                                                  ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install codecov                                                                        ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install pytest==3.0.7                                                                  ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install codecov                                                                        ;fi
 
 install:
   # CMake upgrade
@@ -354,7 +355,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
   # python version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python setup.py install                                                                              ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 setup.py install                                                                              ;fi
 
 script:
   - chmod 777 ./build.sh

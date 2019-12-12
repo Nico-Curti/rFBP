@@ -24,7 +24,8 @@ __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 if __name__ == '__main__':
 
-  pattern = Pattern(20, 101)
+  pattern = Pattern(M=20, N=101)
+
   rfbp = rFBP(mag=Mag.magT,
               hidden=3,
               max_iter=1000,

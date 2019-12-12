@@ -5,7 +5,7 @@ from __future__ import print_function
 from __future__ import division
 
 import numpy as np
-from functools import wraps
+from .Mag import BaseMag
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
@@ -21,14 +21,15 @@ class MagP64 (BaseMag):
   def value (self):
     return self.mag
 
+  @property
   def magformat (self):
     return 'plain'
 
-  @_require_mag
+  @BaseMag._require_mag
   def __mod__ (self, m):
     return self.__class__(np.clip( (self.mag + m.mag) / (1. + self.mag * m.mag), -1., 1.))
 
-  @_require_mag
+  @BaseMag._require_mag
   def __xor__ (self, m):
     return self.__class__(self.mag * m.mag)
 

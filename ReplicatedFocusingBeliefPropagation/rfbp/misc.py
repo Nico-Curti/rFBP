@@ -19,7 +19,7 @@ def _check_string(_string, exist=True):
     _string = _string.decode(sys.getfilesystemencoding())
 
   if exist and not os.path.isfile(_string):
-    raise IOError('{0} file not found'.format(_string))
+    raise FileNotFoundError('{0} file not found'.format(_string))
 
   return _string.encode(sys.getfilesystemencoding())
 
@@ -29,8 +29,11 @@ def test_check_string ():
   a = 'this_is_a_string'
   b = _check_string(a, False)
 
-  assert isinstance(b, bytes)
-  assert b == _check_string(b, False)
+  if not isinstance(b, bytes):
+    raise ValueError
+
+  if not b == _check_string(b, False):
+    raise ValueError
 
   a = 'misc.py'
   b = _check_string(a)
@@ -39,10 +42,10 @@ def test_check_string ():
 
   try:
     y = _check_string(x)
-    assert False
+    print(y)
 
   except TypeError:
-    assert True
+    pass
 
 
 if __name__ == '__main__':

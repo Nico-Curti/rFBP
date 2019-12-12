@@ -149,17 +149,19 @@ class TestProtocol:
     try:
 
       fprotocol = Focusing_Protocol('new_protocol', self.MAX_STEPS)
+      print(fprotocol)
       assert False
 
     except ValueError:
 
-      assert True
+      pass
 
   def test_wrong_size (self):
 
     try:
 
       fprotocol = Focusing_Protocol('scoping', 0)
+      print(fprotocol)
       assert False
 
     except ValueError:
@@ -169,6 +171,7 @@ class TestProtocol:
     try:
 
       fprotocol = Focusing_Protocol('scoping', 1)
+      print(fprotocol)
       assert False
 
     except ValueError:

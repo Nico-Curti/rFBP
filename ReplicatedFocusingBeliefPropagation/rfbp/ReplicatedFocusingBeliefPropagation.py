@@ -165,7 +165,7 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     # return predicted_labels
 
 
-  def fit (self, X, y):
+  def fit (self, X, y=None):
     '''
     Fit the ReplicatedFocusingBeliefPropagation model meta-transformer
 
@@ -183,6 +183,9 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
       self : object
         Returns self.
     '''
+
+    if not isinstance(X, Pattern) and y is None:
+      raise ValueError('Invalid argument. y can be None only if X is a Pattern object')
 
     pattern = X if isinstance(X, Pattern) else Pattern(X, y)
 
@@ -278,7 +281,9 @@ if __name__ == '__main__':
 
   import time
 
-  pattern = Pattern(20, 101)
+  rFBP = ReplicatedFocusingBeliefPropagation
+
+  pattern = Pattern(M=20, N=101)
   rfbp = rFBP(mag=Mag.magT,
               hidden=3,
               max_iter=1000,

@@ -107,7 +107,7 @@ class Pattern (_Pattern):
     '''
 
     if not isinstance(filename, str):
-      raise InputError('Invalid filename found. Filename must be a string. Given : {}'.format(filename))
+      raise ValueError('Invalid filename found. Filename must be a string. Given : {}'.format(filename))
 
     filename = _check_string(filename, exist=True)
     delimiter = _check_string(delimiter, exist=False)
@@ -164,14 +164,14 @@ if __name__ == '__main__':
   pt = Pattern(X=data, y=labels)
   print(pt)
 
-  # constructor
-  assert pt.pattern is not None
+  if pt.pattern is None:
+    raise ValueError
 
-  # dimensions
-  assert pt.shape == (n_sample, n_feature)
+  if not pt.shape == (n_sample, n_feature):
+    raise ValueError
 
-  # data
-  assert np.allclose(pt.data, data)
+  if not np.allclose(pt.data, data):
+    raise ValueError
 
-  # labels
-  assert np.allclose(pt.labels, labels)
+  if not np.allclose(pt.labels, labels):
+    raise ValueError

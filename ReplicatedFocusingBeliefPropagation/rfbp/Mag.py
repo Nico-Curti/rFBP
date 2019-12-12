@@ -4,7 +4,6 @@
 from __future__ import print_function
 from __future__ import division
 
-import numpy as np
 from functools import wraps
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
@@ -71,7 +70,7 @@ class BaseMag (object):
 
   @_require_mag
   def __rmul__ (self, m):
-    return m.mag * x
+    return m.mag * m
 
   @_require_mag
   def __xor__ (self, m):
