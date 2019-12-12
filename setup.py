@@ -30,7 +30,7 @@ DESCRIPTION = 'Replicated Focusing Belief Propagation algorithm.'
 URL = 'https://github.com/Nico-Curti/rFBP'
 EMAIL = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 AUTHOR = ['Nico Curti', "Daniele Dall'Olio"]
-REQUIRES_PYTHON = '>=2.7'
+REQUIRES_PYTHON = '>=3.5'
 VERSION = None
 KEYWORDS = "belief-propagation deep-neural-networks spin-glass"
 
@@ -38,6 +38,8 @@ CPP_COMPILER = platform.python_compiler()
 README_FILENAME = os.path.join(here, 'README.md')
 REQUIREMENTS_FILENAME = os.path.join(here, 'requirements.txt')
 VERSION_FILENAME = os.path.join(here, 'ReplicatedFocusingBeliefPropagation', '__version__.py')
+
+ENABLE_OMP = False
 
 current_python = sys.executable.split('/bin')[0]
 numpy_dir = current_python + '/lib/python{}.{}/site-packages/numpy/core/include'.format(sys.version_info.major, sys.version_info.minor)
@@ -77,23 +79,39 @@ if not os.path.isfile(os.path.join(here, 'lib', 'librfbp.so')):
                   os.path.join(os.getcwd(), 'src', 'rfbp.cpp')
                   ]
   rfbp_lib = []
+
 else:
-  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx')
-                 ]
+
+  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx')]
   rfbp_lib = ['rfbp']
 
 
 if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
   cpp_compiler_args = ['-std=c++17', '-g0', '-fopenmp']
   compiler, compiler_version = CPP_COMPILER.split()
+
   if compiler == 'GCC':
     BUILD_SCORER = True if int(compiler_version[0]) > 4 else False
+
   if compiler == 'Clang':
     BUILD_SCORER = True
+    ENABLE_OMP = False
+
+  if ENABLE_OMP:
+    linker_args = ['-fopenmp']
+
+  else:
+    linker_args = []
 
 elif 'MSC' in CPP_COMPILER:
   cpp_compiler_args = ['/std:c++17', '/openmp']
   BUILD_SCORER = True
+
+  if ENABLE_OMP:
+    linker_args = ['/openmp']
+  else:
+    linker_args = []
+
 else:
   raise ValueError('Unknown c++ compiler arg')
 
@@ -163,12 +181,13 @@ setup(
   ext_modules                   = [
                                     Extension(name='.'.join(['lib', 'ReplicatedFocusingBeliefPropagation', 'rFBP']),
                                               sources=rfbp_sources,
-                                              include_dirs=sum([
+                                              include_dirs=sum([[
                                                   '.',
                                                   os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'include'),
                                                   os.path.join(os.getcwd(), 'include'),
+                                                  os.path.join(os.getcwd(), 'hpp'),
                                                   np.get_include()],
-                                                  scorer_include, []
+                                                  scorer_include], []
                                               ),
                                               libraries=rfbp_lib,
                                               library_dirs=[
@@ -177,7 +196,7 @@ setup(
                                                             os.path.join('usr', 'local', 'lib'),
                                               ],  # path to .a or .so file(s)
                                               extra_compile_args = whole_compiler_args,
-                                              extra_link_args = ['-fopenmp'],
+                                              extra_link_args = linker_args,
                                               language='c++',
                                               ),
                                             ],

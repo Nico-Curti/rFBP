@@ -8,27 +8,34 @@ Patterns :: Patterns (const std :: string & filename, bool bin, const std :: str
 {
   if (bin)
   {
-    std::ifstream is(filename, std::ios::binary);
+    std :: ifstream is(filename, std :: ios :: binary);
+
     if (!is) error_pattern(filename);
+
     is.read(reinterpret_cast <char * >(&this->Nrow), sizeof(long int));
     is.read(reinterpret_cast <char * >(&this->Ncol), sizeof(long int));
+
     this->Nout   = this->Nrow;
     this->input  = new double*[this->Nrow];
     this->output = new long int[this->Nout];
 
     is.read(reinterpret_cast < char * >(this->output), sizeof(long int) * this->Nout);
 
-    std::generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
+    std :: generate_n(this->input, this->Nrow, [&](){return new double[this->Ncol];});
+
     for (long int i = 0L; i < this->Nrow; ++i)
       is.read(reinterpret_cast < char * >(this->input[i]), sizeof(double) * this->Ncol);
+
     is.close();
   }
   else
   {
     std :: vector < std :: string > row_;
+
     std :: ifstream is(filename);
     if ( !is ) error_pattern(filename);
-    std::stringstream buff;
+
+    std :: stringstream buff;
     buff << is.rdbuf();
     is.close();
 
@@ -64,14 +71,16 @@ Patterns :: Patterns (const std :: string & filename, bool bin, const std :: str
   }
 
 #ifdef DEBUG
+
   check_binary();
+
 #endif
 }
 
 
-Patterns :: Patterns(const long int & N, const long int & M) : Nrow (N), Ncol (M), Nout (N)
+Patterns :: Patterns (const long int & N, const long int & M) : Nrow (N), Ncol (M), Nout (N)
 {
-  this->input  = new double*[this->Nrow];
+  this->input  = new double * [this->Nrow];
   this->output = new long int [this->Nrow];
 
   std :: default_random_engine engine;
@@ -139,10 +148,13 @@ Patterns :: ~Patterns ()
 
 
 #ifdef DEBUG
+
 void Patterns :: check_binary ()
 {
   assert(this->Nout == this->Nrow);
+
   int cnt = 0;
+
   for (long int i = 0L; i < this->Nrow; ++i)
     cnt += std :: count_if(this->input[i], this->input[i] + this->Ncol,
                            [](const double & v)
@@ -150,6 +162,7 @@ void Patterns :: check_binary ()
                             return std :: abs(v);
                            });
   assert(cnt == this->Nrow * this->Ncol);
+
   cnt = std :: accumulate(this->output, this->output + this->Nout,
                           0, [](const int & res, const long int & v)
                           {
@@ -157,4 +170,5 @@ void Patterns :: check_binary ()
                           });
   assert(cnt == this->Nout);
 }
+
 #endif

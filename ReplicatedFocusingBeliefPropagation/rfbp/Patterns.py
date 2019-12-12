@@ -4,79 +4,150 @@
 from __future__ import print_function
 from __future__ import division
 
+import numpy as np
+from sklearn.utils import check_X_y
+from sklearn.utils import check_array
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import _Pattern
+from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
+
+__all__ = ['Pattern']
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
-class Pattern(_Pattern):
+class Pattern (_Pattern):
 
-  def __init__(self, X=None, y=None, binary=False, delimiter='\t'):
-    '''
-    Pattern object for C++ compatibility
+  '''
+  Pattern object for C++ compatibility
 
-    Parameters
-    ----------
-      X : None or 2D array-like or string
-        Input matrix of variabels as (Nsample, Nfeatures) or filename with the input stored in the same way
+  Parameters
+  ----------
+    X : None or 2D array-like or string
+      Input matrix of variabels as (Nsample, Nfeatures) or filename with the input stored in the same way
 
-      y : None or 1D array-like
-        Input labels. The label can be given or read from the input filename as first row in the file.
+    y : None or 1D array-like
+      Input labels. The label can be given or read from the input filename as first row in the file.
 
-      binary : bool
-        Switch between binary or ascii format in the input file
+  Members
+  -------
+    shape : Return the shape of input data as (nsample, nfeatures)
 
-      delimiter : char
-        Delimiter char of the ascii file
+    labels : Get the array of labels stored inside the object
 
-    Members
-    -------
-      shape : Return the shape of input data as (nsample, nfeatures)
+    data : Return the full matrix of data
 
-      labels : Get the array of labels stored inside the object
+    pattern : Return the Cython Pattern object
 
-      data : Return the full matrix of data
+    load : Load pattern from file
 
-      pattern : Return the Cython Pattern object
-    '''
-    if X is not None:
+  '''
 
-      if y is not None:
-        self._pattern = _Pattern(other=[X, y])
+  def __init__ (self, X=None, y=None):
 
-      elif isinstance(X, str):
-        self._pattern = _Pattern(other=X, binary=binary, delimiter=delimiter)
+    if X is not None and y is not None:
 
-      else:
-        raise ValueError('Wrong input variable supplied. Either X must be a string or (X, y) must be (number, number) or (array-like, array-like).')
+      # check array
+      X, y = check_X_y(X, y)
+      N, M = X.shape
 
-      self._nfeature = self._pattern.Ncol
-      self._ndata    = self._pattern.Nrow
-      self._labels  = self._pattern.labels
-      self._data    = self._pattern.data
+      X = check_array(X)
+      X = X.ravel()
+
+      X = np.ascontiguousarray(X)
+      y = np.ascontiguousarray(y)
+
+      X = X.astype('float64')
+      y = y.astype('int64')
+
+
+      self._pattern = _Pattern(X=X, y=y, M=M, N=N)
 
     else:
 
-      self._pattern = _Pattern()
-      self._nfeature = 0
-      self._ndata = 0
+      self._pattern = None
+
+  def random (self, shape):
+    '''
+    Generate Random pattern
+
+    Parameters
+    ----------
+      shapes : tuple
+        a 2-D tuple with (M, N) where M is the number of samples and N the number of probes
+    '''
+
+    try:
+      M, N = map(int, shape)
+
+    except ValueError:
+      raise ValueError('Incorrect dimensions. Shapes must be a 2-D tuple with (M, N)')
+
+    if M <= 0 or N <= 0:
+      raise ValueError('Incorrect dimensions. M and N must be greater than 0. Given ({}, {})'.format(M, N))
+
+    self._pattern = _Pattern(M=M, N=N)
+
+    return self
+
+
+  def load (self, filename, binary=False, delimiter='\t'):
+    '''
+    Load pattern from file
+
+    Parameters
+    ----------
+      filename : str
+        Filename/Path to the Pattern file
+
+      binary : bool
+        True if the filename is in binary fmt; False for ASCII fmt
+
+      delimiter : str
+        Separator of input file (valid if binary is False)
+    '''
+
+    if not isinstance(filename, str):
+      raise InputError('Invalid filename found. Filename must be a string. Given : {}'.format(filename))
+
+    filename = _check_string(filename, exist=True)
+    delimiter = _check_string(delimiter, exist=False)
+
+    self._pattern = _Pattern(filename=filename, binary=binary, delimiter=delimiter)
+
+    return self
 
   @property
-  def shape(self):
-    return (self._ndata, self._nfeature)
+  def shape (self):
+    try:
+      return (self._pattern.Nrow, self._pattern.Ncol)
+
+    except AttributeError:
+      return (0, 0)
 
   @property
-  def labels(self):
-    return self._labels
+  def labels (self):
+    try:
+      return self._pattern.labels
+
+    except AttributeError:
+      return None
 
   @property
-  def data(self):
-    return self._data
+  def data (self):
+    try:
+      return self._pattern.data
+
+    except AttributeError:
+      return None
 
   @property
-  def pattern(self):
+  def pattern (self):
     return self._pattern
 
-  def __repr__(self):
-    class_name = self.__class__.__name__
-    return '<{0} Class (Ndata: {1}, Nfeatures: {2}) >'.format(class_name, self._ndata, self._nfeature)
+  def __repr__ (self):
+    class_name = self.__class__.__qualname__
+    if self._pattern is not None:
+      return '{0}().random(shapes=({1:d}, {2:d}))'.format(class_name, self._pattern.Nrow, self._pattern.Ncol)
+
+    else:
+      return '{0}().random(shapes=(0, 0))'.format(class_name)

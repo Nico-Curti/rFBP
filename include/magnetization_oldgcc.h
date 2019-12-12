@@ -1,5 +1,6 @@
-#ifndef OLD_MAG_H
-#define OLD_MAG_H
+#ifndef __mag_old_h__
+#define __mag_old_h__
+
 #include <type_traits>
 #include <cmath>
 #include <string>
@@ -26,10 +27,10 @@ namespace mag
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
   bool     signbit       (const Mag & m);
 
-  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
-  Mag      f2m           (const double & x);
-  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
-  Mag      f2m           (const double & x);
+  // template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
+  // Mag      f2m           (const double & x);
+  // template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
+  // Mag      f2m           (const double & x);
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
   void     zeros         (Mag * x, const long int & n);
@@ -136,4 +137,4 @@ namespace mag
 #include <magP.h>
 #include <magT.h>
 
-#endif
+#endif // __mag_old_h__

@@ -10,33 +10,6 @@ __author__  = ['Nico Curti']
 __email__ = ['nico.curit2@unibo.it']
 
 
-def read_version (CMakeLists):
-  '''
-  Read version from variables set in CMake file
-  '''
-  version = []
-
-  with open(CMakeLists, 'r') as fp:
-
-    for row in fp:
-
-      if len(version) == 3: break
-
-      if 'RFBP_MAJOR' in row:
-        version.append(row.split('RFBP_MAJOR')[-1])
-
-      elif 'RFBP_MINOR' in row:
-        version.append(row.split('RFBP_MINOR')[-1])
-
-      elif 'RFBP_REVISION' in row:
-        version.append(row.split('RFBP_REVISION')[-1])
-
-  version = [v.strip().replace(')', '').replace('(', '') for v in version]
-  version = map(int, version)
-
-  return tuple(version)
-
-
 def get_requires (requirements_filename):
   '''
   What packages are required for this module to be executed?

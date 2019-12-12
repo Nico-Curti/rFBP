@@ -14,10 +14,14 @@ band_matrix :: band_matrix (const int & dim) : dim(dim)
 double & band_matrix :: operator () (const int & i, const int & j)
 {
   const int k = j - i;
+
 #ifdef DEBUG
+
   assert( i >= 0 && i < this->dim && j >= 0 && j < this->dim);
   assert( -1 <= k && k <= 1);
+
 #endif
+
   return k >= 0 ? this->m_upper[k][i] : this->m_lower[-k][i];
 }
 
@@ -25,10 +29,14 @@ double & band_matrix :: operator () (const int & i, const int & j)
 double band_matrix :: operator () (const int & i, const int & j) const
 {
   const int k = j - i;
+
 #ifdef DEBUG
+
   assert( i >= 0 && i < this->dim && j >= 0 && j < this->dim);
   assert( -1 <= k && k <= 1);
+
 #endif
+
   return k >= 0 ? this->m_upper[k][i] : this->m_lower[-k][i];
 }
 
@@ -39,10 +47,13 @@ void band_matrix :: lu_decompose()
   for (int i = 0, j = -1; i < this->dim; ++i, ++j)
   {
     this->m_lower[0][i] = 1. / this->operator()(i, i);
+
     const int j_min = j > 0 ? j : 0;
     const int j_max = this->dim - 1 < i + 1 ? this->dim - 1 : i + 1;
+
     for (int k = j_min; k <= j_max; ++k)
       this->operator()(i, k) *= this->m_lower[0][i];
+
     this->operator()(i, i) = 1.; // prevents rounding errors
   }
 
@@ -50,10 +61,13 @@ void band_matrix :: lu_decompose()
   for (int i = 0, j = 1; i < this->dim; ++i, ++j)
   {
     const int j_max = this->dim - 1 < j ? this->dim - 1 : j;
+
     for (int k = j; k <= j_max; ++k)
     {
       const double x = -this->operator()(k, i) / this->operator()(i, i);
+
       this->operator()(k, i) = -x;
+
       for (int l = j; l <= j_max; ++l)
         this->operator()(k, l) = this->operator()(k, l) + x * this->operator()(i, l);
     }
@@ -63,12 +77,16 @@ void band_matrix :: lu_decompose()
 std :: unique_ptr < double[] > band_matrix :: l_solve(const double * b) const
 {
   std :: unique_ptr < double[] > x(new double[this->dim]);
+
   for (int i = 0, j = -1; i < this->dim; ++i, ++j)
   {
     double sum = 0.;
+
     const int j_start = j > 0 ? j : 0;
+
     for (int k = j_start; k < i; ++k)
       sum += this->operator()(i, k) * x[k];
+
     x[i] = (b[i] * this->m_lower[0][i]) - sum;
   }
   return x;
@@ -77,12 +95,16 @@ std :: unique_ptr < double[] > band_matrix :: l_solve(const double * b) const
 std :: unique_ptr < double[] > band_matrix :: r_solve(const double * b) const
 {
   std :: unique_ptr < double[] > x(new double[this->dim]);
+
   for (int i = this->dim - 1, j = this->dim; i >= 0; --i, --j)
   {
     double sum = 0.;
+
     const int j_stop = this->dim - 1 > j ? j : this->dim - 1;
+
     for (int k = i + 1; k <= j_stop; ++k)
       sum += this->operator()(i, k) * x[k];
+
     x[i] = (b[i] - sum) / this->operator()(i, i);
   }
   return x;
@@ -101,11 +123,11 @@ std :: unique_ptr < double[] > band_matrix :: lu_solve(const double * b)
 // Spline Class
 
 
-spline :: spline () : mx(nullptr), my(nullptr), ma(nullptr), mb(nullptr), mc(nullptr),
-                      mb0(0.), mc0(0.), m_left_value(0.), m_right_value(0.),
-                      n(0),
-                      m_left(second_deriv), m_right(second_deriv),
-                      m_force_linear_extrapolation(false)
+spline :: spline () : mx (nullptr), my (nullptr), ma (nullptr), mb (nullptr), mc (nullptr),
+                      mb0 (0.), mc0 (0.), m_left_value (0.), m_right_value (0.),
+                      n (0),
+                      m_left (second_deriv), m_right (second_deriv),
+                      m_force_linear_extrapolation (false)
 
 {
 }
@@ -217,7 +239,9 @@ void spline :: set_points(double * & x, double * & y, const int & npts, spline_t
     default: case cubic_spline:
     {
       band_matrix A(npts);
+
       std :: unique_ptr < double[] > rhs(new double[npts]);
+
       for (int i = 1, j = 2, k = 0; i < npts - 1; ++i, ++j, ++k)
       {
         A(i, k) = one_third * (x[i] - x[k]);
@@ -238,6 +262,7 @@ void spline :: set_points(double * & x, double * & y, const int & npts, spline_t
 
       this->ma = std :: make_unique < double[] >(npts);
       this->mc = std :: make_unique < double[] >(npts);
+
       for (int i = 0, j = 1; i < npts - 1; ++i, ++j)
       {
         this->ma[i] = one_third * (this->mb[j] - this->mb[i]) / (x[j] - x[i]);
@@ -245,15 +270,19 @@ void spline :: set_points(double * & x, double * & y, const int & npts, spline_t
       }
 
     } break;
+
     case linear_spline:
     {
       this->ma = std :: make_unique < double[] >(npts);
       this->mb = std :: make_unique < double[] >(npts);
       this->mc = std :: make_unique < double[] >(npts);
+
       std :: fill_n(this->ma.get(), npts - 1, 0.);
       std :: fill_n(this->mb.get(), npts - 1, 0.);
+
       for (int i = 0, j = 1; i < npts - 1; ++i, ++j)
         this->mc[i] = (my[j] - my[i]) / (mx[j] - mx[i]);
+
     } break;
   }
 
@@ -275,9 +304,9 @@ double spline :: operator() (const double & x) const
   const int idx  = pos > 0 ? pos : 0;
   const double h = x - this->mx[idx];
 
-  const double interp = x < this->mx[0]           ? (this->mb0 * h + this->mc0)*h + this->my[0] : // extrapolation to the left
+  const double interp = x < this->mx[0]           ? (this->mb0 * h + this->mc0)*h + this->my[0] :                                     // extrapolation to the left
                         x > this->mx[this->n - 1] ? (this->mb[this->n - 1] * h + this->mc[this->n - 1]) * h + this->my[this->n - 1] : // extrapolation to the right
-                                                    ((this->ma[idx]*h + this->mb[idx]) * h + this->mc[idx]) * h + this->my[idx]; // interpolation
+                                                    ((this->ma[idx]*h + this->mb[idx]) * h + this->mc[idx]) * h + this->my[idx];      // interpolation
   return interp;
 }
 

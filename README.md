@@ -183,6 +183,10 @@ However, the improvements performed to the code allow us to use this algorithm w
 
 ## Usage
 
+### C++ Version
+
+**TODO**
+
 ### Python Version
 
 The `rfbp` object is totally equivalent to a `scikit-learn` classifier and thus it provides the member functions `fit` (to train your model) and `predict` (to test a trained model on new samples).

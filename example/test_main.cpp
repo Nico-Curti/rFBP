@@ -1,7 +1,10 @@
 #include <cmd.h>
-#include <rfbp.h>
+#include <rfbp.hpp>
+
 #if defined __clang__ || (!defined __clang__ && __GNUC__ > 4)
-#include <scorer.h>
+
+  #include <scorer.h>
+
 #endif
 
 
@@ -39,7 +42,7 @@ int main (int argc, char *argv[])
 #endif
 
 #ifdef _OPENMP
-#pragma omp parallel shared(score) num_threads(nth)
+#pragma omp parallel shared (score) num_threads (nth)
   {
 #endif
 
@@ -84,7 +87,7 @@ int main (int argc, char *argv[])
 #else
 
   std :: cout << "true_label\tpredict_label" << std :: endl;
-  for(int i = 0; i < patterns.Nrow; ++i)
+  for (long int i = 0L; i < patterns.Nrow; ++i)
     std :: cout << patterns.output[i] << "\t" << temp_predict[i] << std :: endl;
 
 #endif

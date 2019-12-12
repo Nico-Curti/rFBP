@@ -25,11 +25,15 @@ void parse_training_fbp(int argc, char *argv[],
   ArgumentParser argparse("Training BeliefPropagation 4.0");
 
 #ifdef _OPENMP
+
   nth  = omp_get_max_threads();
   nth -= nth % 2;
   argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth);
+
 #else
+
   nth = 1;
+
 #endif
 
   argparse.add_argument < std :: string >("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true, "");
@@ -68,32 +72,34 @@ void parse_training_fbp(int argc, char *argv[],
   std :: vector < std :: string > accuracy;
 
 #ifdef _OPENMP
-  argparse.get < int >(          "tArg",  nth);
+
+  argparse.get < int >(                            "tArg",  nth);
+
 #endif
-  argparse.get < std :: string >("fArg",  patternsfile);
-  argparse.get < std :: string >("oArg",  output);
-  argparse.get < bool >(         "bArg",  bin);
-  argparse.get < std :: string >("dlArg", del);
-  argparse.get < long int >(     "kArg",  K);
-  argparse.get < long int >(     "iArg",  max_iters);
-  argparse.get < long int >(     "rArg",  seed);
-  argparse.get < double >(       "gArg",  randfact);
-  argparse.get < double >(       "dArg",  damping);
-  argparse.get < std :: string >("aArg",  accuracy);
-  argparse.get < std :: string >("pArg",  fprotocol);
-  argparse.get < double >(       "eArg",  epsil);
-  argparse.get < long int >(     "sArg",  max_steps);
-  argparse.get < int >(          "mArg",  mag);
-  argparse.get < std :: string >("imArg", inmess);
-  argparse.get < std :: string >("omArg", outmess);
-  argparse.get < std :: string >("dmArg", delmess);
-  argparse.get < bool >(         "bmArg", binmess);
+  argparse.get < std :: string >(                  "fArg",  patternsfile);
+  argparse.get < std :: string >(                  "oArg",  output);
+  argparse.get < bool >(                           "bArg",  bin);
+  argparse.get < std :: string >(                  "dlArg", del);
+  argparse.get < long int >(                       "kArg",  K);
+  argparse.get < long int >(                       "iArg",  max_iters);
+  argparse.get < long int >(                       "rArg",  seed);
+  argparse.get < double >(                         "gArg",  randfact);
+  argparse.get < double >(                         "dArg",  damping);
+  argparse.get < std :: vector < std :: string > >("aArg",  accuracy);
+  argparse.get < std :: string >(                  "pArg",  fprotocol);
+  argparse.get < double >(                         "eArg",  epsil);
+  argparse.get < long int >(                       "sArg",  max_steps);
+  argparse.get < int >(                            "mArg",  mag);
+  argparse.get < std :: string >(                  "imArg", inmess);
+  argparse.get < std :: string >(                  "omArg", outmess);
+  argparse.get < std :: string >(                  "dmArg", delmess);
+  argparse.get < bool >(                           "bmArg", binmess);
 
   if( !file_exists(patternsfile) ) error_pattern(patternsfile);
 
   if ( static_cast < int >(accuracy.size()) > 2 ) error_num_accuracy();
 
-  for (auto &ac : accuracy)
+  for (auto & ac : accuracy)
     if(ac != "exact" && ac != "accurate" && ac != "approx" && ac != "none") error_accuracy(ac);
 
   if (static_cast < int >(accuracy.size()) == 1 )
@@ -124,12 +130,17 @@ void parse_test_args(int argc, char *argv[],
                      int & nth)
 {
   ArgumentParser argparse("Test BeliefPropagation 4.0");
+
 #ifdef _OPENMP
+
   nth  = omp_get_max_threads();
   nth -= nth % 2;
   argparse.add_argument < int >(          "tArg",  "t",  "threads",     "Max number of threads exploitable",                      false, nth);
+
 #else
+
   nth = 1;
+
 #endif
 
   argparse.add_argument < std :: string >("fArg",  "f",  "file",        "Pattern Filename (with extension)",                      true,  "");
@@ -151,7 +162,9 @@ void parse_test_args(int argc, char *argv[],
   if ( !file_exists(weight_file)  ) error_message_weights(weight_file);
 
 #ifdef _OPENMP
+
   argparse.get < int >(          "tArg",  nth);
+
 #endif
 
   return;

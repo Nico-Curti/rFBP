@@ -5,13 +5,18 @@ from libcpp.string cimport string
 from libcpp cimport bool
 
 cdef extern from "pattern.h":
+
   cppclass Patterns:
-    Patterns() except +
-    Patterns(const string &, bool, const string &) except +
-    Patterns(const long int &, const long int &) except +
-    Patterns(double **, long int *, const int &, const int &) except +
+
+    # Constructors
+    Patterns () except +
+    Patterns (const string & filename, bool bin, const string & delimiter) except +
+    Patterns (const long int & N, const long int & M) except +
+    Patterns (double ** data, long int * label, const int & Nrow, const int & Ncol) except +
 
     # Attributes
-    long int Nrow, Ncol, Nout
-    long int* output
+    long int Nrow
+    long int Ncol
+    long int Nout
+    long int * output
     double ** input

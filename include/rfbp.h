@@ -1,26 +1,36 @@
-#ifndef RFBP_H
-#define RFBP_H
+#ifndef __rfbp_h__
+#define __rfbp_h__
+
 #include <algorithm>
 #include <numeric>
 
 #ifdef DEBUG
-#include <cassert>
+
+  #include <cassert>
+
 #endif
 
 #ifdef STATS
-#include <iomanip>
+
+  #include <iomanip>
+
 #endif
 
 #ifdef _MSC_VER
+
   #ifndef __unused
-  #define __unused
+    #define __unused
   #endif
+
 #else
+
   #ifndef __unused
-  #define __unused __attribute__((__unused__))
+    #define __unused __attribute__((__unused__))
   #endif
+
 #endif
-#include <cavity_message.h>
+
+#include <cavity_message.hpp>
 #include <fprotocol.h>
 #include <pattern.h>
 
@@ -35,25 +45,29 @@ template < class Mag > bool converge ( Cavity_Message < Mag > & messages, const 
 long int * nonbayes_test (long int ** const sign_m_j_star, const Patterns & patterns, const long int & K);
 template < class Mag > long int error_test (const Cavity_Message < Mag > & messages, const Patterns & patterns);
 template < class Mag > double free_energy (const Cavity_Message < Mag > &messages, const Patterns & patterns, const Params < Mag > & params);
+
 #ifdef STATS
-template < class Mag > double compute_S (const Cavity_Message < Mag > & messages, const Params < Mag > & params);
-template < class Mag > double compute_q_bar (const Cavity_Message<Mag> & messages, const Params < Mag > & params);
-template < class Mag > double compute_q (const Cavity_Message < Mag > & messages, const long int & nm_j_star, const long int & nm_j_star_col);
-template < class Mag > void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps);
+
+  template < class Mag > double compute_S (const Cavity_Message < Mag > & messages, const Params < Mag > & params);
+  template < class Mag > double compute_q_bar (const Cavity_Message<Mag> & messages, const Params < Mag > & params);
+  template < class Mag > double compute_q (const Cavity_Message < Mag > & messages, const long int & nm_j_star, const long int & nm_j_star_col);
+  template < class Mag > void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps);
+
 #endif // STATS
 
 #if !defined __clang__ &&  __GNUC__ <= 6
 
-#include <type_traits>
-template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
-void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
+  #include <type_traits>
 
-template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
-void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
+  void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
+
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
+  void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
 
 #else
 
-template < class Mag > void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
+  template < class Mag > void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
 
 #endif // __clang__
 
@@ -63,21 +77,21 @@ template < class Mag > using theta_function = double (*) (MagVec < Mag >, Mag &,
 
 #if !defined __clang__ &&  __GNUC__ <= 6
 
-template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
-theta_function < Mag > get_accuracy ( const std :: string & acc );
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
+  theta_function < Mag > get_accuracy ( const std :: string & acc );
 
-template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
-theta_function < Mag > get_accuracy ( const std :: string & acc );
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
+  theta_function < Mag > get_accuracy ( const std :: string & acc );
 
 #else
 
-template < class Mag > static std :: unordered_map < std :: string, theta_function < Mag > > accuracy
-{
-  {"accurate", & theta_node_update_accurate},
-  {"exact",    & theta_node_update_exact   },
-  {"none" ,    & theta_node_update_approx  }
-};
+  template < class Mag > static std :: unordered_map < std :: string, theta_function < Mag > > accuracy
+  {
+    {"accurate", & theta_node_update_accurate},
+    {"exact",    & theta_node_update_exact   },
+    {"none" ,    & theta_node_update_approx  }
+  };
 
 #endif
 
-#endif // RFBP_H
+#endif // __rfbp_h__

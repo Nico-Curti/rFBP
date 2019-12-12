@@ -1,5 +1,5 @@
-#ifndef MAG_OLD_HPP
-#define MAG_OLD_HPP
+#ifndef __mag_old_hpp__
+#define __mag_old_hpp__
 
 #ifndef __clang__
 
@@ -35,7 +35,7 @@ namespace mag
 
   long int sign0 (const double & x)
   {
-    return 1L - 2L * static_cast < long int >(std :: signbit(x));
+    return std :: signbit(x) ? 1L : -1L;
   }
 
   bool isinf (const double & x)
@@ -127,12 +127,12 @@ namespace mag
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
   long int sign0 (const Mag & x)
   {
-    return 1L - 2L * static_cast < long int >(signbit(x));
+    return signbit(x) ? 1L : -1L;
   }
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
   long int sign0 (const Mag & x)
   {
-    return 1L - 2L * static_cast < long int >(signbit(x));
+    return signbit(x) ? 1L : -1L;
   }
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
@@ -161,12 +161,12 @@ namespace mag
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
   double convert (const Mag & x)
   {
-    return x.mag;
+    return x.value();
   }
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
   double convert (const Mag & x)
   {
-    return x.value;
+    return x.value();
   }
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
@@ -189,7 +189,7 @@ namespace mag
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
   Mag damp (const Mag & newx, const Mag & oldx, const double & l)
   {
-    return convert < MagT64 >( newx.value * (1. - l) + oldx.value * l );
+    return convert < MagT64 >( newx.value() * (1. - l) + oldx.value() * l );
   }
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
@@ -261,7 +261,7 @@ namespace mag
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
   double mcrossentropy (const Mag & x, const Mag & y)
   {
-    const double tx = x.value,
+    const double tx = x.value(),
                  ay = y.mag;
     return !mag :: isinf(ay)                                ?
            -std :: abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
@@ -388,4 +388,4 @@ namespace mag
 
 #endif // __clang__
 
-#endif // MAG_OLD_HPP
+#endif // __mag_old_hpp__

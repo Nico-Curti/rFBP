@@ -137,6 +137,7 @@ endif()
 
 set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH "Path where find cpp files"                        )
 set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"                     )
+set(HPP_DIR  ${CMAKE_SOURCE_DIR}/hpp                                 CACHE PATH "Path where find hpp files"                        )
 set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                             CACHE PATH "Path where find main files"                       )
 set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                       )
 set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"                     )         # cython directory
@@ -145,7 +146,7 @@ set(INST_DIR ${CMAKE_SOURCE_DIR}/share/rfbp                          CACHE PATH 
 set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"        FORCE)
 set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed"   FORCE)
 
-set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/include             CACHE PATH "Path where to find scorer header"            FORCE)
+set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/include                    CACHE PATH "Path where to find scorer header"            FORCE)
 
 set(rfbplib rfbp)
 set(rfbptestmain test_main)
@@ -153,6 +154,7 @@ set(rfbptrainmain train_main)
 
 file(GLOB SRC           "${SRC_DIR}/*.cpp" )
 file(GLOB HEADER        "${INC_DIR}/*.h"   )
+file(GLOB HPP           "${INC_DIR}/*.hpp" )
 file(GLOB SCORER_HEADER "${INC_SCORER}/*.h")
 # file(GLOB EXE    "${EXAMPLE}/*.cpp")
 
@@ -160,7 +162,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_G
   list (APPEND SRC ${CMAKE_SOURCE_DIR}/scorer/src/scorer.cpp)
 endif()
 
-include_directories(${INC_DIR} ${INC_SCORER})
+include_directories(${INC_DIR} ${INC_SCORER} ${HPP_DIR})
 
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
@@ -217,7 +219,7 @@ if (PYrfbp)
   add_subdirectory(${PYC_DIR}/source)
 endif()
 
-add_library(${rfbplib} SHARED ${SRC} ${HEADER} ${SCORER_HEADER})
+add_library(${rfbplib} SHARED ${SRC} ${HEADER} ${HPP} ${SCORER_HEADER})
 set_property(TARGET ${rfbplib} PROPERTY POSITION_INDEPENDENT_CODE ON)
 target_link_libraries(${rfbplib} ${linked_libs})
 
@@ -228,8 +230,7 @@ add_executable(${rfbptestmain} ${EXAMPLE}/test_main.cpp)
 target_link_libraries(${rfbptestmain} ${linked_libs} ${rfbplib})
 
 if (BUILD_TEST)
-  add_executable(spline ${TEST}/spline_test.cpp)
-  target_link_libraries(spline ${linked_libs} ${rfbplib})
+  add_subdirectory(${TEST})
 endif()
 
 #################################################################
@@ -245,7 +246,6 @@ install(TARGETS ${rfbplib}          EXPORT rFBPTargets
                                     )
 install(TARGETS ${rfbptrainmain}   DESTINATION ${OUT_DIR})
 install(TARGETS ${rfbptestmain}    DESTINATION ${OUT_DIR})
-install(TARGETS spline             DESTINATION ${OUT_TEST})
 
 
 #################################################################

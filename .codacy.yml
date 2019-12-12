@@ -1,0 +1,20 @@
+---
+engines:
+  rubocop:
+    exclude_paths:
+      - README.md
+      - ReplicatedFocusingBeliefPropagation/__init__.py
+      - ReplicatedFocusingBeliefPropagation/rfbp/__init__.py
+      - docs/authors.md
+      - docs/cpp_install.md
+      - docs/index.md
+      - docs/model.md
+      - docs/python_install.md
+      - .github/CONTRIBUTING.md
+      - .github/CODE_OF_CONDUCT.md
+      - .github/ISSUE_TEMPLATE/ISSUE_TEMPLATE.md
+      - .github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md
+
+pylint:
+  enabled: true
+  python_version: 3

@@ -66,14 +66,14 @@ namespace mag
 }
 
 
-std :: ostream & operator <<(std :: ostream & os, const MagP64 & m)
+std :: ostream & operator << (std :: ostream & os, const MagP64 & m)
 {
-  os << m.mag;
+  os << m.value();
   return os;
 }
 
-std :: ostream & operator <<(std :: ostream & os, const MagT64 & m)
+std :: ostream & operator << (std :: ostream & os, const MagT64 & m)
 {
-  os << m.value;
+  os << m.value();
   return os;
 }

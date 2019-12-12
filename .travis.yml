@@ -275,6 +275,51 @@ matrix:
         - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
 
+    - os: linux
+      compiler: gcc
+      python: 3.5
+      name: ubuntu 14.04 - gcc@8.0 & python@3.5
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - WITH_PYTHON=ON
+
+    - os: linux
+      compiler: gcc
+      python: 3.5
+      name: ubuntu 14.04 - gcc@8.0 & python@3.6
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - WITH_PYTHON=ON
+
+    - os: linux
+      compiler: gcc
+      python: 3.5
+      name: ubuntu 14.04 - gcc@8.0 & python@3.7
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - WITH_PYTHON=ON
+
   allow_failures:
     - name: ubuntu 14.04 - clang@3.6
     - name: ubuntu 14.04 - clang@3.8
@@ -285,8 +330,16 @@ matrix:
 
 before_install:
   - travis_retry eval "${MATRIX_EVAL}"
-  - pip install --user codecov
-  - sudo pip install -r requirements.txt
+
+  # install python packages
+  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install numpy==1.14.3                                                                  ;fi
+  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install cython==0.29                                                                   ;fi
+  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install scipy==1.2.1                                                                   ;fi
+  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install scikit-learn==0.20.3                                                           ;fi
+
+  # testing libraries
+  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install pytest==3.0.7                                                                  ;fi
+  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install codecov                                                                        ;fi
 
 install:
   # CMake upgrade
@@ -301,7 +354,21 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                     ;fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
+  # python version
+  - if [[ "WITH_PYTHON" == "ON" ]]; then python setup.py install                                                                              ;fi
+
 script:
   - chmod 777 ./build.sh
   - if [[ "$TRAVIS_COMPILER" == "clang" ]]; then bash ./build.sh "" OFF                                                                       ;fi
   - if [[ "$TRAVIS_COMPILER" == "gcc"   ]]; then bash ./build.sh "" OFF                                                                       ;fi
+
+  # c++ testing
+  - cd test && chmod 777 ./run_test.sh && cd ..
+
+  # python testing
+  - if [[ "WITH_PYTHON" == "ON" ]]; then pytest                                                                                               ;fi
+  - if [[ "WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_fprotocol.py                         ;fi
+  - if [[ "WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_pattern.py                           ;fi
+
+after_succes:
+  - codecov

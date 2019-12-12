@@ -1,5 +1,6 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef __utils_h__
+#define __utils_h__
+
 #include <iostream>
 #include <limits>
 #include <unordered_map>
@@ -7,33 +8,43 @@
 #include <memory>
 #include <cmath>
 //#if __has_include(<filesystem>)
+//
 //#  include <filesystem>
 //#  define have_filesystem 1
+//
 //#endif
 #ifdef _OPENMP
-#include <omp.h>
+
+  #include <omp.h>
+
 #else
-#include <chrono>
+
+  #include <chrono>
+
 #endif
 
-static constexpr double INF     = std :: numeric_limits < double > :: infinity();
-static constexpr double epsilon = std :: numeric_limits < double > :: epsilon();
+static constexpr double INF     = std :: numeric_limits < double > :: infinity(); ///< shortcut to infinity value
+static constexpr double epsilon = std :: numeric_limits < double > :: epsilon(); ///< shortcut to epsilon value
 
 #if (defined(__GNUC__) && !defined(__clang__))
-  static constexpr double log_2       = std :: log(2);
-  static constexpr double log2_over_2 = std :: log(2) * .5;
+
+  static constexpr double log_2       = std :: log(2);      ///< shortcut to log(2)
+  static constexpr double log2_over_2 = std :: log(2) * .5; ///< shortcut to log(2)/2
+
 #else
-  static constexpr double log_2       = 0.6931471805599453;
-  static constexpr double log2_over_2 = 0.34657359027997264311;
+
+  static constexpr double log_2       = 0.6931471805599453;     ///< shortcut to log(2)
+  static constexpr double log2_over_2 = 0.34657359027997264311; ///< shortcut to log(2)/2
+
 #endif
 
-
-static inline double sign (const double & x){ return (x > 0.) ? 1. : (x < 0. ? -1. : 0); }
-
-
-template < class Mag >  using MagVec  = Mag *;
-template < class Mag >  using MagVec2 = MagVec < Mag > *;
-template < class Mag >  using MagVec3 = MagVec2 < Mag > *;
+/**
+* @brief sign function
+*
+* @param x value
+*
+*/
+double sign (const double & x);
 
 enum {scoping_ = 0L,
       pseudo_,
@@ -41,7 +52,7 @@ enum {scoping_ = 0L,
       standard_
       };
 
-enum {magP = 0,
+enum {magP = 0L,
       magT = 1
       };
 
@@ -53,71 +64,81 @@ static std :: unordered_map < std :: string, long int > protocol
   {"standard_reinforcement", standard_}
 };
 
+/**
+* @brief split string to token
+*
+* @param txt input string
+* @param del delimiter as string
+*
+* @returns std::vector<std::string> vector of token
+*
+*/
 std :: vector < std :: string > split (const std :: string & txt, const std :: string & del);
 
 #if !defined __clang__ && __GNUC__ == 4 && __GNUC_MINOR__ < 9
+
 namespace std
 {
 
+/**
+* @brief wrap for the older version of gcc anc clang
+*
+* @tparam T type of the pointer array
+*
+* @param size lenght of unique_ptr array
+*
+* @returns pointer array as unique_ptr (e.g. std :: unique_ptr < float[] > in modern c++)
+*
+*/
 template < typename T >
-std :: unique_ptr < T > make_unique ( std :: size_t size )
-{
-  return std :: unique_ptr < T > ( new typename std :: remove_extent < T > :: type[size] () );
-}
+std :: unique_ptr < T > make_unique ( std :: size_t size );
 
 }
+
 #endif
 
+/**
+* @brief check if a given file exists
+*
+* @param filename filename/path to check
+*
+* @returns bool true if the filename is found else false
+*
+*/
+bool file_exists (const std :: string & filename);
 
-inline bool file_exists (const std :: string & filename)
-{
-//#if have_filesystem == 1
-//  return std :: filesystem :: exists(std :: filesystem :: path(filename));
-//#else
-  if (FILE *file = fopen(filename.c_str(), "r"))
-  {
-    fclose(file);
-    return true;
-  }
-  return false;
-//#endif
-}
-
-inline const auto what_time_is_it_now()
-{
+/**
+* @brief Evaluate current time
+*
+* @details this function use OpenMP API if the code is compiled with -fopenmp else it uses chrono functions
+*
+* @returns current time as double (OpenMP) or chrono
+*
+*/
 #ifdef _OPENMP
-  return omp_get_wtime();
+
+  double what_time_is_it_now ();
+
 #else
-  return std :: chrono :: high_resolution_clock :: now();
+
+  std :: chrono :: time_point < std :: chrono :: high_resolution_clock > what_time_is_it_now ();
+
 #endif
-}
 
-template < typename Time > inline const auto duration (const Time & start)
-{
-#ifdef _OPENMP
-  return omp_get_wtime() - start;
-#else
-  return std :: chrono :: duration_cast < std :: chrono :: seconds >(std :: chrono :: high_resolution_clock :: now() - start).count();
-#endif
-}
+/**
+* @brief Evaluate duration time
+*
+* @details this function is used in combination with what_time_is_it_now
+*
+* @tparam Time the type returned by what_time_is_it_now function
+*
+* @param start time evaluated by what_time_is_it_now function
+*
+* @returns evaluated time
+*
+*/
+template < typename Time >
+auto duration (const Time & start);
 
-//static void menu_FBP()
-//{
-//    std :: cout << std :: endl;
-//    std :: cout << " BinaryCommitteeMachineFBP Algorithm"  << std :: endl;
-//    std :: cout << " ====================================" << std :: endl;
-//    std :: cout << " *                                  *" << std :: endl;
-//    std :: cout << " *       University of Bologna      *" << std :: endl;
-//    std :: cout << " *                                  *" << std :: endl;
-//    std :: cout << " *            Nico Curti            *" << std :: endl;
-//    std :: cout << " *                &                 *" << std :: endl;
-//    std :: cout << " *         Daniele Dall'Olio        *" << std :: endl;
-//    std :: cout << " *                                  *" << std :: endl;
-//    std :: cout << " *       nico.curti2@unibo.it       *" << std :: endl;
-//    std :: cout << " * daniele.dallolio@studio.unibo.it *" << std :: endl;
-//    std :: cout << " *                                  *" << std :: endl;
-//    std :: cout << " ====================================" << std :: endl;
-//    std :: cout << "          Optimized Library          " << std :: endl << std :: endl;
-//}
 
-#endif // UTILS_H
+#endif // __utils_h__

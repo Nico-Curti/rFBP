@@ -1,5 +1,5 @@
 #include <cmd.h>
-#include <rfbp.h>
+#include <rfbp.hpp>
 
 int main (int argc, char *argv[])
 {
@@ -71,6 +71,7 @@ int main (int argc, char *argv[])
                                             inmess,
                                             binmess);
       break;
+
     case magT:
         bin_weights = focusingBP < MagT64 >(K,
                                             patterns,
@@ -89,11 +90,12 @@ int main (int argc, char *argv[])
                                             inmess,
                                             binmess);
       break;
+
       default: error_magnetization(mag);
       break;
   }
 
-  for (int i = 0; i < K; ++i) delete[] bin_weights[i];
+  for (long int i = 0L; i < K; ++i) delete[] bin_weights[i];
   delete[] bin_weights;
 
   return 0;

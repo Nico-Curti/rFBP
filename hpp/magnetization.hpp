@@ -1,5 +1,5 @@
-#ifndef MAG_HPP
-#define MAG_HPP
+#ifndef __mag_hpp__
+#define __mag_hpp__
 
 #include <magnetization.h>
 
@@ -18,7 +18,7 @@ namespace mag
 
   long int sign0 (const double & x)
   {
-    return 1L - 2L * static_cast < long int >(std :: signbit(x));
+    return std :: signbit(x) ? 1L : -1L;
   }
 
   bool isinf (const double & x)
@@ -98,7 +98,7 @@ namespace mag
     static_assert( std :: is_same_v < Mag, MagP64 > ||
                    std :: is_same_v < Mag, MagT64 >,
                    "sign0 function! Incompatible types found.");
-    return 1L - 2L * static_cast < long int >(signbit(x));
+    return signbit(x) ? 1L : -1L;
   }
 
   template < class Mag >
@@ -128,10 +128,7 @@ namespace mag
     static_assert( std :: is_same_v < Mag, MagP64 > ||
                    std :: is_same_v < Mag, MagT64 >,
                    "convert function! Incompatible types found.");
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
-      return x.mag;
-    else
-      return x.value;
+    return x.value();
   }
 
   template < class Mag >
@@ -144,7 +141,7 @@ namespace mag
     if constexpr ( std :: is_same_v < Mag, MagP64 > )
       return MagP64( (x1 - x2) / (x1 + x2) );
     else
-      return convert<MagT64>((std :: log(x1) - std :: log(x2)) * .5);
+      return convert < MagT64 >((std :: log(x1 / x2)) * .5);
   }
 
 
@@ -156,9 +153,9 @@ namespace mag
                    "damp function! Incompatible types found.");
 
     if constexpr ( std :: is_same_v < Mag, MagP64 > )
-      return MagP64(newx.mag * (1. - l) + oldx.mag * l);
+      return MagP64(newx.value() * (1. - l) + oldx.value() * l);
     else
-      return convert<MagT64>( newx.value * (1. - l) + oldx.value * l );
+      return convert < MagT64 >( newx.value() * (1. - l) + oldx.value() * l );
   }
 
   template < class Mag >
@@ -246,7 +243,7 @@ namespace mag
       return (-x.mag) * std :: atanh(y.mag) - std :: log(1. - y.mag * y.mag) * .5 + log_2;
     else
     {
-      const double tx = x.value,
+      const double tx = x.value(),
                    ay = y.mag;
       return !mag :: isinf(ay)                                ?
              -std :: abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
@@ -378,4 +375,4 @@ namespace mag
 
 }
 
-#endif // MAG_HPP
+#endif // __mag_hpp__

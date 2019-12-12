@@ -5,55 +5,76 @@ from __future__ import print_function
 from __future__ import division
 
 from lib.ReplicatedFocusingBeliefPropagation.rFBP import _FocusingProtocol
+from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
+
+__all__ = ['Focusing_Protocol']
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 
-class Focusing_Protocol(_FocusingProtocol):
+class Focusing_Protocol (_FocusingProtocol):
 
-  def __init__(self, protocol=None, size=101):
-    '''
-    Focusing Protocol object
+  '''
+  Focusing Protocol object
 
-    Parameters
-    ----------
-      protocol : None (default) or string
-        The value of string can be only one of ['scoping', 'pseudo_reinforcement', 'free_scoping', 'standard_reinforcement']
+  Parameters
+  ----------
+    protocol : string
+      The value of string can be only one of ['scoping', 'pseudo_reinforcement', 'free_scoping', 'standard_reinforcement']
 
-      size : int (default = 101)
-        Dimension of update protocol
+    size : int (default = 101)
+      Dimension of update protocol
 
-    Members
-    -------
-      num_of_replicas : Return the number of replicas
+  Members
+  -------
+    num_of_replicas : Return the number of replicas
 
-      fprotocol : Return the Cython FocusingProtocol object
-    '''
+    fprotocol : Return the Cython FocusingProtocol object
 
-    if protocol:
+    gamma : Return the array of gamma values
 
-      if protocol not in ['scoping', 'pseudo_reinforcement', 'free_scoping', 'standard_reinforcement']:
-        raise ValueError('Incorrect Protocol found. Possible values are only ["scoping", "pseudo_reinforcement", "free_scoping", "standard_reinforcement"]')
+    n_rep : Return the array of n_rep values
 
-      self._protocol = protocol
-      self._fprotocol = _FocusingProtocol(other=[protocol, size])
+    beta : Return the array of beta values
+  '''
 
-    else:
+  ALLOWED_PROTOCOL = ('scoping', 'pseudo_reinforcement', 'free_scoping', 'standard_reinforcement')
 
-      self._protocol = 'unknown'
-      self._fprotocol = _FocusingProtocol()
+  def __init__ (self, protocol='standard_reinforcement', size=101):
+
+    if protocol not in self.ALLOWED_PROTOCOL:
+      raise ValueError('Incorrect Protocol found. Possible values are only {}'.format(','.join(self.ALLOWED_PROTOCOL)))
+
+    if size <= 1:
+      raise ValueError('Incorrect size. Size must be > than 1. Given {}'.format(size))
+
+    self._protocol = protocol
+    byte_protocol = _check_string(protocol, exist=False)
+    self._fprotocol = _FocusingProtocol(protocol=byte_protocol, size=size)
 
     self._nrep = self._fprotocol.Nrep
 
   @property
-  def num_of_replicas(self):
+  def num_of_replicas (self):
     return self._nrep
 
   @property
-  def fprotocol(self):
+  def fprotocol (self):
     return self._fprotocol
 
-  def __repr__(self):
-    class_name = self.__class__.__name__
-    return '<{0} Class (protocol: {1}, number of replicas: {2}) >'.format(class_name, self._protocol, self._nrep)
+  @property
+  def gamma (self):
+    return self._fprotocol.gamma
+
+  @property
+  def n_rep (self):
+    return self._fprotocol.n_rep
+
+  @property
+  def beta (self):
+    return self._fprotocol.beta
+
+  def __repr__ (self):
+    class_name = self.__class__.__qualname__
+    return '{0}(protocol={1}, size={2:d})'.format(class_name, self._protocol, self._nrep)
