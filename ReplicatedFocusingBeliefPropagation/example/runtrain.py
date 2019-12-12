@@ -184,5 +184,5 @@ def train():
   rfbp.save_weights(args.outweights, args.delweights, args.binweights)
 
 if __name__ == '__main__':
-  # run train
+
   train()

@@ -175,3 +175,13 @@ class TestProtocol:
 
       assert True
 
+
+if __name__ == '__main__':
+
+  test = TestProtocol()
+  test.test_scoping()
+  test.test_pseudo_reinforcement()
+  test.test_free_scoping()
+  test.test_standard_reinforcement()
+  test.test_wrong_protocol()
+  test.test_wrong_size()

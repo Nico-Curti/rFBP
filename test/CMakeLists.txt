@@ -1,24 +1,24 @@
 # Test files
 
-add_executable(test_spline ${TEST}/test_spline.cpp)
+add_executable(test_spline ${TEST_DIR}/test_spline.cpp)
 target_link_libraries(test_spline ${linked_libs} ${rfbplib})
 
-add_executable(test_atanherf ${TEST}/test_atanherf.cpp)
+add_executable(test_atanherf ${TEST_DIR}/test_atanherf.cpp)
 target_link_libraries(test_atanherf ${linked_libs} ${rfbplib})
 
-add_executable(test_fprotocol ${TEST}/test_fprotocol.cpp)
+add_executable(test_fprotocol ${TEST_DIR}/test_fprotocol.cpp)
 target_link_libraries(test_fprotocol ${linked_libs} ${rfbplib})
 
-add_executable(test_pattern ${TEST}/test_pattern.cpp)
+add_executable(test_pattern ${TEST_DIR}/test_pattern.cpp)
 target_link_libraries(test_pattern ${linked_libs} ${rfbplib})
 
-add_executable(test_params ${TEST}/test_params.cpp)
+add_executable(test_params ${TEST_DIR}/test_params.cpp)
 target_link_libraries(test_params ${linked_libs} ${rfbplib})
 
-add_executable(test_magp ${TEST}/test_magp.cpp)
+add_executable(test_magp ${TEST_DIR}/test_magp.cpp)
 target_link_libraries(test_magp ${linked_libs} ${rfbplib})
 
-add_executable(test_magt ${TEST}/test_magt.cpp)
+add_executable(test_magt ${TEST_DIR}/test_magt.cpp)
 target_link_libraries(test_magt ${linked_libs} ${rfbplib})
 
 # Installation of targets

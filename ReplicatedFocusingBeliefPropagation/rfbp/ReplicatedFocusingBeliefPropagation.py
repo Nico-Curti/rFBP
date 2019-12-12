@@ -272,3 +272,39 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     args = ', '.join(['{}={}'.format(k, str(getattr(self, '_' + k))) for k in params])
 
     return '{}({})'.format(class_name, args)
+
+
+if __name__ == '__main__':
+
+  import time
+
+  pattern = Pattern(20, 101)
+  rfbp = rFBP(mag=Mag.magT,
+              hidden=3,
+              max_iter=1000,
+              seed=135,
+              damping=0.5,
+              accuracy=('accurate','exact'),
+              randfact=0.1,
+              epsil=0.5,
+              protocol='pseudo_reinforcement',
+              size=101,
+              nth=2)
+
+  start_time = time.time()
+  rfbp.fit(pattern)
+
+  elapsed_time = time.time() - start_time
+  print ('{0}: Training completed in {1:.2f} seconds'.format(pattern, elapsed_time))
+
+  predicted_labels = rfbp.predict(pattern)
+  print('Predictions:')
+
+  print(predicted_labels)
+
+  rfbp.save_weights('test_weights', binary=True)
+  rfbp.load_weights('test_weights', binary=True)
+
+
+  rfbp.save_weights('test_weights.csv', binary=False, delimiter=',')
+  rfbp.load_weights('test_weights.csv', binary=False, delimiter=',')

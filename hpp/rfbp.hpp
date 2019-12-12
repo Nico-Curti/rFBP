@@ -104,28 +104,26 @@ double theta_node_update_accurate (MagVec < Mag > m, Mag & M, const double * xi,
 
 #endif
 
-  static double maxdiff,
-                mu     ,
-                sigma2 ;
-#ifdef _OPENMP
-#pragma omp barrier
-#endif
-  maxdiff = 0.;
-  mu      = 0.;
-  sigma2  = 0.;
-  double tmp;
-  Mag old_m_on(0.),
-      new_u(0.);
+  static double maxdiff;
+
   static Mag new_U;
   new_U = U;
   static std :: unique_ptr < Mag[] > h;
+
 #ifdef _OPENMP
 #pragma omp single
 #endif
   h.reset(new Mag[nm]);
-  old_m_on = mag :: bar(M, new_U);
+  Mag old_m_on = mag :: bar(M, new_U);
 
 #ifdef _OPENMP
+
+  static double mu;
+  static double sigma2;
+
+  mu = 0.;
+  sigma2 = 0.;
+
 #pragma omp barrier
 #pragma omp for reduction (+ : mu, sigma2)
   for (long int i = 0L; i < nxi; ++i)
@@ -135,17 +133,21 @@ double theta_node_update_accurate (MagVec < Mag > m, Mag & M, const double * xi,
     mu     += hvalue * xi[i];
     sigma2 += (1. - hvalue * hvalue) * (xi[i] * xi[i]);
   }
+
 #else
+
   std :: transform(m, m + nm, u,
                    h.get(), [](const Mag &mi, const Mag &ui)
                    {
                     return mag :: bar(mi, ui);
                    });
-  mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return hi.value() * xi_i;});
-  sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return (1. - hi.value() * hi.value()) * (xi_i * xi_i);});
+  const double mu     = std :: inner_product(h.get(), h.get() + nm, xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return hi.value() * xi_i;});
+  const double sigma2 = std :: inner_product(h.get(), h.get() + nxi, xi, 0., std :: plus < double >(), [](const Mag & hi, const double &xi_i){return (1. - hi.value() * hi.value()) * (xi_i * xi_i);});
+
 #endif
 
-  new_u = mag :: merf < Mag >( mu / std :: sqrt(2. * sigma2));
+  Mag new_u = mag :: merf < Mag >( mu / std :: sqrt(2. * sigma2));
+
 #ifdef _OPENMP
 #pragma omp single
 #endif
@@ -159,7 +161,7 @@ double theta_node_update_accurate (MagVec < Mag > m, Mag & M, const double * xi,
   for (long int i = 0L; i < nm; ++i)
   {
     const double hvalue = h[i].value();
-    tmp     = std :: sqrt( 2. * (sigma2 - (1. - hvalue * hvalue) * xi[i] * xi[i]));
+    const double tmp = std :: sqrt( 2. * (sigma2 - (1. - hvalue * hvalue) * xi[i] * xi[i]));
     new_u   = mag :: erfmix(old_m_on, ((mu - hvalue * xi[i]) + xi[i]) / tmp , ((mu - hvalue * xi[i]) - xi[i]) / tmp);
     maxdiff = std :: max(maxdiff, std :: abs(new_u - u[i]));
     u[i]    = mag :: damp(new_u, u[i], params.damping);
@@ -176,9 +178,7 @@ double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, Ma
 #ifdef DEBUG
   assert (nxi == nm);
 #endif
-  static double maxdiff,
-                pm,
-                pp;
+  static double maxdiff;
   static double **leftC  = nullptr,
                 **rightC = nullptr;
   static Mag new_U;
@@ -192,8 +192,6 @@ double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, Ma
   {
 #endif
     maxdiff = 0.;
-    pm = 0.;
-    pp = 0.;
     leftC  = new double *[nm + 1L];
     rightC = new double *[nm + 1L];
     new_U = U;
@@ -201,14 +199,10 @@ double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, Ma
 #ifdef _OPENMP
   }
 #endif
-    long int z;
-    double pz, p;
 
-    z = static_cast < long int >( (nm + 1L) * .5);
-    Mag old_m_on(0.),
-        new_u(0.),
-        mp(0.), mm(0.);
-    old_m_on = mag::bar(M, new_U);
+
+    const long int z = static_cast < long int >( (nm + 1L) * .5);
+    Mag old_m_on = mag::bar(M, new_U);
 
     leftC[0] = new double[nm];
     std :: generate_n(leftC[0], nm, [](){return 1.;});
@@ -257,89 +251,111 @@ double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, Ma
     }
 
 #ifdef DEBUG
+
   assert (nm % 2L);
+
 #endif
 
 #ifdef _OPENMP
+
+  static double pm;
+  static double pp;
+  pm = 0.;
+  pp = 0.;
+
 #pragma omp for reduction (+ : pm)
-    for (long int i = 0L; i < z;       ++i) pm += rightC[0][i];
+  for (long int i = 0L; i < z;       ++i) pm += rightC[0][i];
+
 #pragma omp for reduction (+ : pp)
-    for (long int i = z ; i < nm + 1L; ++i) pp += rightC[0][i];
+  for (long int i = z ; i < nm + 1L; ++i) pp += rightC[0][i];
+
 #else
-    pm = std :: accumulate( rightC[0], rightC[0] + z, 0. );
-    pp = std :: accumulate( rightC[0] + z, rightC[0] + nm + 1L, 0. );
+
+  const double pm = std :: accumulate( rightC[0], rightC[0] + z, 0. );
+  const double pp = std :: accumulate( rightC[0] + z, rightC[0] + nm + 1L, 0. );
+
 #endif
 
-    new_u = mag :: couple < Mag >(pp, pm);
+  Mag new_u = mag :: couple < Mag >(pp, pm);
 
 #ifdef DEBUG
+
   assert ( !mag :: isinf(new_u.mag) );
+
 #endif
 
 #ifdef _OPENMP
 #pragma omp single
 #endif
-    new_U = mag :: damp(new_u, new_U, params.damping);
-    M     = old_m_on % new_U;
+  new_U = mag :: damp(new_u, new_U, params.damping);
+  M     = old_m_on % new_U;
+
 #ifdef _OPENMP
 #pragma omp single
 #endif
-    U     = new_U;
+  U     = new_U;
 
-  #ifdef DEBUG
+#ifdef DEBUG
+
     assert ( !mag :: isinf(M.mag) );
-  #endif
 
-  double pp_,
-         pm_;
+#endif
+
 #ifdef _OPENMP
 #pragma omp for reduction (max : maxdiff)
 #endif
+  for (long int i = 0L; i < nm; ++i)
+  {
+    double pm_ = 0.;
+    double pz = 0.;
+    double pp_ = 0.;
+
+#ifdef DEBUG
+
+  assert(xi[i] * xi[i] == 1.);
+
+#endif
+
+    for (long int j = 0L; j < nm; ++j)
+    {
+      double p = 0.;
+
+      for (long int k = static_cast < long int >(std :: max(0L, j + i - nm + 1L));
+                    k < static_cast < long int >(std :: min(j, i) + 1L);
+                    ++k)
+        p += leftC[i][k] * rightC[i + 1L][j - k];
+      if (j < z - 1L)       pm_ += p;
+      else if (j == z - 1L) pz = p;
+      else                  pp_ += p;
+    }
+    const Mag mp = mag :: convert < Mag >(mag :: clamp(pp_ + xi[i] * pz - pm_, -1., 1.));
+    const Mag mm = mag :: convert < Mag >(mag :: clamp(pp_ - xi[i] * pz - pm_, -1., 1.));
+    new_u   = mag :: exactmix(old_m_on, mp, mm);
+    maxdiff = static_cast < double >(std :: max(maxdiff, std :: abs(new_u - u[i])));
+    u[i]    = mag :: damp(new_u, u[i], params.damping);
+    m[i]    = h[i] % u[i];
+
+#ifdef DEBUG
+
+  assert ( !mag :: isinf(u[i].mag) );
+
+#endif
+  }
+
+#ifdef _OPENMP
+#pragma omp single
+  {
+#endif
     for (long int i = 0L; i < nm; ++i)
     {
-      pm_ = 0.;
-      pz = 0.;
-      pp_ = 0.;
-#ifdef DEBUG
-    assert(xi[i] * xi[i] == 1.);
-#endif
-
-      for (long int j = 0L; j < nm; ++j)
-      {
-        p = 0.;
-        for (long int k = static_cast < long int >(std :: max(0L, j + i - nm + 1L));
-                      k < static_cast < long int >(std :: min(j, i) + 1L);
-                      ++k)
-          p += leftC[i][k] * rightC[i + 1L][j - k];
-        if (j < z - 1L)       pm_ += p;
-        else if (j == z - 1L) pz = p;
-        else                  pp_ += p;
-      }
-      mp      = mag :: convert < Mag >(mag :: clamp(pp_ + xi[i] * pz - pm_, -1., 1.));
-      mm      = mag :: convert < Mag >(mag :: clamp(pp_ - xi[i] * pz - pm_, -1., 1.));
-      new_u   = mag :: exactmix(old_m_on, mp, mm);
-      maxdiff = static_cast < double >(std :: max(maxdiff, std :: abs(new_u - u[i])));
-      u[i]    = mag :: damp(new_u, u[i], params.damping);
-      m[i]    = h[i] % u[i];
-#ifdef DEBUG
-    assert ( !mag :: isinf(u[i].mag) );
-#endif
+      delete[] leftC[i];
+      delete[] rightC[i];
     }
-
-  #ifdef _OPENMP
-  #pragma omp single
-    {
-  #endif
-      for (long int i = 0L; i < nm; ++i)
-      {
-        delete[] leftC[i];
-        delete[] rightC[i];
-      }
-      delete[] leftC;
-      delete[] rightC;
-  #ifdef _OPENMP
-    }
-  #endif
+    delete[] leftC;
+    delete[] rightC;
+#ifdef _OPENMP
+  }
+#endif
     return maxdiff;
 }
 
@@ -379,7 +395,9 @@ double free_energy_theta(const MagVec < Mag > m, const Mag & M, const double * x
   double f     = -mag :: log1pxy(old_m_on, b);
 
 #ifdef DEBUG
+
   assert( !mag :: isinf(f) );
+
 #endif
 
 // #ifdef _OPENMP
@@ -395,21 +413,13 @@ double free_energy_theta(const MagVec < Mag > m, const Mag & M, const double * x
 template < class Mag >
 double free_energy_theta_exact(MagVec < Mag > m, const Mag & M, const double * xi, MagVec < Mag > u, const Mag & U, const long int & nm)
 {
-  long int z;
-  double pm, pp, f;
-  pm = 0.;
-  pp = 0.;
-  f  = 0.;
   double ** leftC = nullptr;
   leftC = new double*[nm];
 
-  Mag old_m_on(0.),
-      b(0.);
-
   std :: unique_ptr < Mag[] > h(new Mag[nm]);
-  old_m_on = mag :: bar(M, U);
+  const Mag old_m_on = mag :: bar(M, U);
 
-  z = static_cast < long int >( (nm + 1L) * .5);
+  const long int z = static_cast < long int >( (nm + 1L) * .5);
 
 // #ifdef _OPENMP
 // #pragma omp barrier
@@ -460,11 +470,11 @@ double free_energy_theta_exact(MagVec < Mag > m, const Mag & M, const double * x
 // #pragma omp for reduction (+ : pp)
 //   for (long int i = z; i < nm + 1; ++i) pp += leftC[nm - 1L][i];
 // #else
-  pm = std :: accumulate(leftC[nm - 1L],     leftC[nm - 1L] + z,      0.);
-  pp = std :: accumulate(leftC[nm - 1L] + z, leftC[nm - 1L] + nm + 1, 0.);
+  const double pm = std :: accumulate(leftC[nm - 1L],     leftC[nm - 1L] + z,      0.);
+  const double pp = std :: accumulate(leftC[nm - 1L] + z, leftC[nm - 1L] + nm + 1, 0.);
 // #endif
-  b  = mag :: couple < Mag >(pp, pm);
-  f -= mag :: log1pxy(old_m_on, b);
+  const Mag b= mag :: couple < Mag >(pp, pm);
+  double f = -mag :: log1pxy(old_m_on, b);
 
 #ifdef DEBUG
 
@@ -483,7 +493,7 @@ double free_energy_theta_exact(MagVec < Mag > m, const Mag & M, const double * x
 // #pragma omp single
 //   {
 // #endif
-  for (int i = 0; i < nm; ++i) delete[] leftC[i];
+  for (long int i = 0L; i < nm; ++i) delete[] leftC[i];
 
   delete[] leftC;
 // #ifdef _OPENMP
@@ -500,11 +510,8 @@ double m_star_update(Mag & m_j_star, Mag & m_star_j, Params < Mag > & params) //
 #pragma omp barrier
 #endif
 
-  double diff;
-
   Mag old_m_j_star = mag :: bar(m_j_star, m_star_j);
   Mag new_m_star_j(0.);
-  Mag new_m_j_star(0.);
 
   if (mag :: isinf(params.r))  // to check
     new_m_star_j = (old_m_j_star != 0.)                                    ?
@@ -513,9 +520,9 @@ double m_star_update(Mag & m_j_star, Mag & m_star_j, Params < Mag > & params) //
   else
     new_m_star_j = mag :: arrow( (old_m_j_star ^ params.tan_gamma), params.r ) ^ params.tan_gamma;
 
-  diff         = std :: abs(new_m_star_j - m_star_j);
+  const double diff = std :: abs(new_m_star_j - m_star_j);
   new_m_star_j = mag :: damp(new_m_star_j, m_star_j, params.damping);
-  new_m_j_star = old_m_j_star % new_m_star_j;
+  const Mag new_m_j_star = old_m_j_star % new_m_star_j;
 
 #ifdef _OPENMP
 #pragma omp barrier
@@ -686,7 +693,6 @@ bool converge( Cavity_Message < Mag > & messages, const Patterns & patterns, Par
 long int * nonbayes_test (long int ** const sign_m_j_star, const Patterns & patterns, const long int & K)
 {
   long int * predicted_labels = new long int[patterns.Nrow];
-  double s, s2, trsf0;
 
 #ifdef _OPENMP
 #pragma omp barrier
@@ -694,13 +700,13 @@ long int * nonbayes_test (long int ** const sign_m_j_star, const Patterns & patt
 #endif
   for (long int i = 0L; i < patterns.Nrow; ++i)
   {
-    s = std :: accumulate(sign_m_j_star, sign_m_j_star + K,
-                          0., [&](const double &val, const long int * wk)
-                          {
-                            trsf0 = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const long int & wki, const double & pi) { return wki * pi; }));
-                            s2    = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const long int & wki, const double & pi) { return (1L - wki * wki) * (pi * pi); }));
-                            return val + std :: erf( trsf0 / std :: sqrt(2. * s2) );
-                          });
+    const double s = std :: accumulate(sign_m_j_star, sign_m_j_star + K,
+                                       0., [&](const double & val, const long int * wk)
+                                       {
+                                         const double trsf0 = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const long int & wki, const double & pi) { return wki * pi; }));
+                                         const double s2    = static_cast < double >(std :: inner_product( wk, wk + patterns.Ncol, patterns.input[i], 0., std :: plus < double >(), [](const long int & wki, const double & pi) { return (1L - wki * wki) * (pi * pi); }));
+                                         return val + std :: erf( trsf0 / std :: sqrt(2. * s2) );
+                                       });
     predicted_labels[i] = static_cast < long int >(sign(s));
   }
 
@@ -713,11 +719,11 @@ long int error_test(Cavity_Message < Mag > & messages, const Patterns & patterns
   long int ** bin_weights = messages.get_weights();
   long int * lbls = nonbayes_test(bin_weights, patterns, messages.K);
 
-  static long int t;
-
-  t = 0.;
 
 #ifdef _OPENMP
+
+  static long int t;
+  t = 0.;
 
 #pragma omp barrier
 #pragma omp for reduction (+ : t)
@@ -726,7 +732,7 @@ long int error_test(Cavity_Message < Mag > & messages, const Patterns & patterns
 
 #else
 
-  t = std :: inner_product(lbls, lbls + patterns.Nrow, patterns.output, 0L, std :: plus < long int >(), [](const long int &lbli, const long int &oi){ return static_cast < long int >( lbli != oi );});
+  const long int t = std :: inner_product(lbls, lbls + patterns.Nrow, patterns.output, 0L, std :: plus < long int >(), [](const long int &lbli, const long int &oi){ return static_cast < long int >( lbli != oi );});
 
 #endif
 
@@ -882,7 +888,7 @@ void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps)
 #endif
   for (long int it = 0L; it < messages.K * messages.N; ++it)
   {
-    std::ldiv_t dv = std :: div(it, messages.N);
+    std :: ldiv_t dv = std :: div(it, messages.N);
     qs[dv.quot] += messages.m_j_star[dv.quot][dv.rem].value() * messages.m_j_star[dv.quot][dv.rem].value();
   }
 
@@ -905,7 +911,7 @@ void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps)
       const double s = std :: inner_product(messages.m_j_star[k1], messages.m_j_star[k1] + messages.N,
                                             messages.m_j_star[k2],
                                             0., std :: plus < double >(),
-                                            [](const Mag &a, const Mag &b)
+                                            [](const Mag & a, const Mag & b)
                                             {
                                              return a.value() * b.value();
                                             }) / (qs[k1] * qs[k2]);
@@ -1009,11 +1015,9 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
 {
   __unused bool ok;
 
-  long int it = 1;
-
   const long int M = patterns.Nrow;
   const long int N = patterns.Ncol;
-  long int        errs = 0L;
+  long int errs;
 
 #ifdef STATS
 
@@ -1142,6 +1146,9 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
   }
 
 #endif // end verbose
+
+  long int it = 1;
+  long int ** weights = nullptr;
 
   for (long int i = 0L; i < fprotocol.Nrep; ++i)
   {
@@ -1312,7 +1319,7 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
     if ( it > max_steps || !ok )  break;
   }
 
-  long int ** weights = messages.get_weights();
+  weights = messages.get_weights();
 
 #ifdef _OPENMP
   } // parallel section

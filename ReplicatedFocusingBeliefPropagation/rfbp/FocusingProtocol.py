@@ -78,3 +78,14 @@ class Focusing_Protocol (_FocusingProtocol):
   def __repr__ (self):
     class_name = self.__class__.__qualname__
     return '{0}(protocol={1}, size={2:d})'.format(class_name, self._protocol, self._nrep)
+
+
+if __name__ == '__main__':
+
+  fp = Focusing_Protocol('scoping', 101)
+  print(fp)
+  print('Cython protocol {}'.format(fp.fprotocol))
+  print('num of replicas {:d}'.format(fp.num_of_replicas))
+  print('gamma {}'.format(', '.format(map(str, fp.gamma))))
+  print('y {}'.format(', '.format(map(str, fp.n_rep))))
+  print('beta {}'.format(', '.format(map(str, fp.beta))))

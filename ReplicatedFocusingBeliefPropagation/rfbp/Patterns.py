@@ -151,3 +151,27 @@ class Pattern (_Pattern):
 
     else:
       return '{0}().random(shapes=(0, 0))'.format(class_name)
+
+
+if __name__ == '__main__':
+
+  n_sample = 10
+  n_feature = 20
+
+  data = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, n_feature))
+  labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample,))
+
+  pt = Pattern(X=data, y=labels)
+  print(pt)
+
+  # constructor
+  assert pt.pattern is not None
+
+  # dimensions
+  assert pt.shape == (n_sample, n_feature)
+
+  # data
+  assert np.allclose(pt.data, data)
+
+  # labels
+  assert np.allclose(pt.labels, labels)

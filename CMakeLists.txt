@@ -139,7 +139,7 @@ set(SRC_DIR  ${CMAKE_SOURCE_DIR}/src                                 CACHE PATH 
 set(INC_DIR  ${CMAKE_SOURCE_DIR}/include                             CACHE PATH "Path where find header files"                     )
 set(HPP_DIR  ${CMAKE_SOURCE_DIR}/hpp                                 CACHE PATH "Path where find hpp files"                        )
 set(EXAMPLE  ${CMAKE_SOURCE_DIR}/example                             CACHE PATH "Path where find main files"                       )
-set(TEST     ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                       )
+set(TEST_DIR ${CMAKE_SOURCE_DIR}/test                                CACHE PATH "Path where find test files"                       )
 set(PYC_DIR  ${CMAKE_SOURCE_DIR}/ReplicatedFocusingBeliefPropagation CACHE PATH "Path where find cython files"                     )         # cython directory
 set(LIB_DIR  ${CMAKE_SOURCE_DIR}/lib                                 CACHE PATH "Path where lib will be installed"            FORCE)
 set(INST_DIR ${CMAKE_SOURCE_DIR}/share/rfbp                          CACHE PATH "Path where cmake configs will be installed"  FORCE)
@@ -162,7 +162,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_G
   list (APPEND SRC ${CMAKE_SOURCE_DIR}/scorer/src/scorer.cpp)
 endif()
 
-include_directories(${INC_DIR} ${INC_SCORER} ${HPP_DIR})
+include_directories(${INC_DIR} ${INC_SCORER} ${HPP_DIR} ${TEST_DIR})
 
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
@@ -230,7 +230,7 @@ add_executable(${rfbptestmain} ${EXAMPLE}/test_main.cpp)
 target_link_libraries(${rfbptestmain} ${linked_libs} ${rfbplib})
 
 if (BUILD_TEST)
-  add_subdirectory(${TEST})
+  add_subdirectory(${TEST_DIR})
 endif()
 
 #################################################################

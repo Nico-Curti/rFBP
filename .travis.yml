@@ -235,7 +235,6 @@ matrix:
       name: macOS - g++-7
       env:
         - MATRIX_EVAL="brew update && brew reinstall gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
-        - COMPILER_ID="gcc"
 
     - os: osx
       osx_image: xcode10.1
@@ -332,14 +331,14 @@ before_install:
   - travis_retry eval "${MATRIX_EVAL}"
 
   # install python packages
-  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install numpy==1.14.3                                                                  ;fi
-  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install cython==0.29                                                                   ;fi
-  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install scipy==1.2.1                                                                   ;fi
-  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install scikit-learn==0.20.3                                                           ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install numpy==1.14.3                                                                  ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install cython==0.29                                                                   ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install scipy==1.2.1                                                                   ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install scikit-learn==0.20.3                                                           ;fi
 
   # testing libraries
-  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install pytest==3.0.7                                                                  ;fi
-  - if [[ "WITH_PYTHON" == "ON" ]]; then python -m pip install codecov                                                                        ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install pytest==3.0.7                                                                  ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pip install codecov                                                                        ;fi
 
 install:
   # CMake upgrade
@@ -350,12 +349,12 @@ install:
 
   ###############################################################################################################################################
 
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.tar.gz    ;fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                     ;fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] && [[ "$COMPILER_ID" == "gcc" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.tar.gz    ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                     ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
   # python version
-  - if [[ "WITH_PYTHON" == "ON" ]]; then python setup.py install                                                                              ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python setup.py install                                                                              ;fi
 
 script:
   - chmod 777 ./build.sh
@@ -366,9 +365,10 @@ script:
   - cd test && chmod 777 ./run_test.sh && cd ..
 
   # python testing
-  - if [[ "WITH_PYTHON" == "ON" ]]; then pytest                                                                                               ;fi
-  - if [[ "WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_fprotocol.py                         ;fi
-  - if [[ "WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_pattern.py                           ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then pytest                                                                                               ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_atanherf.py                          ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_fprotocol.py                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_pattern.py                           ;fi
 
 after_succes:
   - codecov

@@ -98,3 +98,10 @@ class TestPattern:
     assert 0 < len(values) <= 2
     assert all(v in (-1, 1) for v in values)
 
+
+if __name__ == '__main__':
+
+  test = TestPattern()
+  test.test_null_constructor()
+  test.test_constructor()
+  test.test_random_pattern()
