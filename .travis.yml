@@ -394,7 +394,7 @@ before_install:
   - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install scipy==1.2.1                                                                 ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install scikit-learn==0.20.3                                                         ;fi
   # add always requests for data downloads
-  - python3 -m pip install requests==2.22.0
+  - python3 -m pip install requests
 
   # testing libraries
   - if [[ "$WITH_PYTHON" == "ON" ]]; then pip3 install pytest==3.0.7                                                                          ;fi

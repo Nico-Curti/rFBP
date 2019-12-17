@@ -100,7 +100,7 @@ TEST_CASE ( "Test different focusing protocol", "[fprotocol]" )
     for (long int i = 0L; i < max_steps - 2L; ++i)
     {
       REQUIRE ( fp.n_rep[i] < fp.n_rep[i + 1L] );
-      REQUIRE ( fp.gamm[i] == fp.gamma[i + 1L] );
+      REQUIRE ( fp.gamma[i] == fp.gamma[i + 1L] );
       REQUIRE ( fp.beta[i] == fp.beta[i + 1L] );
     }
 
