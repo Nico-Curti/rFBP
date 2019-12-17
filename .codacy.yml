@@ -13,5 +13,5 @@ exclude_paths:
   - 'docs/**'
   - ReplicatedFocusingBeliefPropagation/__init__.py
   - ReplicatedFocusingBeliefPropagation/rfbp/__init__.py
-  - './ReplicatedFocusingBeliefPropagation/rfbp/test/**'
-  - './ReplicatedFocusingBeliefPropagation/rfbp/magnetization.py'
+  - ReplicatedFocusingBeliefPropagation/rfbp/test/*
+  - ReplicatedFocusingBeliefPropagation/rfbp/magnetization.py
