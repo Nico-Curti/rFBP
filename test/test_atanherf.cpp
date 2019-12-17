@@ -5,8 +5,10 @@
 #include <cmath>
 #include <random>
 
-#define PRECISION 1e-4f
+#define PRECISION 1e-4
 #define SEED 42
+
+#define isclose(x, y) ( std :: abs((x) - (y)) < PRECISION )
 
 TEST_CASE ( "Test atanherf functions and approximations", "[atanherf]" )
 {
@@ -16,9 +18,9 @@ TEST_CASE ( "Test atanherf functions and approximations", "[atanherf]" )
   for (int i = 0; i < 100; ++i)
   {
     const double rng_x = dist(engine);
-    // broken test
-    REQUIRE ( std :: fabs(AtanhErf :: atanherf_largex(rng_x) - std :: atanh(std :: erf(rng_x)) ) < PRECISION );
-    REQUIRE ( std :: fabs(sign(rng_x) * AtanhErf :: atanherf_interp(std :: abs(rng_x)) - std :: atanh(std :: erf(rng_x)) ) < PRECISION );
+
+    REQUIRE ( isclose( AtanhErf :: atanherf_largex(rng_x), std :: atanh(std :: erf(rng_x)) ) );
+    REQUIRE ( isclose( sign(rng_x) * AtanhErf :: atanherf_interp(std :: abs(rng_x)), std :: atanh(std :: erf(rng_x)) ) );
   }
 }
 

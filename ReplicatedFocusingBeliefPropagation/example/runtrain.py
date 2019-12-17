@@ -3,7 +3,8 @@
 
 import argparse
 
-from ReplicatedFocusingBeliefPropagation import Mag
+from ReplicatedFocusingBeliefPropagation import MagP64
+from ReplicatedFocusingBeliefPropagation import MagT64
 from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import NTH
 from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
@@ -119,7 +120,7 @@ def parse_args ():
                               (0) MagnetizationP (MagP64),\
                               (1) MagnetizationT (MagT64)',
                       default=1,
-                      choices=[Mag.magP, Mag.magT])
+                      choices=[MagP64, MagT64])
   parser.add_argument('--outweights',
                       dest='outweights',
                       required=False,
@@ -166,8 +167,7 @@ def train ():
 
   pattern = Pattern().load(filename=args.patterns, binary=args.bin, delimiter=args.delimiter)
 
-  if args.mag == 0: args.mag = Mag.magP
-  else:             args.mag = Mag.magT
+  args.mag = MagP64 if args.mag == 0 else MagT64
 
   rfbp = rFBP(mag=args.mag,
               hidden=args.hidden,

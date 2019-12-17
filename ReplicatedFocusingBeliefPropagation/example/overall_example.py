@@ -3,7 +3,7 @@
 
 import time
 
-from ReplicatedFocusingBeliefPropagation import Mag
+from ReplicatedFocusingBeliefPropagation import MagT64
 from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 
@@ -24,9 +24,9 @@ __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 if __name__ == '__main__':
 
-  pattern = Pattern(M=20, N=101)
+  pattern = Pattern().random(shape=(20, 101))
 
-  rfbp = rFBP(mag=Mag.magT,
+  rfbp = rFBP(mag=MagT64,
               hidden=3,
               max_iter=1000,
               seed=135,

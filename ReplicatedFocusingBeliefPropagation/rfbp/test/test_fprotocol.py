@@ -45,6 +45,9 @@ class TestProtocol:
     assert len(set(fprotocol.n_rep)) == 1
     assert len(set(fprotocol.beta)) == 1
 
+    # check length arrays
+    assert len(fprotocol.gamma) == len(fprotocol.beta) and len(fprotocol.beta) == len(fprotocol.n_rep)
+
     # check inf beta
     assert fprotocol.beta[0] == float('inf')
 
@@ -76,6 +79,9 @@ class TestProtocol:
 
     # check all values equal
     assert len(set(fprotocol.beta)) == 1
+
+    # check length arrays
+    assert len(fprotocol.gamma) == len(fprotocol.beta) and len(fprotocol.beta) == len(fprotocol.n_rep)
 
     # check inf beta
     assert fprotocol.beta[0] == float('inf')
@@ -110,6 +116,9 @@ class TestProtocol:
     # check all values equal
     assert len(set(fprotocol.beta)) == 1
 
+    # check length arrays
+    assert len(fprotocol.gamma) == len(fprotocol.beta) and len(fprotocol.beta) == len(fprotocol.n_rep)
+
     # check inf beta
     assert fprotocol.beta[0] == float('inf')
 
@@ -142,6 +151,8 @@ class TestProtocol:
     assert len(set(fprotocol.gamma)) == 1
     assert len(set(fprotocol.beta)) == 1
 
+    # check length arrays
+    assert len(fprotocol.gamma) == len(fprotocol.beta) and len(fprotocol.beta) == len(fprotocol.n_rep)
 
 
   def test_wrong_protocol (self):

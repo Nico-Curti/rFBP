@@ -5,7 +5,7 @@
 <img align="right" width="180" height="183" src="https://avatars0.githubusercontent.com/u/24650975?s=400&v=4"> About me:
 - **Name**: Nico
 - **Surname**: Curti
-- **Profession**: PhD student at Physics and Anstronomy Department in Bologna
+- **Profession**: PhD at Dept. of Experimental, Diagnostic and Specialty Medicine of Bologna University
 - **University**: University of Bologna
 - **Location**: Italy
 - **Web page**: [git](https://github.com/Nico-Curti), [unibo](https://www.unibo.it/sitoweb/nico.curti2)
@@ -16,7 +16,7 @@
 <img align="right" width="180" height="183" src="https://avatars3.githubusercontent.com/u/23407684?s=400&v=4"> About me:
 - **Name**: Daniele
 - **Surname**: Dall'Olio
-- **Profession**: Master degree student at Physics and Anstronomy Department in Bologna
+- **Profession**: PhD student at Physics and Anstronomy Department in Bologna
 - **University**: University of Bologna
 - **Location**: Italy
 - **Web page**: [git](https://github.com/DanieleDallOlio)

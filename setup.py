@@ -18,9 +18,55 @@ except ImportError:
   from distutils.core import Extension
   from distutils.core import find_packages
 
-from ReplicatedFocusingBeliefPropagation.build import get_requires
-from ReplicatedFocusingBeliefPropagation.build import rfbp_build_ext
-from ReplicatedFocusingBeliefPropagation.build import read_description
+from Cython.Distutils import build_ext
+from distutils.sysconfig import customize_compiler
+
+def get_requires (requirements_filename):
+  '''
+  What packages are required for this module to be executed?
+  '''
+  with open(requirements_filename, 'r') as fp:
+    requirements = fp.read()
+
+  return list(filter(lambda x: x != '', requirements.split()))
+
+
+
+class rfbp_build_ext (build_ext):
+  '''
+  Custom build type
+  '''
+
+  def build_extensions (self):
+
+    customize_compiler(self.compiler)
+
+    try:
+      self.compiler.compiler_so.remove('-Wstrict-prototypes')
+
+    except (AttributeError, ValueError):
+      pass
+
+    build_ext.build_extensions(self)
+
+
+def read_description (readme_filename):
+  '''
+  Description package from filename
+  '''
+
+  try:
+
+    with open(readme_filename, 'r') as fp:
+      description = '\n'
+      description += fp.read()
+
+  except Exception:
+    return ''
+
+
+
+
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -74,6 +120,7 @@ if not os.path.isfile(os.path.join(here, 'lib', 'librfbp.so')):
                   os.path.join(os.getcwd(), 'src', 'fprotocol.cpp'),
                   os.path.join(os.getcwd(), 'src', 'atanherf.cpp'),
                   os.path.join(os.getcwd(), 'src', 'pattern.cpp'),
+                  os.path.join(os.getcwd(), 'src', 'params.cpp'),
                   os.path.join(os.getcwd(), 'src', 'spline.cpp'),
                   os.path.join(os.getcwd(), 'src', 'utils.cpp'),
                   os.path.join(os.getcwd(), 'src', 'rfbp.cpp')
@@ -87,7 +134,7 @@ else:
 
 
 if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
-  cpp_compiler_args = ['-std=c++17', '-g0', '-fopenmp']
+  cpp_compiler_args = ['-std=c++17', '-g0']
   compiler, compiler_version = CPP_COMPILER.split()
 
   if compiler == 'GCC':
@@ -104,7 +151,7 @@ if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
     linker_args = []
 
 elif 'MSC' in CPP_COMPILER:
-  cpp_compiler_args = ['/std:c++17', '/openmp']
+  cpp_compiler_args = ['/std:c++17']
   BUILD_SCORER = True
 
   if ENABLE_OMP:

@@ -43,7 +43,7 @@ double theta_node_update_approx (MagVec < Mag > m, Mag & M, const double * xi, M
   {
     h[i] = mag :: bar(m[i], u[i]);
     const double hvalue = h[i].value();
-    mu  += h * xi[i];
+    mu  += hvalue * xi[i];
     sigma2 += (1. - hvalue * hvalue) * (xi[i] * xi[i]);
   }
 
@@ -1048,6 +1048,9 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
   if ( std :: is_same < Mag, MagT64 > :: value && !file_exists( std :: string(PWD) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat") )
     error_atanherf_file();
 
+  long int it = 1;
+  long int ** weights = nullptr;
+
 #ifdef _OPENMP
 #pragma omp parallel num_threads (nth)
   { // start parallel section
@@ -1146,9 +1149,6 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
   }
 
 #endif // end verbose
-
-  long int it = 1;
-  long int ** weights = nullptr;
 
   for (long int i = 0L; i < fprotocol.Nrep; ++i)
   {
@@ -1314,8 +1314,8 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
 #ifdef _OPENMP
 #pragma omp single
 #endif
+    ++ it;
 
-    ++it;
     if ( it > max_steps || !ok )  break;
   }
 

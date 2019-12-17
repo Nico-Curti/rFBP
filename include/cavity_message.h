@@ -45,13 +45,13 @@ public:
   long int        N;          ///< input layers size
   long int        K;          ///< hidden layers size
   long int        seed;       ///< random seed
-  MagVec3 <Mag>   weights;    ///< uw in paper nomeclature
-  MagVec2 <Mag>   m_star_j;   ///< ux in paper nomeclature
-  MagVec2 <Mag>   m_j_star;   ///< mw in paper nomeclature
-  MagVec2 <Mag>   m_in;       ///< mt1 in paper nomeclature
-  MagVec2 <Mag>   m_no;       ///< Ut1 in paper nomeclature
-  MagVec2 <Mag>   m_ni;       ///< ut1 in paper nomeclature
-  MagVec<Mag>     m_on;       ///< mt2 in paper nomeclature
+  MagVec3 < Mag > weights;    ///< uw in paper nomeclature
+  MagVec2 < Mag > m_star_j;   ///< ux in paper nomeclature
+  MagVec2 < Mag > m_j_star;   ///< mw in paper nomeclature
+  MagVec2 < Mag > m_in;       ///< mt1 in paper nomeclature
+  MagVec2 < Mag > m_no;       ///< Ut1 in paper nomeclature
+  MagVec2 < Mag > m_ni;       ///< ut1 in paper nomeclature
+  MagVec < Mag >  m_on;       ///< mt2 in paper nomeclature
 
   // Constructors
 

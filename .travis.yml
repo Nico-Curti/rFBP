@@ -320,6 +320,9 @@ matrix:
         - WITH_PYTHON=ON
 
   allow_failures:
+    - name: ubuntu 14.04 - gcc@8.0 & python@3.5
+    - name: ubuntu 14.04 - gcc@8.0 & python@3.6
+    - name: ubuntu 14.04 - gcc@8.0 & python@3.7
     - name: ubuntu 14.04 - clang@3.6
     - name: ubuntu 14.04 - clang@3.8
     - name: ubuntu 14.04 - clang@3.9
@@ -331,14 +334,17 @@ before_install:
   - travis_retry eval "${MATRIX_EVAL}"
 
   # install python packages
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 --version                                                                                     ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install numpy==1.14.3                                                                  ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install cython==0.29                                                                   ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install scipy==1.2.1                                                                   ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install scikit-learn==0.20.3                                                           ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install requests==2.22.0                                                           ;fi
+  # add always requests for data downloads
+  - /usr/bin/python3 -m pip install requests==2.22.0
 
   # testing libraries
   - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install pytest==3.0.7                                                                  ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install pytest-cov                                                                     ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 -m pip install codecov                                                                        ;fi
 
 install:
@@ -355,7 +361,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
   # python version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 setup.py install                                                                              ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 setup.py install                                                                   ;fi
 
 script:
   - chmod 777 ./build.sh
@@ -366,10 +372,7 @@ script:
   - cd test && chmod 777 ./run_test.sh && cd ..
 
   # python testing
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then pytest                                                                                               ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_atanherf.py                          ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_fprotocol.py                         ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then coverage run ReplicatedFocusingBeliefPropagation/rfbp/test/test_pattern.py                           ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pytest --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc                 ;fi
 
 after_succes:
   - codecov

@@ -221,8 +221,8 @@ namespace mag
       return std :: log( ( 1. + (x.mag * y.mag)) * .5);
     else
     {
-      const double ax = x.mag,
-                   ay = y.mag;
+      const double ax = x.mag;
+      const double ay = y.mag;
 
       return !mag :: isinf(ax) && !mag :: isinf(ay)                                                 ?
               std :: abs(ax + ay) - std :: abs(ax) - std :: abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
@@ -243,8 +243,8 @@ namespace mag
       return (-x.mag) * std :: atanh(y.mag) - std :: log(1. - y.mag * y.mag) * .5 + log_2;
     else
     {
-      const double tx = x.value(),
-                   ay = y.mag;
+      const double tx = x.value();
+      const double ay = y.mag;
       return !mag :: isinf(ay)                                ?
              -std :: abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
              (sign(tx) != sign(ay))                           ?
@@ -262,15 +262,15 @@ namespace mag
 
     if constexpr ( std :: is_same_v < Mag, MagP64 > )
     {
-      double zkip = std :: log( (1. + u0.mag) * .5);
-      double zkim = std :: log( (1. - u0.mag) * .5);
+      double zkip = (1. + u0.mag) * .5;
+      double zkim = (1. - u0.mag) * .5;
 
       for (long int i = 0L; i < nu; ++i)
       {
-        zkip += std :: log( (1. + u[i].mag) * .5);
-        zkim += std :: log( (1. - u[i].mag) * .5);
+        zkip *= (1. + u[i].mag) * .5;
+        zkim *= (1. - u[i].mag) * .5;
       }
-      return std :: log( std :: exp(zkip) + std :: exp(zkim));
+      return std :: log( zkip + zkim );
     }
     else
     {
@@ -278,7 +278,7 @@ namespace mag
       const bool is_inf = mag :: isinf(a0);
       double s1     = is_inf ? 0.       : a0;
       double s2     = is_inf ? 0.       : std :: abs(a0);
-      double s3     = is_inf ? 0.       : lr(a0);
+      double s3     = is_inf ? 1.       : a0;
       double hasinf = is_inf ? sign(a0) : 0.;
       for (long int i = 0L; i < nu; ++i)
       {
@@ -287,12 +287,12 @@ namespace mag
         {
           s1 += ai;
           s2 += std :: abs(ai);
-          s3 += lr(ai);
+          s3 *= ai;
         }
         else if (hasinf == 0)        hasinf = sign(ai);
         else if (hasinf != sign(ai)) return -INF;
       }
-      return std :: abs(s1) - s2 + lr(s1) - s3;
+      return std :: abs(s1) - s2 + lr(s1 / s3);
     }
   }
 
@@ -307,12 +307,12 @@ namespace mag
     if (aH == 0.) return MagT64(0.);
     else
     {
-      const double xH   = aH + ap,
-                   xh   = aH + am,
-                   a_ap = std :: abs(ap),
-                   a_am = std :: abs(am);
-      const bool inf_ap = mag :: isinf(ap),
-                 inf_am = mag :: isinf(am);
+      const double xH   = aH + ap;
+      const double xh   = aH + am;
+      const double a_ap = std :: abs(ap);
+      const double a_am = std :: abs(am);
+      const bool inf_ap = mag :: isinf(ap);
+      const bool inf_am = mag :: isinf(am);
       if (mag :: isinf(aH))
       {
         if (!inf_ap && !inf_am)
@@ -344,7 +344,8 @@ namespace mag
         t1  = 0.;
         t1 += inf_ap ? 0. : std :: abs(xH) - a_ap;
         t1 -= inf_am ? 0. : std :: abs(xh) - a_am;
-        t2  = lr(xH) - lr(ap) - lr(xh) + lr(am);
+        t2 = std :: log( ( std :: exp(2. * std :: abs(xH)) + 1.) * ( std :: exp(2. * std :: abs(am)) + 1.) / (( std :: exp(2. * std :: abs(ap)) + 1.) * ( std :: exp(2. * std :: abs(xh)) + 1.))) -2. * std :: abs(xH) + 2. * std :: abs(ap) + 2. * std :: abs(xh) - 2. * std :: abs(am);
+        // t2  = lr(xH) - lr(ap) - lr(xh) + lr(am);
       }
     }
     return MagT64((t1 + t2) * .5);

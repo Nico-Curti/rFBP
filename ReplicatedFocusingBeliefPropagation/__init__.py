@@ -7,16 +7,15 @@ import os
 import warnings
 from .__version__ import __version__
 
-try:
-
-  from .rfbp.ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation
-  from .rfbp.ReplicatedFocusingBeliefPropagation import NTH
-  from .rfbp.Patterns import Pattern
-  from .rfbp.FocusingProtocol import Focusing_Protocol
-  from lib.ReplicatedFocusingBeliefPropagation.rFBP import Mag
-
-except ImportError:
-  pass
+from .rfbp.ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation
+from .rfbp.ReplicatedFocusingBeliefPropagation import NTH
+from .rfbp.Patterns import Pattern
+from .rfbp.FocusingProtocol import Focusing_Protocol
+from .rfbp.atanherf import atanherf
+from .rfbp.MagP64 import MagP64
+from .rfbp.MagT64 import MagT64
+from .rfbp import magnetization
+from .rfbp.misc import _check_string
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']

@@ -16,6 +16,20 @@
 
 #endif
 
+#ifdef _MSC_VER
+
+  #ifndef __unused
+    #define __unused
+  #endif
+
+#else
+
+  #ifndef __unused
+    #define __unused __attribute__((__unused__))
+  #endif
+
+#endif
+
 
 class argument
 {
@@ -85,7 +99,7 @@ public:
   // Template methods
 
   template < typename data_t >
-  void add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t && default_value);
+  void add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t default_value);
 
   template < typename data_t >
   void get (const std :: string & name, data_t & values);

@@ -25,10 +25,10 @@ FocusingProtocol :: FocusingProtocol (const std :: string & prot, const long int
   {
     case scoping_:
     {
-      step = 7. / (size - 1L); // 7 is a magic number ??
+      step = 7. / (size - 1L);
       long int i = 0;
       std :: generate_n(this->gamma.get(), size - 1L, [&](){ return (i++) * step;});
-      std :: fill_n(this->n_rep.get(), size, 21.); // 21 is magic number ??
+      std :: fill_n(this->n_rep.get(), size, 21.); // 21 is a magic number ??
       std :: fill_n(this->beta.get(), size, INF);
 
       this->gamma[size - 1L] = INF;

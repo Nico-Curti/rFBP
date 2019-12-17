@@ -22,33 +22,3 @@ def _check_string(_string, exist=True):
     raise FileNotFoundError('{0} file not found'.format(_string))
 
   return _string.encode(sys.getfilesystemencoding())
-
-
-def test_check_string ():
-
-  a = 'this_is_a_string'
-  b = _check_string(a, False)
-
-  if not isinstance(b, bytes):
-    raise ValueError
-
-  if not b == _check_string(b, False):
-    raise ValueError
-
-  a = 'misc.py'
-  b = _check_string(a)
-
-  x = 3.14
-
-  try:
-    y = _check_string(x)
-    print(y)
-
-  except TypeError:
-    pass
-
-
-if __name__ == '__main__':
-
-  test_check_string()
-

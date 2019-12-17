@@ -21,7 +21,7 @@ RUN apt-get dist-upgrade -y
 RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt-get update
-RUN apt-get install -y gcc-8 g++-8
+RUN apt-get install -y --no-install-recommends gcc-8 g++-8
 RUN apt-get autoremove --purge -y
 RUN apt-get autoclean -y
 

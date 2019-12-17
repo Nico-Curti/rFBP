@@ -47,4 +47,10 @@ __pycache__/
 [Uu]tilities/
 [Ss]hare/
 
+# coverage
+.coverage*
+html*
 
+# temp files
+messages_*
+results_*

@@ -1,17 +1,16 @@
 #ifndef __parse_args_hpp__
 #define __parse_args_hpp__
 
-#include <parse_args.h>
-
 #if __cplusplus < 201700 // no std=c++17 support
 
   #include <parse_args_old.hpp>
 
 #else // modern version
 
+#include <parse_args.h>
 
 template < typename data_t >
-void ArgumentParser :: add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t && default_value)
+void ArgumentParser :: add_argument (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, data_t default_value)
 {
   static_assert (!std :: is_same_v < data_t, int >    ||
                  !std :: is_same_v < data_t, float >  ||
@@ -175,6 +174,6 @@ std :: string ArgumentParser :: type_name ()
 }
 
 
-#endif
+#endif // old gcc
 
 #endif // __parse_args_hpp__

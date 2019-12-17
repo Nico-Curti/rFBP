@@ -13,6 +13,8 @@ from .FocusingProtocol import Focusing_Protocol
 from .Patterns import Pattern
 
 from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
+from ReplicatedFocusingBeliefPropagation.rfbp.MagP64 import MagP64
+from ReplicatedFocusingBeliefPropagation.rfbp.MagT64 import MagT64
 
 from sklearn.utils import check_array
 from sklearn.utils.validation import check_is_fitted
@@ -87,7 +89,7 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
   ALLOWED_ACCURACY = ('exact', 'accurate', 'approx', 'none')
   ALLOWED_PROTOCOL = ('scoping', 'pseudo_reinforcement', 'free_scoping', 'standard_reinforcement')
 
-  def __init__ (self, mag=Mag.magP,
+  def __init__ (self, mag=MagP64,
                       hidden=3,
                       max_iter=1000,
                       seed=135,
@@ -99,7 +101,7 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
                       size=101,
                       nth=NTH):
 
-    if not isinstance(mag, Mag):
+    if mag is not MagP64 and mag is not MagT64:
       raise TypeError('Magnetization must be an instance of Mag Enum')
 
     if len(accuracy) > 2:
@@ -108,7 +110,6 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     if not all(a in self.ALLOWED_ACCURACY for a in accuracy):
       raise ValueError('Wrong accuracy. Possible values are only {}. Given: {}, {}'.format(','.join(self.ALLOWED_ACCURACY),
                                                                                            accuracy[0], accuracy[1]))
-
     if protocol not in self.ALLOWED_PROTOCOL:
       raise ValueError('Incorrect Protocol found. Possible values are only {}'.format(','.join(self.ALLOWED_PROTOCOL)))
 
@@ -123,7 +124,7 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     self.protocol = protocol
     self.size = size
     self.nth = nth
-    self.weights_ = None
+    #self.weights_ = None
 
 
   def predict (self, X):
@@ -184,16 +185,15 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
         Returns self.
     '''
 
-    if not isinstance(X, Pattern) and y is None:
-      raise ValueError('Invalid argument. y can be None only if X is a Pattern object')
-
     pattern = X if isinstance(X, Pattern) else Pattern(X, y)
 
     acc = (_check_string(acc, exist=False) for acc in self.accuracy)
 
     protocol = Focusing_Protocol(protocol=self.protocol, size=self.size)
 
-    self.weights_ = _rfbp(mag=self.mag,
+    mag = Mag.MagP64 if self.mag is MagP64 else Mag.MagT64
+
+    self.weights_ = _rfbp(mag=mag,
                           pattern=pattern.pattern,
                           protocol=protocol.fprotocol,
                           hidden=self.hidden,
@@ -260,6 +260,8 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
         Switch between binary and ascii dumping style
     '''
 
+    check_is_fitted(self, 'weights_')
+
     if binary:
       with open(weightfile, 'wb') as fp:
         pickle.dump(self.weights_, fp)
@@ -272,44 +274,6 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
 
     params = self.__init__.__code__.co_varnames
     params = set(params) - {'self'}
-    args = ', '.join(['{}={}'.format(k, str(getattr(self, '_' + k))) for k in params])
+    args = ', '.join(['{}={}'.format(k, str(getattr(self, k))) for k in params])
 
     return '{}({})'.format(class_name, args)
-
-
-if __name__ == '__main__':
-
-  import time
-
-  rFBP = ReplicatedFocusingBeliefPropagation
-
-  pattern = Pattern(M=20, N=101)
-  rfbp = rFBP(mag=Mag.magT,
-              hidden=3,
-              max_iter=1000,
-              seed=135,
-              damping=0.5,
-              accuracy=('accurate','exact'),
-              randfact=0.1,
-              epsil=0.5,
-              protocol='pseudo_reinforcement',
-              size=101,
-              nth=2)
-
-  start_time = time.time()
-  rfbp.fit(pattern)
-
-  elapsed_time = time.time() - start_time
-  print ('{0}: Training completed in {1:.2f} seconds'.format(pattern, elapsed_time))
-
-  predicted_labels = rfbp.predict(pattern)
-  print('Predictions:')
-
-  print(predicted_labels)
-
-  rfbp.save_weights('test_weights', binary=True)
-  rfbp.load_weights('test_weights', binary=True)
-
-
-  rfbp.save_weights('test_weights.csv', binary=False, delimiter=',')
-  rfbp.load_weights('test_weights.csv', binary=False, delimiter=',')

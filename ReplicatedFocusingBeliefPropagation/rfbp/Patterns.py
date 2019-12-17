@@ -152,26 +152,3 @@ class Pattern (_Pattern):
     else:
       return '{0}().random(shapes=(0, 0))'.format(class_name)
 
-
-if __name__ == '__main__':
-
-  n_sample = 10
-  n_feature = 20
-
-  data = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, n_feature))
-  labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample,))
-
-  pt = Pattern(X=data, y=labels)
-  print(pt)
-
-  if pt.pattern is None:
-    raise ValueError
-
-  if not pt.shape == (n_sample, n_feature):
-    raise ValueError
-
-  if not np.allclose(pt.data, data):
-    raise ValueError
-
-  if not np.allclose(pt.labels, labels):
-    raise ValueError

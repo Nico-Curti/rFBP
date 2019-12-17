@@ -16,7 +16,6 @@ class BaseMag (object):
 
     self.mag = x
 
-  @staticmethod
   def _require_mag (func):
 
     @wraps(func)
@@ -24,32 +23,21 @@ class BaseMag (object):
       if isinstance(m, self.__class__):
         return func(self, m)
       else:
-        return NotImplemented
-
-    return _
-
-  @staticmethod
-  def _require_numeric (func):
-
-    @wraps(func)
-    def _ (self, m):
-      if isinstance(m, self.__class__):
-        return NotImplemented
-      else:
-        return func(self, m)
+        raise NotImplementedError
 
     return _
 
   @property
   def value (self):
-    return NotImplemented
+    raise NotImplementedError
 
+  @property
   def magformat (self):
-    return NotImplemented
+    raise NotImplementedError
 
   @_require_mag
   def __mod__ (self, m):
-    return NotImplemented
+    raise NotImplementedError
 
   @_require_mag
   def __add__ (self, m):
@@ -60,27 +48,20 @@ class BaseMag (object):
     self.mag += m.mag
     return self
 
-  @_require_numeric
-  def __div__ (self, x):
+  def __truediv__ (self, x):
     return self.__class__(self.mag / x)
 
-  @_require_numeric
   def __mul__ (self, x):
     return self.mag * x
 
   @_require_mag
-  def __rmul__ (self, m):
-    return m.mag * m
-
-  @_require_mag
   def __xor__ (self, m):
-    return NotImplemented
+    raise NotImplementedError
 
   @_require_mag
   def __sub__ (self, m):
     return self.value - m.value
 
-  @_require_mag
   def __neg__ (self):
     return self.__class__(-self.mag)
 
@@ -93,10 +74,6 @@ class BaseMag (object):
     return self.mag != m.mag
 
   def __repr__ (self):
-    return str(self.value)
+    class_name = self.__class__.__qualname__
+    return '{0}(x={1})'.format(class_name, self.mag)
 
-
-
-if __name__ == '__main__':
-
-  pass

@@ -5,110 +5,257 @@ from __future__ import print_function
 from __future__ import division
 
 import numpy as np
+from functools import reduce
+from functools import singledispatch
+import operator as op
 from collections.abc import Iterable
-from .Mag import BaseMag
-from .MagP64 import MagP64
-from .MagT64 import MagT64
+from ReplicatedFocusingBeliefPropagation.rfbp.Mag import BaseMag
+from ReplicatedFocusingBeliefPropagation.rfbp.MagP64 import MagP64
+from ReplicatedFocusingBeliefPropagation.rfbp.MagT64 import MagT64
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
-def _check_mag (x):
-  if not isinstance(x, BaseMag):
-    raise InputError('Incompatible type found. x must be a Mag')
+def _check_mag (x, cls=BaseMag):
+  if not isinstance(x, cls):
+    raise ValueError('Incompatible type found. x must be a Mag')
 
 def lr (x):
-  return np.log1p(np.exp(-2 * abs(x)))
+  return np.log1p(np.exp(-2 * np.abs(x)))
 
+@singledispatch
 def sign0 (x):
-  if isinstance(x, BaseMag):
-    return 1 if np.sign(x.mag) else -1
-  else:
-    return 1 if np.sign(x) else -1
+  return 1 if np.sign(x) else -1
+
+@sign0.register(BaseMag)
+def _ (x):
+  return 1 if np.sign(x.mag) else -1
 
 def zeros (x):
   if not isinstance(x, Iterable):
     raise ValueError('zeros takes an iterable object in input')
 
   if not all(isinstance(i, BaseMag) for i in x):
-    raise InputError('Incompatible type found. x must be an iterable of Mags')
+    raise ValueError('Incompatible type found. x must be an iterable of Mags')
 
   for i in x:
     i.mag = 0.
 
-@BaseMag._require_mag
+@singledispatch
 def zero (x):
+  raise ValueError('Incompatible type found. x must be a Mag')
+
+@zero.register(BaseMag)
+def _ (x):
   x.mag = 0.
 
-@BaseMag._require_mag
-def abs (x):
-  return abs(x.mag)
+@singledispatch
+def mabs (x):
+  raise ValueError('Incompatible type found. x must be a Mag')
+
+@mabs.register(BaseMag)
+def _ (x):
+  return np.abs(x.mag)
 
 def copysign (x, y):
   _check_mag(x)
   return -x if np.sign(x.mag) != np.sign(y) else x
 
+@singledispatch
 def arrow (m, x):
-  _check_mag(m)
+  raise ValueError('m must be MagP64 or MagT64')
 
-  if isinstance(m, MagP64):
-    return mtanh(x * np.arctanh(m.mag), mag='MagP64')
+@arrow.register(MagP64)
+def _ (m, x):
+  return MagP64.mtanh(x * np.arctanh(m.mag))
 
-  elif isinstance(m, MagT64):
-    return mtanh(x * m.mag, mag='MagT64')
+@arrow.register(MagT64)
+def _ (m, x):
+  return MagT64.mtanh(x * m.mag)
 
-  else:
-    raise NotImplementedError
-
-@BaseMag._require_mag
 def logmag2p (x):
   return np.log( (1 + x.mag) * .5)
 
-def convert (x, mag):
-  if mag == 'MagP64':
-    return MagP64(x)
-  elif mag == 'MagT64':
-    return MagT64(np.clip(np.arctanh(x), -30., 30.))
-  elif mag == 'none':
-    return x.value
-  else:
-    raise ValueError('mag must be MagP64 or MagT64')
-
-def couple (x1, x2, mag):
-  if mag == 'MagP64':
-    return MagP64( (x1 - x2)/(x1 + x2) )
-  elif mag == 'MagT64':
-    return convert(np.log(x1 / x2) * .5, mag='MagT64')
-  else:
-    raise ValueError('mag must be MagP64 or MagT64')
-
+@singledispatch
 def damp (newx, oldx, l):
+  raise ValueError('Both magnetizations must be the same')
 
-  _check_mag(newx)
-  _check_mag(oldx)
+@damp.register(MagP64)
+def _ (newx, oldx, l):
+  _check_mag(oldx, cls=MagP64)
+  return MagP64( newx.mag * (1. - l) + oldx.mag * l )
 
-  if mag == 'MagP64':
-    return MagP64( newx.mag * (1. - l) + oldx.mag * l )
-  elif mag == 'MagT64':
-    return convert( newx.value * (1. - l) + oldx.value * l, mag='MagT64')
+@damp.register(MagT64)
+def _ (newx, oldx, l):
+  return MagT64.convert( newx.value * (1. - l) + oldx.value * l)
+
+@singledispatch
+def bar (m1, m2):
+  raise ValueError('Both magnetizations must be the same')
+
+@bar.register(MagP64)
+def _ (m1, m2):
+  _check_mag(m2, cls=MagP64)
+  return MagP64( np.clip((m1.mag - m2.mag) / (1. - m1.mag * m2.mag), -1., 1.) )
+
+@bar.register(MagT64)
+def _ (m1, m2):
+  _check_mag(m2, cls=MagT64)
+  return MagT64(m1.mag - m2.mag)
+
+@singledispatch
+def mcrossentropy (x, y):
+  raise ValueError('Both magnetizations must be the same')
+
+@mcrossentropy.register(MagP64)
+def _ (x, y):
+  _check_mag(y, MagP64)
+  return -x.mag * np.arctanh(y.mag) - np.log(1. - y.mag**2) * .5 + np.log(2)
+
+@mcrossentropy.register(MagT64)
+def _ (x, y):
+  _check_mag(y, MagT64)
+
+  if not np.isinf(y.mag):
+    return -abs(y.mag) * (sign0(y.mag) * x.value - 1.) + lr(y.mag)
+
+  elif np.sign(x.value) != np.sign(y.mag):
+    return float('inf')
+
   else:
-    raise ValueError('mag must be MagP64 or MagT64')
+    return 0.
 
-def mtanh (x, mag):
-  if mag == 'MagP64':
-    return MagP64( np.tanh(x) )
-  elif mag == 'MagT64':
-    return MagT64(x)
+@singledispatch
+def logZ (u0, u):
+  raise ValueError('Both magnetizations must be the same')
+
+@logZ.register(MagP64)
+def _ (u0, u):
+  if not isinstance(u, Iterable):
+    raise ValueError('zeros takes an iterable object in input')
+
+  if not all(isinstance(i, MagP64) for i in u):
+    raise ValueError('Incompatible type found. x must be an iterable of Mags')
+
+  prod = lambda args: reduce(op.mul, args, 1)
+
+  zkip = (1. + u0.mag) * .5 * prod( ((1. + x) * .5 for x in u) )
+  zkim = (1. - u0.mag) * .5 * prod( ((1. - x) * .5 for x in u) )
+
+  return np.log( zkip + zkim )
+
+@logZ.register(MagT64)
+def _ (u0, u):
+  if not isinstance(u, Iterable):
+    raise ValueError('zeros takes an iterable object in input')
+
+  if not all(isinstance(i, MagT64) for i in u):
+    raise ValueError('Incompatible type found. x must be an iterable of Mags')
+
+  prod = lambda args: reduce(op.mul, args, 1)
+
+  s1 = sum((i.mag for i in u if not np.isinf(i.mag)))
+  s1 += 0. if np.isinf(u0) else u0.mag
+
+  s2 = sum((abs(i.mag) for i in u if not np.isinf(i.mag)))
+  s1 += 0. if np.isinf(u0) else u0.mag
+
+  s3 = prod((i.mag for i in u if not np.isinf(i.mag)))
+  s3 *= 1. if np.isinf(u0) else u0.mag
+
+  hasinf = np.sign(u0.mag) if np.isinf(u0.mag) else 0.
+  for i in u:
+    if hasinf == 0.:
+      hasinf = np.sign(i.mag)
+    elif hasinf != np.sign(i.mag):
+      return -float('Inf')
+
+  return np.abs(s1) - s2 + lr(s1 / s3)
+
+
+@singledispatch
+def auxmix (H, ap, am):
+  raise ValueError('H must be a magnetization (MagP64 or MagT64)')
+
+@auxmix.register(MagT64)
+def _ (H, ap, am):
+
+  if H.mag == 0.:
+    return MagT64(0.)
+
   else:
-    raise ValueError('mag must be MagP64 or MagT64')
 
-def merf (x, mag):
-  if mag == 'MagP64':
-    return MagP64( erf(x) )
-  elif mag == 'MagT64':
-    return MagT64( atanherf(x) )
+    xH = H.mag + ap
+    xh = H.mag + am
+    a_ap = abs(ap)
+    a_am = abs(am)
+
+    if np.isinf(H.mag):
+
+      if not np.isinf(ap) and not np.isinf(am):
+        t1 = np.sign(H.mag) * (ap - am) - a_ap + a_am
+        t2 = -lr(ap) + lr(am)
+
+      elif np.isinf(ap) and not np.isinf(am):
+        t1 = -np.sign(H.mag) * am + a_am if np.sign(ap) == np.sign(H.mag) else -2. * H.mInf
+        t2 = lr(am) if np.sign(ap) == np.sign(H.mag) else 0.
+
+      elif not np.isinf(ap) and np.isinf(am):
+        t1 = np.sign(H.mag) * ap + a_ap if np.sign(am) == np.sign(H.mag) else 2. * H.mInf
+        t2 = -lr(am) if np.sign(am) == np.sign(H.mag) else 0.
+
+      else:
+        t2 = 0.
+
+        if (np.sign(ap) == np.sign(H.mag) and np.sign(am) == np.sign(H.mag) ) or (np.sign(ap) != np.sign(H.mag) and np.sign(am) != np.sign(H.mag)):
+          t1 = 0.
+        elif np.sign(ap) == np.sign(H.mag):
+          t1 = 2. * H.mInf
+        else:
+          t1 = -2. * H.mInf
+
+    else:
+      t1 = 0
+      if not np.isinf(ap):
+        t1 += abs(xH) - a_ap
+      if not np.isinf(am):
+        t1 -= abs(xh) - a_am
+
+      t2 = np.log( (np.exp(2. * abs(xH)) + 1.) * (np.exp(2. * abs(am)) + 1.) / ((np.exp(2. * abs(ap)) + 1.) * \
+           (np.exp(2. * abs(xh)) + 1.))) -2. * abs(xH) + 2. * abs(ap) + 2. * abs(xh) - 2. * abs(am)
+
+  return MagT64((t1 + t2) * .5)
+
+@singledispatch
+def erfmix (H, mp, mm):
+  raise ValueError('H must be a magnetization (MagP64 or MagT64)')
+
+@erfmix.register(MagP64)
+def _ (H, mp, mm):
+  arg = H.mag * (erf(mp) - erf(mm)) / (2. + H.mag * (erf(mp) + erf(mm)))
+  return MagP64(arg)
+
+@erfmix.register(MagT64)
+def _ (H, mp, mm):
+  return auxmix(H, atanherf(mp), atanherf(mm))
+
+@singledispatch
+def exactmix (H, pp, pm):
+  raise ValueError('Input variables must magnetizations (MagP64 or MagT64)')
+
+@exactmix.register(MagP64)
+def _ (H, pp, pm):
+  if all((isinstance(i, MagP64) for i in (pp, pm))):
+    arg = (pp.mag - pm.mag) * H.mag / (2. + (pp.mag + pm.mag) * H.mag)
+    return MagP64(arg)
+
   else:
-    raise ValueError('mag must be MagP64 or MagT64')
+    raise ValueError('Input variables must be all the same magnetization (MagP64 or MagT64)')
 
+@exactmix.register(MagT64)
+def _ (H, pp, pm):
+  if all((isinstance(i, MagT64) for i in (pp, pm))):
+    return auxmix(H, pp.mag, pm.mag)
 
-
+  else:
+    raise ValueError('Input variables must be all the same magnetization (MagP64 or MagT64)')

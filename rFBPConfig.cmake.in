@@ -14,13 +14,6 @@ if(@OMP@)
   find_dependency(OpenMP)
 endif()
 
-set(CMAKE_THREAD_PREFER_PTHREAD ON)
-find_dependency(Threads)
-
-if(MSVC)
-  find_dependency(PThreads_windows)
-endif()
-
 if("${CMAKE_VERSION}" VERSION_GREATER "3.9.0")
   find_dependency(OpenMP)
 endif()

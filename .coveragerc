@@ -2,9 +2,8 @@
 branch = True
 omit =
     */ReplicatedFocusingBeliefPropagation/__init__.py
-    */ReplicatedFocusingBeliefPropagation/rfbp/test/test_atanherf.py
-    */ReplicatedFocusingBeliefPropagation/rfbp/test/test_fprotocol.py
-    */ReplicatedFocusingBeliefPropagation/rfbp/test/test_pattern.py
+    */ReplicatedFocusingBeliefPropagation/__version__.py
+    */ReplicatedFocusingBeliefPropagation/rfbp/test/*
 [report]
 # Regexes for lines to exclude from consideration
 exclude_lines =

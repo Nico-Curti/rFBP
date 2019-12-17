@@ -8,7 +8,7 @@
 #define PRECISION 1e-4
 #define SEED 42
 
-#define isclose(x, y) ( std :: fabs((x) - (y)) < PRECISION )
+#define isclose(x, y) ( std :: abs((x) - (y)) < PRECISION )
 
 
 TEST_CASE ( "Test MagT64 algebra", "[MaTP64]" )

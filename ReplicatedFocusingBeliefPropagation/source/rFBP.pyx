@@ -19,9 +19,11 @@ from sklearn.utils import check_array
 
 from enum import Enum
 
+
 class Mag (Enum):
-  magP = 0
-  magT = 1
+  MagP64 = 0
+  MagT64 = 1
+
 
 
 cdef class _FocusingProtocol:
@@ -145,10 +147,10 @@ def _rfbp (mag, _Pattern pattern, _FocusingProtocol protocol,
 
   cdef long int ** weights
 
-  if mag == Mag.magP:
+  if mag == Mag.MagP64:
     weights = focusingBP[MagP64](hidden, deref(pattern.thisptr.get()), max_iter, max_steps, seed, damping, acc1, acc2, randfact, deref(protocol.thisptr.get()), epsil, nth)
 
-  elif mag == Mag.magT:
+  elif mag == Mag.MagT64:
     weights = focusingBP[MagT64](hidden, deref(pattern.thisptr.get()), max_iter, max_steps, seed, damping, acc1, acc2, randfact, deref(protocol.thisptr.get()), epsil, nth)
 
   else:
@@ -160,7 +162,6 @@ def _rfbp (mag, _Pattern pattern, _FocusingProtocol protocol,
 def _nonbayes_test (weights, _Pattern pattern, K):
 
   nlabel = pattern.Nrow
-  weights = check_array(weights)
 
   cdef int row_size, column_size
 

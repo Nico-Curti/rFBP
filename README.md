@@ -1,7 +1,8 @@
-| **Authors**  | **Project** | **Documentation** | **Build Status** | **Code Quality** | **Coverage** |
-|:------------:|:-----------:|:-----------------:|:----------------:|:----------------:|:------------:|
-| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio)   |  **rFBP**  | [![docs](https://img.shields.io/badge/doc-latest-blue.svg?style=plastic)](https://nico-curti.github.io/rFBP/) | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : [![appveyor](https://ci.appveyor.com/api/projects/status/obuq56lhyd90pmup?svg=true)](https://ci.appveyor.com/project/Nico-Curti/rfbp) | **Codacy** : [![Codacy](https://api.codacy.com/project/badge/Grade/a6fdac990b6f4141a5bd9e8171ddaf53)](https://www.codacy.com/manual/Nico-Curti/rFBP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nico-Curti/rFBP&amp;utm_campaign=Badge_Grade) <br/> **Codebeat** : [![Codebeat](https://codebeat.co/badges/cc761a7c-79fa-4a66-984f-bef6fd145d34)](https://codebeat.co/projects/github-com-nico-curti-rfbp-master) | [![codecov](https://codecov.io/gh/Nico-Curti/rFBP/branch/master/graph/badge.svg)](https://codecov.io/gh/Nico-Curti/rFBP) |
+| **Authors**  | **Project** |  **Build Status** | **Code Quality** | **Coverage** |
+|:------------:|:-----------:|:-----------------:|:----------------:|:------------:|
+| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio)   |  **rFBP**  | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : [![appveyor](https://ci.appveyor.com/api/projects/status/obuq56lhyd90pmup?svg=true)](https://ci.appveyor.com/project/Nico-Curti/rfbp) | **Codacy** : [![Codacy](https://api.codacy.com/project/badge/Grade/a6fdac990b6f4141a5bd9e8171ddaf53)](https://www.codacy.com/manual/Nico-Curti/rFBP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nico-Curti/rFBP&amp;utm_campaign=Badge_Grade) <br/> **Codebeat** : [![Codebeat](https://codebeat.co/badges/cc761a7c-79fa-4a66-984f-bef6fd145d34)](https://codebeat.co/projects/github-com-nico-curti-rfbp-master) | [![codecov](https://codecov.io/gh/Nico-Curti/rFBP/branch/master/graph/badge.svg)](https://codecov.io/gh/Nico-Curti/rFBP) |
 
+[![docs](https://img.shields.io/badge/doc-latest-blue.svg?style=plastic)](https://nico-curti.github.io/rFBP/)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/issues)
 
@@ -65,6 +66,14 @@ A further optimization is given by the reduction of the number of available func
 **TODO**
 
 ## Prerequisites
+
+C++ supported compilers:
+
+|              | **Versions**                  |
+|:------------:|:-----------------------------:|
+| **g++**      | 4.8.5 4.9 5.* 6.* 7.* 8.* 9.* |
+| **clang++**  | 5.* 6.* 7.*                   |
+| **MSVC**     | vs2017-x86 vs2017-x64         |
 
 The `rFBP` project is written in `C++` using a large amount of c++17 features.
 To enlarge the usability of our package we provide also a retro-compatibility of all the c++17 modules reaching an usability (tested) of our code from gcc 4.8.5+.
@@ -183,9 +192,98 @@ However, the improvements performed to the code allow us to use this algorithm w
 
 ## Usage
 
+You can use the `rFBP` library into pure-Python modules or inside your C++ application.
+
 ### C++ Version
 
-**TODO**
+The easiest usage of `rFBP` library is given by the two examples provided in the [example](https://github.com/Nico-Curti/rFBP/blob/master/example) folder.
+These two scripts include an easy-to-use command line support for both training and test procedure.
+
+To train the model you can just use
+
+```
+./bin/train_main
+Usage: ./train_main [-threads <std::remove_reference<int>> ] -f <std :: string> [-output <std :: string> ] [-bin <std::remove_reference<bool>> ] [-delimiter <std :: string> ] [-hidden <std::remove_reference<int>> ] [-iteration <std::remove_reference<int>> ] [-seed <std::remove_reference<int>> ] [-randfact <std::remove_reference<double>> ] [-damping <std::remove_reference<double>> ] [-accuracy <std :: string> ] [-protocol <std :: string> ] [-epsilon <std::remove_reference<double>> ] [-steps <std::remove_reference<int>> ] [-mag <std::remove_reference<int>> ] [-inmess <std :: string> ] [-outmess <std :: string> ] [-delmess <std :: string> ] [-binmess <std::remove_reference<bool>> ]
+
+Training BeliefPropagation 4.0
+
+optional arguments:
+        -t,   --threads                 Max number of threads exploitable
+        -f,   --file                    Pattern Filename (with extension)
+        -o,   --output                  Output Filename (with extension)
+        -b,   --bin                     File format: (0) Textfile(default), (1) Binary
+        -dl,  --delimiter               Delimiter for text files(default: "\t")
+        -k,   --hidden                  Number of Hidden Layers(default:3)
+        -i,   --iteration               Max Number of Iterations(default: 1000)
+        -r,   --seed                    Seed random generator(default: 135)
+        -g,   --randfact                Seed random generator of Cavity Messages(default: 0.1)
+        -d,   --damping                 Damping parameter(default: 0.5)
+        -a,   --accuracy                Accuracy of the messages computation at the hidden units level (choose between 'exact'(default), 'accurate', 'approx', 'none')
+        -p,   --protocol                Specify protocol : (0) Scooping, (1) PseudoReinforcement(default), (2) FreeScoping, (3) StandardReinforcement
+        -e,   --epsilon                 Threshold for convergence(default: 0.1)
+        -s,   --steps                   Max Number of Steps for chosen protocol(default: 101)
+        -m,   --mag                     Specify Magnetization: (0) MagnetizationP (MagP64), (1) MagnetizationT (MagT64)
+        -im,  --inmess                  Input Messages file
+        -om,  --outmess                 Output Messages file
+        -dm,  --delmess                 Delimiter for Messages files(default: "\t")
+        -bm,  --binmess                 Messages files format: (0) Textfile(default), (1) Binary
+```
+
+and after training you can test your model using
+
+```
+./bin/test_main
+Usage: ./test_main [-threads <std::remove_reference<int>> ] -f <std :: string> [-bin <std::remove_reference<bool>> ] -w <std :: string> [-delimiter <std :: string> ] [-output <std :: string> ]
+
+Test BeliefPropagation 4.0
+
+optional arguments:
+        -t,   --threads                 Max number of threads exploitable
+        -f,   --file                    Pattern Filename (with extension)
+        -b,   --bin                     File format: (0) Textfile(default), (1) Binary
+        -w,   --weights                 Weights Matrix Filename (with extension)
+        -dl,  --delimiter               Delimiter for text files(default: "\t")
+        -o,   --output                  Output Filename (no extension)
+```
+
+If you are interested in using `rFBP` inside your code you can simply import the [`rfbp.hpp`](https://github.com/Nico-Curti/rFBP/blob/master/hpp/rfbp.hpp) and create a `ReplicatedFocusingBeliefPropagation` object.
+
+The all the work is performed by the `focusingBP` (template) function.
+You can use it with `MagP64` type or `MagT64` for more accurate (but slower) results.
+
+The input pattern must be wrapped into a `Pattern` object provided by the library.
+
+```c++
+#include <rfbp.hpp>
+
+int main ()
+{
+  FocusingProtocol fp("pseudo_reinforcement", 101);
+  Patterns patterns("patternsfile.csv", false, ",");
+
+  long int ** bin_weights = focusingBP < MagP64 >(3,          // K,
+                                                  patterns,   // patterns,
+                                                  1000,       // max_iters,
+                                                  101,        // max_steps,
+                                                  42,         // seed,
+                                                  0.5,        // damping,
+                                                  "accurate", // accuracy1,
+                                                  "exact",    // accuracy2,
+                                                  0.1,        // randfact,
+                                                  fp,         // fp,
+                                                  0.1,        // epsil,
+                                                  1,          // nth,
+                                                  "",         // outfile,
+                                                  "",         // outmess,
+                                                  "",         // inmess,
+                                                  false       // binmess
+                                                  );
+
+  return 0;
+}
+```
+
+Then you can use the `nonbayes_test` function to predict your test set.
 
 ### Python Version
 
@@ -194,7 +292,7 @@ The `rfbp` object is totally equivalent to a `scikit-learn` classifier and thus 
 First of all you need to import the `rFBP` modules.
 
 ```python
-from ReplicatedFocusingBeliefPropagation import Mag
+from ReplicatedFocusingBeliefPropagation import MagT64
 from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 ```
@@ -225,7 +323,7 @@ You can start to try the package functionality using a random pattern using the 
 
 ```python
 N, M = (20, 101) # M must be odd
-pattern = Pattern(N, M)
+pattern = Pattern().random(shape=(N, M))
 ```
 
 In the [example](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/example/) folder you can find a training/test example using a pattern imported from file (a more realistic example).
@@ -233,12 +331,12 @@ In the [example](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusi
 The next step is the creation of the `Replicated Focusing Belief Propagation` model.
 
 ```python
-rfbp = rFBP(mag=Mag.magT,
+rfbp = rFBP(mag=MagT64,
             hidden=3,
             max_iter=1000,
             seed=135,
             damping=0.5,
-            accuracy=['accurate','exact'],
+            accuracy=('accurate','exact'),
             randfact=0.1,
             epsil=0.5,
             protocol='pseudo_reinforcement',
@@ -308,6 +406,8 @@ The `rFBP` package is licensed under the MIT "Expat" License. [![License](https:
 ## Acknowledgments
 
 Thanks goes to all contributors of this project.
+
+We thank also the author(s) of [Catch2](https://github.com/catchorg/Catch2) library: we have used it in the testing procedure of our C++ version and it is amazing!
 
 ## Citation
 

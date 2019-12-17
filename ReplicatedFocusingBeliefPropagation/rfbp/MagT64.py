@@ -5,8 +5,8 @@ from __future__ import print_function
 from __future__ import division
 
 import numpy as np
-from .Mag import BaseMag
-# miss import magnetization
+from ReplicatedFocusingBeliefPropagation.rfbp.Mag import BaseMag
+from ReplicatedFocusingBeliefPropagation.rfbp.atanherf import atanherf
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
@@ -14,10 +14,10 @@ __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 class MagT64 (BaseMag):
 
-  def __init__ (self, x, m=30):
+  def __init__ (self, x, mInf=30.):
 
     super(MagT64, self).__init__(x)
-    self.mInf = m
+    self.mInf = mInf
 
   @property
   def value(self):
@@ -27,6 +27,22 @@ class MagT64 (BaseMag):
   def magformat (self):
     return 'tanh'
 
+  @staticmethod
+  def convert (x):
+    return MagT64(np.clip(np.arctanh(x), -30., 30.))
+
+  @staticmethod
+  def couple (x1, x2):
+    return MagT64.convert(np.log(x1 / x2) * .5)
+
+  @staticmethod
+  def mtanh (x):
+    return MagT64(x)
+
+  @staticmethod
+  def merf (x):
+    return MagT64( atanherf(x) )
+
   @BaseMag._require_mag
   def __mod__ (self, m):
     return self.__class__(self.mag + m.mag)
@@ -34,15 +50,22 @@ class MagT64 (BaseMag):
   @BaseMag._require_mag
   def __xor__ (self, m):
 
-    ax, ay = map(abs, (self.mag, m.mag))
-    t1 = None
+    ax, ay = (self.mag, m.mag)
 
-    t2 = 0. if np.isinf(ax) or np.isinf(ay) else lr(ax + ay) - lr(ax - ay)
+    if ax >= ay and ax >= -ay:
+      t1 = 2. * ay
+    elif ax >= ay and ax < -ay:
+      t1 = -2. * ay
+    elif ax < ay and ax >= -ay:
+      t1 = 2. * ax
+    else:
+      t1 = -2. * ay
+
+    if np.isinf(ax) or np.isinf(ay):
+      t2 = 0.
+    else:
+      lr = lambda x : np.log1p(np.exp(-2 * np.abs(x)))
+      t2 = lr(ax + ay) - lr(ax - ay)
 
     return self.__class__(np.mean((t1, t2)))
 
-
-
-if __name__ == '__main__':
-
-  pass
