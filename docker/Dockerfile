@@ -12,13 +12,13 @@ WORKDIR /usr/src/workspace
 RUN echo "*** Installing common dependecies ***"
 WORKDIR /usr/src/workspace
 RUN apt-get update
-RUN apt-get install -y apt-utils
+RUN apt-get install -y apt-utils --no-install-recommends
 
 ## Installing g++-8
 RUN echo "*** Installing g++-8 ***"
 WORKDIR /usr/src/workspace
 RUN apt-get dist-upgrade -y
-RUN apt-get install -y software-properties-common
+RUN apt-get install -y software-properties-common --no-install-recommends
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends gcc-8 g++-8
