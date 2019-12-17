@@ -22,12 +22,14 @@ TEST_CASE ( "Test different focusing protocol", "[fprotocol]" )
     REQUIRE ( fp.n_rep[0] == 21. ); // 21 is a magic number ??
 
     // check increment range
-    for (long int i = 0L; i < max_steps - 2L; ++i)
-      REQUIRE ( fp.gamma[i] < fp.gamma[i + 1L] );
-
     // check all values equal
-    REQUIRE ( std :: adjacent_find( fp.n_rep.get(), fp.n_rep.get() + fp.Nrep, std :: not_equal_to < > () ) );
-    REQUIRE ( std :: adjacent_find( fp.beta.get(),  fp.beta.get()  + fp.Nrep, std :: not_equal_to < > () ) );
+    for (long int i = 0L; i < max_steps - 2L; ++i)
+    {
+      REQUIRE ( fp.gamma[i] < fp.gamma[i + 1L] );
+      REQUIRE ( fp.n_rep[i] == fp.n_rep[i + 1L] );
+      REQUIRE ( fp.beta[i]  == fp.beta[i + 1L] );
+    }
+
 
     REQUIRE ( fp.beta[0] == INF );
   }
@@ -45,14 +47,13 @@ TEST_CASE ( "Test different focusing protocol", "[fprotocol]" )
     REQUIRE ( fp.n_rep[0] == 1. );
 
     // check increment range
+    // check all values equal
     for (long int i = 0L; i < max_steps - 2L; ++i)
     {
       REQUIRE ( fp.gamma[i] < fp.gamma[i + 1L] );
       REQUIRE ( fp.n_rep[i] < fp.n_rep[i + 1L] );
+      REQUIRE ( fp.beta[i] == fp.beta[i + 1L] );
     }
-
-    // check all values equal
-    REQUIRE ( std :: adjacent_find( fp.beta.get(), fp.beta.get() + fp.Nrep, std :: not_equal_to < > () ) );
 
     REQUIRE ( fp.beta[0] == INF );
   }
@@ -71,14 +72,13 @@ TEST_CASE ( "Test different focusing protocol", "[fprotocol]" )
     REQUIRE ( fp.n_rep[max_steps - 1L] == INF );
 
     // check increment range
+    // check all values equal
     for (long int i = 0L; i < max_steps - 2L; ++i)
     {
       REQUIRE ( fp.gamma[i] < fp.gamma[i + 1L] );
       REQUIRE ( fp.n_rep[i] < fp.n_rep[i + 1L] );
+      REQUIRE ( fp.beta[i] == fp.beta[i + 1L] );
     }
-
-    // check all values equal
-    REQUIRE ( std :: adjacent_find( fp.beta.get(), fp.beta.get() + fp.Nrep, std :: not_equal_to < > () ) );
 
     REQUIRE ( fp.beta[0] == INF );
   }
@@ -96,12 +96,14 @@ TEST_CASE ( "Test different focusing protocol", "[fprotocol]" )
     REQUIRE ( fp.beta[0]  == INF );
 
     // check increment range
-    for (long int i = 0L; i < max_steps - 2L; ++i)
-      REQUIRE ( fp.n_rep[i] < fp.n_rep[i + 1L] );
-
     // check all values equal
-    REQUIRE ( std :: adjacent_find( fp.gamma.get(), fp.gamma.get() + fp.Nrep, std :: not_equal_to < > () ) );
-    REQUIRE ( std :: adjacent_find( fp.beta.get(),  fp.beta.get()  + fp.Nrep, std :: not_equal_to < > () ) );
+    for (long int i = 0L; i < max_steps - 2L; ++i)
+    {
+      REQUIRE ( fp.n_rep[i] < fp.n_rep[i + 1L] );
+      REQUIRE ( fp.gamm[i] == fp.gamma[i + 1L] );
+      REQUIRE ( fp.beta[i] == fp.beta[i + 1L] );
+    }
+
   }
 }
 

@@ -8,6 +8,14 @@ matrix:
     - os: linux
       compiler: gcc
       name: ubuntu 14.04 - native gcc
+      addons:
+        apt:
+          update: true
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL=""
 
@@ -21,6 +29,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.8
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
 
@@ -34,6 +44,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.9
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
 
@@ -47,6 +59,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
@@ -60,6 +74,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-6
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
@@ -73,6 +89,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
@@ -86,6 +104,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
@@ -108,6 +128,8 @@ matrix:
             - libclang-3.6-dev
             - libc++-dev
             - libc++abi-dev
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
         - LINKER_FLAGS="-stdlib=libstdc++ -lc++abi"
@@ -127,6 +149,8 @@ matrix:
             - gcc-4.8-aarch64-linux-gnu
             - g++-4.8-multilib
             - gcc-4.8-multilib
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -147,6 +171,8 @@ matrix:
             - gcc-4.8-aarch64-linux-gnu
             - g++-4.8-multilib
             - gcc-4.8-multilib
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -164,6 +190,8 @@ matrix:
           packages:
             - g++-7
             - clang-4.0
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -182,6 +210,8 @@ matrix:
             - clang-5.0
             - libstdc++-7-dev
             - libclang-5.0-dev
+            - python3.5
+            - python3-pip
 
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
@@ -202,6 +232,8 @@ matrix:
             - clang-6.0
             - libstdc++-7-dev
             - libclang-6.0-dev
+            - python3.5
+            - python3-pip
 
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
@@ -222,6 +254,8 @@ matrix:
             - clang-7
             - libstdc++-7-dev
             - libclang-7-dev
+            - python3.5
+            - python3-pip
 
       env:
         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
@@ -233,6 +267,11 @@ matrix:
       osx_image: xcode10.1
       compiler: gcc
       name: macOS - g++-7
+      addons:
+        apt:
+          packages:
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="brew update && brew reinstall gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
 
@@ -240,6 +279,11 @@ matrix:
       osx_image: xcode10.1
       compiler: gcc
       name: macOS - g++-8
+      addons:
+        apt:
+          packages:
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="brew update && brew reinstall gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
 
@@ -255,6 +299,8 @@ matrix:
           packages:
             - libc++-dev
             - libc++abi-dev
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL=""
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -270,6 +316,8 @@ matrix:
             - llvm-toolchain-trusty-7
           packages:
             - clang-7.0
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
@@ -285,6 +333,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
+            - python3.5
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
         - WITH_PYTHON=ON
@@ -300,6 +350,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
+            - python3.6
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
         - WITH_PYTHON=ON
@@ -315,6 +367,8 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-8
+            - python3.7
+            - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
         - WITH_PYTHON=ON
@@ -331,7 +385,6 @@ matrix:
 
 
 before_install:
-  - sudo apt-get install python3 python3-pip
   - travis_retry eval "${MATRIX_EVAL}"
 
   # install python packages
