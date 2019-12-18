@@ -1,6 +1,7 @@
 #ifndef __mag_old_h__
 #define __mag_old_h__
 
+#include <iostream>
 #include <type_traits>
 #include <cmath>
 #include <string>

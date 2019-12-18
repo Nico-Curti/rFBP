@@ -1,8 +1,6 @@
 #ifndef __mag_old_hpp__
 #define __mag_old_hpp__
 
-#if __cplusplus < 201700
-
 #include <magnetization_oldgcc.h>
 #include <atanherf.h>
 #include <climits>
@@ -380,8 +378,5 @@ namespace mag
   }
 
 }
-
-
-#endif // __cplusplus
 
 #endif // __mag_old_hpp__

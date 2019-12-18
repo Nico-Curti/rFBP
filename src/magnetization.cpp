@@ -1,13 +1,10 @@
-#if !defined __clang__ && __GNUC__ <= 6
+#if (!defined __clang__ && __GNUC__ <= 6) || __clang_major__ < 3
 
 #include <magnetization_oldgcc.hpp>
 
 #else
 
 #include <magnetization.hpp>
-
-#endif
-
 
 namespace mag
 {
@@ -65,6 +62,7 @@ namespace mag
 
 }
 
+#endif // new gcc
 
 std :: ostream & operator << (std :: ostream & os, const MagP64 & m)
 {

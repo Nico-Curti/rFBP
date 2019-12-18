@@ -185,8 +185,9 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-4.0
           packages:
-            - g++-7
             - clang-4.0
+            - libstdc++-7-dev
+            - libclang-5.0-dev
             - python3.5
             - python3-pip
       env:
