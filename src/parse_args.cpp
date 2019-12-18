@@ -186,6 +186,13 @@ void ArgumentParser :: add_argument < int > (std :: string && name, std :: strin
 }
 
 template < >
+void ArgumentParser :: add_argument < long int > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, long int default_value)
+{
+  std :: string string_data_type = "long int";
+  this->args.emplace_back(argument(static_cast < std :: string && >(name), static_cast < std :: string && >(short_flag), static_cast < std :: string && >(long_flag), static_cast < std :: string && >(help), req, static_cast < std :: string && >(std :: to_string(default_value)), static_cast < std :: string && >(string_data_type)));
+}
+
+template < >
 void ArgumentParser :: add_argument < float > (std :: string && name, std :: string && short_flag, std :: string && long_flag, std :: string && help, const bool & req, float default_value)
 {
   std :: string string_data_type = "float";
@@ -231,6 +238,31 @@ void ArgumentParser :: get < int > (const std :: string & name, int & values)
       try
       {
         values = static_cast < int >(std :: stod(args[i].values[0]));
+        return;
+      }
+      catch ( std :: invalid_argument & )
+      {
+        this->error_parsing_invalid_arg(name, args[i].values[0]);
+      }
+
+      catch ( std :: out_of_range & )
+      {
+        this->error_parsing_out_of_range_arg(name, args[i].values[0]);
+      }
+    }
+
+  this->error_parsing_unknown_arg(name);
+}
+
+template < >
+void ArgumentParser :: get < long int > (const std :: string & name, long int & values)
+{
+  for (std :: size_t i = 0; i < args.size(); ++i)
+    if (args[i].name == name)
+    {
+      try
+      {
+        values = static_cast < long int >(std :: stod(args[i].values[0]));
         return;
       }
       catch ( std :: invalid_argument & )

@@ -12,7 +12,7 @@
 
 #ifndef _MSC_VER
 
-#include <cxxabi.h>
+  #include <cxxabi.h>
 
 #endif
 
@@ -118,7 +118,8 @@ private:
   void error_parsing_bool (const std :: string & name, const std :: string & value);
   void error_parsing_char (const std :: string & name, const std :: string & value);
 
-  template < typename data_t > std :: string type_name ();
+  template < typename data_t >
+  std :: string type_name ();
 
 };
 

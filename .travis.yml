@@ -343,6 +343,7 @@ matrix:
       compiler: gcc
       python: 3.5
       name: ubuntu 14.04 - gcc@8.0 & python@3.6
+      dist: trusty
       addons:
         apt:
           update: true
@@ -360,6 +361,7 @@ matrix:
       compiler: gcc
       python: 3.5
       name: ubuntu 14.04 - gcc@8.0 & python@3.7
+      dist: trusty
       addons:
         apt:
           update: true
@@ -386,6 +388,7 @@ matrix:
 
 before_install:
   - travis_retry eval "${MATRIX_EVAL}"
+  - python3 -m pip install --upgrade pip
 
   # install python packages
   - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 --version                                                                                   ;fi
@@ -397,9 +400,9 @@ before_install:
   - python3 -m pip install requests
 
   # testing libraries
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then pip3 install pytest==3.0.7                                                                          ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then pip3 install pytest-cov                                                                             ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then pip3 install codecov                                                                                ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install pytest==3.0.7                                                                ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install pytest-cov                                                                   ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install codecov                                                                      ;fi
 
 install:
   # CMake upgrade
@@ -415,7 +418,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
   # python version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then /usr/bin/python3 setup.py install                                                                   ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 setup.py install                                                                            ;fi
 
 script:
   - chmod 777 ./build.sh
@@ -426,7 +429,7 @@ script:
   - cd test && chmod 777 ./run_test.sh && cd ..
 
   # python testing
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python -m pytest --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc                 ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pytest --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc                ;fi
 
 after_succes:
   - codecov
