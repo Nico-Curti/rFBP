@@ -3,19 +3,19 @@
 
 #include <parse_args.h>
 
-template < typename data_t >
-void ArgumentParser :: add_argument (__unused std :: string && name, __unused std :: string && short_flag, __unused std :: string && long_flag, __unused std :: string && help, __unused const bool & req, __unused data_t default_value)
-{
-  std :: cerr << "Error parsing! Argument type not understood in command line." << std :: endl;
-  std :: exit(ERROR_PARSER_INPUTS);
-}
-
-template < typename data_t >
-void ArgumentParser :: get (__unused const std :: string & name, __unused data_t & values)
-{
-  std :: cerr << "Error parsing! Variable type unknown by parser." << std :: endl;
-  std :: exit (ERROR_PARSER_INVARG);
-}
+// template < typename data_t >
+// void ArgumentParser :: add_argument (__unused std :: string && name, __unused std :: string && short_flag, __unused std :: string && long_flag, __unused std :: string && help, __unused const bool & req, __unused data_t default_value)
+// {
+//   std :: cerr << "Error parsing! Argument type not understood in command line." << std :: endl;
+//   std :: exit(ERROR_PARSER_INPUTS);
+// }
+//
+// template < typename data_t >
+// void ArgumentParser :: get (__unused const std :: string & name, __unused data_t & values)
+// {
+//   std :: cerr << "Error parsing! Variable type unknown by parser." << std :: endl;
+//   std :: exit (ERROR_PARSER_INVARG);
+// }
 
 
 

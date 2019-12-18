@@ -14,7 +14,7 @@ if ($null -eq (Get-Command "cl.exe" -ErrorAction SilentlyContinue)) {
       $vstype = "Community"
     }
   }
-  Write-Host "Found VS 2017 ${vstype}"
+  Write-Host "Found VS 2017 ${vstype}" -ForegroundColor Yellow
   Push-Location "C:\Program Files (x86)\Microsoft Visual Studio\2017\${vstype}\Common7\Tools"
   cmd /c "VsDevCmd.bat -arch=x64 & set" |
     ForEach-Object {
@@ -26,7 +26,7 @@ if ($null -eq (Get-Command "cl.exe" -ErrorAction SilentlyContinue)) {
   Write-Host "Visual Studio 2017 ${vstype} Command Prompt variables set.`n" -ForegroundColor Yellow
 }
 else {
-  Write-Host "No Compiler found"
+  Write-Host "No Compiler found" -ForegroundColor Red
 }
 
 
@@ -47,7 +47,7 @@ cmake --build . --config Release --parallel ${number_of_build_workers} --target 
 Set-Location ..
 
 # Download atanherf file
-Write-Host "Downloading atanherf interpolation coefficients..."
+Write-Host "Downloading atanherf interpolation coefficients..." -ForegroundColor Yellow
 Set-Location scripts
 python3 download_atanherf.py
 Set-Location ..
