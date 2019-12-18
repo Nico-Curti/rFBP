@@ -1,9 +1,7 @@
 #ifndef __mag_old_hpp__
 #define __mag_old_hpp__
 
-#ifndef __clang__
-
-#if __GNUC__ <= 6
+#if __cplusplus < 201700
 
 #include <magnetization_oldgcc.h>
 #include <atanherf.h>
@@ -384,8 +382,6 @@ namespace mag
 }
 
 
-#endif // old gcc
-
-#endif // __clang__
+#endif // __cplusplus
 
 #endif // __mag_old_hpp__

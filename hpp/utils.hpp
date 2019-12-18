@@ -8,7 +8,7 @@ template < class Mag >  using MagVec2 = MagVec < Mag > *;  ///< alias to pointer
 template < class Mag >  using MagVec3 = MagVec2 < Mag > *; ///< alias to pointer to MagVec2
 
 
-#if !defined __clang__ && __GNUC__ == 4 && __GNUC_MINOR__ < 9
+#if __cplusplus < 201400
 
 namespace std
 {
@@ -21,7 +21,7 @@ namespace std
 
 }
 
-#endif
+#endif // __cplusplus
 
 template < typename Time >
 inline auto duration (const Time & start)

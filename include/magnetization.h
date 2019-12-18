@@ -6,7 +6,7 @@
 #include <string>
 #include <algorithm>
 
-#if !defined __clang__ && __GNUC__ <= 6
+#if __cplusplus < 201700
 
   #include <magnetization_oldgcc.h>
 
@@ -205,7 +205,7 @@ namespace mag
   template < class Mag > Mag      exactmix      (const Mag & H,  const Mag & pp,    const Mag & pm);
 }
 
-#endif // __clang__
+#endif // __cplusplus
 
 #include <magP.h>
 #include <magT.h>

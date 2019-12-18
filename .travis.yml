@@ -195,6 +195,7 @@ matrix:
     - os: linux
       compiler: clang
       name: ubuntu 14.04 - clang@5.0
+      dist: trusty
       addons:
         apt:
           update: true
@@ -215,6 +216,7 @@ matrix:
     - os: linux
       compiler: clang
       name: ubuntu 14.04 - clang@6.0
+      dist: trusty
       addons:
         apt:
           update: true
@@ -382,21 +384,21 @@ matrix:
 
 before_install:
   - travis_retry eval "${MATRIX_EVAL}"
-  - python3 -m pip install --upgrade pip
+  - python3 -m pip install --upgrade pip --user
 
   # install python packages
   - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 --version                                                                                   ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install numpy==1.14.3                                                                ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install cython==0.29                                                                 ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install scipy==1.2.1                                                                 ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install scikit-learn==0.20.3                                                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user numpy==1.14.3                                                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user cython==0.29                                                          ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user scipy==1.2.1                                                          ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user scikit-learn==0.20.3                                                  ;fi
   # add always requests for data downloads
-  - python3 -m pip install requests
+  - python3 -m pip install --user requests
 
   # testing libraries
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install pytest==3.0.7                                                                ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install pytest-cov                                                                   ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install codecov                                                                      ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user pytest==3.0.7                                                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user pytest-cov                                                            ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user codecov                                                               ;fi
 
 install:
   # CMake upgrade
@@ -412,7 +414,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
 
   # python version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 setup.py install                                                                            ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 setup.py develop --user                                                                     ;fi
 
 script:
   - chmod 777 ./build.sh
