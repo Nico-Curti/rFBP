@@ -75,7 +75,7 @@ static std :: unordered_map < std :: string, long int > protocol
 */
 std :: vector < std :: string > split (const std :: string & txt, const std :: string & del);
 
-#if __cplusplus <= 201100
+#if ( ( __cplusplus < 201100 && !(_MSC_VER) ) || ( __GNUC__ == 4 && __GNUC_MINOR__ < 9) && !(__clang__) )
 
 namespace std
 {
