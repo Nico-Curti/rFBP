@@ -29,8 +29,8 @@ namespace mag
   template < class Mag >
   bool signbit (const Mag & m)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "signbit function! Incompatible types found.");
     return std :: signbit(m.mag);
   }
@@ -38,8 +38,8 @@ namespace mag
   //template < class Mag >
   //Mag f2m (const double & x)
   //{
-  //  static_assert( std :: is_same_v < Mag, MagP64 > ||
-  //                 std :: is_same_v < Mag, MagT64 >,
+  //  static_assert( std :: is_same < Mag, MagP64 > :: value ||
+  //                 std :: is_same < Mag, MagT64 > :: value,
   //                 "f2m function! Incompatible types found.");
   //  return Mag(x);
   //}
@@ -47,8 +47,8 @@ namespace mag
   template < class Mag >
   void zeros (Mag * x, const long int & n)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "zeros function! Incompatible types found.");
     std :: fill_n(x, n, 0.);
   }
@@ -56,8 +56,8 @@ namespace mag
   template < class Mag >
   void zero (Mag & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "zero function! Incompatible types found.");
     x.mag = 0.;
   }
@@ -65,8 +65,8 @@ namespace mag
   template < class Mag >
   double abs (const Mag & a)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "abs function! Incompatible types found.");
     return std :: abs(a.mag);
   }
@@ -74,8 +74,8 @@ namespace mag
   template < class Mag >
   Mag copysign (Mag & x, const double & y)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "copysign function! Incompatible types found.");
     return signbit(x) != std :: signbit(y) ? -x : x;
   }
@@ -83,10 +83,10 @@ namespace mag
   template < class Mag >
   Mag arrow (const Mag & m, const double & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "arrow function! Incompatible types found.");
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return mtanh < Mag >(x * std :: atanh(m.mag));
     else
       return mtanh < Mag >(x * m.mag);
@@ -95,8 +95,8 @@ namespace mag
   template < class Mag >
   long int sign0 (const Mag & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "sign0 function! Incompatible types found.");
     return signbit(x) ? 1L : -1L;
   }
@@ -104,8 +104,8 @@ namespace mag
   template < class Mag >
   double logmag2p (const Mag & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "logmag2p function! Incompatible types found.");
     return std :: log( (1. + x.mag) * .5 );
   }
@@ -113,10 +113,10 @@ namespace mag
   template < class Mag >
   Mag convert (const double & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "convert function! Incompatible types found.");
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64(x);
     else
       return MagT64(clamp(std :: atanh(x), -30., 30.));
@@ -125,8 +125,8 @@ namespace mag
   template < class Mag >
   double convert (const Mag & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "convert function! Incompatible types found.");
     return x.value();
   }
@@ -134,11 +134,11 @@ namespace mag
   template < class Mag >
   Mag couple (const double & x1, const double & x2)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "couple function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64( (x1 - x2) / (x1 + x2) );
     else
       return convert < MagT64 >((std :: log(x1 / x2)) * .5);
@@ -148,11 +148,11 @@ namespace mag
   template < class Mag >
   Mag damp (const Mag & newx, const Mag & oldx, const double & l)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "damp function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64(newx.value() * (1. - l) + oldx.value() * l);
     else
       return convert < MagT64 >( newx.value() * (1. - l) + oldx.value() * l );
@@ -161,11 +161,11 @@ namespace mag
   template < class Mag >
   Mag mtanh (const double & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "mtanh function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64(std :: tanh(x));
     else
       return MagT64(x);
@@ -174,7 +174,7 @@ namespace mag
   //template < class Mag >
   //Mag matanh (const Mag & m)
   //{
-  //  static_assert( std :: is_same_v < Mag, MagT64 >,
+  //  static_assert( std :: is_same < Mag, MagT64 > :: value,
   //                 "matanh function! Incompatible type found. You must use MagT64 variable for this function." );
   //  return MagT64(m.mag);
   //}
@@ -182,11 +182,11 @@ namespace mag
   template < class Mag >
   Mag merf (const double & x)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "merf function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64(std :: erf(x));
     else
       return MagT64(AtanhErf :: atanherf(x));
@@ -195,11 +195,11 @@ namespace mag
   template < class Mag >
   Mag bar (const Mag & m1, const Mag & m2)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "bar function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return ((m1.mag == m2.mag) ?
               MagP64(0.)         :
               MagP64(clamp( (m1.mag - m2.mag) / (1. - m1.mag * m2.mag), -1., 1.)));
@@ -213,11 +213,11 @@ namespace mag
   template < class Mag >
   double log1pxy (const Mag & x, const Mag & y)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "log1pxy function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return std :: log( ( 1. + (x.mag * y.mag)) * .5);
     else
     {
@@ -235,11 +235,11 @@ namespace mag
   template < class Mag >
   double mcrossentropy (const Mag & x, const Mag & y)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "mcrossentropy function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return (-x.mag) * std :: atanh(y.mag) - std :: log(1. - y.mag * y.mag) * .5 + log_2;
     else
     {
@@ -256,11 +256,11 @@ namespace mag
   template < class Mag >
   double logZ (const Mag & u0, const Mag * u, const long int & nu)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "log1pxy function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
     {
       double zkip = (1. + u0.mag) * .5;
       double zkim = (1. - u0.mag) * .5;
@@ -299,7 +299,7 @@ namespace mag
   template < class Mag >
   Mag auxmix (const Mag & H, const double & ap, const double & am)
   {
-    static_assert( std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagT64 > :: value,
                    "auxmix function! Incompatible type found. You must use MagT64 variable for this function." );
 
     const double aH = H.mag;
@@ -355,7 +355,11 @@ namespace mag
   template < class Mag >
   Mag erfmix (const Mag & H, const double & mp, const double & mm)
   {
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
+                   "erfmix function! Incompatible types found.");
+
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64( H.mag * (std :: erf(mp) - std :: erf(mm)) / ( 2. + H.mag * (std :: erf(mp) + std :: erf(mm))));
     else
       return auxmix(H, AtanhErf :: atanherf(mp), AtanhErf :: atanherf(mm));
@@ -364,11 +368,11 @@ namespace mag
   template < class Mag >
   Mag exactmix (const Mag & H, const Mag & pp, const Mag & pm)
   {
-    static_assert( std :: is_same_v < Mag, MagP64 > ||
-                   std :: is_same_v < Mag, MagT64 >,
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
                    "exactmix function! Incompatible types found.");
 
-    if constexpr ( std :: is_same_v < Mag, MagP64 > )
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64( (pp.mag - pm.mag) * H.mag / (2. + (pp.mag + pm.mag) * H.mag) );
     else
       return auxmix(H, pp.mag, pm.mag);
