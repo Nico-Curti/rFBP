@@ -6,6 +6,8 @@
 
 #include <magnetization.hpp>
 
+#endif // new gcc
+
 namespace mag
 {
 
@@ -61,8 +63,6 @@ namespace mag
   template MagT64 exactmix < MagT64 >(const MagT64 & H, const MagT64 & pp, const MagT64 & pm);
 
 }
-
-#endif // new gcc
 
 std :: ostream & operator << (std :: ostream & os, const MagP64 & m)
 {
