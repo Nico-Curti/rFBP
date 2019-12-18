@@ -69,11 +69,11 @@ A further optimization is given by the reduction of the number of available func
 
 C++ supported compilers:
 
-|              | **Versions**                  |
-|:------------:|:-----------------------------:|
-| **g++**      | 4.8.5 4.9 5.* 6.* 7.* 8.* 9.* |
-| **clang++**  | 5.* 6.* 7.*                   |
-| **MSVC**     | vs2017-x86 vs2017-x64         |
+![gcc version](https://img.shields.io/badge/gcc-4.8.5%20|%204.9.*%20|%205.*%20|%206.*%20|%207.*%20|%208.*%20|%209.*-yellow.svg)
+
+![clang version](https://img.shields.io/badge/clang-5.*%20|%206.*%20|%207.*.*%20|-red.svg)
+
+![msvc version](https://img.shields.io/badge/msvc-vs2017%20x86%20|%20vs2017%20x64-blue.svg)
 
 The `rFBP` project is written in `C++` using a large amount of c++17 features.
 To enlarge the usability of our package we provide also a retro-compatibility of all the c++17 modules reaching an usability (tested) of our code from gcc 4.8.5+.

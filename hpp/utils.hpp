@@ -8,7 +8,7 @@ template < class Mag >  using MagVec2 = MagVec < Mag > *;  ///< alias to pointer
 template < class Mag >  using MagVec3 = MagVec2 < Mag > *; ///< alias to pointer to MagVec2
 
 
-#if __cplusplus < 201400
+#if __cplusplus <= 201100
 
 namespace std
 {

@@ -135,7 +135,14 @@ else:
 
 if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
   cpp_compiler_args = ['-std=c++17', '-g0']
-  compiler, compiler_version = CPP_COMPILER.split()
+
+  try:
+
+    compiler, compiler_version = CPP_COMPILER.split()
+
+  except ValueError:
+
+    compiler, compiler_version = (CPP_COMPILER, '0')
 
   if compiler == 'GCC':
     BUILD_SCORER = True if int(compiler_version[0]) > 4 else False

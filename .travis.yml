@@ -387,7 +387,7 @@ before_install:
   - python3 -m pip install --upgrade pip --user
 
   # install python packages
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 --version                                                                                   ;fi
+  - python3 --version
   - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user numpy==1.14.3                                                         ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user cython==0.29                                                          ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user scipy==1.2.1                                                          ;fi

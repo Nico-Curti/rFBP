@@ -1,7 +1,7 @@
 #ifndef __mag_old_hpp__
 #define __mag_old_hpp__
 
-#if __cplusplus < 201700
+#if __cplusplus < 201400
 
 #include <magnetization_oldgcc.h>
 #include <atanherf.h>

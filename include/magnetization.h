@@ -6,7 +6,7 @@
 #include <string>
 #include <algorithm>
 
-#if __cplusplus < 201700
+#if __cplusplus < 201400
 
   #include <magnetization_oldgcc.h>
 
