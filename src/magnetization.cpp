@@ -1,4 +1,4 @@
-#if (!defined __clang__ && __GNUC__ <= 6) || __clang_major__ < 3
+#if (!defined __clang__ && __GNUC__ <= 6)
 
 #include <magnetization_oldgcc.hpp>
 
