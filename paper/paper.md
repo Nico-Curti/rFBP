@@ -14,7 +14,7 @@ authors:
    orcid: 0000-0001-5802-1195
    affiliation: 1
  - name: Daniele Dall'Olio
-   orcid:
+   orcid: 0000-0003-0196-6870
    affiliation: 2
  - name: Daniel Remondini
    orcid: 0000-0003-3185-7456
