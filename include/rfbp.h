@@ -55,7 +55,7 @@ template < class Mag > double free_energy (const Cavity_Message < Mag > &message
 
 #endif // STATS
 
-#if defined(__cplusplus) < 201700 || !defined(__clang_major__) > 4
+#if (__cplusplus < 201700) && !(__clang_major__ > 4)
 
   #include <type_traits>
 
@@ -75,7 +75,7 @@ template < class Mag > long int ** focusingBP (const long int & K, const Pattern
 
 template < class Mag > using theta_function = double (*) (MagVec < Mag >, Mag &, const double *, MagVec < Mag >, Mag &, const Params < Mag > &, const long int &, const long int &);
 
-#if defined(__cplusplus) < 201700 || !defined(__clang_major__) > 4
+#if (__cplusplus < 201700) && !(__clang_major__ > 4)
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
   theta_function < Mag > get_accuracy ( const std :: string & acc );

@@ -1,15 +1,15 @@
 #define CATCH_CONFIG_MAIN
 #include <catch.hpp>
 
-#if !defined __clang__ && __GNUC__ <= 6
+#if (__cplusplus < 201700) && !(__clang_major__ > 4)
 
-  #include <magnetization_oldgcc.hpp>
+#include <magnetization_oldgcc.hpp>
 
 #else
 
-  #include <magnetization.hpp>
+#include <magnetization.hpp>
 
-#endif
+#endif // new gcc
 
 #include <cmath>
 #include <random>

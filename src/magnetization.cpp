@@ -1,4 +1,4 @@
-#if defined(__cplusplus) < 201700 || !defined(__clang_major__) > 4
+#if (__cplusplus < 201700) && !(__clang_major__ > 4)
 
 #include <magnetization_oldgcc.hpp>
 

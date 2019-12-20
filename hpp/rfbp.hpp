@@ -598,7 +598,7 @@ double iterate(Cavity_Message < Mag > & messages, const Patterns & patterns, Par
   }
 #endif
 
-#if defined(__cplusplus) < 201700 || !defined(__clang_major__) > 4
+#if (__cplusplus < 201700) && !(__clang_major__ > 4)
 
   auto tnu1 = get_accuracy < Mag >(params.accuracy1);
   auto tnu2 = get_accuracy < Mag >(params.accuracy2);
@@ -934,7 +934,7 @@ void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps)
 #endif // STATS
 
 
-#if defined(__cplusplus) < 201700 || !defined(__clang_major__) > 4
+#if (__cplusplus < 201700) && !(__clang_major__ > 4)
 
 template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
 void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta)
