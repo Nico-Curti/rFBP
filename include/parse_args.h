@@ -10,7 +10,7 @@
 #include <type_traits> // std :: is_same_v
 #include <stdexcept>
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) && defined(__clang_major__) > 4
 
   #include <cxxabi.h>
 
