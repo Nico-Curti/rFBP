@@ -860,7 +860,10 @@ double compute_q (const Cavity_Message < Mag > & messages, const long int & nm_j
 #endif
   for (long int i = 0L; i < nm_j_star; ++i)
     for (long int j = 0L; j < nm_j_star_col; ++j)
-      q += messages.m_j_star[i][j].value() * messages.m_j_star[i][j].value();
+    {
+      const double value = messages.m_j_star[i][j].value();
+      q += value * value;
+    }
 
   return q / (messages.N * messages.K);
 }
@@ -889,7 +892,8 @@ void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps)
   for (long int it = 0L; it < messages.K * messages.N; ++it)
   {
     std :: ldiv_t dv = std :: div(it, messages.N);
-    qs[dv.quot] += messages.m_j_star[dv.quot][dv.rem].value() * messages.m_j_star[dv.quot][dv.rem].value();
+    const double value = messages.m_j_star[dv.quot][dv.rem].value();
+    qs[dv.quot] += value * value;
   }
 
 #ifdef _OPENMP
@@ -933,25 +937,27 @@ void mags_symmetry (const Cavity_Message < Mag > & messages, double * overlaps)
 #if !defined __clang__ && __GNUC__ <= 6
 
 template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
-void set_outfields(const Cavity_Message < Mag > & message, const long int * output, const double & beta)
+void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta)
 {
   const double t = std :: tanh(beta * .5);
 
 #ifdef _OPENMP
 #pragma omp for
 #endif
-  for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagP64(output[i] * t);
+  for (long int i = 0L; i < message.M; ++i)
+    message.m_on[i] = MagP64(output[i] * t);
 }
 
 template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
-void set_outfields(const Cavity_Message < Mag > & message, const long int * output, const double & beta)
+void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta)
 {
   const double t = std :: tanh(beta * .5);
 
 #ifdef _OPENMP
 #pragma omp for
 #endif
-  for (long int i = 0L; i < message.M; ++i) message.m_on[i] = MagT64(std :: atanh(output[i] * t));
+  for (long int i = 0L; i < message.M; ++i)
+    message.m_on[i] = MagT64(std :: atanh(output[i] * t));
 }
 
 

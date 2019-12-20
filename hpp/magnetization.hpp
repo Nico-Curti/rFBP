@@ -18,7 +18,7 @@ namespace mag
 
   long int sign0 (const double & x)
   {
-    return std :: signbit(x) ? 1L : -1L;
+    return std :: signbit(x) ? -1L : 1L;
   }
 
   bool isinf (const double & x)
@@ -98,7 +98,7 @@ namespace mag
     static_assert( std :: is_same < Mag, MagP64 > :: value ||
                    std :: is_same < Mag, MagT64 > :: value,
                    "sign0 function! Incompatible types found.");
-    return signbit(x) ? 1L : -1L;
+    return signbit(x) ? -1L : 1L;
   }
 
   template < class Mag >

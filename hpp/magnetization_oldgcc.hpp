@@ -33,7 +33,7 @@ namespace mag
 
   long int sign0 (const double & x)
   {
-    return std :: signbit(x) ? 1L : -1L;
+    return std :: signbit(x) ? -1L : 1L;
   }
 
   bool isinf (const double & x)
@@ -125,12 +125,12 @@ namespace mag
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
   long int sign0 (const Mag & x)
   {
-    return signbit(x) ? 1L : -1L;
+    return signbit(x) ? -1L : 1L;
   }
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
   long int sign0 (const Mag & x)
   {
-    return signbit(x) ? 1L : -1L;
+    return signbit(x) ? -1L : 1L;
   }
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
