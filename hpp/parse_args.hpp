@@ -150,7 +150,7 @@ std :: string ArgumentParser :: type_name ()
   std :: unique_ptr < char, void(*)(void*) > own (
 
 
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) && defined(__clang_major__) > 4
 
                                                   abi :: __cxa_demangle (typeid(tr).name(), nullptr, nullptr, nullptr),
 

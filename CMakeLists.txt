@@ -73,6 +73,10 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
     set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG" )
   endif()
+
+  if (CLANG_VERSION_STRING VERSION_LESS 5.0)
+    add_compile_options(-stdlib=libc++)
+  endif ()
   #list (APPEND linked_libs stdc++fs)
 endif()
 
