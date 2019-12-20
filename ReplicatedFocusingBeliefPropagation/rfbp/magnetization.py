@@ -5,13 +5,15 @@ from __future__ import print_function
 from __future__ import division
 
 import numpy as np
-from functools import reduce
-from functools import singledispatch
 import operator as op
+from functools import reduce
+from scipy.special import erf
+from functools import singledispatch
 from collections.abc import Iterable
 from ReplicatedFocusingBeliefPropagation.rfbp.Mag import BaseMag
 from ReplicatedFocusingBeliefPropagation.rfbp.MagP64 import MagP64
 from ReplicatedFocusingBeliefPropagation.rfbp.MagT64 import MagT64
+from ReplicatedFocusingBeliefPropagation.rfbp.atanherf import atanherf
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
@@ -139,8 +141,8 @@ def _ (u0, u):
 
   prod = lambda args: reduce(op.mul, args, 1)
 
-  zkip = (1. + u0.mag) * .5 * prod( ((1. + x) * .5 for x in u) )
-  zkim = (1. - u0.mag) * .5 * prod( ((1. - x) * .5 for x in u) )
+  zkip = (1. + u0.mag) * .5 * prod( ((1. + x.mag) * .5 for x in u) )
+  zkim = (1. - u0.mag) * .5 * prod( ((1. - x.mag) * .5 for x in u) )
 
   return np.log( zkip + zkim )
 
@@ -155,13 +157,13 @@ def _ (u0, u):
   prod = lambda args: reduce(op.mul, args, 1)
 
   s1 = sum((i.mag for i in u if not np.isinf(i.mag)))
-  s1 += 0. if np.isinf(u0) else u0.mag
+  s1 += 0. if np.isinf(u0.mag) else u0.mag
 
   s2 = sum((abs(i.mag) for i in u if not np.isinf(i.mag)))
-  s1 += 0. if np.isinf(u0) else u0.mag
+  s2 += 0. if np.isinf(u0.mag) else u0.mag
 
   s3 = prod((i.mag for i in u if not np.isinf(i.mag)))
-  s3 *= 1. if np.isinf(u0) else u0.mag
+  s3 *= 1. if np.isinf(u0.mag) else u0.mag
 
   hasinf = np.sign(u0.mag) if np.isinf(u0.mag) else 0.
   for i in u:
@@ -202,7 +204,7 @@ def _ (H, ap, am):
 
       elif not np.isinf(ap) and np.isinf(am):
         t1 = np.sign(H.mag) * ap + a_ap if np.sign(am) == np.sign(H.mag) else 2. * H.mInf
-        t2 = -lr(am) if np.sign(am) == np.sign(H.mag) else 0.
+        t2 = -lr(ap) if np.sign(am) == np.sign(H.mag) else 0.
 
       else:
         t2 = 0.
@@ -232,12 +234,19 @@ def erfmix (H, mp, mm):
 
 @erfmix.register(MagP64)
 def _ (H, mp, mm):
-  arg = H.mag * (erf(mp) - erf(mm)) / (2. + H.mag * (erf(mp) + erf(mm)))
-  return MagP64(arg)
+  if all((not isinstance(i, BaseMag) for i in (mp, mm))):
+    arg = H.mag * (erf(mp) - erf(mm)) / (2. + H.mag * (erf(mp) + erf(mm)))
+    return MagP64(arg)
+  else:
+    raise ValueError('Input variables must be all not magnetization types')
+
 
 @erfmix.register(MagT64)
 def _ (H, mp, mm):
-  return auxmix(H, atanherf(mp), atanherf(mm))
+  if all((not isinstance(i, BaseMag) for i in (mp, mm))):
+    return auxmix(H, atanherf(mp), atanherf(mm))
+  else:
+    raise ValueError('Input variables must be all not magnetization types')
 
 @singledispatch
 def exactmix (H, pp, pm):

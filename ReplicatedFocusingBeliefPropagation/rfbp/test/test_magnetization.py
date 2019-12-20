@@ -150,6 +150,24 @@ class TestMagnetization:
     x = mag.mcrossentropy(MagT64(-float('Inf')), MagT64(float('Inf')))
     assert np.isinf(x)
 
+    x = mag.mcrossentropy(MagP64(0.), MagP64(0.))
+    assert np.isclose(x, np.log(2))
+
+    with pytest.warns(RuntimeWarning):
+      x = mag.mcrossentropy(MagP64(0.), MagP64(1.))
+      assert np.isnan(x)
+
+    with pytest.warns(RuntimeWarning):
+      x = mag.mcrossentropy(MagP64(1.), MagP64(1.))
+      assert np.isnan(x)
+
+    x = mag.mcrossentropy(MagT64(0.), MagT64(0.))
+    y = mag.mcrossentropy(MagT64(1.), MagT64(0.))
+    assert np.isclose(x, y)
+
+    x = mag.mcrossentropy(MagT64(float('Inf')), MagT64(float('Inf')))
+    assert np.isclose(x, 0.)
+
     with pytest.raises(ValueError):
       mag.mcrossentropy(self.x, self.y)
 
@@ -170,6 +188,31 @@ class TestMagnetization:
     with pytest.raises(ValueError):
       mag.logZ(self.x, self.y)
 
+
+    u = [MagP64(1.) for _ in range(5)]
+    u0 = MagP64(1.)
+
+    x = mag.logZ(u0, u)
+    assert np.isclose(x, 0.)
+
+    u = [MagP64(-1.) for _ in range(5)]
+    u0 = MagP64(-1.)
+
+    x = mag.logZ(u0, u)
+    assert np.isclose(x, 0.)
+
+    u = [MagT64(1.) for _ in range(5)]
+    u0 = MagT64(1.)
+
+    x = mag.logZ(u0, u)
+    assert np.isclose(x, mag.lr(6))
+
+    u.append(MagT64(-1.))
+    x = mag.logZ(u0, u)
+    assert np.isinf(x)
+
+
+
   def test_auxmix (self):
 
     x = mag.auxmix(MagT64(0.), self.x, self.y)
@@ -178,10 +221,65 @@ class TestMagnetization:
     with pytest.raises(ValueError):
       mag.auxmix(self.m, self.y, self.x)
 
+
+    x = mag.auxmix(self.mt, 0., 0.)
+    assert np.isclose(x.mag, 0.)
+
+    with pytest.warns(RuntimeWarning):
+      x = mag.auxmix(self.mt, float('Inf'), 0.)
+      assert np.isnan(x.mag)
+
+    with pytest.warns(RuntimeWarning):
+      x = mag.auxmix(self.mt, 0., float('Inf'))
+      assert np.isnan(x.mag)
+
+    x = mag.auxmix(MagT64(float('Inf')), 0., 0.)
+    assert np.isclose(x.mag, 0.)
+
+    x = mag.auxmix(MagT64(float('Inf')), float('Inf'), 0.)
+    assert np.isclose(x.mag, .5 * mag.lr(0.))
+
+    x = mag.auxmix(MagT64(float('Inf')), -float('Inf'), 0.)
+    assert np.isclose(x.mag, -x.mInf)
+
+    x = mag.auxmix(MagT64(float('Inf')), 0., float('Inf'))
+    assert np.isclose(x.mag, -.5 * mag.lr(0.))
+
+    x = mag.auxmix(MagT64(float('Inf')), 0., -float('Inf'))
+    assert np.isclose(x.mag, x.mInf)
+
+    x = mag.auxmix(MagT64(float('Inf')), float('Inf'), float('Inf'))
+    assert np.isclose(x.mag, 0)
+
+    x = mag.auxmix(MagT64(float('Inf')), -float('Inf'), float('Inf'))
+    assert np.isclose(x.mag, -x.mInf)
+
+    x = mag.auxmix(MagT64(float('Inf')), float('Inf'), -float('Inf'))
+    assert np.isclose(x.mag, x.mInf)
+
+
   def test_erfmix (self):
 
     with pytest.raises(ValueError):
       mag.erfmix(self.x, self.y, self.x)
+
+    with pytest.raises(ValueError):
+      mag.erfmix(self.m, self.m, self.m)
+
+    with pytest.raises(ValueError):
+      mag.erfmix(self.mt, self.mt, self.mt)
+
+    x = mag.erfmix(self.mt, self.x, self.x)
+    assert np.isclose(x.mag, mag.auxmix(self.mt, self.x, self.x).mag)
+
+    x = mag.erfmix(MagT64(0.), self.x, self.x)
+    assert np.isclose(x.mag, 0.)
+
+    x = mag.erfmix(MagP64(0.), self.x, self.x)
+    assert np.isclose(x.mag, 0.)
+
+    x = mag.erfmix(self.m, 0., 0.)
+    assert np.isclose(x.mag, 0.)
 
 
   def test_exactmix (self):
@@ -194,3 +292,15 @@ class TestMagnetization:
 
     with pytest.raises(ValueError):
       mag.exactmix(self.x, self.y, self.x)
+
+    x = mag.exactmix(self.mt, self.mt, self.mt)
+    assert np.isclose(x.mag, mag.auxmix(self.mt, self.mt.mag, self.mt.mag).mag)
+
+    x = mag.exactmix(MagT64(0.), self.mt, self.mt)
+    assert np.isclose(x.mag, 0.)
+
+    x = mag.exactmix(MagP64(0.), self.m, self.m)
+    assert np.isclose(x.mag, 0.)
+
+    x = mag.exactmix(self.m, self.m, self.m)
+    assert np.isclose(x.mag, 0.)

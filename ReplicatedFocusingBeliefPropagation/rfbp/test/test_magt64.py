@@ -123,6 +123,11 @@ class TestMagT64:
     assert np.isclose(x.mag, y.mag)
     assert np.isclose(x.value, y.value)
 
+    x = (-self.m1) ^ (-self.m2)
+    y = (-self.m2) ^ (-self.m1)
+    assert not np.isclose(x.mag, y.mag)
+    assert not np.isclose(x.value, y.value)
+
     x = self.m1 ^ self.null
     assert np.isclose(x.mag, 0.)
     assert np.isclose(x.value, 0.)

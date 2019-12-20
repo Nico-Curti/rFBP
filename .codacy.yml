@@ -11,6 +11,8 @@ exclude_paths:
   - '.github/**'
   - '**.md'
   - 'docs/**'
+  - 'paper/**'
+  - 'pubblications/**'
   - ReplicatedFocusingBeliefPropagation/__init__.py
   - ReplicatedFocusingBeliefPropagation/rfbp/__init__.py
   - ReplicatedFocusingBeliefPropagation/rfbp/test/*

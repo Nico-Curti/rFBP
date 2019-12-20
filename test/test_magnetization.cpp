@@ -192,16 +192,58 @@ TEST_CASE ( "Test magnetization functions", "[magnetization]" )
     REQUIRE ( (r174 == -INF || r174 == INF) );
 
     // test logZ
+    // const MagP64 pu0 = MagP64(1.);
+    // const MagP64 mu0 = MagP64(-1.);
+    // const MagT64 pu0t = MagT64(1.);
+    // const MagT64 mu0t = MagT64(-1.);
     // TODO
 
     // test auxmix
-    // TODO
+    const MagT64 r191 = mag :: auxmix(MagT64(0.), rng_x, rng_y);
+    const MagT64 r192 = mag :: auxmix(MagT64(rng_x), 0., 0.);
+    const MagT64 r193 = mag :: auxmix(MagT64(INF), 0., 0.);
+    const MagT64 r194 = mag :: auxmix(MagT64(INF), INF, 0.);
+    const MagT64 r195 = mag :: auxmix(MagT64(INF), -INF, 0.);
+    const MagT64 r196 = mag :: auxmix(MagT64(INF), 0., INF);
+    const MagT64 r197 = mag :: auxmix(MagT64(INF), 0., -INF);
+    const MagT64 r198 = mag :: auxmix(MagT64(INF), INF, INF);
+    const MagT64 r199 = mag :: auxmix(MagT64(INF), -INF, INF);
+    const MagT64 r190 = mag :: auxmix(MagT64(INF), INF, -INF);
+
+    REQUIRE ( isclose(r191.mag, 0.) );
+    REQUIRE ( isclose(r192.mag, 0.) );
+    REQUIRE ( isclose(r193.mag, 0.) );
+    REQUIRE ( isclose(r194.mag, 0.5 * mag :: lr(0.)) );
+    REQUIRE ( isclose(r195.mag, -r195.mInf) );
+    REQUIRE ( isclose(r196.mag, -0.5 * mag :: lr(0.)) );
+    REQUIRE ( isclose(r197.mag, r197.mInf) );
+    REQUIRE ( isclose(r198.mag, 0.) );
+    REQUIRE ( isclose(r199.mag, -r199.mInf) );
+    REQUIRE ( isclose(r190.mag, r190.mInf) );
 
     // test erfmix
-    // TODO
+    const MagT64 r201 = mag :: erfmix(MagT64(rng_x), rng_x, rng_x);
+    const MagT64 r202 = mag :: erfmix(MagT64(0.), rng_x, rng_y);
+    const MagP64 r203 = mag :: erfmix(MagP64(0.), rng_x, rng_y);
+    const MagP64 r204 = mag :: erfmix(m, 0., 0.);
+
+    const MagT64 res = mag :: auxmix(MagT64(rng_x), rng_x, rng_x);
+
+    REQUIRE ( isclose(r201.mag, res.mag) );
+    REQUIRE ( isclose(r202.mag, 0.) );
+    REQUIRE ( isclose(r203.mag, 0.) );
+    REQUIRE ( isclose(r204.mag, 0.) );
 
     // test exactmix
-    // TODO
+    const MagT64 r211 = mag :: exactmix(MagT64(rng_x), MagT64(rng_x), MagT64(rng_x));
+    const MagT64 r212 = mag :: exactmix(MagT64(0.), MagT64(rng_x), MagT64(rng_y));
+    const MagP64 r213 = mag :: exactmix(MagP64(0.), m, n);
+    const MagP64 r214 = mag :: exactmix(m, MagP64(0.), MagP64(0.));
+
+    REQUIRE ( isclose(r211.mag, res.mag) );
+    REQUIRE ( isclose(r212.mag, 0.) );
+    REQUIRE ( isclose(r213.mag, 0.) );
+    REQUIRE ( isclose(r214.mag, 0.) );
   }
 }
 
