@@ -270,7 +270,7 @@ matrix:
             - python3.5
             - python3-pip
       env:
-        - MATRIX_EVAL="brew update && brew reinstall gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
+        - MATRIX_EVAL="brew update && brew install python3.5 && brew install python3-pip && brew reinstall gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
 
     - os: osx
       osx_image: xcode10.1
@@ -282,7 +282,7 @@ matrix:
             - python3.5
             - python3-pip
       env:
-        - MATRIX_EVAL="brew update && brew reinstall gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
+        - MATRIX_EVAL="brew update && brew install python3.5 && brew install python3-pip && brew reinstall gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
 
 # osx + clang
     - os: osx
@@ -299,7 +299,7 @@ matrix:
             - python3.5
             - python3-pip
       env:
-        - MATRIX_EVAL=""
+        - MATRIX_EVAL="brew install python3.5 && brew install python3-pip"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
 
     - os: linux
