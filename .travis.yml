@@ -121,12 +121,11 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-3.8
           packages:
-            - g++-7
             - clang-3.6
-            - libstdc++-4.8-dev
-            - libclang-3.6-dev
-            - libc++-dev
-            - libc++abi-dev
+            - g++-4.8-aarch64-linux-gnu
+            - gcc-4.8-aarch64-linux-gnu
+            - g++-4.8-multilib
+            - gcc-4.8-multilib
             - python3.5
             - python3-pip
       env:
@@ -426,7 +425,7 @@ script:
   - cd test && chmod 777 ./run_test.sh && cd ..
 
   # python testing
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pytest --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc                ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pytest ./ReplicatedFocusingBeliefPropagation/rfbp/test/ --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc ;fi
 
 after_succes:
   - codecov

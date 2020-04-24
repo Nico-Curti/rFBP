@@ -7,7 +7,7 @@ from __future__ import division
 import numpy as np
 from scipy.special import erf
 
-__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 

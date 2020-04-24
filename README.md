@@ -70,7 +70,7 @@ C++ supported compilers:
 
 ![gcc version](https://img.shields.io/badge/gcc-4.8.5%20|%204.9.*%20|%205.*%20|%206.*%20|%207.*%20|%208.*%20|%209.*-yellow.svg)
 
-![clang version](https://img.shields.io/badge/clang-5.*%20|%206.*%20|%207.*.*%20|-red.svg)
+![clang version](https://img.shields.io/badge/clang-5.*%20|%206.*%20|%207.*%20|-red.svg)
 
 ![msvc version](https://img.shields.io/badge/msvc-vs2017%20x86%20|%20vs2017%20x64-blue.svg)
 
@@ -83,7 +83,6 @@ You can use also the `rFBP` package in `Python` using the `Cython` wrap provided
 The `Python` wrap guarantees also a good integration with the other common Machine Learning tools provided by `scikit-learn` `Python` package; in this way we can use the `rFBP` algorithm as equivalent alternative also in other pipelines.
 Like other Machine Learning algorithm also the `rFBP` one depends on many parameters, i.e its hyper-parameters, which has to be tuned according to the given problem.
 The `Python` wrap of the library was written according to `scikit-optimize` `Python` package to allow an easy hyper-parameters optimization using the already implemented classical methods.
-
 
 ## Installation
 
@@ -247,7 +246,7 @@ optional arguments:
 
 If you are interested in using `rFBP` inside your code you can simply import the [`rfbp.hpp`](https://github.com/Nico-Curti/rFBP/blob/master/hpp/rfbp.hpp) and create a `ReplicatedFocusingBeliefPropagation` object.
 
-The all the work is performed by the `focusingBP` (template) function.
+Then all the work is performed by the `focusingBP` (template) function.
 You can use it with `MagP64` type or `MagT64` for more accurate (but slower) results.
 
 The input pattern must be wrapped into a `Pattern` object provided by the library.
@@ -352,7 +351,6 @@ predicted_labels = rfbp.predict(pattern)
 
 which is clearly an overfitting! But it works as example :blush: and show you that also the `predict` function requires a `Pattern` object as input.
 
-
 ## Contribution
 
 Any contribution is more than welcome :heart:. Just fill an [issue](https://github.com/Nico-Curti/rFBP/blob/master/ISSUE_TEMPLATE.md) or a [pull request](https://github.com/Nico-Curti/rFBP/blob/master/PULL_REQUEST_TEMPLATE.md) and we will check ASAP!
@@ -386,7 +384,6 @@ See [here](https://github.com/Nico-Curti/rFBP/blob/master/CONTRIBUTING.md) for f
 <blockquote>12- C. Baldassi, A. Braunstein. "A Max-Sum algorithm for training discrete neural networks", Journal of Statistical Mechanics: Theory and Experiment, 2015 </blockquote>
 
 <blockquote>13- G. Parisi. "Mean field theory of spin glasses: statics and dynamics", arXiv, 2007 </blockquote>
-
 
 ## Authors
 

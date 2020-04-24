@@ -5,6 +5,7 @@ from __future__ import print_function
 
 import os
 import sys
+import json
 import platform
 import numpy as np
 
@@ -24,12 +25,21 @@ from distutils.sysconfig import customize_compiler
 def get_requires (requirements_filename):
   '''
   What packages are required for this module to be executed?
+
+  Parameters
+  ----------
+    requirements_filename : str
+      filename of requirements (e.g requirements.txt)
+
+  Returns
+  -------
+    requirements : list
+      list of required packages
   '''
   with open(requirements_filename, 'r') as fp:
     requirements = fp.read()
 
   return list(filter(lambda x: x != '', requirements.split()))
-
 
 
 class rfbp_build_ext (build_ext):
@@ -53,6 +63,16 @@ class rfbp_build_ext (build_ext):
 def read_description (readme_filename):
   '''
   Description package from filename
+
+  Parameters
+  ----------
+    readme_filename : str
+      filename with readme information (e.g README.md)
+
+  Returns
+  -------
+    description : str
+      str with description
   '''
 
   try:
@@ -61,11 +81,18 @@ def read_description (readme_filename):
       description = '\n'
       description += fp.read()
 
-  except Exception:
+  except FileNotFoundError:
     return ''
 
 
+def read_dependecies_build (dependecies_filename):
+  '''
+  Read the json of dependencies
+  '''
+  with open(dependecies_filename, 'r') as fp:
+    dependecies = json.load(fp)
 
+  return dependecies
 
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -83,15 +110,11 @@ KEYWORDS = "belief-propagation deep-neural-networks spin-glass"
 CPP_COMPILER = platform.python_compiler()
 README_FILENAME = os.path.join(here, 'README.md')
 REQUIREMENTS_FILENAME = os.path.join(here, 'requirements.txt')
+DEPENDECIES_FILENAME = os.path.join(here, 'ReplicatedFocusingBeliefPropagation', 'dependencies.json')
 VERSION_FILENAME = os.path.join(here, 'ReplicatedFocusingBeliefPropagation', '__version__.py')
 
 ENABLE_OMP = False
 BUILD_SCORER = False
-
-current_python = sys.executable.split('/bin')[0]
-numpy_dir = current_python + '/lib/python{}.{}/site-packages/numpy/core/include'.format(sys.version_info.major, sys.version_info.minor)
-if os.path.isdir(numpy_dir):
-  os.environ['CFLAGS'] = '-I' + numpy_dir
 
 # Import the README and use it as the long-description.
 # Note: this will only work if 'README.md' is present in your MANIFEST.in file!
@@ -100,6 +123,12 @@ try:
 
 except FileNotFoundError:
   LONG_DESCRIPTION = DESCRIPTION
+
+
+current_python = sys.executable.split('/bin')[0]
+numpy_dir = current_python + '/lib/python{0}.{1}/site-packages/numpy/core/include'.format(sys.version_info.major, sys.version_info.minor)
+if os.path.isdir(numpy_dir):
+  os.environ['CFLAGS'] = '-I' + numpy_dir
 
 
 # Load the package's __version__.py module as a dictionary.
@@ -114,28 +143,36 @@ else:
 # parse version variables and add them to command line as definitions
 Version = about['__version__'].split('.')
 
-if not os.path.isfile(os.path.join(here, 'lib', 'librfbp.so')):
-  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx'),
-                  os.path.join(os.getcwd(), 'src', 'cavity_message.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'magnetization.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'fprotocol.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'atanherf.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'pattern.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'params.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'spline.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'utils.cpp'),
-                  os.path.join(os.getcwd(), 'src', 'rfbp.cpp')
-                  ]
-  rfbp_lib = []
 
-else:
+# Read dependecies graph
+dependencies = read_dependecies_build(DEPENDECIES_FILENAME)
 
-  rfbp_sources = [os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'source', 'rFBP.pyx')]
-  rfbp_lib = ['rfbp']
+# Set compiler variables
+define_args = [ '-DMAJOR={}'.format(Version[0]),
+                '-DMINOR={}'.format(Version[1]),
+                '-DREVISION={}'.format(Version[2]),
+                '-DSTATS',
+                '-DNDEBUG',
+                '-DVERBOSE',
+                '-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION',
+                '-DPWD="{}"'.format(here)
+              ]
 
 
 if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
-  cpp_compiler_args = ['-std=c++17', '-g0']
+  cpp_compiler_args = ['-std=c++1z', '-std=gnu++1z', '-g0']
+
+  compile_args = [ '-Wno-unused-function', # disable unused-function warnings
+                   '-Wno-narrowing', # disable narrowing conversion warnings
+                    # enable common warnings flags
+                   '-Wall',
+                   '-Wextra',
+                   '-Wno-unused-result',
+                   '-Wno-unknown-pragmas',
+                   '-Wfatal-errors',
+                   '-Wpedantic',
+                   '-march=native',
+                 ]
 
   try:
 
@@ -148,18 +185,19 @@ if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
   if compiler == 'GCC':
     BUILD_SCORER = True if int(compiler_version[0]) > 4 else False
 
+  if ENABLE_OMP and compiler == 'GCC':
+    linker_args = ['-fopenmp']
+  else:
+    linker_args = []
+
   if compiler == 'Clang':
     BUILD_SCORER = True
     ENABLE_OMP = False
 
-  if ENABLE_OMP:
-    linker_args = ['-fopenmp']
-
-  else:
-    linker_args = []
 
 elif 'MSC' in CPP_COMPILER:
-  cpp_compiler_args = ['/std:c++17']
+  cpp_compiler_args = ['/std:c++latest']
+  compile_args = []
   BUILD_SCORER = True
 
   if ENABLE_OMP:
@@ -170,28 +208,6 @@ elif 'MSC' in CPP_COMPILER:
 else:
   raise ValueError('Unknown c++ compiler arg')
 
-define_args = [ '-DMAJOR={}'.format(Version[0]),
-                '-DMINOR={}'.format(Version[1]),
-                '-DREVISION={}'.format(Version[2]),
-                '-DSTATS',
-                '-DNDEBUG',
-                '-DVERBOSE',
-                '-DNPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION',
-                '-DPWD="{}"'.format(here)
-              ]
-
-compile_args = [ '-Wno-unused-function', # disable unused-function warnings
-                 '-Wno-narrowing', # disable narrowing conversion warnings
-                  # enable common warnings flags
-                 '-Wall',
-                 '-Wextra',
-                 '-Wno-unused-result',
-                 '-Wno-unknown-pragmas',
-                 '-Wfatal-errors',
-                 '-Wpedantic',
-                 '-march=native',
-               ]
-
 
 if BUILD_SCORER:
   scorer_include = [os.path.join(os.getcwd(), 'scorer', 'include'),
@@ -199,7 +215,8 @@ if BUILD_SCORER:
 else:
   scorer_include = []
 
-whole_compiler_args = sum([cpp_compiler_args, compile_args, define_args], [])
+
+whole_compiler_args = sum([cpp_compiler_args, compile_args, define_args, linker_args], [])
 
 # Where the magic happens:
 setup(
@@ -220,7 +237,7 @@ setup(
   packages                      = find_packages(include=['ReplicatedFocusingBeliefPropagation',
                                                          'ReplicatedFocusingBeliefPropagation.*'],
                                                 exclude=('test', 'example')),
-  include_package_data          =True,
+  include_package_data          = True,
   platforms                     = 'any',
   classifiers                   = [
                                     # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -234,25 +251,19 @@ setup(
   license                       = 'MIT',
   cmdclass                      = {'build_ext': rfbp_build_ext},
   ext_modules                   = [
-                                    Extension(name='.'.join(['lib', 'ReplicatedFocusingBeliefPropagation', 'rFBP']),
-                                              sources=rfbp_sources,
-                                              include_dirs=sum([[
-                                                  '.',
-                                                  os.path.join(os.getcwd(), 'ReplicatedFocusingBeliefPropagation', 'include'),
-                                                  os.path.join(os.getcwd(), 'include'),
-                                                  os.path.join(os.getcwd(), 'hpp'),
-                                                  np.get_include()],
-                                                  scorer_include], []
-                                              ),
-                                              libraries=rfbp_lib,
+                                    Extension(name='.'.join(['ReplicatedFocusingBeliefPropagation', 'lib', name]),
+                                              sources=values['sources'],
+                                              include_dirs=values['include_dirs'],
+                                              libraries=values['libraries'],
                                               library_dirs=[
-                                                            os.path.join(os.getcwd(), 'lib'),
+                                                            os.path.join(here, 'lib'),
                                                             os.path.join('usr', 'lib'),
                                                             os.path.join('usr', 'local', 'lib'),
                                               ],  # path to .a or .so file(s)
                                               extra_compile_args = whole_compiler_args,
-                                              extra_link_args = linker_args,
-                                              language='c++',
-                                              ),
-                                            ],
+                                              extra_link_args = [],
+                                              language='c++'
+                                              )
+
+                                    for name, values in dependencies.items() ],
 )

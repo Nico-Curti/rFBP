@@ -34,7 +34,6 @@ Please consider the following step to create a pull request which can be process
 
 10. Submit a Pull Request into `dev` (following the pull request [template](https://github.com/Nico-Curti/rFBP/blob/master/.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md))
 
-
 ## Merging
 
 1. As soon as possible the authors will review your pull request, answering to your message.

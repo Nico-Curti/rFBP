@@ -8,13 +8,24 @@ import numpy as np
 from ReplicatedFocusingBeliefPropagation.rfbp.Mag import BaseMag
 from ReplicatedFocusingBeliefPropagation.rfbp.atanherf import atanherf
 
-__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 
 class MagT64 (BaseMag):
 
   def __init__ (self, x, mInf=30.):
+    '''
+    MagP64 specialization
+
+    Parameters
+    ----------
+      x : float
+        Value to magnetify
+
+      mInf : float (default = 30.)
+        Clip value
+    '''
 
     super(MagT64, self).__init__(x)
     self.mInf = mInf
@@ -68,4 +79,3 @@ class MagT64 (BaseMag):
       t2 = lr(ax + ay) - lr(ax - ay)
 
     return self.__class__(np.mean((t1, t2)))
-

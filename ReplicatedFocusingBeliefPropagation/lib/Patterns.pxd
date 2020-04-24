@@ -1,8 +1,9 @@
 # distutils: language = c++
 # cython: language_level=2
 
-from libcpp.string cimport string
 from libcpp cimport bool
+from libcpp.string cimport string
+from libcpp.memory cimport unique_ptr
 
 cdef extern from "pattern.h":
 
@@ -20,3 +21,11 @@ cdef extern from "pattern.h":
     long int Nout
     long int * output
     double ** input
+
+
+cdef class _Patterns:
+  cdef unique_ptr[Patterns] thisptr
+
+  cdef public:
+    long int Nrow
+    long int Ncol

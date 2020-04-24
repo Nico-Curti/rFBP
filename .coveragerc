@@ -4,6 +4,7 @@ omit =
     */ReplicatedFocusingBeliefPropagation/__init__.py
     */ReplicatedFocusingBeliefPropagation/__version__.py
     */ReplicatedFocusingBeliefPropagation/rfbp/test/*
+    */ReplicatedFocusingBeliefPropagation/example/*
 [report]
 # Regexes for lines to exclude from consideration
 exclude_lines =

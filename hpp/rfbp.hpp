@@ -656,10 +656,22 @@ bool converge( Cavity_Message < Mag > & messages, const Patterns & patterns, Par
     const double diff = iterate(messages, patterns, params);
 
 #ifdef VERBOSE
+
 #ifdef _OPENMP
 #pragma omp single
 #endif
-      std :: cout << "\r\x1B[K[it=" << it << " Delta=" << diff << " lambda=" << params.damping << "]";
+
+#ifdef _WIN32
+
+      std :: cout << "\r[it="
+
+#else
+
+      std :: cout << "\r\x1B[K[it="
+
+#endif
+
+                                    << it << " Delta=" << diff << " lambda=" << params.damping << "]";
 #endif // verbose
 
     if (diff < params.epsil)

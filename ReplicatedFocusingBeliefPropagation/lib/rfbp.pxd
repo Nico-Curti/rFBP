@@ -1,10 +1,11 @@
 # distutils: language = c++
 # cython: language_level=2
 
-from libcpp.string cimport string
-from pattern cimport Patterns
-from fprotocol cimport FocusingProtocol
 from libcpp cimport bool
+from libcpp.string cimport string
+
+from Patterns cimport Patterns
+from FocusingProtocol cimport FocusingProtocol
 
 cdef extern from "rfbp.h":
 

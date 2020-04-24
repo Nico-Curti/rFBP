@@ -4,16 +4,16 @@
 from __future__ import print_function
 from __future__ import division
 
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import _FocusingProtocol
+from ReplicatedFocusingBeliefPropagation.lib.FocusingProtocol import _FocusingProtocol
 from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
 
 __all__ = ['Focusing_Protocol']
 
-__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 
-class Focusing_Protocol (_FocusingProtocol):
+class Focusing_Protocol (object):
 
   '''
   Focusing Protocol object
@@ -57,24 +57,42 @@ class Focusing_Protocol (_FocusingProtocol):
 
   @property
   def num_of_replicas (self):
+    '''
+    Return the number of replicas
+    '''
     return self._nrep
 
   @property
   def fprotocol (self):
+    '''
+    Return the Cython object
+    '''
     return self._fprotocol
 
   @property
   def gamma (self):
+    '''
+    Return the 'gamma' array
+    '''
     return self._fprotocol.gamma
 
   @property
   def n_rep (self):
+    '''
+    Return the 'n_rep' array
+    '''
     return self._fprotocol.n_rep
 
   @property
   def beta (self):
+    '''
+    Return the 'beta' array
+    '''
     return self._fprotocol.beta
 
   def __repr__ (self):
+    '''
+    Object representation
+    '''
     class_name = self.__class__.__qualname__
     return '{0}(protocol={1}, size={2:d})'.format(class_name, self._protocol, self._nrep)

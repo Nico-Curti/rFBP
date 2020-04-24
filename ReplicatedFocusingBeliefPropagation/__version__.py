@@ -4,12 +4,21 @@
 import os
 import re
 
-__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
 def read_version (CMakeLists):
   '''
   Read version from variables set in CMake file
+
+  Parameters
+  ----------
+  CMakeLists : CMake file path
+
+  Returns
+  -------
+  version : tuple
+    Version as (major, minor, revision)
   '''
   major = re.compile(r'set\s+\(RFBP_MAJOR\s+(\d+)\)')
   minor = re.compile(r'set\s+\(RFBP_MINOR\s+(\d+)\)')

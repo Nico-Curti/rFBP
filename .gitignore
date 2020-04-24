@@ -48,7 +48,8 @@ __pycache__/
 [Ss]hare/
 
 # coverage
-.coverage*
+.coverage
+.coverage.*
 coverage.*
 html*
 

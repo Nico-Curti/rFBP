@@ -25,3 +25,9 @@ cdef extern from "fprotocol.h":
     void PseudoReinforcement (const double * rho, const long int & nrho, double x)
     void PseudoReinforcement (const double & drho, const double & x)
     void FreeScoping (double ** list, const long int & nlist)
+
+cdef class _FocusingProtocol:
+  cdef unique_ptr[FocusingProtocol] thisptr
+
+  cdef public:
+    long int Nrep

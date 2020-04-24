@@ -7,18 +7,35 @@ from __future__ import division
 import os
 import sys
 
-__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
-def _check_string(_string, exist=True):
+def _check_string (String, exist=True):
+  '''
+  Check if the input string is already encoded for c++ compatibility
 
-  if not isinstance(_string, (str, bytes)):
-    raise TypeError('{0} must be in string format'.format(_string))
+  Parameters
+  ----------
+  String : string or bytes
+    String to convert / verify
 
-  if isinstance(_string, bytes):
-    _string = _string.decode(sys.getfilesystemencoding())
+  exist : bool (default = True)
+    If the string identify a filename check if it exist
 
-  if exist and not os.path.isfile(_string):
-    raise FileNotFoundError('{0} file not found'.format(_string))
+  Returns
+  -------
+  Encoded string (utf-8)
 
-  return _string.encode(sys.getfilesystemencoding())
+  Notes
+  -----
+  The strings must be converted to bytes for c++ function compatibility!
+  '''
+
+  if not isinstance(String, str) and not isinstance(String, bytes):
+    raise TypeError('{} must be in string format'.format(String))
+
+  if exist:
+    if not os.path.isfile(String):
+      raise FileNotFoundError('Could not open or find the data file. Given: {}'.format(String))
+
+  return String.encode('utf-8') if isinstance(String, str) else String

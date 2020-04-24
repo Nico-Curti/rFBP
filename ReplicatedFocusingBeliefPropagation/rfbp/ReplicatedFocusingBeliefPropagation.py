@@ -18,9 +18,9 @@ from ReplicatedFocusingBeliefPropagation.rfbp.MagT64 import MagT64
 
 from sklearn.utils import check_array
 from sklearn.utils.validation import check_is_fitted
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import Mag
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import _rfbp
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import _nonbayes_test
+from ReplicatedFocusingBeliefPropagation.lib.rFBP import Mag
+from ReplicatedFocusingBeliefPropagation.lib.rFBP import _rfbp
+from ReplicatedFocusingBeliefPropagation.lib.rFBP import _nonbayes_test
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
 
@@ -151,7 +151,9 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
       X = check_array(X)
       testset = Pattern(X, [0] * np.shape(X)[0])
 
-    return np.asarray(_nonbayes_test(self.weights_, testset.pattern, self.hidden))
+    row_size, column_size = self.weights_.shape
+
+    return np.asarray(_nonbayes_test(self.weights_.ravel(), row_size, column_size, testset.pattern, self.hidden))
 
     # nrow, ncol = np.shape(testset)
     # predicted_labels = np.empty(nrow, dtype=int)
@@ -270,10 +272,13 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
       np.savetxt(weightfile, self.weights_, delimiter=delimiter)
 
   def __repr__ (self):
+    '''
+    Object representation
+    '''
     class_name = self.__class__.__qualname__
 
     params = self.__init__.__code__.co_varnames
     params = set(params) - {'self'}
     args = ', '.join(['{}={}'.format(k, str(getattr(self, k))) for k in params])
 
-    return '{}({})'.format(class_name, args)
+    return '{0}({1})'.format(class_name, args)

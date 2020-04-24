@@ -7,15 +7,15 @@ from __future__ import division
 import numpy as np
 from sklearn.utils import check_X_y
 from sklearn.utils import check_array
-from lib.ReplicatedFocusingBeliefPropagation.rFBP import _Pattern
+from ReplicatedFocusingBeliefPropagation.lib.Patterns import _Patterns
 from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
 
 __all__ = ['Pattern']
 
-__author__  = ["Nico Curti", "Daniele Dall'Olio"]
+__author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 
-class Pattern (_Pattern):
+class Pattern (object):
 
   '''
   Pattern object for C++ compatibility
@@ -60,7 +60,7 @@ class Pattern (_Pattern):
       y = y.astype('int64')
 
 
-      self._pattern = _Pattern(X=X, y=y, M=M, N=N)
+      self._pattern = _Patterns(X=X, y=y, M=M, N=N)
 
     else:
 
@@ -83,9 +83,9 @@ class Pattern (_Pattern):
       raise ValueError('Incorrect dimensions. Shapes must be a 2-D tuple with (M, N)')
 
     if M <= 0 or N <= 0:
-      raise ValueError('Incorrect dimensions. M and N must be greater than 0. Given ({}, {})'.format(M, N))
+      raise ValueError('Incorrect dimensions. M and N must be greater than 0. Given ({0:d}, {1:d})'.format(M, N))
 
-    self._pattern = _Pattern(M=M, N=N)
+    self._pattern = _Patterns(M=M, N=N)
 
     return self
 
@@ -107,17 +107,20 @@ class Pattern (_Pattern):
     '''
 
     if not isinstance(filename, str):
-      raise ValueError('Invalid filename found. Filename must be a string. Given : {}'.format(filename))
+      raise ValueError('Invalid filename found. Filename must be a string. Given : {0}'.format(filename))
 
     filename = _check_string(filename, exist=True)
     delimiter = _check_string(delimiter, exist=False)
 
-    self._pattern = _Pattern(filename=filename, binary=binary, delimiter=delimiter)
+    self._pattern = _Patterns(filename=filename, binary=binary, delimiter=delimiter)
 
     return self
 
   @property
   def shape (self):
+    '''
+    Return the shape of the data matrix
+    '''
     try:
       return (self._pattern.Nrow, self._pattern.Ncol)
 
@@ -126,6 +129,9 @@ class Pattern (_Pattern):
 
   @property
   def labels (self):
+    '''
+    Return the label array
+    '''
     try:
       return self._pattern.labels
 
@@ -134,6 +140,9 @@ class Pattern (_Pattern):
 
   @property
   def data (self):
+    '''
+    Return the data matrix
+    '''
     try:
       return self._pattern.data
 
@@ -142,9 +151,15 @@ class Pattern (_Pattern):
 
   @property
   def pattern (self):
+    '''
+    Return the pattern Cython object
+    '''
     return self._pattern
 
   def __repr__ (self):
+    '''
+    Object representation
+    '''
     class_name = self.__class__.__qualname__
     if self._pattern is not None:
       return '{0}().random(shapes=({1:d}, {2:d}))'.format(class_name, self._pattern.Nrow, self._pattern.Ncol)

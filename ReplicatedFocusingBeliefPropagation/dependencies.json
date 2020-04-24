@@ -1,0 +1,44 @@
+{
+  "FocusingProtocol": {
+    "sources": [ "./ReplicatedFocusingBeliefPropagation/source/FocusingProtocol.pyx",
+                 "./src/fprotocol.cpp",
+                 "./src/utils.cpp"
+    ],
+    "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
+                      "./hpp/",
+                      "./include/"
+    ],
+    "libraries": []
+  },
+
+  "Patterns": {
+    "sources": [ "./ReplicatedFocusingBeliefPropagation/source/Patterns.pyx",
+                 "./src/pattern.cpp",
+                 "./src/utils.cpp"
+    ],
+    "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
+                      "./hpp/",
+                      "./include/"
+    ],
+    "libraries": []
+  },
+
+  "rFBP": {
+    "sources": [ "./ReplicatedFocusingBeliefPropagation/source/rFBP.pyx",
+                 "./src/rfbp.cpp",
+                 "./src/atanherf.cpp",
+                 "./src/cavity_message.cpp",
+                 "./src/fprotocol.cpp",
+                 "./src/magnetization.cpp",
+                 "./src/params.cpp",
+                 "./src/pattern.cpp",
+                 "./src/spline.cpp",
+                 "./src/utils.cpp"
+    ],
+    "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
+                      "./hpp/",
+                      "./include/"
+    ],
+    "libraries": []
+  }
+}
