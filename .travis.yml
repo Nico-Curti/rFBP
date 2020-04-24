@@ -302,23 +302,6 @@ matrix:
         - MATRIX_EVAL=""
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
 
-    - os: osx
-      osx_image: xcode10.1
-      compiler: clang
-      name: macOS - clang@7.0
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-7
-          packages:
-            - clang-7.0
-            - python3.5
-            - python3-pip
-      env:
-        - MATRIX_EVAL="brew update && brew install llvm && CC=clang-7.0 && CXX=clang++-7.0"
-        - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-
     - os: linux
       compiler: gcc
       python: 3.5
@@ -336,96 +319,56 @@ matrix:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
         - WITH_PYTHON=ON
 
-    - os: linux
-      compiler: gcc
-      python: 3.5
-      name: ubuntu 14.04 - gcc@8.0 & python@3.6
-      dist: trusty
-      addons:
-        apt:
-          update: true
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
-            - python3.6
-            - python3-pip
-      env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-        - WITH_PYTHON=ON
-
-    - os: linux
-      compiler: gcc
-      python: 3.5
-      name: ubuntu 14.04 - gcc@8.0 & python@3.7
-      dist: trusty
-      addons:
-        apt:
-          update: true
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-8
-            - python3.7
-            - python3-pip
-      env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-        - WITH_PYTHON=ON
-
   allow_failures:
-    - name: ubuntu 14.04 - gcc@8.0 & python@3.6
-    - name: ubuntu 14.04 - gcc@8.0 & python@3.7
-    - name: ubuntu 14.04 - clang@3.6
     - name: ubuntu 14.04 - clang@3.8
-    - name: ubuntu 14.04 - clang@3.9
     - name: ubuntu 14.04 - clang@4.0
-    - name: macOS - clang@7.0
 
 
 before_install:
   - travis_retry eval "${MATRIX_EVAL}"
-  - python3 -m pip install --upgrade pip --user
+  - python3.5 -m pip install --upgrade pip --user
 
   # install python packages
-  - python3 --version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user numpy==1.14.3                                                         ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user cython==0.29                                                          ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user scipy==1.2.1                                                          ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user scikit-learn==0.20.3                                                  ;fi
-  # add always requests for data downloads
+  - python3.5 --version
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user numpy==1.14.3                                                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user cython==0.29                                                          ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user scipy==1.2.1                                                          ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user scikit-learn==0.20.3                                                  ;fi
+
   - python3 -m pip install --user requests
 
   # testing libraries
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user pytest==3.0.7                                                         ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user pytest-cov                                                            ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pip install --user codecov                                                               ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user pytest==3.0.7                                                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user pytest-cov                                                            ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user codecov                                                               ;fi
 
 install:
   # CMake upgrade
 
-  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Darwin-x86_64.tar.gz   ;fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then tar -xzf cmake-3.13.1-Darwin-x86_64.tar.gz                                                    ;fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then export PATH=$PWD/cmake-3.13.1-Darwin-x86_64/CMake.app/Contents/bin:$PATH                      ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Darwin-x86_64.tar.gz     ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then tar -xzf cmake-3.13.1-Darwin-x86_64.tar.gz                                                      ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx"   ]]; then export PATH=$PWD/cmake-3.13.1-Darwin-x86_64/CMake.app/Contents/bin:$PATH                        ;fi
 
   ###############################################################################################################################################
 
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.tar.gz    ;fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                     ;fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                          ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget --no-check-certificate https://cmake.org/files/v3.13/cmake-3.13.1-Linux-x86_64.tar.gz      ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                       ;fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                            ;fi
 
   # python version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 setup.py develop --user                                                                     ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 setup.py develop --user                                                                     ;fi
 
 script:
   - chmod 777 ./build.sh
-  - if [[ "$TRAVIS_COMPILER" == "clang" ]]; then bash ./build.sh "" OFF                                                                       ;fi
-  - if [[ "$TRAVIS_COMPILER" == "gcc"   ]]; then bash ./build.sh "" OFF                                                                       ;fi
+  - if [[ "$TRAVIS_COMPILER" == "clang" ]]; then bash ./build.sh "" OFF                                                                         ;fi
+  - if [[ "$TRAVIS_COMPILER" == "gcc"   ]]; then bash ./build.sh "" OFF                                                                         ;fi
 
   # c++ testing
   - cd test && chmod 777 ./run_test.sh && cd ..
 
   # python testing
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3 -m pytest ./ReplicatedFocusingBeliefPropagation/rfbp/test/ --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pytest ./ReplicatedFocusingBeliefPropagation/rfbp/test/ --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc ;fi
 
 after_succes:
+
   - codecov

@@ -253,7 +253,7 @@ setup(
   ext_modules                   = [
                                     Extension(name='.'.join(['ReplicatedFocusingBeliefPropagation', 'lib', name]),
                                               sources=values['sources'],
-                                              include_dirs=values['include_dirs'],
+                                              include_dirs=sum([values['include_dirs'], [np.get_include()]], []),
                                               libraries=values['libraries'],
                                               library_dirs=[
                                                             os.path.join(here, 'lib'),
