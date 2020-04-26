@@ -18,6 +18,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL=""
+        - PYTHON=python3.5
 
     - os: linux
       compiler: gcc
@@ -33,6 +34,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: gcc
@@ -48,6 +50,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: gcc
@@ -63,6 +66,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: gcc
@@ -78,6 +82,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: gcc
@@ -93,6 +98,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: gcc
@@ -108,6 +114,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - PYTHON=python3.5
 
 # linux + clang
 
@@ -131,6 +138,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
         - LINKER_FLAGS="-stdlib=libstdc++ -lc++abi"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: clang
@@ -151,7 +159,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
-
+        - PYTHON=python3.5
 
     - os: linux
       compiler: clang
@@ -172,6 +180,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: clang
@@ -192,6 +201,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: clang
@@ -213,6 +223,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: clang
@@ -235,6 +246,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-6.0 && CXX=clang++-6.0"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - PYTHON=python3.5
 
     - os: linux
       compiler: clang
@@ -257,6 +269,7 @@ matrix:
       env:
         - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - PYTHON=python3.5
 
 # osx + gcc
 
@@ -270,7 +283,8 @@ matrix:
             - python3.5
             - python3-pip
       env:
-        - MATRIX_EVAL="brew update && brew install python3 && brew reinstall gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
+        - MATRIX_EVAL="brew update && brew reinstall gcc@7 gcc && CC=gcc-7 && CXX=g++-7"
+        - PYTHON=python3
 
     - os: osx
       osx_image: xcode10.1
@@ -282,7 +296,8 @@ matrix:
             - python3.5
             - python3-pip
       env:
-        - MATRIX_EVAL="brew update && brew install python3 && brew reinstall gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
+        - MATRIX_EVAL="brew update && brew reinstall gcc@8 gcc && CC=gcc-8 && CXX=g++-8"
+        - PYTHON=python3
 
 # osx + clang
     - os: osx
@@ -299,8 +314,9 @@ matrix:
             - python3.5
             - python3-pip
       env:
-        - MATRIX_EVAL="brew install python3"
+        - MATRIX_EVAL=""
         - LINKER_FLAGS="-stdlib=libc++ -lc++abi"
+        - PYTHON=python3
 
     - os: linux
       compiler: gcc
@@ -317,6 +333,7 @@ matrix:
             - python3-pip
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+        - PYTHON=python3.5
         - WITH_PYTHON=ON
 
   allow_failures:
@@ -329,21 +346,21 @@ matrix:
 
 before_install:
   - travis_retry eval "${MATRIX_EVAL}"
-  - python3.5 -m pip install --upgrade pip --user
+  - $PYTHON -m pip install --upgrade pip --user
 
   # install python packages
-  - python3.5 --version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user numpy==1.14.3                                                         ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user cython==0.29                                                          ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user scipy==1.2.1                                                          ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user scikit-learn==0.20.3                                                  ;fi
+  - $PYTHON --version
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user numpy==1.14.3                                                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user cython==0.29                                                          ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user scipy==1.2.1                                                          ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user scikit-learn==0.20.3                                                  ;fi
 
-  - python3 -m pip install --user requests
+  - $PYTHON -m pip install --user requests
 
   # testing libraries
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user pytest==3.0.7                                                         ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user pytest-cov                                                            ;fi
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pip install --user codecov                                                               ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user pytest==3.0.7                                                           ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user pytest-cov                                                              ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user codecov                                                                 ;fi
 
 install:
   # CMake upgrade
@@ -359,7 +376,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                            ;fi
 
   # python version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 setup.py develop --user                                                                     ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON setup.py develop --user                                                                       ;fi
 
 script:
   - chmod 777 ./build.sh
@@ -370,7 +387,7 @@ script:
   - cd test && chmod 777 ./run_test.sh && cd ..
 
   # python testing
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then python3.5 -m pytest ./ReplicatedFocusingBeliefPropagation/rfbp/test/ --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pytest ./ReplicatedFocusingBeliefPropagation/rfbp/test/ --cov=ReplicatedFocusingBeliefPropagation --cov-config=.coveragerc ;fi
 
 after_succes:
 
