@@ -339,9 +339,6 @@ matrix:
   allow_failures:
     - name: ubuntu 14.04 - clang@3.8
     - name: ubuntu 14.04 - clang@4.0
-    - name: macOS - native clang (llvm backend)
-    - name: macOS - g++-7
-    - name: macOS - g++-8
 
 
 before_install:
