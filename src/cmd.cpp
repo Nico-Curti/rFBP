@@ -51,10 +51,10 @@ void parse_training_fbp(int argc, char *argv[],
                                                                         "at the hidden units level (choose between "
                                                                         "'exact'(default), 'accurate', 'approx', 'none')",        false, "exact"); // TODO: set true!
   argparse.add_argument < std :: string >("pArg",  "p", "protocol",     "Specify protocol : "
-                                                                        "(0) Scooping, "
-                                                                        "(1) PseudoReinforcement(default), "
-                                                                        "(2) FreeScoping, "
-                                                                        "(3) StandardReinforcement",                              false, "pseudo_reinforcement"); // TODO: set true!
+                                                                        "scoping, "
+                                                                        "pseudo_reinforcement (default), "
+                                                                        "free_scoping, "
+                                                                        "standard_reinforcement",                                 false, "pseudo_reinforcement"); // TODO: set true!
   argparse.add_argument < double >(       "eArg",  "e", "epsilon",      "Threshold for convergence(default: 0.1)",                false, 0.1);
   argparse.add_argument < int >(          "sArg",  "s", "steps",        "Max Number of Steps for chosen protocol(default: 101)",  false, 101);
   argparse.add_argument < int >(          "mArg",  "m", "mag",          "Specify Magnetization: "

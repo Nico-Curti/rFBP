@@ -21,7 +21,11 @@ namespace mag
                          double   clamp         (const double & x, const double & low, const double & high);
                          double   lr            (const double & x);
                          long int sign0         (const double & x);
-                         bool     isinf         (const double & x);
+
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
+  bool     isinf         (const double & x);
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
+  bool     isinf         (const double & x);
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
   bool     signbit       (const Mag & m);

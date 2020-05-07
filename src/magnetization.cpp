@@ -11,6 +11,9 @@
 namespace mag
 {
 
+  template bool isinf < MagP64 >(const double & x);
+  template bool isinf < MagT64 >(const double & x);
+
   template bool signbit < MagP64 >(const MagP64 & m);
   template bool signbit < MagT64 >(const MagT64 & m);
 

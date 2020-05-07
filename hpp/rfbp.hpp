@@ -280,7 +280,7 @@ double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, Ma
 
 #ifdef DEBUG
 
-  assert ( !mag :: isinf(new_u.mag) );
+  assert ( !mag :: isinf < Mag >(new_u.mag) );
 
 #endif
 
@@ -297,7 +297,7 @@ double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, Ma
 
 #ifdef DEBUG
 
-    assert ( !mag :: isinf(M.mag) );
+    assert ( !mag :: isinf < Mag >(M.mag) );
 
 #endif
 
@@ -337,7 +337,7 @@ double theta_node_update_exact (MagVec < Mag > m, Mag & M, const double * xi, Ma
 
 #ifdef DEBUG
 
-  assert ( !mag :: isinf(u[i].mag) );
+  assert ( !mag :: isinf < Mag >(u[i].mag) );
 
 #endif
   }
@@ -396,7 +396,7 @@ double free_energy_theta(const MagVec < Mag > m, const Mag & M, const double * x
 
 #ifdef DEBUG
 
-  assert( !mag :: isinf(f) );
+  assert( !mag :: isinf < Mag >(f) );
 
 #endif
 
@@ -478,7 +478,7 @@ double free_energy_theta_exact(MagVec < Mag > m, const Mag & M, const double * x
 
 #ifdef DEBUG
 
-  assert ( !mag :: isinf(f) );
+  assert ( !mag :: isinf < Mag >(f) );
 
 #endif
 
@@ -513,7 +513,7 @@ double m_star_update(Mag & m_j_star, Mag & m_star_j, Params < Mag > & params) //
   Mag old_m_j_star = mag :: bar(m_j_star, m_star_j);
   Mag new_m_star_j(0.);
 
-  if (mag :: isinf(params.r))  // to check
+  if (mag :: isinf < Mag >(params.r))  // to check
     new_m_star_j = (old_m_j_star != 0.)                                    ?
                  (mag :: copysign(params.tan_gamma, old_m_j_star.value())) :
                  Mag(0.) ;
@@ -1078,7 +1078,7 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
 #pragma omp single
   {
 #endif
-    
+
     messages        = (initmess.empty())                           ?
                       Cavity_Message<Mag>(M, N, K, randfact, seed) :
                       Cavity_Message<Mag>(initmess, bin_mess)      ;
@@ -1177,7 +1177,7 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
 
 #ifdef DEBUG
 
-    if (!mag :: isinf(fprotocol.beta[i])) error_infinite(fprotocol.beta[i]);
+    if (!mag :: isinf < Mag >(fprotocol.beta[i])) error_infinite(fprotocol.beta[i]);
 
 #endif
 

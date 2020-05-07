@@ -1,4 +1,17 @@
 {
+  "atanherf": {
+    "sources": [ "./ReplicatedFocusingBeliefPropagation/source/atanherf.pyx",
+                 "./src/atanherf.cpp",
+                 "./src/spline.cpp",
+                 "./src/utils.cpp"
+    ],
+    "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
+                      "./hpp/",
+                      "./include/"
+    ],
+    "libraries": []
+  },
+
   "FocusingProtocol": {
     "sources": [ "./ReplicatedFocusingBeliefPropagation/source/FocusingProtocol.pyx",
                  "./src/fprotocol.cpp",

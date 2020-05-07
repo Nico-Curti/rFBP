@@ -75,7 +75,6 @@ class MagT64 (BaseMag):
     if np.isinf(ax) or np.isinf(ay):
       t2 = 0.
     else:
-      lr = lambda x : np.log1p(np.exp(-2 * np.abs(x)))
-      t2 = lr(ax + ay) - lr(ax - ay)
+      t2 = np.log((np.exp(2 * np.abs(ax + ay)) + 1) / (np.exp(2 * np.abs(ax - ay)) + 1)) + 2 * np.abs(ax - ay) - 2 * np.abs(ax + ay)
 
     return self.__class__(np.mean((t1, t2)))

@@ -112,7 +112,7 @@ def mcrossentropy (x, y):
 @mcrossentropy.register(MagP64)
 def _ (x, y):
   _check_mag(y, MagP64)
-  return -x.mag * np.arctanh(y.mag) - np.log(1. - y.mag**2) * .5 + np.log(2)
+  return -x.mag * np.arctanh(y.mag) - np.log1p(- y.mag**2) * .5 + np.log(2)
 
 @mcrossentropy.register(MagT64)
 def _ (x, y):
@@ -153,8 +153,6 @@ def _ (u0, u):
 
   if not all(isinstance(i, MagT64) for i in u):
     raise ValueError('Incompatible type found. x must be an iterable of Mags')
-
-  prod = lambda args: reduce(op.mul, args, 1)
 
   s1 = sum((i.mag for i in u if not np.isinf(i.mag)))
   s1 += 0. if np.isinf(u0.mag) else u0.mag
@@ -223,8 +221,7 @@ def _ (H, ap, am):
       if not np.isinf(am):
         t1 -= abs(xh) - a_am
 
-      t2 = np.log( (np.exp(2. * abs(xH)) + 1.) * (np.exp(2. * abs(am)) + 1.) / ((np.exp(2. * abs(ap)) + 1.) * \
-           (np.exp(2. * abs(xh)) + 1.))) -2. * abs(xH) + 2. * abs(ap) + 2. * abs(xh) - 2. * abs(am)
+      t2 = np.log( (np.exp(2. * abs(xH)) + 1.) * (np.exp(2. * abs(am)) + 1.) / ((np.exp(2. * abs(ap)) + 1.) * (np.exp(2. * abs(xh)) + 1.))) - 2. * abs(xH) + 2. * abs(ap) + 2. * abs(xh) - 2. * abs(am)
 
   return MagT64((t1 + t2) * .5)
 

@@ -135,9 +135,9 @@ struct MagT64
                                                                                              (ax < ay && ax >= -ay)  ?
                                                                                              2. * ax                 :
                                                                                             -2. * ay;
-                                                                           const double t2 = (mag :: isinf(ax) || mag :: isinf(ay)) ?
-                                                                                             0.                                     :
-                                                                                             mag :: lr(ax + ay) - mag :: lr(ax - ay);
+                                                                           const double t2 = (mag :: isinf < MagT64 >(ax) || mag :: isinf < MagT64 >(ay)) ?
+                                                                                             0.                                                           :
+                                                                                             std :: log((std :: exp(2 * std :: abs(ax + ay)) + 1) / (std :: exp(2 * std :: abs(ax - ay)) + 1)) + 2 * std :: abs(ax - ay) - 2 * std :: abs(ax + ay);
                                                                            return MagT64((t1 + t2) * .5);
                                                                          }
 

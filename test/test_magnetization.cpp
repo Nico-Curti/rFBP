@@ -50,12 +50,12 @@ TEST_CASE ( "Test magnetization functions", "[magnetization]" )
     const double r32 = mag :: sign0(-rng_x);
 
     REQUIRE ( (r31 == 1L || r31 == -1L) );
-    REQUIRE ( r32 == 1L );
+    REQUIRE ( r32 == -1L );
 
     // test isinf
-    const bool r41 = mag :: isinf(rng_x);
-    const bool r42 = mag :: isinf(INF);
-    const bool r43 = mag :: isinf(rng_x / 0.);
+    const bool r41 = mag :: isinf < MagP64 >(rng_x);
+    const bool r42 = mag :: isinf < MagP64 >(INF);
+    const bool r43 = mag :: isinf < MagP64 >(rng_x / 0.);
 
     REQUIRE ( r41 == false );
     REQUIRE ( r42 == true );
@@ -99,8 +99,8 @@ TEST_CASE ( "Test magnetization functions", "[magnetization]" )
     const long int r82 = mag :: sign0(-m);
 
     REQUIRE ( (r81 == 1L || r81 == -1L) );
-    REQUIRE ( r81 == -1L );
-    REQUIRE ( r82 ==  1L );
+    REQUIRE ( r81 == 1L );
+    REQUIRE ( r82 == -1L );
 
     // test logmag2p
     const double r91 = mag :: logmag2p(MagP64(0.));

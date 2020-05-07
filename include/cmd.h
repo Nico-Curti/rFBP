@@ -21,7 +21,7 @@
 * @param[out] damping damping parameter for training protocol
 * @param[out] accuracy1 accuracy of the messages computation at the hidden units level (choose between 'exact'(default), 'accurate', 'approx', 'none')
 * @param[out] accuracy2 accuracy of the messages computation at the output units level (choose between 'exact'(default), 'accurate', 'approx', 'none')
-* @param[out] fprotocol specify protocol : (0) Scooping, (1) PseudoReinforcement(default), (2) FreeScoping, (3) StandardReinforcement
+* @param[out] fprotocol specify protocol : scooping, pseudo_reinforcement (default), free_scoping, standard_reinforcement
 * @param[out] epsil threshold for convergence
 * @param[out] nth max number of threads exploitable
 * @param[out] max_steps max number of steps for chosen protocol

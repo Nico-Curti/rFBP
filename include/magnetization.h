@@ -44,18 +44,20 @@ namespace mag
   /**
   * @brief check if is infinite
   *
+  * @tparam Mag magnetization type (MagP or MagT)
   * @param x double value
   *
-  * @return bolean true if is inf or -inf else false
+  * @return MagP64: boolean true if is inf or -inf else false; MagT64: boolean true if is nan or -nan else false;
   */
-                         bool     isinf         (const double & x);
+  template < class Mag > bool     isinf         (const double & x);
+
   /**
   * @brief sign of magnetization
   *
   * @tparam Mag magnetization type (MagP or MagT)
   * @param m Mag
   *
-  * @return bolean sign of magnetization
+  * @return boolean sign of magnetization
   */
   template < class Mag > bool     signbit       (const Mag & m);
 

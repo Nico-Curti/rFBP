@@ -21,9 +21,16 @@ namespace mag
     return std :: signbit(x) ? -1L : 1L;
   }
 
+  template < class Mag >
   bool isinf (const double & x)
   {
-    return ( ( (x == INF) || (x == -INF) ) || (std :: isinf(x)) );
+    static_assert( std :: is_same < Mag, MagP64 > :: value ||
+                   std :: is_same < Mag, MagT64 > :: value,
+                   "isinf function! Incompatible types found.");
+    if constexpr ( std :: is_same < Mag, MagP64 > :: value )
+      return ( ( (x == INF) || (x == -INF) ) || (std :: isinf(x)) );
+    else
+      return ( ( (x == INF) || (x == -INF) ) || (std :: isinf(x)) || (std :: isnan(x)) );
   }
 
   template < class Mag >
@@ -224,10 +231,10 @@ namespace mag
       const double ax = x.mag;
       const double ay = y.mag;
 
-      return !mag :: isinf(ax) && !mag :: isinf(ay)                                                 ?
+      return !mag :: isinf < Mag >(ax) && !mag :: isinf < Mag >(ay)                                                 ?
               std :: abs(ax + ay) - std :: abs(ax) - std :: abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
-              mag :: isinf(ax) && !mag :: isinf(ay) ? sign(ax) * ay - std :: abs(ay) - lr(ay)       :
-             !mag :: isinf(ax) &&  mag :: isinf(ay) ? sign(ay) * ax - std :: abs(ax) - lr(ax)       :
+              mag :: isinf < Mag >(ax) && !mag :: isinf < Mag >(ay) ? sign(ax) * ay - std :: abs(ay) - lr(ay)       :
+             !mag :: isinf < Mag >(ax) &&  mag :: isinf < Mag >(ay) ? sign(ay) * ax - std :: abs(ax) - lr(ax)       :
               sign(ax) == sign(ay) ? 0. : -INF;
     }
   }
@@ -240,12 +247,12 @@ namespace mag
                    "mcrossentropy function! Incompatible types found.");
 
     if constexpr ( std :: is_same < Mag, MagP64 > :: value )
-      return (-x.mag) * std :: atanh(y.mag) - std :: log(1. - y.mag * y.mag) * .5 + log_2;
+      return (-x.mag) * std :: atanh(y.mag) - std :: log1p(- y.mag * y.mag) * .5 + log_2;
     else
     {
       const double tx = x.value();
       const double ay = y.mag;
-      return !mag :: isinf(ay)                                ?
+      return !mag :: isinf < Mag >(ay)                        ?
              -std :: abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
              (sign(tx) != sign(ay))                           ?
              INF                                              :
@@ -275,7 +282,7 @@ namespace mag
     else
     {
       const double a0   = u0.mag;
-      const bool is_inf = mag :: isinf(a0);
+      const bool is_inf = mag :: isinf < Mag >(a0);
       double s1     = is_inf ? 0.       : a0;
       double s2     = is_inf ? 0.       : std :: abs(a0);
       double s3     = is_inf ? 0.       : lr(a0);
@@ -283,7 +290,7 @@ namespace mag
       for (long int i = 0L; i < nu; ++i)
       {
         const double ai = u[i].mag;
-        if (!mag :: isinf(ai))
+        if (!mag :: isinf < Mag >(ai))
         {
           s1 += ai;
           s2 += std :: abs(ai);
@@ -311,9 +318,9 @@ namespace mag
       const double xh   = aH + am;
       const double a_ap = std :: abs(ap);
       const double a_am = std :: abs(am);
-      const bool inf_ap = mag :: isinf(ap);
-      const bool inf_am = mag :: isinf(am);
-      if (mag :: isinf(aH))
+      const bool inf_ap = mag :: isinf < Mag >(ap);
+      const bool inf_am = mag :: isinf < Mag >(am);
+      if (mag :: isinf < Mag >(aH))
       {
         if (!inf_ap && !inf_am)
         {

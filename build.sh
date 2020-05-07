@@ -19,7 +19,6 @@ else
   allow_omp=OFF;
 fi
 
-allow_omp=OFF;
 
 if [ "$build_type" == "" ]; then
   rm -rf build_release

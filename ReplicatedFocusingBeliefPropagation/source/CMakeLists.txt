@@ -12,6 +12,12 @@ set_source_files_properties( ${PYC_SRC_DIR}/rFBP.pyx PROPERTIES CYTHON_IS_CXX TR
 include_directories(${PYC_INC_DIR})
 
 # Multi-file cython modules do not appear to be working at the moment.
+cython_add_module( atanherf  ${PYC_SRC_DIR}/FocusingProtocol.pyx
+                                                                 ${SRC_DIR}/atanherf.cpp
+                                                                 ${SRC_DIR}/spline.cpp
+                                                                 ${SRC_DIR}/utils.cpp
+                                                                 )
+
 cython_add_module( FocusingProtocol  ${PYC_SRC_DIR}/FocusingProtocol.pyx
                                                                          ${SRC_DIR}/fprotocol.cpp
                                                                          ${SRC_DIR}/utils.cpp
@@ -36,6 +42,6 @@ cython_add_module( rFBP  ${PYC_SRC_DIR}/rFBP.pyx
 
 
 # Installation of targets
-install(TARGETS FocusingProtocol  DESTINATION ReplicatedFocusingBeliefPropagation/${PYC_SRC_DIR}/)
-install(TARGETS Patterns          DESTINATION ReplicatedFocusingBeliefPropagation/${PYC_SRC_DIR}/)
-install(TARGETS rFBP              DESTINATION ReplicatedFocusingBeliefPropagation/${PYC_SRC_DIR}/)
+install(TARGETS FocusingProtocol  DESTINATION ${PYC_SRC_DIR}/)
+install(TARGETS Patterns          DESTINATION ${PYC_SRC_DIR}/)
+install(TARGETS rFBP              DESTINATION ${PYC_SRC_DIR}/)

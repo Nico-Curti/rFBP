@@ -53,7 +53,7 @@ A first implementation of the algorithm was proposed in the original paper [[Bal
 The original version of the code was written in `Julia` language and despite it is a quite efficient implementation the `Julia` programming language stays on difficult and far from many users.
 To broaden the scope and use of the method, a `C++` implementation was developed with a joint `Cython` wrap for `Python` users.
 The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enhance its usability.
-This implementation is optimized for parallel computing and is endowed with a custom `C++` library called [`Scorer`](https://github.com/Nico-Curti/scorer) for further details), which is able to compute a large number of statistical measurements based on a hierarchical graph scheme.
+This implementation is optimized for parallel computing and is endowed with a custom `C++` library called [`Scorer`](https://github.com/Nico-Curti/scorer)), which is able to compute a large number of statistical measurements based on a hierarchical graph scheme.
 With this optimized implementation and its [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) compatibility we try to encourage researchers to approach these alternative algorithms and to use them more frequently on real context.
 
 As the `Julia` implementation also the `C++` one provides the entire `rFBP` framework in a single library callable via a command line interface.
@@ -70,7 +70,7 @@ C++ supported compilers:
 
 ![gcc version](https://img.shields.io/badge/gcc-4.8.5%20|%204.9.*%20|%205.*%20|%206.*%20|%207.*%20|%208.*%20|%209.*-yellow.svg)
 
-![clang version](https://img.shields.io/badge/clang-5.*%20|%206.*%20|%207.*%20|-red.svg)
+![clang version](https://img.shields.io/badge/clang-3.6%20|3.9%20|5.*%20|%206.*%20|%207.*%20|-red.svg)
 
 ![msvc version](https://img.shields.io/badge/msvc-vs2017%20x86%20|%20vs2017%20x64-blue.svg)
 
@@ -217,7 +217,7 @@ optional arguments:
         -g,   --randfact                Seed random generator of Cavity Messages(default: 0.1)
         -d,   --damping                 Damping parameter(default: 0.5)
         -a,   --accuracy                Accuracy of the messages computation at the hidden units level (choose between 'exact'(default), 'accurate', 'approx', 'none')
-        -p,   --protocol                Specify protocol : (0) Scooping, (1) PseudoReinforcement(default), (2) FreeScoping, (3) StandardReinforcement
+        -p,   --protocol                Specify protocol : scooping, pseudo_reinforcement (default), free_scoping, standard_reinforcement
         -e,   --epsilon                 Threshold for convergence(default: 0.1)
         -s,   --steps                   Max Number of Steps for chosen protocol(default: 101)
         -m,   --mag                     Specify Magnetization: (0) MagnetizationP (MagP64), (1) MagnetizationT (MagT64)

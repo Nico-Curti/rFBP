@@ -36,11 +36,17 @@ namespace mag
     return std :: signbit(x) ? -1L : 1L;
   }
 
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
   bool isinf (const double & x)
   {
     return ( ( (x == INF) || (x == -INF) ) || (std :: isinf(x)) );
   }
 
+  template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
+  bool isinf (const double & x)
+  {
+    return ( ( (x == INF) || (x == -INF) ) || (std :: isinf(x)) || (std :: isnan(x)) );
+  }
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
   bool signbit (const Mag & m)
@@ -244,24 +250,24 @@ namespace mag
     const double ax = x.mag,
                   ay = y.mag;
 
-    return !mag :: isinf(ax) && !mag :: isinf(ay)                                                 ?
+    return !mag :: isinf < MagT64 >(ax) && !mag :: isinf < MagT64 >(ay)                                                 ?
             std :: abs(ax + ay) - std :: abs(ax) - std :: abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
-            mag :: isinf(ax) && !mag :: isinf(ay) ? sign(ax) * ay - std :: abs(ay) - lr(ay)       :
-           !mag :: isinf(ax) &&  mag :: isinf(ay) ? sign(ay) * ax - std :: abs(ax) - lr(ax)       :
+            mag :: isinf < MagT64 >(ax) && !mag :: isinf < MagT64 >(ay) ? sign(ax) * ay - std :: abs(ay) - lr(ay)       :
+           !mag :: isinf < MagT64 >(ax) &&  mag :: isinf < MagT64 >(ay) ? sign(ay) * ax - std :: abs(ax) - lr(ax)       :
             sign(ax) == sign(ay) ? 0. : -INF;
   }
 
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * >
   double mcrossentropy (const Mag & x, const Mag & y)
   {
-    return (-x.mag) * std :: atanh(y.mag) - std :: log(1. - y.mag * y.mag) * .5 + log_2;
+    return (-x.mag) * std :: atanh(y.mag) - std :: log1p(- y.mag * y.mag) * .5 + log_2;
   }
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
   double mcrossentropy (const Mag & x, const Mag & y)
   {
     const double tx = x.value(),
                  ay = y.mag;
-    return !mag :: isinf(ay)                                ?
+    return !mag :: isinf < MagT64 >(ay)                     ?
            -std :: abs(ay) * (sign0(ay) * tx - 1.) + lr(ay) :
            (sign(tx) != sign(ay))                           ?
            INF                                              :
@@ -285,7 +291,7 @@ namespace mag
   double logZ (const Mag & u0, const Mag * u, const long int & nu)
   {
     const double a0   = u0.mag;
-    const bool is_inf = mag :: isinf(a0);
+    const bool is_inf = mag :: isinf < MagT64 >(a0);
     double s1     = is_inf ? 0.       : a0;
     double s2     = is_inf ? 0.       : std :: abs(a0);
     double s3     = is_inf ? 0.       : lr(a0);
@@ -293,7 +299,7 @@ namespace mag
     for (long int i = 0L; i < nu; ++i)
     {
       const double ai = u[i].mag;
-      if (!mag :: isinf(ai))
+      if (!mag :: isinf < MagT64 >(ai))
       {
         s1 += ai;
         s2 += std :: abs(ai);
@@ -317,9 +323,9 @@ namespace mag
                    xh   = aH + am,
                    a_ap = std :: abs(ap),
                    a_am = std :: abs(am);
-      const bool inf_ap = mag :: isinf(ap),
-                 inf_am = mag :: isinf(am);
-      if (mag :: isinf(aH))
+      const bool inf_ap = mag :: isinf < MagT64 >(ap),
+                 inf_am = mag :: isinf < MagT64 >(am);
+      if (mag :: isinf < MagT64 >(aH))
       {
         if (!inf_ap && !inf_am)
         {
