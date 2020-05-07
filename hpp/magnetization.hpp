@@ -278,7 +278,7 @@ namespace mag
       const bool is_inf = mag :: isinf(a0);
       double s1     = is_inf ? 0.       : a0;
       double s2     = is_inf ? 0.       : std :: abs(a0);
-      double s3     = is_inf ? 1.       : a0;
+      double s3     = is_inf ? 0.       : lr(a0);
       double hasinf = is_inf ? sign(a0) : 0.;
       for (long int i = 0L; i < nu; ++i)
       {
@@ -287,12 +287,12 @@ namespace mag
         {
           s1 += ai;
           s2 += std :: abs(ai);
-          s3 *= ai;
+          s3 += lr(ai);
         }
         else if (hasinf == 0)        hasinf = sign(ai);
         else if (hasinf != sign(ai)) return -INF;
       }
-      return std :: abs(s1) - s2 + lr(s1 / s3);
+      return std :: abs(s1) - s2 + lr(s1) - s3;
     }
   }
 

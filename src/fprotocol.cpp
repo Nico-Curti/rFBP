@@ -41,7 +41,7 @@ FocusingProtocol :: FocusingProtocol (const std :: string & prot, const long int
       for (long int i = 0L; i < size; ++i)
       {
         this->gamma[i] = std :: atanh(std :: sqrt(i * step));  // std :: atanh(std :: pow(i * drho, .5));
-        this->n_rep[i] = 1. + i * step / (1. - i * step);      // 1. + std :: pow(drho * i, 1. - 2. * x) / (1. - drho * i);
+        this->n_rep[i] = 1. + 1. / (1. - i * step);      // 1. + std :: pow(drho * i, 1. - 2. * x) / (1. - drho * i);
         this->beta[i]  = INF;
       }
 

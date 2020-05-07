@@ -56,14 +56,6 @@ class BaseMag (object):
     '''
     return self.__class__(self.mag + m.mag)
 
-  @_require_mag
-  def __iadd__ (self, m):
-    '''
-    Overload operator +=
-    '''
-    self.mag += m.mag
-    return self
-
   def __truediv__ (self, x):
     '''
     Overload operator /

@@ -1078,7 +1078,7 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
 #pragma omp single
   {
 #endif
-
+    
     messages        = (initmess.empty())                           ?
                       Cavity_Message<Mag>(M, N, K, randfact, seed) :
                       Cavity_Message<Mag>(initmess, bin_mess)      ;

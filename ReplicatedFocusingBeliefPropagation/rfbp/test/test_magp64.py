@@ -92,17 +92,6 @@ class TestMagP64:
     assert np.isclose(x.mag, self.m1.mag)
     assert np.isclose(x.value, self.m1.value)
 
-  def test_iadd_operator (self):
-    x = self.m1 + self.m2
-    x += self.m2
-    assert np.isclose(x.mag, self.m1.mag + self.m2.mag * 2)
-    assert np.isclose(x.value, self.m1.value + self.m2.value * 2)
-
-    y = x
-    x += self.null
-    assert np.isclose(x.mag, y.mag)
-    assert np.isclose(x.value, y.value)
-
   def test_div_operator (self):
     x = self.m1 / self.y
     assert np.isclose(x.mag, self.m1.mag / self.y)

@@ -261,7 +261,7 @@ setup(
                                                             os.path.join('usr', 'local', 'lib'),
                                               ],  # path to .a or .so file(s)
                                               extra_compile_args = whole_compiler_args,
-                                              extra_link_args = [],
+                                              extra_link_args = linker_args,
                                               language='c++'
                                               )
 

@@ -205,7 +205,7 @@ class TestMagnetization:
     u0 = MagT64(1.)
 
     x = mag.logZ(u0, u)
-    assert np.isclose(x, mag.lr(6))
+    assert np.isclose(x, -0.7615619220643571, rtol=1e-4)
 
     u.append(MagT64(-1.))
     x = mag.logZ(u0, u)

@@ -44,7 +44,7 @@ TEST_CASE ( "Test different focusing protocol", "[fprotocol]" )
     // check starting and last values
     REQUIRE ( fp.gamma[0] == 0. );
     REQUIRE ( fp.gamma[max_steps - 1L] == INF );
-    REQUIRE ( fp.n_rep[0] == 1. );
+    REQUIRE ( fp.n_rep[0] == 2. );
 
     // check increment range
     // check all values equal

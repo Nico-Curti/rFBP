@@ -618,13 +618,6 @@ void Cavity_Message < Mag > :: save_messages (const std :: string & filename)
   for (long int i = 0L; i < this->K; ++i)
     for (long int j = 0L; j < this->N; ++j)
     {
-      double value = this->m_j_star[i][j].value();
-      os.write( reinterpret_cast<const char *> (&value), sizeof( double ));
-    }
-
-  for (long int i = 0L; i < this->K; ++i)
-    for (long int j = 0L; j < this->N; ++j)
-    {
       double value = this->m_star_j[i][j].value();
       os.write( reinterpret_cast<const char *> (&value), sizeof( double ));
     }

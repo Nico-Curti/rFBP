@@ -162,8 +162,8 @@ def _ (u0, u):
   s2 = sum((abs(i.mag) for i in u if not np.isinf(i.mag)))
   s2 += 0. if np.isinf(u0.mag) else u0.mag
 
-  s3 = prod((i.mag for i in u if not np.isinf(i.mag)))
-  s3 *= 1. if np.isinf(u0.mag) else u0.mag
+  s3 = sum((lr(i.mag) for i in u if not np.isinf(i.mag)))
+  s3 += 0. if np.isinf(u0.mag) else lr(u0.mag)
 
   hasinf = np.sign(u0.mag) if np.isinf(u0.mag) else 0.
   for i in u:
@@ -172,7 +172,7 @@ def _ (u0, u):
     elif hasinf != np.sign(i.mag):
       return -float('Inf')
 
-  return np.abs(s1) - s2 + lr(s1 / s3)
+  return np.abs(s1) - s2 + lr(s1) - s3
 
 
 @singledispatch

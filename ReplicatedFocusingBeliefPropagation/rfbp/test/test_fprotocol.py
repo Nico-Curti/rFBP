@@ -71,7 +71,7 @@ class TestProtocol:
     # check starting and last values
     assert fprotocol.gamma[0] == 0.
     assert fprotocol.gamma[self.MAX_STEPS - 1] == float('inf')
-    assert fprotocol.n_rep[0] == 1.
+    assert fprotocol.n_rep[0] == 2.
 
     # check increment range
     assert sorted(fprotocol.gamma) == fprotocol.gamma

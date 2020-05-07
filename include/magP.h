@@ -90,16 +90,6 @@ struct MagP64
   MagP64 operator + (const MagP64 & m)                        { return MagP64(this->mag + m.mag); }
 
   /**
-  * @brief += operator
-  *
-  * @detail add magnetization AND value
-  *
-  * @param m MagP64 object
-  *
-  */
-  MagP64& operator += (const MagP64 & m)                      { this->mag += m.mag; return *this; }
-
-  /**
   * @brief / operator
   *
   * @detail divide magnetization (mag / x)

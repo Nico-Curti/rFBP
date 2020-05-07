@@ -98,16 +98,6 @@ struct MagT64
   MagT64 operator + (const MagT64 & m)                                   { return MagT64(this->mag + m.mag); }
 
   /**
-  * @brief += operator
-  *
-  * @detail add magnetization AND value (as tanh(m1 + m2))
-  *
-  * @param m MagT64 object
-  *
-  */
-  MagT64& operator += (const MagT64 & m)                                 { this->mag += m.mag; return *this; }
-
-  /**
   * @brief / operator
   *
   * @detail divide magnetization (mag / x)
