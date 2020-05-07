@@ -56,3 +56,6 @@ html*
 # temp files
 messages_*
 results_*
+
+# .hypothesis
+.hypothesis
