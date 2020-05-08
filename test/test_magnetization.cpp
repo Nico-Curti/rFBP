@@ -120,12 +120,15 @@ TEST_CASE ( "Test magnetization functions", "[magnetization]" )
     const MagP64 r111 = mag :: couple < MagP64 >(rng_x, rng_y);
     const MagP64 r112 = mag :: couple < MagP64 >(rng_y, rng_x);
     const MagP64 r113 = mag :: couple < MagP64 >(rng_x, 0.);
+    const MagT64 r114 = mag :: couple < MagT64 >(rng_x, 0.);
 
     REQUIRE ( (isclose(r111.mag, (rng_x - rng_y)/(rng_x + rng_y)) && isclose(r111.value(), (rng_x - rng_y)/(rng_x + rng_y))));
     REQUIRE ( isclose(std :: abs(r111.mag), std :: abs(r112.mag)) );
     REQUIRE ( isclose(std :: abs(r111.value()), std :: abs(r112.value())) );
     REQUIRE ( isclose(r113.mag, 1.) );
     REQUIRE ( isclose(r113.value(), 1.) );
+    REQUIRE ( isclose(r114.mag, 30.) );
+    REQUIRE ( isclose(r114.value(), 1.) );
 
     // test damp
     const MagP64 r121 = mag :: damp(m, n, rng_x);
@@ -246,4 +249,3 @@ TEST_CASE ( "Test magnetization functions", "[magnetization]" )
     REQUIRE ( isclose(r214.mag, 0.) );
   }
 }
-

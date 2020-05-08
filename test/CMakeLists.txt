@@ -25,6 +25,9 @@ target_link_libraries(test_pattern ${linked_libs} ${rfbplib})
 add_executable(test_spline ${TEST_DIR}/test_spline.cpp)
 target_link_libraries(test_spline ${linked_libs} ${rfbplib})
 
+add_executable(test_rfbp ${TEST_DIR}/test_rfbp.cpp)
+target_link_libraries(test_rfbp ${linked_libs} ${rfbplib})
+
 # Installation of targets
 
 install(TARGETS test_atanherf           DESTINATION ${OUT_TEST})
@@ -35,3 +38,4 @@ install(TARGETS test_magt               DESTINATION ${OUT_TEST})
 install(TARGETS test_params             DESTINATION ${OUT_TEST})
 install(TARGETS test_pattern            DESTINATION ${OUT_TEST})
 install(TARGETS test_spline             DESTINATION ${OUT_TEST})
+install(TARGETS test_rfbp               DESTINATION ${OUT_TEST})

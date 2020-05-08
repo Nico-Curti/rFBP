@@ -77,24 +77,139 @@ class TestRFBP:
 
   def test_fit (self):
 
-    params = { 'mag' : MagP64,
-               'hidden' : 3,
-               'max_iter' : 1,
-               'seed' : 135,
-               'damping' : .5,
-               'accuracy' : ('accurate', 'exact'),
-               'randfact' : .1,
-               'epsil' : .5,
-               'protocol' : 'pseudo_reinforcement',
-               'size' : 101,
-               'nth' : 2
-              }
+    K = 1
+    M = 3
+    N = 101
+    data1 = np.ones( (M, N) )
+    labels1 = np.ones( M )
+    data2 = - data1
+    labels2 = - labels1
 
-    rfbp = rFBP(**params)
+    # + / +
+    pattern1 = Pattern(X = data1, y = labels1)
+    # + / -
+    pattern2 = Pattern(X = data1, y = labels2)
+    # - / +
+    pattern3 = Pattern(X = data2, y = labels1)
+    # - / -
+    pattern4 = Pattern(X = data2, y = labels2)
 
-    # train
-    pattern = Pattern().random(shape=(20, 101))
-    rfbp.fit(pattern)
+
+    for seed in np.random.randint(1, 99, 10):
+      params = { 'mag' : MagP64,
+                 'hidden' : K,
+                 'max_iter' : 2,
+                 'seed' : seed,
+                 'damping' : .05,
+                 'accuracy' : ('exact', 'exact'),
+                 'randfact' : .1,
+                 'epsil' : .9,
+                 'protocol' : 'pseudo_reinforcement',
+                 'size' : 2,
+                 'nth' : 2
+                }
+
+      rfbp = rFBP(**params)
+      # train
+
+      rfbp.fit(pattern1)
+      assert np.sum(rfbp.weights_) > 0
+
+      rfbp.fit(pattern2)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern3)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern4)
+      assert np.sum(rfbp.weights_) > 0
+
+      params['mag'] = MagT64
+
+      rfbp = rFBP(**params)
+      # train
+
+      rfbp.fit(pattern1)
+      assert np.sum(rfbp.weights_) > 0
+
+      rfbp.fit(pattern2)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern3)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern4)
+      assert np.sum(rfbp.weights_) > 0
+
+      params['mag'] = MagP64
+      params['accuracy'] = ('accurate', 'accurate')
+
+      rfbp = rFBP(**params)
+      # train
+
+      rfbp.fit(pattern1)
+      assert np.sum(rfbp.weights_) > 0
+
+      rfbp.fit(pattern2)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern3)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern4)
+      assert np.sum(rfbp.weights_) > 0
+
+      params['mag'] = MagT64
+
+      rfbp = rFBP(**params)
+      # train
+
+      rfbp.fit(pattern1)
+      assert np.sum(rfbp.weights_) > 0
+
+      rfbp.fit(pattern2)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern3)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern4)
+      assert np.sum(rfbp.weights_) > 0
+
+      params['mag'] = MagP64
+      params['accuracy'] = ('none', 'none')
+
+      rfbp = rFBP(**params)
+      # train
+
+      rfbp.fit(pattern1)
+      assert np.sum(rfbp.weights_) > 0
+
+      rfbp.fit(pattern2)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern3)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern4)
+      assert np.sum(rfbp.weights_) > 0
+
+      params['mag'] = MagT64
+
+      rfbp = rFBP(**params)
+      # train
+
+      rfbp.fit(pattern1)
+      assert np.sum(rfbp.weights_) > 0
+
+      rfbp.fit(pattern2)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern3)
+      assert np.sum(rfbp.weights_) < 0
+
+      rfbp.fit(pattern4)
+      assert np.sum(rfbp.weights_) > 0
 
 
   def test_predict (self):

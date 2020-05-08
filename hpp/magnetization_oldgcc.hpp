@@ -181,7 +181,7 @@ namespace mag
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * >
   Mag couple (const double & x1, const double & x2)
   {
-    return convert < MagT64 >((std :: log(x1) - std :: log(x2)) * .5);
+    return MagT64(clamp((std :: log(x1 / x2)) * .5, -30., 30.));
   }
 
 

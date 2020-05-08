@@ -148,7 +148,7 @@ namespace mag
     if constexpr ( std :: is_same < Mag, MagP64 > :: value )
       return MagP64( (x1 - x2) / (x1 + x2) );
     else
-      return convert < MagT64 >((std :: log(x1 / x2)) * .5);
+      return MagT64(clamp((std :: log(x1 / x2)) * .5, -30., 30.));
   }
 
 
