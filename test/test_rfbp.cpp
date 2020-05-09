@@ -526,36 +526,36 @@ TEST_CASE ( "Test rfbp functions", "[rfbp]" )
     {
       int seed = dist(engine);
       weights = focusingBP < MagP64 > (K, pattern1, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
       weights = focusingBP < MagP64 > (K, pattern2, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagP64 > (K, pattern3, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagP64 > (K, pattern4, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
 
       weights = focusingBP < MagT64 > (K, pattern1, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
       weights = focusingBP < MagT64 > (K, pattern2, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagT64 > (K, pattern3, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagT64 > (K, pattern4, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
 
@@ -563,72 +563,72 @@ TEST_CASE ( "Test rfbp functions", "[rfbp]" )
       accuracy = "accurate";
 
       weights = focusingBP < MagP64 > (K, pattern1, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
       weights = focusingBP < MagP64 > (K, pattern2, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagP64 > (K, pattern3, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagP64 > (K, pattern4, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
 
       weights = focusingBP < MagT64 > (K, pattern1, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
       weights = focusingBP < MagT64 > (K, pattern2, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagT64 > (K, pattern3, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagT64 > (K, pattern4, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
 
       accuracy = "none";
 
       weights = focusingBP < MagP64 > (K, pattern1, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
       weights = focusingBP < MagP64 > (K, pattern2, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagP64 > (K, pattern3, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagP64 > (K, pattern4, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
 
       weights = focusingBP < MagT64 > (K, pattern1, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
 
       weights = focusingBP < MagT64 > (K, pattern2, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagT64 > (K, pattern3, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result < 0 );
 
       weights = focusingBP < MagT64 > (K, pattern4, MAX_ITERS, MAX_STEPS, seed, DAMPING, accuracy, accuracy, RANDFACT, fp, EPSIL, 1, "", "");
-      result = std :: accumulate( weights, weights + K, 0., [](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
+      result = std :: accumulate( weights, weights + K, 0., [&](const double & val, const long int * wk) {return val + std :: accumulate(wk, wk + M, 0.);} );
       REQUIRE ( result > 0 );
     }
 

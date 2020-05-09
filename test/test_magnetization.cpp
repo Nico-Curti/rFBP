@@ -192,7 +192,7 @@ TEST_CASE ( "Test magnetization functions", "[magnetization]" )
     REQUIRE ( isclose(r172, - std :: log(1. - m.mag*m.mag) * .5 + std :: log(2)) );
     REQUIRE ( isclose(r173, std :: log(2)) );
     REQUIRE ( isclose(r173, r171) );
-    REQUIRE ( (r174 == -INF || r174 == INF) );
+    REQUIRE ( mag :: isinf < MagP64 >(r174) );
 
     // test logZ
     // const MagP64 pu0 = MagP64(1.);
