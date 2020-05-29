@@ -243,67 +243,67 @@ jobs:
         cmake --build . --target install -- -j8
         cd ..
 
-    - name: 'Catch tests'
-      run: |
-        export LD_LIBRARY_PATH=$PWD/lib/:$LD_LIBRARY_PATH
-        cd test
-        chmod 777 ./run_test.sh
-        ./run_test.sh
+#    - name: 'Catch tests'
+#      run: |
+#        export LD_LIBRARY_PATH=$PWD/lib/:$LD_LIBRARY_PATH
+#        cd test
+#        chmod 777 ./run_test.sh
+#        ./run_test.sh
 
 
 
-  ubuntu-cmake-omp-verbose-stats-test-py:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version: [3.5, 3.6, 3.7]
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - uses: actions/checkout@v2
-
-    - name: 'Update apt'
-      run: sudo apt update
-    - name: 'Install CMake'
-      run: sudo apt install cmake
-
-    - name: Install dependencies
-      run: |
-        git submodule update --init --recursive
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-    - name: 'Configure build'
-      run: |
-        mkdir buildDirectory_debug
-        cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
-        cd ..
-        mkdir buildDirectory_release
-        cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
-        cd ..
-    - name: 'Build'
-      run: |
-        cd buildDirectory_debug
-        cmake --build . --target install -- -j8
-        cd ..
-        cd buildDirectory_release
-        cmake --build . --target install -- -j8
-        cd ..
-
-    - name: 'Catch tests'
-      run: |
-        export LD_LIBRARY_PATH=$PWD/lib/:$LD_LIBRARY_PATH
-        cd test
-        chmod 777 ./run_test.sh
-        ./run_test.sh
+#  ubuntu-cmake-omp-verbose-stats-test-py:
+#    runs-on: ubuntu-latest
+#
+#    strategy:
+#      matrix:
+#        python-version: [3.5, 3.6, 3.7]
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Set up Python ${{ matrix.python-version }}
+#      uses: actions/setup-python@v2
+#      with:
+#        python-version: ${{ matrix.python-version }}
+#
+#    - uses: actions/checkout@v2
+#
+#    - name: 'Update apt'
+#      run: sudo apt update
+#    - name: 'Install CMake'
+#      run: sudo apt install cmake
+#
+#    - name: Install dependencies
+#      run: |
+#        git submodule update --init --recursive
+#        python -m pip install --upgrade pip
+#        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+#
+#    - name: 'Configure build'
+#      run: |
+#        mkdir buildDirectory_debug
+#        cd buildDirectory_debug
+#        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
+#        cd ..
+#        mkdir buildDirectory_release
+#        cd buildDirectory_release
+#        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
+#        cd ..
+#    - name: 'Build'
+#      run: |
+#        cd buildDirectory_debug
+#        cmake --build . --target install -- -j8
+#        cd ..
+#        cd buildDirectory_release
+#        cmake --build . --target install -- -j8
+#        cd ..
+#
+#    - name: 'Catch tests'
+#      run: |
+#        export LD_LIBRARY_PATH=$PWD/lib/:$LD_LIBRARY_PATH
+#        cd test
+#        chmod 777 ./run_test.sh
+#        ./run_test.sh
 
 
 
