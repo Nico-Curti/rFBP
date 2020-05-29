@@ -17,7 +17,9 @@
 
 # Replicated Focusing Belief Propagation algorithm
 
-Optimization and extension of the [**Replicated Focusing Belief Propagation**](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl) Julia package.
+We propose a `C++` version of the [**Replicated Focusing Belief Propagation**](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl) Julia package.
+Our implementation optimizes and extends the original library including multi-threading support and an easy-to-use interface to the main algorithm.
+To further improve the usage of our code, we propose also a `Python` wrap of the library with a full compatibility with the [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) package.
 
 * [Overview](#overview)
 * [Theory](#theory)
