@@ -38,11 +38,11 @@ jobs:
       run: |
         mkdir buildDirectory_debug
         cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=OFF -VERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=OFF -DVERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
         mkdir buildDirectory_release
         cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=OFF -VERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=OFF -DVERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
     - name: 'Build'
       run: |
@@ -85,11 +85,11 @@ jobs:
       run: |
         mkdir buildDirectory_debug
         cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -VERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -DVERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
         mkdir buildDirectory_release
         cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -VERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -DVERBOSE=OFF -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
     - name: 'Build'
       run: |
@@ -132,11 +132,11 @@ jobs:
       run: |
         mkdir buildDirectory_debug
         cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -VERBOSE=ON -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -DVERBOSE=ON -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
         mkdir buildDirectory_release
         cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -VERBOSE=ON -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -DVERBOSE=ON -DSTATS=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
     - name: 'Build'
       run: |
@@ -178,11 +178,11 @@ jobs:
       run: |
         mkdir buildDirectory_debug
         cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -VERBOSE=ON -DSTATS=ON -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
         mkdir buildDirectory_release
         cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -VERBOSE=ON -DSTATS=ON -DBUILD_TEST=OFF -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
     - name: 'Build'
       run: |
@@ -224,11 +224,11 @@ jobs:
       run: |
         mkdir buildDirectory_debug
         cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -VERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=OFF
         cd ..
         mkdir buildDirectory_release
         cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -VERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=OFF
         cd ..
     - name: 'Build'
       run: |
@@ -278,11 +278,11 @@ jobs:
       run: |
         mkdir buildDirectory_debug
         cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -VERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
         cd ..
         mkdir buildDirectory_release
         cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -VERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=ON -DVERBOSE=ON -DSTATS=ON -DBUILD_TEST=ON -DPYrfbp=ON
         cd ..
     - name: 'Build'
       run: |
@@ -330,11 +330,11 @@ jobs:
       run: |
         mkdir buildDirectory_debug
         cd buildDirectory_debug
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DOMP=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
         mkdir buildDirectory_release
         cd buildDirectory_release
-        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=OFF
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DOMP=OFF -DBUILD_TEST=OFF -DPYrfbp=OFF
         cd ..
     - name: 'Build'
       run: |
