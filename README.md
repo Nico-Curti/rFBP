@@ -64,7 +64,32 @@ The main object categories needed by the algorithm are wrapped in handy `C++` ob
 
 ## Theory
 
-**TODO**
+The `rFBP` algorithm derives from an out-of-equilibrium (non-Boltzmann) model of the learning process of binary neural networks [[DallAsta101103](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.77.031118)].
+This model mimics a spin glass system whose realizations are equally likely to occur when sharing the same so-called entropy (not the same energy, i.e. out-of-equilibrium).
+This entropy basically counts the number of solutions (zero-energy realizations) around a realization below a fixed-distance.
+
+Within this out-of-equilibrium framework, the objective is to maximize the entropy instead of minimizing the energy.
+From a machine learning standpoint, we aim at those weights sets that perfectly solve the learning process (zero-errors) and that are mathematically closed to each other.
+To this end, the Belief Propagation method [[MézardMontanari](https://web.stanford.edu/~montanar/RESEARCH/book.html)] can be adopted as the underlying learning rule, although it must properly adjusted to take into account the out-of-equilibrium nature of the model.
+
+The model defines two parameters: y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}">.
+The former is a temperature-alike related variable, similar to the one usually exploited by Gradient Descend approaches, but it can be also interpreted as the number of interacting replicas of the system.
+The latter sets the largest distance for surrounding solutions that are considered by entropy.
+The Belief Propagation method needs to be to adjusted by adding incoming extra messages for all weights, in order to involve the interacting replicas of the system.
+This extra term is represented by:
+
+<img src="https://render.githubusercontent.com/render/math?math={\hat{m}^{t + 1}_{\star \to \w_i} = tanh \big[ (y-1) artanh ( m^t_{\w_i \to \star} tanh \gamma ) \big] tanh \gamma}">,
+
+where <img src="https://render.githubusercontent.com/render/math?math={\w_i}"> and <img src="https://render.githubusercontent.com/render/math?math={\star}"> stand respectively for the i-th weight and a representation of all replicas.
+
+The `rFBP` is therefore an adjusted Belief Propagation algorithm, whose general procedure can be summarized as follows:
+- select protocols for y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}">;
+- set first values of y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}"> and run the adjusted-BP method until convergence (<img src="https://render.githubusercontent.com/render/math?math={ < \epsilon}">) or up to a limited-number of iterations;
+- step to the next pair values of y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}"> with respect to the chosen protocols and re-run the adjusted-BP method;
+- keep it going until a solution is reached or protocols end.
+
+The `rFBP` algorithm focuses step by step the replicated system to fall into weights sets extremely closed to many perfect solutions, which ables them to well generalize out of the training set[[Baldassi101103](https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.115.128101)].
+
 
 ## Prerequisites
 
@@ -386,6 +411,12 @@ See [here](https://github.com/Nico-Curti/rFBP/blob/master/CONTRIBUTING.md) for f
 <blockquote>12- C. Baldassi, A. Braunstein. "A Max-Sum algorithm for training discrete neural networks", Journal of Statistical Mechanics: Theory and Experiment, 2015 </blockquote>
 
 <blockquote>13- G. Parisi. "Mean field theory of spin glasses: statics and dynamics", arXiv, 2007 </blockquote>
+
+<blockquote>14- L. Dall'Asta, A. Ramezanpour, R. Zecchina. "Entropy landscape and non-Gibbs solutions in constraint satisfaction problem", Physical Review E, 2008 </blockquote>
+
+<blockquote>15- M. Mézard, A. Montanari. "Information, Physics and Computation", Oxford Graduate Texts, 2009 </blockquote>
+
+<blockquote>16- C. Baldassi, A. Ingrosso, C. Lucibello, L. Saglietti, R. Zecchina. "Subdominant Dense Clusters Allow for Simple Learning and High Computational Performance in Neural Networks with Discrete Synapses", Physical Review Letters, 2015 </blockquote>
 
 ## Authors
 
