@@ -8,7 +8,15 @@ from ReplicatedFocusingBeliefPropagation import MagT64
 from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 
-USE_SCORER = False
+try:
+
+  from scorer import Scorer
+
+  USE_SCORER = True
+
+except ImportError:
+
+  USE_SCORER = False
 
 __author__  = ["Nico Curti", "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']

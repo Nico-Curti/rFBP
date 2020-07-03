@@ -4,7 +4,7 @@
 from __future__ import print_function
 from __future__ import division
 
-import numpy as np
+# import numpy as np
 # from scipy.special import erf
 from ReplicatedFocusingBeliefPropagation.lib.atanherf import _atanherf
 
