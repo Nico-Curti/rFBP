@@ -351,26 +351,6 @@ label = np.random.choice([-1, 1], p=[.5, .5], size=(20, ))
 ```
 
 The input data must be composed by binary variables codified as `[-1, 1]`, since the model works only with spin-like variables.
-We check the consistency of the input variables into the `C++` code (**only** in DEBUG mode) and into the `Python` wrap.
-
-The internal implementation of the algorithm works with a custom data type called `Pattern` (ref. [here](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp/Patterns.py)).
-You can explicitly use a `Pattern` object (loading the dataset from file) or convert your data to it
-
-```python
-data = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, n_feature))
-labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample,))
-
-pt = Pattern(X=data, y=labels)
-# dimensions
-assert pt.shape == (n_sample, n_feature)
-# data
-np.testing.assert_allclose(pt.data, data)
-# labels
-np.testing.assert_allclose(pt.labels, labels)
-```
-
-In the [example](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/example/) folder you can find a training/test example using a pattern imported from file (a more realistic example).
-
 The next step is the creation of the `Replicated Focusing Belief Propagation` model.
 
 ```python
@@ -394,7 +374,29 @@ rfbp.fit(data, label)
 predicted_labels = rfbp.predict(data)
 ```
 
-which is clearly an overfitting! But it works as example :blush: and show you that also the `predict` function requires a `Pattern` object as input **or** it automatically converts your `numpy` data to a `Pattern` type.
+which is clearly an overfitting! But it works as example :blush:
+
+The internal implementation of the algorithm works with a custom data type called `Pattern` (ref. [here](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp/Patterns.py)).
+You can explicitly use a `Pattern` object or convert your data to it
+
+```python
+data = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, n_feature))
+labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample,))
+
+pt = Pattern(X=data, y=labels)
+# dimensions
+assert pt.shape == (n_sample, n_feature)
+# data
+np.testing.assert_allclose(pt.data, data)
+# labels
+np.testing.assert_allclose(pt.labels, labels)
+```
+
+We suggest the usage of this data type if you have to load your data from file.
+We check the consistency of the input variables into the `C++` code (**only** in DEBUG mode) and into the `Python` wrap.
+
+In the [example](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/example/) folder you can find a training/test example using a pattern imported from file (a more realistic example).
+Both the `fit` and `predict` functions works using either a `numpy` array and a `Pattern` object.
 
 ## Testing
 
@@ -475,7 +477,7 @@ See [here](https://github.com/Nico-Curti/rFBP/blob/master/CONTRIBUTING.md) for f
 ## Authors
 
 * <img src="https://avatars0.githubusercontent.com/u/24650975?s=400&v=4" width="25px"> **Nico Curti** [git](https://github.com/Nico-Curti), [unibo](https://www.unibo.it/sitoweb/nico.curti2)
-* <img src="https://avatars3.githubusercontent.com/u/23407684?s=400&v=4" width="25px"> **Daniele Dall'Olio** [git](https://github.com/DanieleDallOlio)
+* <img src="https://avatars3.githubusercontent.com/u/23407684?s=400&v=4" width="25px"> **Daniele Dall'Olio** [git](https://github.com/DanieleDallOlio), [unibo](https://www.unibo.it/sitoweb/daniele.dallolio)
 * <img src="https://avatars2.githubusercontent.com/u/25343321?s=400&v=4" width="25px"> **Daniel Remondini** [git](https://github.com/dremondini), [unibo](https://www.unibo.it/sitoweb/daniel.remondini)
 * **Gastone Castellani** [unibo](https://www.unibo.it/sitoweb/gastone.castellani)
 * <img src="https://avatars2.githubusercontent.com/u/1419337?s=400&v=4" width="25px;"/> **Enrico Giampieri** [git](https://github.com/EnricoGiampieri), [unibo](https://www.unibo.it/sitoweb/enrico.giampieri)

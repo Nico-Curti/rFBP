@@ -19,7 +19,7 @@
 - **Profession**: PhD student at Physics and Anstronomy Department in Bologna
 - **University**: University of Bologna
 - **Location**: Italy
-- **Web page**: [git](https://github.com/DanieleDallOlio)
+- **Web page**: [git](https://github.com/DanieleDallOlio), [unibo](https://www.unibo.it/sitoweb/daniele.dallolio)
 - **Contact me**: [email](mailto:daniele.dallolio@studio.unibo.it)
 
 ## Enrico Giampieri
@@ -30,5 +30,5 @@
 - **Profession**: PhD at Dept. of Experimental, Diagnostic and Specialty Medicine
 - **University**: University of Bologna
 - **Location**: Italy
-- **Web page**: [git](https://github.com/EnricoGiampieri)
+- **Web page**: [git](https://github.com/EnricoGiampieri), [unibo](https://www.unibo.it/sitoweb/enrico.giampieri)
 - **Contact me**: [email](mailto:enrico.giampieri@unibo.it)
