@@ -1,7 +1,7 @@
 # distutils: language = c++
 # cython: language_level=2
 
-cdef extern from "magP.h":
+cdef extern from "magP.h" nogil:
 
   cppclass MagP64:
 

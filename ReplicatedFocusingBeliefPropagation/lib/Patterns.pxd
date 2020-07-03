@@ -5,7 +5,7 @@ from libcpp cimport bool
 from libcpp.string cimport string
 from libcpp.memory cimport unique_ptr
 
-cdef extern from "pattern.h":
+cdef extern from "pattern.h" nogil:
 
   cppclass Patterns:
 

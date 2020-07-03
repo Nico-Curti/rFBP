@@ -156,10 +156,17 @@ class TestPattern:
       print(pt)
 
 
+  def test_wrong_input (self):
+    '''
+    Tests:
+      - test the check binary function
+    '''
 
-if __name__ == '__main__':
+    n_sample = 10
+    n_feature = 20
 
-  test = TestPattern()
-  test.test_null_constructor()
-  test.test_constructor()
-  test.test_random_pattern()
+    data = np.random.uniform(low=0, high=1, size=(n_sample, n_feature))
+    labels = np.random.uniform(low=0, high=1, size=(n_sample,))
+
+    with pytest.raises(ValueError):
+      pt = Pattern(X=data, y=labels)

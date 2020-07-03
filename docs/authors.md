@@ -21,3 +21,14 @@
 - **Location**: Italy
 - **Web page**: [git](https://github.com/DanieleDallOlio)
 - **Contact me**: [email](mailto:daniele.dallolio@studio.unibo.it)
+
+## Enrico Giampieri
+
+<img align="right" width="180" height="183" src="https://avatars2.githubusercontent.com/u/1419337?s=400&v=4"> About me:
+- **Name**: Enrico
+- **Surname**: Giampieri
+- **Profession**: PhD at Dept. of Experimental, Diagnostic and Specialty Medicine
+- **University**: University of Bologna
+- **Location**: Italy
+- **Web page**: [git](https://github.com/EnricoGiampieri)
+- **Contact me**: [email](mailto:enrico.giampieri@unibo.it)

@@ -7,7 +7,7 @@ from libcpp.string cimport string
 from Patterns cimport Patterns
 from FocusingProtocol cimport FocusingProtocol
 
-cdef extern from "rfbp.h":
+cdef extern from "rfbp.h" nogil:
 
   cdef long int ** focusingBP[Mag](const long int & K,
                                    const Patterns & patterns,

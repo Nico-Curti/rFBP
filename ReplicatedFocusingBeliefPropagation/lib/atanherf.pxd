@@ -1,7 +1,7 @@
 # distutils: language = c++
 # cython: language_level=2
 
-cdef extern from "atanherf.h" namespace "AtanhErf":
+cdef extern from "atanherf.h" namespace "AtanhErf" nogil:
 
   double atanherf_largex (const double & x);
   double atanherf_interp (const double & x);

@@ -1083,13 +1083,13 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
                       Cavity_Message<Mag>(M, N, K, randfact, seed) :
                       Cavity_Message<Mag>(initmess, bin_mess)      ;
 
-    outfile         = outfile.empty()                                                                                                                           ?
-                      "results_BPCR_N" + std :: to_string(N) + "_K" + std :: to_string(K) + "_M" + std :: to_string(M) + "_s" + std :: to_string(seed) + ".txt" :
-                      outfile;
+    // outfile         = outfile.empty()                                                                                                                           ?
+    //                   "results_BPCR_N" + std :: to_string(N) + "_K" + std :: to_string(K) + "_M" + std :: to_string(M) + "_s" + std :: to_string(seed) + ".txt" :
+    //                   outfile;
 
-    outmessfiletmpl = outmessfiletmpl.empty()                                                                                                                          ?
-                      "messages_BPCR_N" + std :: to_string(N) + "_K" + std :: to_string(K) + "_M" + std :: to_string(M) + "_gamma_s" + std :: to_string(seed) + ".txt" :
-                      outmessfiletmpl;
+    // outmessfiletmpl = outmessfiletmpl.empty()                                                                                                                          ?
+    //                   "messages_BPCR_N" + std :: to_string(N) + "_K" + std :: to_string(K) + "_M" + std :: to_string(M) + "_gamma_s" + std :: to_string(seed) + ".txt" :
+    //                   outmessfiletmpl;
 
 #ifdef _OPENMP
   } // parallel section

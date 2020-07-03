@@ -1,6 +1,6 @@
 | **Authors**  | **Project** |  **Build Status** | **Code Quality** | **Coverage** |
 |:------------:|:-----------:|:-----------------:|:----------------:|:------------:|
-| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio)   |  **rFBP**  | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : [![appveyor](https://ci.appveyor.com/api/projects/status/obuq56lhyd90pmup?svg=true)](https://ci.appveyor.com/project/Nico-Curti/rfbp) | **Codacy** : [![Codacy](https://api.codacy.com/project/badge/Grade/a6fdac990b6f4141a5bd9e8171ddaf53)](https://www.codacy.com/manual/Nico-Curti/rFBP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nico-Curti/rFBP&amp;utm_campaign=Badge_Grade) <br/> **Codebeat** : [![Codebeat](https://codebeat.co/badges/cc761a7c-79fa-4a66-984f-bef6fd145d34)](https://codebeat.co/projects/github-com-nico-curti-rfbp-master) | [![codecov](https://codecov.io/gh/Nico-Curti/rFBP/branch/master/graph/badge.svg)](https://codecov.io/gh/Nico-Curti/rFBP) |
+| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio) <br/> [**E. Giampieri**](https://github.com/EnricoGiampieri)  |  **rFBP**  | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : [![appveyor](https://ci.appveyor.com/api/projects/status/obuq56lhyd90pmup?svg=true)](https://ci.appveyor.com/project/Nico-Curti/rfbp) | **Codacy** : [![Codacy](https://api.codacy.com/project/badge/Grade/a6fdac990b6f4141a5bd9e8171ddaf53)](https://www.codacy.com/manual/Nico-Curti/rFBP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nico-Curti/rFBP&amp;utm_campaign=Badge_Grade) <br/> **Codebeat** : [![Codebeat](https://codebeat.co/badges/cc761a7c-79fa-4a66-984f-bef6fd145d34)](https://codebeat.co/projects/github-com-nico-curti-rfbp-master) | [![codecov](https://codecov.io/gh/Nico-Curti/rFBP/branch/master/graph/badge.svg)](https://codecov.io/gh/Nico-Curti/rFBP) |
 
 ![rFBP C++ CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20C++%20CI/badge.svg)
 ![rFBP Python CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20Python%20CI/badge.svg)
@@ -30,6 +30,8 @@ To further improve the usage of our code, we propose also a `Python` wrap of the
 * [Installation](#installation)
 * [Efficiency](#efficiency)
 * [Usage](#usage)
+* [Testing](#testing)
+* [Table of contents](#table-of-contents)
 * [Contribution](#contribution)
 * [References](#references)
 * [Authors](#authors)
@@ -91,8 +93,7 @@ The `rFBP` is therefore an adjusted Belief Propagation algorithm, whose general 
 - step to the next pair values of y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}"> with respect to the chosen protocols and re-run the adjusted-BP method;
 - keep it going until a solution is reached or protocols end.
 
-The `rFBP` algorithm focuses step by step the replicated system to fall into weights sets extremely closed to many perfect solutions, which ables them to well generalize out of the training set[[Baldassi101103](https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.115.128101)].
-
+The `rFBP` algorithm focuses step by step the replicated system to fall into weights sets extremely closed to many perfect solutions, which ables them to well generalize out of the training set [[Baldassi101103](https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.115.128101)].
 
 ## Prerequisites
 
@@ -110,6 +111,14 @@ The package installation can be performed via [`CMake`](https://github.com/Nico-
 If you are using the `CMake` (recommended) installer the maximum version of C++ standard is automatic detected.
 
 You can use also the `rFBP` package in `Python` using the `Cython` wrap provided inside this project.
+The only requirements are the following:
+
+* numpy >= 1.15
+* cython >= 0.29
+* scipy >= 1.2.1
+* scikit-learn >= 0.20.3
+* requests >= 2.22.0
+
 The `Python` wrap guarantees also a good integration with the other common Machine Learning tools provided by `scikit-learn` `Python` package; in this way we can use the `rFBP` algorithm as equivalent alternative also in other pipelines.
 Like other Machine Learning algorithm also the `rFBP` one depends on many parameters, i.e its hyper-parameters, which has to be tuned according to the given problem.
 The `Python` wrap of the library was written according to `scikit-optimize` `Python` package to allow an easy hyper-parameters optimization using the already implemented classical methods.
@@ -174,7 +183,7 @@ you can compile the main example and the `C++` library.
 
 ### Python installation
 
-Python version supported : ![Python version](https://img.shields.io/badge/python-3.5|3.6|3.7-blue.svg)
+Python version supported : ![Python version](https://img.shields.io/badge/python-3.5|3.6|3.7|3.8-blue.svg)
 
 The `Python` installation can be performed with or without the `C++` installation.
 The `Python` installation is always executed using [`setup.py`](https://github.com/Nico-Curti/blob/master/setup.py) script.
@@ -202,16 +211,16 @@ python setup.py develop --user
 
 ## Efficiency
 
-![Comparison of time performances between the original `Julia` implementation and our `Cython` one of the `rFBP` algorithm varying the input dimension sizes (number of samples, `M`, and number of variables, `N`). For each input configuration 100 runs of both algorithm were performed and the results were normalized by the `Julia` implementation. In these cases we fixed the magnetization to **MagP64**.](./img/rfbp_magp_timing.svg)
+![Comparison of time performances between the original `Julia` implementation and our `Cython` one of the `rFBP` algorithm varying the input dimension sizes (number of samples, `M`, and number of features, `N`). For each input configuration 100 runs of both algorithm were performed and the results were normalized by the `Julia` implementation. In these cases we fixed the magnetization to **MagP64**.](./img/rfbp_magp_timing.svg)
 
-![Comparison of time performances between the original `Julia` implementation and our `Cython` one of the `rFBP` algorithm varying the input dimension sizes (number of samples, `M`, and number of variables, `N`). For each input configuration 100 runs of both algorithm were performed and the results were normalized by the `Julia` implementation. In these cases we fixed the magnetization to **MagT64**.](./img/rfbp_magt_timing.svg)
+![Comparison of time performances between the original `Julia` implementation and our `Cython` one of the `rFBP` algorithm varying the input dimension sizes (number of samples, `M`, and number of features, `N`). For each input configuration 100 runs of both algorithm were performed and the results were normalized by the `Julia` implementation. In these cases we fixed the magnetization to **MagT64**.](./img/rfbp_magt_timing.svg)
 
-We firstly test the computational efficiency of our implementation against the original `Julia` one.
-The tests were performed comparing our `Cython` version of the code (and thus with a slight overhead given by the `Python` interpreter) and the `Julia` implementation as reference.
-Varying the dimension sizes (number of samples, `M`, and number of variables, `N`) we tested the time efficiency over 100 runs of both the algorithms.
-We divided our simulation according to the two possible type of magnetizations (`MagP64` and `MagT64` as described by the original implementation available [here](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl)) and the obtained results are shown in Fig. [[1](./img/rgbp_magp_timing.svg), [2](./img/rgbp_magt_timing.svg)], respectively.
+We test the computational efficiency of our implementation against the original `Julia` one.
+The tests were performed comparing our `Cython` version of the code (and thus with a slight overhead given by the `Python` interpreter) and the `Julia` implementation.
+Varying the dimension sizes (number of samples, `M`, and number of features, `N`) we performed 100 runs of both the algorithms.
+We divided our simulation according to the two possible types of magnetizations (`MagP64` and `MagT64`, as described in the original implementation available [here](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl)) and the obtained results are showed in Fig. [[1](./img/rgbp_magp_timing.svg), [2](./img/rgbp_magt_timing.svg)], respectively.
 
-As can be seen by the two simulations our implementation always overcome the time performances of the original one, taken as reference in the plot.
+As can be seen by the two simulations our implementation scales very well with the number of samples and it is quite stable in relation to the number of features.
 However, we can not guarantee a perfect parallel execution of our version: also with multi-threading support the scalability of our implementation does not follow a linear trend with the number of available cores.
 In our simulation, in fact, we used 32 cores against the single thread execution of the `Julia` implementation but we gained only a 4x and 2x of speedup for `MagT64` and `MagP64`, respectively.
 The network training is a sequential process by definition and thus it is hard to obtain a relevant speedup using a parallel implementation.
@@ -333,25 +342,31 @@ from ReplicatedFocusingBeliefPropagation import NTH
 
 which is set to the maximum number of core in your computer.
 
-We encourage to use the `Scorer` package for the evaluation of performances but all the simulation can be performed also without it
-
-```python
-try:
-
-  from scorer import Scorer
-
-  USE_SCORER = True
-
-except ImportError:
-
-  USE_SCORER = False
-```
-
-You can start to try the package functionality using a random pattern using the `Pattern` object provided by the module
+You can start to try the package functionality using a random pattern
 
 ```python
 N, M = (20, 101) # M must be odd
-pattern = Pattern().random(shape=(N, M))
+data = np.random.choice([-1, 1], p=[.5, .5], size=(20, 101))
+label = np.random.choice([-1, 1], p=[.5, .5], size=(20, ))
+```
+
+The input data must be composed by binary variables codified as `[-1, 1]`, since the model works only with spin-like variables.
+We check the consistency of the input variables into the `C++` code (**only** in DEBUG mode) and into the `Python` wrap.
+
+The internal implementation of the algorithm works with a custom data type called `Pattern` (ref. [here](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp/Patterns.py)).
+You can explicitly use a `Pattern` object (loading the dataset from file) or convert your data to it
+
+```python
+data = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, n_feature))
+labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample,))
+
+pt = Pattern(X=data, y=labels)
+# dimensions
+assert pt.shape == (n_sample, n_feature)
+# data
+np.testing.assert_allclose(pt.data, data)
+# labels
+np.testing.assert_allclose(pt.labels, labels)
 ```
 
 In the [example](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/example/) folder you can find a training/test example using a pattern imported from file (a more realistic example).
@@ -375,11 +390,47 @@ rfbp = rFBP(mag=MagT64,
 Now you can fit your model and predict:
 
 ```python
-rfbp.fit(pattern)
-predicted_labels = rfbp.predict(pattern)
+rfbp.fit(data, label)
+predicted_labels = rfbp.predict(data)
 ```
 
-which is clearly an overfitting! But it works as example :blush: and show you that also the `predict` function requires a `Pattern` object as input.
+which is clearly an overfitting! But it works as example :blush: and show you that also the `predict` function requires a `Pattern` object as input **or** it automatically converts your `numpy` data to a `Pattern` type.
+
+## Testing
+
+`rFBP` uses CMake to build a full list of tests. You can disable tests setting the `-DBUILD_TEST=OFF` during the building.
+All the test are performed using the [`Catch2`](https://github.com/catchorg/Catch2/) (v2.11.0) library.
+
+The test scripts can be found [here](https://github.com/Nico-Curti/rFBP/blob/master/test).
+
+The Python version of the package is also tested using [`pytest`](https://docs.pytest.org/en/latest/).
+To install the package in development mode you need to add also this requirement:
+
+* pytest == 3.0.7
+
+The full list of python test scripts can be found [here](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp/test)
+
+## Table of contents
+
+Description of the folders related to the `C++` version.
+
+| **Directory**  |  **Description** |
+|:--------------:|:-----------------|
+| [example](https://github.com/Nico-Curti/rFBP/blob/master/example) | List of example usages for the C++ version of the code. In [train_main.cpp](https://github.com/Nico-Curti/rFBP/blob/master/example/train_main.cpp) we show how to build and train a C++ model and in [test_main.cpp](https://github.com/Nico-Curti/rFBP/blob/master/example/test_main.cpp) how to use this model to perform a prediction. |
+| [hpp](https://github.com/Nico-Curti/rFBP/blob/master/hpp)         | Implementation of the C++ template functions and objects used in the `rFBP` library |
+| [include](https://github.com/Nico-Curti/rFBP/blob/master/include) | Definition of the C++ function and objects used in the `rFBP` library |
+| [src](https://github.com/Nico-Curti/rFBP/blob/master/src)         | Implementation of the C++ functions and objects used in the `rFBP` library |
+| [test](https://github.com/Nico-Curti/rFBP/blob/master/test)       | Repository of tests for the C++ codes |
+
+Description of the folders related to the `Python` version (base directory `ReplicatedFocusingBeliefPropagation`).
+
+| **Directory**  |  **Description** |
+|:--------------:|:-----------------|
+| [example](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/example) | `Python` version of the `C++` examples. In [overall_example.py](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/example/overall_example.py) a full example (train + test) is showed using random patten. |
+| [lib](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/lib)         | List of `Cython` definition files |
+| [source](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/source)   | List of `Cython` implementation objects |
+| [rfbp](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp)       | List of `Python` wraps |
+| [rfbp/test](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp/test) | List of test scripts for the `Python` wraps |
 
 ## Contribution
 
@@ -423,11 +474,11 @@ See [here](https://github.com/Nico-Curti/rFBP/blob/master/CONTRIBUTING.md) for f
 
 ## Authors
 
-* **Nico Curti** [git](https://github.com/Nico-Curti), [unibo](https://www.unibo.it/sitoweb/nico.curti2)
-* **Daniele Dall'Olio** [git](https://github.com/DanieleDallOlio)
-* **Daniel Remondini** [git](https://github.com/dremondini), [unibo](https://www.unibo.it/sitoweb/daniel.remondini)
+* <img src="https://avatars0.githubusercontent.com/u/24650975?s=400&v=4" width="25px"> **Nico Curti** [git](https://github.com/Nico-Curti), [unibo](https://www.unibo.it/sitoweb/nico.curti2)
+* <img src="https://avatars3.githubusercontent.com/u/23407684?s=400&v=4" width="25px"> **Daniele Dall'Olio** [git](https://github.com/DanieleDallOlio)
+* <img src="https://avatars2.githubusercontent.com/u/25343321?s=400&v=4" width="25px"> **Daniel Remondini** [git](https://github.com/dremondini), [unibo](https://www.unibo.it/sitoweb/daniel.remondini)
 * **Gastone Castellani** [unibo](https://www.unibo.it/sitoweb/gastone.castellani)
-* **Enrico Giampieri** [git](https://github.com/EnricoGiampieri), [unibo](https://www.unibo.it/sitoweb/enrico.giampieri)
+* <img src="https://avatars2.githubusercontent.com/u/1419337?s=400&v=4" width="25px;"/> **Enrico Giampieri** [git](https://github.com/EnricoGiampieri), [unibo](https://www.unibo.it/sitoweb/enrico.giampieri)
 
 See also the list of [contributors](https://github.com/Nico-Curti/rFBP/contributors) [![GitHub contributors](https://img.shields.io/github/contributors/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/graphs/contributors/) who participated in this project.
 
@@ -458,7 +509,7 @@ or just this project repository
 
 ```tex
 @misc{ReplicatedFocusingBeliefPropagation,
-  author = {Curti, Nico and Dall'Olio, Daniele},
+  author = {Curti, Nico and Dall'Olio, Daniele and Giampieri, Enrico},
   title = {Replicated Focusing Belief Propagation},
   year = {2019},
   publisher = {GitHub},

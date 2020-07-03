@@ -7,6 +7,7 @@ from __future__ import division
 import os
 import pytest
 import numpy as np
+from glob import glob
 from sklearn.exceptions import NotFittedError
 from ReplicatedFocusingBeliefPropagation import MagP64
 from ReplicatedFocusingBeliefPropagation import MagT64
@@ -37,7 +38,8 @@ class TestRFBP:
                'epsil' : .5,
                'protocol' : 'pseudo_reinforcement',
                'size' : 101,
-               'nth' : 2
+               'nth' : 2,
+               'verbose' : False
               }
 
     rfbp = rFBP(**params)
@@ -106,7 +108,8 @@ class TestRFBP:
                  'epsil' : .9,
                  'protocol' : 'pseudo_reinforcement',
                  'size' : 2,
-                 'nth' : 2
+                 'nth' : 2,
+                 'verbose' : True
                 }
 
       rfbp = rFBP(**params)
@@ -224,7 +227,8 @@ class TestRFBP:
                'epsil' : .5,
                'protocol' : 'pseudo_reinforcement',
                'size' : 101,
-               'nth' : 2
+               'nth' : 2,
+               'verbose' : True
               }
 
     rfbp = rFBP(**params)
@@ -258,7 +262,8 @@ class TestRFBP:
                'epsil' : .5,
                'protocol' : 'pseudo_reinforcement',
                'size' : 101,
-               'nth' : 2
+               'nth' : 2,
+               'verbose' : True
               }
 
     rfbp = rFBP(**params)

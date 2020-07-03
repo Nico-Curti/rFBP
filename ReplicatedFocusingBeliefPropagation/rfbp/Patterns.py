@@ -59,8 +59,8 @@ class Pattern (object):
       X = X.astype('float64')
       y = y.astype('int64')
 
-
       self._pattern = _Patterns(X=X, y=y, M=M, N=N)
+      self._check_binary()
 
     else:
 
@@ -86,6 +86,8 @@ class Pattern (object):
       raise ValueError('Incorrect dimensions. M and N must be greater than 0. Given ({0:d}, {1:d})'.format(M, N))
 
     self._pattern = _Patterns(M=M, N=N)
+
+    # We do not need to check the variables since they are correctly generated into the C++ code!
 
     return self
 
@@ -113,6 +115,7 @@ class Pattern (object):
     delimiter = _check_string(delimiter, exist=False)
 
     self._pattern = _Patterns(filename=filename, binary=binary, delimiter=delimiter)
+    self._check_binary()
 
     return self
 
@@ -133,7 +136,7 @@ class Pattern (object):
     Return the label array
     '''
     try:
-      return self._pattern.labels
+      return np.asarray(self._pattern.labels, dtype=int)
 
     except AttributeError:
       return None
@@ -144,7 +147,7 @@ class Pattern (object):
     Return the data matrix
     '''
     try:
-      return self._pattern.data
+      return np.asarray(self._pattern.data, dtype=int)
 
     except AttributeError:
       return None
@@ -156,14 +159,23 @@ class Pattern (object):
     '''
     return self._pattern
 
+  def _check_binary (self):
+    '''
+    Check if the input data and labels satisfy the binary
+    requirements
+    '''
+
+    if not (((-1 == self.data) | (1 == self.data)).all() or ((-1 == self.labels) | (1 == self.labels)).all()):
+      self._pattern = None # remove the loaded object
+      raise ValueError('Invalid input parameters! Input variables must be +1 or -1')
+
   def __repr__ (self):
     '''
     Object representation
     '''
     class_name = self.__class__.__qualname__
     if self._pattern is not None:
-      return '{0}().random(shapes=({1:d}, {2:d}))'.format(class_name, self._pattern.Nrow, self._pattern.Ncol)
+      return '{0}[shapes=({1:d}, {2:d})]'.format(class_name, self._pattern.Nrow, self._pattern.Ncol)
 
     else:
-      return '{0}().random(shapes=(0, 0))'.format(class_name)
-
+      return '{0}[shapes=(0, 0)]'.format(class_name)

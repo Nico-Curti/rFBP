@@ -3,7 +3,7 @@
 
 from libcpp.memory cimport unique_ptr
 
-cdef extern from "misc.hpp":
+cdef extern from "misc.hpp" nogil:
 
   To ** double_pointers_for_cython[Ti,To]( Ti * input_pointer, const long int & n, const long int & m);
 

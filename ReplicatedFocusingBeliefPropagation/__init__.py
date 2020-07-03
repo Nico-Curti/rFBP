@@ -17,6 +17,7 @@ from .rfbp.MagP64 import MagP64
 from .rfbp.MagT64 import MagT64
 from .rfbp import magnetization
 from .rfbp.misc import _check_string
+from .rfbp.misc import redirect_stdout
 
 __author__  = ['Nico Curti', "Daniele Dall'Olio"]
 __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']

@@ -13,6 +13,7 @@ from .FocusingProtocol import Focusing_Protocol
 from .Patterns import Pattern
 
 from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
+from ReplicatedFocusingBeliefPropagation.rfbp.misc import redirect_stdout
 from ReplicatedFocusingBeliefPropagation.rfbp.MagP64 import MagP64
 from ReplicatedFocusingBeliefPropagation.rfbp.MagT64 import MagT64
 
@@ -75,6 +76,9 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     nth : int (default = max_num_of_cores)
       Number of thread to use in the computation
 
+    verbose : bool (default = False)
+      Enable or disable stdout on shell
+
   Members
   -------
     fit : Fit the model based on supervised input data
@@ -99,7 +103,8 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
                       epsil=1e-1,
                       protocol='pseudo_reinforcement',
                       size=101,
-                      nth=NTH):
+                      nth=NTH,
+                      verbose=False):
 
     if mag is not MagP64 and mag is not MagT64:
       raise TypeError('Magnetization must be an instance of Mag Enum')
@@ -124,6 +129,7 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     self.protocol = protocol
     self.size = size
     self.nth = nth
+    self.verbose = verbose
     #self.weights_ = None
 
 
@@ -195,19 +201,20 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
 
     mag = Mag.MagP64 if self.mag is MagP64 else Mag.MagT64
 
-    self.weights_ = _rfbp(mag=mag,
-                          pattern=pattern.pattern,
-                          protocol=protocol.fprotocol,
-                          hidden=self.hidden,
-                          max_iter=self.max_iter,
-                          max_steps=protocol.num_of_replicas,
-                          randfact=self.randfact,
-                          damping=self.damping,
-                          epsil=self.epsil,
-                          accuracy=acc,
-                          seed=self.seed,
-                          nth=self.nth
-                          )
+    with redirect_stdout(self.verbose):
+      self.weights_ = _rfbp(mag=mag,
+                            pattern=pattern.pattern,
+                            protocol=protocol.fprotocol,
+                            hidden=self.hidden,
+                            max_iter=self.max_iter,
+                            max_steps=protocol.num_of_replicas,
+                            randfact=self.randfact,
+                            damping=self.damping,
+                            epsil=self.epsil,
+                            accuracy=acc,
+                            seed=self.seed,
+                            nth=self.nth
+                            )
 
     self.weights_ = np.asarray(self.weights_, dtype=int)
 

@@ -10,7 +10,6 @@ git clone https://github.com/Nico-Curti/rFBP
 cd rFBP
 ```
 
-
 ### Installing prerequisites
 
 To install the prerequisites type:
