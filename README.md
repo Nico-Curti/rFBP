@@ -242,7 +242,7 @@ To train the model you can just use
 ./bin/train_main
 Usage: ./train_main [-threads <std::remove_reference<int>> ] -f <std :: string> [-output <std :: string> ] [-bin <std::remove_reference<bool>> ] [-delimiter <std :: string> ] [-hidden <std::remove_reference<int>> ] [-iteration <std::remove_reference<int>> ] [-seed <std::remove_reference<int>> ] [-randfact <std::remove_reference<double>> ] [-damping <std::remove_reference<double>> ] [-accuracy <std :: string> ] [-protocol <std :: string> ] [-epsilon <std::remove_reference<double>> ] [-steps <std::remove_reference<int>> ] [-mag <std::remove_reference<int>> ] [-inmess <std :: string> ] [-outmess <std :: string> ] [-delmess <std :: string> ] [-binmess <std::remove_reference<bool>> ]
 
-Training BeliefPropagation 4.0
+Training BeliefPropagation ${VERSION}
 
 optional arguments:
         -t,   --threads                 Max number of threads exploitable
@@ -272,7 +272,7 @@ and after training you can test your model using
 ./bin/test_main
 Usage: ./test_main [-threads <std::remove_reference<int>> ] -f <std :: string> [-bin <std::remove_reference<bool>> ] -w <std :: string> [-delimiter <std :: string> ] [-output <std :: string> ]
 
-Test BeliefPropagation 4.0
+Test BeliefPropagation ${VERSION}
 
 optional arguments:
         -t,   --threads                 Max number of threads exploitable
@@ -498,7 +498,7 @@ We thank also the author(s) of [Catch2](https://github.com/catchorg/Catch2) libr
 
 If you have found `rFBP` helpful in your research, please consider citing the paper
 
-```tex
+```BibTeX
 @misc{DallOlioCCS19,
   author = {Dall'Olio, Daniele and Curti, Nico and Castellani, Gastone and Bazzani, Armando and Remondini, Daniel},
   title = {Classification of Genome Wide Association data by Belief Propagation Neural network},
@@ -509,7 +509,7 @@ If you have found `rFBP` helpful in your research, please consider citing the pa
 
 or just this project repository
 
-```tex
+```BibTeX
 @misc{ReplicatedFocusingBeliefPropagation,
   author = {Curti, Nico and Dall'Olio, Daniele and Giampieri, Enrico},
   title = {Replicated Focusing Belief Propagation},

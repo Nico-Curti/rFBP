@@ -5,6 +5,8 @@
 #include <utils.hpp>
 #include <parse_args.hpp>
 
+#include <string>
+
 /**
 * @brief Parse command line for training procedure using parse_args library
 *

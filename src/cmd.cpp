@@ -22,7 +22,7 @@ void parse_training_fbp(int argc, char *argv[],
                         std :: string & delmess,
                         bool & binmess)
 {
-  ArgumentParser argparse("Training BeliefPropagation 4.0");
+  ArgumentParser argparse("Training BeliefPropagation " + std :: to_string(MAJOR) + "." + std :: to_string(MINOR) + "." + std :: to_string(REVISION));
 
 #ifdef _OPENMP
 
@@ -129,7 +129,7 @@ void parse_test_args(int argc, char *argv[],
                      std :: string & output_file,
                      int & nth)
 {
-  ArgumentParser argparse("Test BeliefPropagation 4.0");
+  ArgumentParser argparse("Test BeliefPropagation " + std :: to_string(MAJOR) + "." + std :: to_string(MINOR) + "." + std :: to_string(REVISION));
 
 #ifdef _OPENMP
 
