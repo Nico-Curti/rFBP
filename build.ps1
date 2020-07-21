@@ -2,7 +2,7 @@
 
 $number_of_build_workers=8
 
-if ($null -eq (Get-Command "cl.exe" -ErrorAction SilentlyContinue)) {
+if (Get-Command "cl.exe" -ErrorAction SilentlyContinue) {
   $vstype = "Professional"
   if (Test-Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\${vstype}\Common7\Tools") {
   }
@@ -23,7 +23,7 @@ if ($null -eq (Get-Command "cl.exe" -ErrorAction SilentlyContinue)) {
     }
   }
   Pop-Location
-  Write-Verbose "Visual Studio 2019 ${vstype} Command Prompt variables set.`n" -ForegroundColor Yellow
+  Write-Verbose "Visual Studio 2019 ${vstype} Command Prompt variables set.`n"
 }
 else {
   Write-Verbose "No Compiler found"
