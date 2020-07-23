@@ -82,8 +82,8 @@ class TestRFBP:
     K = 1
     M = 3
     N = 101
-    data1 = np.ones( (M, N) )
-    labels1 = np.ones( M )
+    data1 = np.ones( shape=(M, N), dtype=int )
+    labels1 = np.ones( shape=(M,), dtype=int )
     data2 = - data1
     labels2 = - labels1
 

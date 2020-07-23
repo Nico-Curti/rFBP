@@ -38,6 +38,15 @@ static constexpr double epsilon = std :: numeric_limits < double > :: epsilon();
 
 #endif
 
+#ifndef M_PI
+
+  #define M_PI 3.141592653589793
+
+#endif
+
+#define STRINGIZE(x) #x
+#define STRINGIZE_VALUE_OF(x) STRINGIZE(x)
+
 /**
 * @brief sign function
 *

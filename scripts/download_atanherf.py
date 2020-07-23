@@ -31,10 +31,11 @@ def download_file_from_google_drive(Id, destination, total_length=230636758):
       for chunk in response.iter_content(chunk_size):
         dl += len(chunk)
         done = int(50 * dl / total_length)
+        length = len(chunk) / 1000000 / (time.time() - download) if time.time() - download else 0
         sys.stdout.write('\r[%s%s] %3d%% (%1.1f Mb/sec) %3.0f sec' % ('o' * done,
                                                                    '-' * (50 - done),
                                                                    dl / total_length * 100,
-                                                                   len(chunk) / 1000000 / (time.time() - download),
+                                                                   length,
                                                                    time.time() - start)
                                                                   )
         download = time.time()

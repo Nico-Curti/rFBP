@@ -88,3 +88,14 @@ def redirect_stdout (verbose):
       _redirect_stdout(to=old_stdout) # restore stdout.
                                       # buffering and flags such as
                                       # CLOEXEC may be different
+
+def get_int_size ():
+  '''
+  Get the correct integer size according to your operative system
+  '''
+
+  if sys.platform.lower() == 'win32':
+    return 'int32'
+
+  else:
+    return 'int64'

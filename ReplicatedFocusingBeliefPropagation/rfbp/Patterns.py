@@ -9,6 +9,7 @@ from sklearn.utils import check_X_y
 from sklearn.utils import check_array
 from ReplicatedFocusingBeliefPropagation.lib.Patterns import _Patterns
 from ReplicatedFocusingBeliefPropagation.rfbp.misc import _check_string
+from ReplicatedFocusingBeliefPropagation.rfbp.misc import get_int_size
 
 __all__ = ['Pattern']
 
@@ -57,7 +58,7 @@ class Pattern (object):
       y = np.ascontiguousarray(y)
 
       X = X.astype('float64')
-      y = y.astype('int64')
+      y = y.astype(get_int_size())
 
       self._pattern = _Patterns(X=X, y=y, M=M, N=N)
       self._check_binary()

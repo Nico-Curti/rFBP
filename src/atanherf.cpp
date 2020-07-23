@@ -4,7 +4,11 @@ namespace AtanhErf
 {
   spline getinp ()
   {
+#ifdef _MSC_VER
+    std :: string filename = std :: string(STRINGIZE_VALUE_OF(PWD)) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat";
+#else
     std :: string filename = std :: string(PWD) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat";
+#endif
     std :: ifstream is(filename, std :: ios :: binary);
 
     spline inp;

@@ -95,7 +95,7 @@ def read_dependecies_build (dependecies_filename):
   return dependecies
 
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = os.path.abspath(os.path.dirname(__file__)).replace('\\', '/')
 
 # Package meta-data.
 NAME = 'ReplicatedFocusingBeliefPropagation'
@@ -196,7 +196,7 @@ if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
 
 
 elif 'MSC' in CPP_COMPILER:
-  cpp_compiler_args = ['/std:c++latest']
+  cpp_compiler_args = ['/std:c++latest', '/Ox', '/Wall', '/W3']
   compile_args = []
   BUILD_SCORER = True
 

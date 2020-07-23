@@ -1063,7 +1063,11 @@ long int ** focusingBP (const long int & K, const Patterns & patterns, const lon
 
 #endif
 
+#ifdef _MSC_VER
+  if ( std :: is_same < Mag, MagT64 > :: value && !file_exists( std :: string(STRINGIZE_VALUE_OF(PWD)) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat") )
+#else
   if ( std :: is_same < Mag, MagT64 > :: value && !file_exists( std :: string(PWD) + "/data/atanherf_interp.max_16.step_0.0001.first_1.dat") )
+#endif
     error_atanherf_file();
 
   long int it = 1;
