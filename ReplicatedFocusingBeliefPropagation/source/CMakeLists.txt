@@ -12,21 +12,24 @@ set_source_files_properties( ${PYC_SRC_DIR}/rFBP.pyx PROPERTIES CYTHON_IS_CXX TR
 include_directories(${PYC_INC_DIR})
 
 # Multi-file cython modules do not appear to be working at the moment.
-cython_add_module( atanherf  ${PYC_SRC_DIR}/FocusingProtocol.pyx
+cython_add_module( atanherf  ${PYC_SRC_DIR}/atanherf.pyx
                                                                  ${SRC_DIR}/atanherf.cpp
                                                                  ${SRC_DIR}/spline.cpp
                                                                  ${SRC_DIR}/utils.cpp
                                                                  )
+target_compile_definitions(atanherf PRIVATE -DNPY_NO_DEPRECATED_API NPY_1_7_API_VERSION)
 
 cython_add_module( FocusingProtocol  ${PYC_SRC_DIR}/FocusingProtocol.pyx
                                                                          ${SRC_DIR}/fprotocol.cpp
                                                                          ${SRC_DIR}/utils.cpp
                                                                          )
+target_compile_definitions(FocusingProtocol PRIVATE -DNPY_NO_DEPRECATED_API NPY_1_7_API_VERSION)
 
 cython_add_module( Patterns  ${PYC_SRC_DIR}/Patterns.pyx
                                                          ${SRC_DIR}/pattern.cpp
                                                          ${SRC_DIR}/utils.cpp
                                                          )
+target_compile_definitions(Patterns PRIVATE -DNPY_NO_DEPRECATED_API NPY_1_7_API_VERSION)
 
 cython_add_module( rFBP  ${PYC_SRC_DIR}/rFBP.pyx
                                                  ${SRC_DIR}/rfbp.cpp
@@ -39,9 +42,15 @@ cython_add_module( rFBP  ${PYC_SRC_DIR}/rFBP.pyx
                                                  ${SRC_DIR}/spline.cpp
                                                  ${SRC_DIR}/utils.cpp
                                                  )
+target_compile_definitions(rFBP PRIVATE -DNPY_NO_DEPRECATED_API NPY_1_7_API_VERSION)
 
 
 # Installation of targets
-install(TARGETS FocusingProtocol  DESTINATION ${PYC_SRC_DIR}/)
-install(TARGETS Patterns          DESTINATION ${PYC_SRC_DIR}/)
-install(TARGETS rFBP              DESTINATION ${PYC_SRC_DIR}/)
+install(TARGETS atanherf  DESTINATION ${PYC_INC_DIR}/)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/atanherf.cpp              DESTINATION ${PYC_SRC_DIR} RENAME atanherf.cpp)
+install(TARGETS FocusingProtocol  DESTINATION ${PYC_INC_DIR}/)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FocusingProtocol.cpp      DESTINATION ${PYC_SRC_DIR} RENAME FocusingProtocol.cpp)
+install(TARGETS Patterns          DESTINATION ${PYC_INC_DIR}/)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/Patterns.cpp              DESTINATION ${PYC_SRC_DIR} RENAME Patterns.cpp)
+install(TARGETS rFBP              DESTINATION ${PYC_INC_DIR}/)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/rFBP.cpp                  DESTINATION ${PYC_SRC_DIR} RENAME rFBP.cpp)

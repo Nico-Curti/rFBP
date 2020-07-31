@@ -19,6 +19,7 @@ except ImportError:
   from distutils.core import Extension
   from distutils.core import find_packages
 
+from distutils import sysconfig
 from Cython.Distutils import build_ext
 from distutils.sysconfig import customize_compiler
 
@@ -42,10 +43,39 @@ def get_requires (requirements_filename):
   return list(filter(lambda x: x != '', requirements.split()))
 
 
+def get_ext_filename_without_platform_suffix (filename):
+    name, ext = os.path.splitext(filename)
+    ext_suffix = sysconfig.get_config_var('EXT_SUFFIX')
+
+    if ext_suffix == ext:
+      return filename
+
+    ext_suffix = ext_suffix.replace(ext, '')
+    idx = name.find(ext_suffix)
+
+    if idx == -1:
+      return filename
+    else:
+      return name[:idx] + ext    
+
+
 class rfbp_build_ext (build_ext):
   '''
   Custom build type
   '''
+
+  def get_ext_filename (self, ext_name):
+
+    if platform.system() == 'Windows':
+    # The default EXT_SUFFIX of windows include the PEP 3149 tags of compiled modules
+    # In this case I rewrite a custom version of the original distutils.command.build_ext.get_ext_filename function
+      ext_path = ext_name.split('.')
+      ext_suffix = '.pyd'
+      filename = os.path.join(*ext_path) + ext_suffix
+    else:
+      filename = super().get_ext_filename(ext_name)
+
+    return get_ext_filename_without_platform_suffix(filename)
 
   def build_extensions (self):
 

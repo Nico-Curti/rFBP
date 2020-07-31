@@ -74,7 +74,7 @@ mark_as_advanced( CYTHON_ANNOTATE CYTHON_NO_DOCSTRINGS CYTHON_FLAGS )
 find_package( Cython REQUIRED )
 find_package( PythonLibs REQUIRED )
 
-set( CYTHON_CXX_EXTENSION "cxx" )
+set( CYTHON_CXX_EXTENSION "cpp" )
 set( CYTHON_C_EXTENSION "c" )
 
 # Create a *.c or *.cxx file from a *.pyx file.
@@ -279,10 +279,6 @@ function( cython_add_module _name )
   else()
     target_link_libraries( ${_name} ${PYTHON_LIBRARIES} )
   endif()
-  if ( NOT MSVC )
-    set_target_properties( ${_name} PROPERTIES CMAKE_CXX_FLAGS "-Wno-unused-function" )
-  endif()
-  target_compile_definitions( ${_name} PRIVATE NPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION)
 endfunction()
 
 include( CMakeParseArguments )
