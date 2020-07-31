@@ -372,13 +372,12 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar -xzf cmake-3.13.1-Linux-x86_64.tar.gz                                                       ;fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=$PWD/cmake-3.13.1-Linux-x86_64/bin:$PATH                                            ;fi
 
-  # python version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON setup.py develop --user                                                                       ;fi
-
 script:
   - chmod 777 ./build.sh
   - if [[ "$TRAVIS_COMPILER" == "clang" ]]; then bash ./build.sh "" OFF                                                                         ;fi
   - if [[ "$TRAVIS_COMPILER" == "gcc"   ]]; then bash ./build.sh "" OFF                                                                         ;fi
+  # python version
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON setup.py develop --user                                                                       ;fi
 
   # c++ testing
   - export LD_LIBRARY_PATH=$PWD/lib/:$LD_LIBRARY_PATH
