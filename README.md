@@ -75,25 +75,10 @@ This entropy basically counts the number of solutions (zero-energy realizations)
 
 Within this out-of-equilibrium framework, the objective is to maximize the entropy instead of minimizing the energy.
 From a machine learning standpoint, we aim at those weights sets that perfectly solve the learning process (zero-errors) and that are mathematically closed to each other.
-To this end, the Belief Propagation method [[MézardMontanari](https://web.stanford.edu/~montanar/RESEARCH/book.html)] can be adopted as the underlying learning rule, although it must properly adjusted to take into account the out-of-equilibrium nature of the model.
+To this end, the Belief Propagation method [[MézardMontanari](https://web.stanford.edu/~montanar/RESEARCH/book.html)] can be adopted as the underlying learning rule, although it must be properly adjusted to take into account the out-of-equilibrium nature of the model.
 
-The model defines two parameters: y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}">.
-The former is a temperature-alike related variable, similar to the one usually exploited by Gradient Descend approaches, but it can be also interpreted as the number of interacting replicas of the system.
-The latter sets the largest distance for surrounding solutions that are considered by entropy.
-The Belief Propagation method needs to be to adjusted by adding incoming extra messages for all weights, in order to involve the interacting replicas of the system.
-This extra term is represented by:
+See [here](https://github.com/Nico-Curti/rFBP/blob/master/docs/model.md) for further details about the model.
 
-<img src="https://render.githubusercontent.com/render/math?math={\hat{m}^{t + 1}_{\star \to \w_i} = tanh \big[ (y-1) artanh ( m^t_{\w_i \to \star} tanh \gamma ) \big] tanh \gamma}">,
-
-where <img src="https://render.githubusercontent.com/render/math?math={\w_i}"> and <img src="https://render.githubusercontent.com/render/math?math={\star}"> stand respectively for the i-th weight and a representation of all replicas.
-
-The `rFBP` is therefore an adjusted Belief Propagation algorithm, whose general procedure can be summarized as follows:
-- select protocols for y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}">;
-- set first values of y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}"> and run the adjusted-BP method until convergence (<img src="https://render.githubusercontent.com/render/math?math={ < \epsilon}">) or up to a limited-number of iterations;
-- step to the next pair values of y and <img src="https://render.githubusercontent.com/render/math?math={\gamma}"> with respect to the chosen protocols and re-run the adjusted-BP method;
-- keep it going until a solution is reached or protocols end.
-
-The `rFBP` algorithm focuses step by step the replicated system to fall into weights sets extremely closed to many perfect solutions, which ables them to well generalize out of the training set [[Baldassi101103](https://journals.aps.org/prl/pdf/10.1103/PhysRevLett.115.128101)].
 
 ## Prerequisites
 
@@ -222,7 +207,7 @@ python setup.py develop --user
 We test the computational efficiency of our implementation against the original `Julia` one.
 The tests were performed comparing our `Cython` version of the code (and thus with a slight overhead given by the `Python` interpreter) and the `Julia` implementation.
 Varying the dimension sizes (number of samples, `M`, and number of features, `N`) we performed 100 runs of both the algorithms.
-We divided our simulation according to the two possible types of magnetizations (`MagP64` and `MagT64`, as described in the original implementation available [here](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl)) and the obtained results are showed in Fig. [[1](./img/rgbp_magp_timing.svg), [2](./img/rgbp_magt_timing.svg)], respectively.
+We divided our simulation according to the two possible types of magnetizations: `MagP64` and `MagT64`. As described in the [original implementation](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl), the `MagP64` type allows fast executions with inexact outcomes by neglecting all `tanh` operations. In contrast, the `MagT64` exactly follows all theoretical equations with no further approximation, which necessarily causes slower executions. The obtained results are showed in Fig. [[1](./img/rgbp_magp_timing.svg), [2](./img/rgbp_magt_timing.svg)], respectively.
 
 As can be seen by the two simulations our implementation scales very well with the number of samples and it is quite stable in relation to the number of features.
 However, we can not guarantee a perfect parallel execution of our version: also with multi-threading support the scalability of our implementation does not follow a linear trend with the number of available cores.
@@ -290,7 +275,7 @@ optional arguments:
 If you are interested in using `rFBP` inside your code you can simply import the [`rfbp.hpp`](https://github.com/Nico-Curti/rFBP/blob/master/hpp/rfbp.hpp) and create a `ReplicatedFocusingBeliefPropagation` object.
 
 Then all the work is performed by the `focusingBP` (template) function.
-You can use it with `MagP64` type or `MagT64` for more accurate (but slower) results.
+You can use it with `MagP64` type or `MagT64`. We recommend the former when quick results are needed and the latter when the weights accuracy is top priority.
 
 The input pattern must be wrapped into a `Pattern` object provided by the library.
 
