@@ -2,6 +2,7 @@
 #include <rfbp.hpp>
 
 #if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
+#define USE_SCORER
 
   #include <scorer.h>
 
@@ -35,14 +36,18 @@ int main (int argc, char *argv[])
   std :: unique_ptr < int[] > temp_labels(  new int [patterns.Nrow] );
   std :: unique_ptr < int[] > temp_predict( new int [patterns.Nrow] );
 
-#if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
+#ifdef USE_SCORER
 
   scorer score;
 
 #endif
 
 #ifdef _OPENMP
+#ifdef USE_SCORER
 #pragma omp parallel shared (score) num_threads (nth)
+#else
+#pragma omp parallel num_threads (nth)
+#endif
   {
 #endif
 
@@ -69,7 +74,7 @@ int main (int argc, char *argv[])
     }
 #endif
 
-#if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
+#ifdef USE_SCORER
 
     score.compute_score( temp_labels.get(), temp_predict.get(), patterns.Nrow, patterns.Nrow);
 
@@ -79,7 +84,7 @@ int main (int argc, char *argv[])
   }
 #endif
 
-#if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
+#ifdef USE_SCORER
 
   if ( !output_file.empty() ) score.dump(output_file);
   else score.print();
