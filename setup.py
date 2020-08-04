@@ -67,8 +67,8 @@ class rfbp_build_ext (build_ext):
   def get_ext_filename (self, ext_name):
 
     if platform.system() == 'Windows':
-    # The default EXT_SUFFIX of windows include the PEP 3149 tags of compiled modules
-    # In this case I rewrite a custom version of the original distutils.command.build_ext.get_ext_filename function
+      # The default EXT_SUFFIX of windows include the PEP 3149 tags of compiled modules
+      # In this case I rewrite a custom version of the original distutils.command.build_ext.get_ext_filename function
       ext_path = ext_name.split('.')
       ext_suffix = '.pyd'
       filename = os.path.join(*ext_path) + ext_suffix

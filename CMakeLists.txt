@@ -169,9 +169,7 @@ file(GLOB SRC           "${SRC_DIR}/*.cpp" )
 file(GLOB HEADER        "${INC_DIR}/*.h"   )
 file(GLOB HPP           "${INC_DIR}/*.hpp" )
 
-include_directories(${INC_DIR} ${INC_SCORER} ${HPP_DIR} ${TEST_DIR})
-
-set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
+include_directories(${INC_DIR} ${HPP_DIR} ${TEST_DIR})
 
 if (PYWRAP)
   include( UseCython )
