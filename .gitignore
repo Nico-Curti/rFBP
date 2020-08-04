@@ -46,6 +46,7 @@ __pycache__/
 # Utilities
 [Uu]tilities/
 [Ss]hare/
+*.pc
 
 # coverage
 .coverage

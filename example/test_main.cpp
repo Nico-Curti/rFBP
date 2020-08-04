@@ -1,7 +1,7 @@
 #include <cmd.h>
 #include <rfbp.hpp>
 
-#if defined __clang__ || (!defined __clang__ && __GNUC__ > 4)
+#if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
 
   #include <scorer.h>
 
@@ -35,7 +35,7 @@ int main (int argc, char *argv[])
   std :: unique_ptr < int[] > temp_labels(  new int [patterns.Nrow] );
   std :: unique_ptr < int[] > temp_predict( new int [patterns.Nrow] );
 
-#if __GNUC__ > 4
+#if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
 
   scorer score;
 
@@ -69,7 +69,7 @@ int main (int argc, char *argv[])
     }
 #endif
 
-#if __GNUC__ > 4
+#if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
 
     score.compute_score( temp_labels.get(), temp_predict.get(), patterns.Nrow, patterns.Nrow);
 
@@ -79,7 +79,7 @@ int main (int argc, char *argv[])
   }
 #endif
 
-#if __GNUC__ > 4
+#if (defined __clang__ || (!defined __clang__ && __GNUC__ > 4)) && defined WITH_SCORER
 
   if ( !output_file.empty() ) score.dump(output_file);
   else score.print();

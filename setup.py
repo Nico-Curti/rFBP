@@ -56,7 +56,7 @@ def get_ext_filename_without_platform_suffix (filename):
     if idx == -1:
       return filename
     else:
-      return name[:idx] + ext    
+      return name[:idx] + ext
 
 
 class rfbp_build_ext (build_ext):
@@ -212,7 +212,7 @@ if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
 
     compiler, compiler_version = (CPP_COMPILER, '0')
 
-  if compiler == 'GCC':
+  if compiler == 'GCC' and BUILD_SCORER:
     BUILD_SCORER = True if int(compiler_version[0]) > 4 else False
 
   if ENABLE_OMP and compiler == 'GCC':
@@ -221,14 +221,12 @@ if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
     linker_args = []
 
   if compiler == 'Clang':
-    BUILD_SCORER = True
     ENABLE_OMP = False
 
 
 elif 'MSC' in CPP_COMPILER:
   cpp_compiler_args = ['/std:c++latest', '/Ox', '/Wall', '/W3']
   compile_args = []
-  BUILD_SCORER = True
 
   if ENABLE_OMP:
     linker_args = ['/openmp']

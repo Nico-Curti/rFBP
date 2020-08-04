@@ -1,25 +1,24 @@
-# Config file for the rFBP package
-# It defines the following variables
-#  rFBP_INCLUDE_DIRS - include directories for rFBP
-#  rFBP_LIBRARIES    - libraries to link against
+# Config file for the RFBP package
 
-# Compute paths
-get_filename_component(rFBP_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-set(rFBP_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
-list(APPEND CMAKE_MODULE_PATH "${rFBP_CMAKE_DIR}")
+get_filename_component(RFBP_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+list(APPEND CMAKE_MODULE_PATH "${RFBP_CMAKE_DIR}")
 
 include(CMakeFindDependencyMacro)
 
-if(@OMP@)
-  find_dependency(OpenMP)
+if(MSVC)
+  set(CMAKE_CXX_FLAGS "/wd4018 /wd4244 /wd4267 /wd4305 ${CMAKE_CXX_FLAGS}")
 endif()
 
-if("${CMAKE_VERSION}" VERSION_GREATER "3.9.0")
+if(@OPENMP_FOUND@)
   find_dependency(OpenMP)
 endif()
 
 # Our library dependencies (contains definitions for IMPORTED targets)
-include("${rFBP_CMAKE_DIR}/rFBPTargets.cmake")
+include("${RFBP_CMAKE_DIR}/RFBPTargets.cmake")
+include("${RFBP_CMAKE_DIR}/RFBPConfigVersion.cmake")
 
-# These are IMPORTED targets created by rFBPTargets.cmake
-set(rFBP_LIBRARIES rFBPlib)
+get_target_property(FULL_RFBP_INCLUDE_DIRS rFBP::rfbp INTERFACE_INCLUDE_DIRECTORIES)
+list(GET FULL_RFBP_INCLUDE_DIRS 0 RFBP_INCLUDE_DIR)
+get_filename_component(RFBP_INCLUDE_DIR "${RFBP_INCLUDE_DIR}" REALPATH)
+
+find_package_handle_standard_args(RFBP REQUIRED_VARS RFBP_INCLUDE_DIR VERSION_VAR PACKAGE_VERSION)

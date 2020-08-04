@@ -159,7 +159,11 @@ if you are working on a Windows machine the right script to call is the [`build.
 
 **NOTE 1:** if you want enable the OpenMP support (*4.5 version is required*) compile the library with `-DOMP=ON`.
 
-**NOTE 2:** if you use MagT configuration, please download the `atanherf coefficients` file before running any executable. You can find a downloader script inside the [scripts](https://github.com/Nico-Curti/rFBP/tree/master/scripts) folder. Enter in that folder and just run `python dowload_atanherf.py`.
+**NOTE 2:** if you want enable the Scorer support compile the library with `-DSCORER=ON`. If you want use a particular installation of the Scorer library or you have manually installed the library following the `README` instructions, we suggest to add the `-DScorer_DIR=/path/to/scorer/shared/scorer` in the command line.
+
+**NOTE 3:** if you want enable the Cython support compile the library with `-DPYWRAP=ON`. The Cython packages will be compiled and correctly positioned in the `rFBP` Python package **BUT** you need to run also the setup before use it.
+
+**NOTE 4:** if you use MagT configuration, please download the `atanherf coefficients` file before running any executable. You can find a downloader script inside the [scripts](https://github.com/Nico-Curti/rFBP/tree/master/scripts) folder. Enter in that folder and just run `python dowload_atanherf.py`.
 
 ### Make C++ installation
 

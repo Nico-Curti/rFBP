@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.9)
+cmake_minimum_required (VERSION 3.9.0)
 
 # rFBP Version
 set (RFBP_MAJOR    1)
@@ -24,10 +24,11 @@ add_definitions (-DPWD="${CMAKE_SOURCE_DIR}")
 #################################################################
 
 option (OMP        "Enable OpenMP                support" OFF)
+option (SCORER     "Enable scorer                support" OFF)
 option (VERBOSE    "Enable verbose stdout        support" ON)
 option (STATS      "Enable verbose statistics    support" ON)
 option (BUILD_TEST "Enable tests build           support" ON)
-option (PYrfbp     "Enable Python wrap compilation      " OFF)
+option (PYWRAP     "Enable Python wrap compilation      " OFF)
 
 #################################################################
 #                         SETTING VARIABLES                     #
@@ -73,11 +74,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     string (REGEX REPLACE "-O3" "-Ofast" CMAKE_CXX_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE})
     set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNDEBUG" )
   endif()
-
-  #if (CLANG_VERSION_STRING VERSION_LESS 5.0)
-  #  add_compile_options(-stdlib=libc++)
-  #endif ()
-  #list (APPEND linked_libs stdc++fs)
 endif()
 
 if (MSVC)
@@ -97,6 +93,9 @@ if (COMPILER_SUPPORTS_MARCH_NATIVE)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native")
 endif()
 
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_LIST_DIR}" CACHE PATH "Install prefix" FORCE)
+endif()
 
 #################################################################
 #                         PARSE OPTIONS                         #
@@ -117,6 +116,13 @@ if (OMP)
   endif()
 else()
   message(STATUS "OpenMP disabled")
+endif()
+
+if (SCORER)
+  find_package(Scorer REQUIRED)
+  include_directories (${Scorer_INCLUDE_DIR})
+  list(APPEND linked_libs Scorer::scorer)
+  add_definitions (-DWITH_SCORER)
 endif()
 
 if (VERBOSE)
@@ -150,7 +156,10 @@ set(INST_DIR ${CMAKE_SOURCE_DIR}/share/rfbp                          CACHE PATH 
 set(OUT_DIR  ${CMAKE_SOURCE_DIR}/bin                                 CACHE PATH "Path where outputs will be installed"        FORCE)
 set(OUT_TEST ${CMAKE_SOURCE_DIR}/test/bin                            CACHE PATH "Path where test outputs will be installed"   FORCE)
 
-set(INC_SCORER ${CMAKE_SOURCE_DIR}/scorer/include                    CACHE PATH "Path where to find scorer header"            FORCE)
+set(INSTALL_INCLUDE_DIR  "${CMAKE_CURRENT_LIST_DIR}/share/include/rFBP"  CACHE PATH "Path where headers will be installed")
+set(INSTALL_CMAKE_DIR    "${CMAKE_CURRENT_LIST_DIR}/share/rFBP"          CACHE PATH "Path where cmake configs will be installed")
+
+set(CMAKE_DEBUG_POSTFIX d)
 
 set(rfbplib rfbp)
 set(rfbptestmain test_main)
@@ -159,20 +168,20 @@ set(rfbptrainmain train_main)
 file(GLOB SRC           "${SRC_DIR}/*.cpp" )
 file(GLOB HEADER        "${INC_DIR}/*.h"   )
 file(GLOB HPP           "${INC_DIR}/*.hpp" )
-file(GLOB SCORER_HEADER "${INC_SCORER}/*.h")
-# file(GLOB EXE    "${EXAMPLE}/*.cpp")
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "4.9")
-  list (APPEND SRC ${CMAKE_SOURCE_DIR}/scorer/src/scorer.cpp)
-endif()
 
 include_directories(${INC_DIR} ${INC_SCORER} ${HPP_DIR} ${TEST_DIR})
 
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/cmake)
 
-if (PYrfbp)
+if (PYWRAP)
   include( UseCython )
+  find_package (Python COMPONENTS Interpreter NumPy)
 endif()
+
+set(rFBP_INSTALL_INCLUDE_DIR ${INSTALL_INCLUDE_DIR})
+
+configure_file(${CMAKE_SOURCE_DIR}/rFBP.pc.in ${CMAKE_SOURCE_DIR}/rFBP.pc @ONLY)
+message(STATUS "Pkg-config generated")
 
 #################################################################
 #                          SUMMARY                              #
@@ -206,12 +215,11 @@ foreach(FLAG ${linked_libs})
 endforeach(FLAG)
 message(STATUS ""                                                                    )
 message(STATUS "   OpenMP support : ${OMP}"                                          )
+message(STATUS "   Scorer support : ${SCORER}"                                       )
 message(STATUS "   VERBOSE level  : ${VERBOSE}"                                      )
 message(STATUS "   STATS   level  : ${STATS}"                                        )
 message(STATUS "   BUILD_TEST     : ${BUILD_TEST}"                                   )
-message(STATUS ""                                                                    )
-message(STATUS ""                                                                    )
-message(STATUS "   Compile Pythonize version : ${PYrfbp}"                            )
+message(STATUS "   Compile Pythonize version : ${PYWRAP}"                            )
 message(STATUS ""                                                                    )
 
 
@@ -219,13 +227,18 @@ message(STATUS ""                                                               
 #                         MAIN RULES                            #
 #################################################################
 
-if (PYrfbp)
+if (PYWRAP)
   add_subdirectory(${PYC_DIR}/source)
 endif()
 
 add_library(${rfbplib} SHARED ${SRC} ${HEADER} ${HPP} ${SCORER_HEADER})
 set_property(TARGET ${rfbplib} PROPERTY POSITION_INDEPENDENT_CODE ON)
+target_include_directories(${rfbplib} PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include> $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/hpp> $<INSTALL_INTERFACE:${rFBP_INSTALL_INCLUDE_DIR}>)
 target_link_libraries(${rfbplib} ${linked_libs})
+
+list (APPEND ALL_HEADER ${HEADER})
+list (APPEND ALL_HEADER ${HPP})
+set_target_properties(${rfbplib} PROPERTIES PUBLIC_HEADER "${ALL_HEADER}")
 
 add_executable(${rfbptrainmain} ${EXAMPLE}/train_main.cpp)
 target_link_libraries(${rfbptrainmain} ${linked_libs} ${rfbplib})
@@ -245,7 +258,7 @@ install(TARGETS ${rfbplib}          EXPORT rFBPTargets
                                     RUNTIME DESTINATION ${OUT_DIR}
                                     LIBRARY DESTINATION ${LIB_DIR}
                                     ARCHIVE DESTINATION ${LIB_DIR}
-                                    PUBLIC_HEADER DESTINATION ${LIB_DIR}/include
+                                    PUBLIC_HEADER DESTINATION ${INSTALL_INCLUDE_DIR}
                                     COMPONENT dev
                                     )
 install(TARGETS ${rfbptrainmain}   DESTINATION ${OUT_DIR})
@@ -259,7 +272,7 @@ install(TARGETS ${rfbptestmain}    DESTINATION ${OUT_DIR})
 install (EXPORT rFBPTargets
          FILE rFBPTargets.cmake
          NAMESPACE rFBP::
-         DESTINATION "${INST_DIR}"
+         DESTINATION "${INSTALL_CMAKE_DIR}"
         )
 
 # Export the package for use from the build-tree (this registers the build-tree with a global CMake-registry)
@@ -267,7 +280,7 @@ export (PACKAGE rFBP)
 
 # Create the rFBPConfig.cmake
 # First of all we compute the relative path between the cmake config file and the include path
-file (RELATIVE_PATH REL_INCLUDE_DIR "${INST_DIR}" "${LIB_DIR}/include")
+file (RELATIVE_PATH REL_INCLUDE_DIR "${INSTALL_CMAKE_DIR}" "${INSTALL_INCLUDE_DIR}")
 set (CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
 configure_file (rFBPConfig.cmake.in "${PROJECT_BINARY_DIR}/rFBPConfig.cmake" @ONLY)
 set (CONF_INCLUDE_DIRS "\${rFBP_CMAKE_DIR}/${REL_INCLUDE_DIR}")
@@ -282,5 +295,5 @@ write_basic_package_version_file ("${PROJECT_BINARY_DIR}/rFBPConfigVersion.cmake
 install (FILES
          "${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/rFBPConfig.cmake"
          "${PROJECT_BINARY_DIR}/rFBPConfigVersion.cmake"
-         DESTINATION "${INST_DIR}"
+         DESTINATION "${INSTALL_CMAKE_DIR}"
          )
