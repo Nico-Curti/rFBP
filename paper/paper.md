@@ -13,9 +13,11 @@ authors:
  - name: Nico Curti
    orcid: 0000-0001-5802-1195
    affiliation: 1
+   contributions: *
  - name: Daniele Dall'Olio
    orcid: 0000-0003-0196-6870
    affiliation: 2
+   contributions: *
  - name: Daniel Remondini
    orcid: 0000-0003-3185-7456
    affiliation: 2
@@ -30,16 +32,18 @@ affiliations:
    index: 1
  - name: Department of Physics and Astronomy of Bologna University
    index: 2
+contributions:
+ - name: Both authors contributed equally to this work
+   index: *
 
 date: 20 December 2019
 bibliography: paper.bib
 ---
 
-
 # Summary
 
 The learning problem could be faced through statistical mechanic models joined with the so-called Large Deviation Theory [@parisi2007mean; @Baldassi_2015; @Monasson_1995; @Zecchina_1995; @Baldassi_2016_local]; .
-In general, the learning problem can be split in two sub-parts: the classification problem and the generalization one.
+In general, the learning problem can be split into two sub-parts: the classification problem and the generalization one.
 The first aims to completely store a pattern sample, i.e a prior known ensemble of input-output associations (*perfect learning*) [@Baldassi_2016; @Krauth1989StorageCO].
 The second one corresponds to compute a discriminant function based on a set of features of the input which guarantees a unique association of a pattern.
 
@@ -56,7 +60,7 @@ The learning rule which controls the weight updates is given by the Belief Propa
 A first implementation of the algorithm was proposed in the original paper [@Baldassi_2016] jointly with an open-source Github repository.
 The original version of the code was written in `Julia` language and despite it is a quite efficient implementation the `Julia` programming language stays on difficult and far from many users.
 To broaden the scope and use of the method, a `C++` implementation was developed with a joint `Cython` wrap for `Python` users.
-The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enhance its usability.
+The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enhances its usability.
 This implementation is optimized for parallel computing and is endowed with a custom `C++` library called [`Scorer`](https://github.com/Nico-Curti/scorer) for further details), which is able to compute a large number of statistical measurements based on a hierarchical graph scheme.
 With this optimized implementation and its [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) compatibility we try to encourage researchers to approach these alternative algorithms and to use them more frequently on real context.
 

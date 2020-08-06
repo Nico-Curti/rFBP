@@ -2,10 +2,9 @@
 
 ----------
 
-In this folder we store all papers and reports related to this library.
+In this folder we store all the papers and reports related to this library.
 
 If we can not share source codes for copyright reasons we provide a link to them.
-
 
 ## Conference Paper
 

@@ -49,7 +49,7 @@ git config --global core.autocrlf input
 git clone https://github.com/physycom/sysconfig
 ```
 
-3) Build the project with CMake (enable or disable OMP with the define **-DOMP**:
+3) Build the project with CMake (enable or disable OMP with the define **-DOMP**; enable or disable **Cython** building with the define **-DPYWRAP**; enable or disable the **Scorer** support using **-DSCORER**; enable or disable testing with the define **-DBUILD_TEST**):
 
 ```bash
 cd $WORKSPACE
@@ -93,7 +93,7 @@ echo -e "\n export WORKSPACE=/full/path/to/my/folder \n" >> ~/.bash_profile
 source ~/.bash_profile
 ```
 
-6) Build the project with CMake (enable or disable OMP with the define **-DOMP**:
+6) Build the project with CMake (enable or disable OMP with the define **-DOMP**; enable or disable **Cython** building with the define **-DPYWRAP**; enable or disable the **Scorer** support using **-DSCORER**; enable or disable testing with the define **-DBUILD_TEST**):
 
 ```bash
 cd $WORKSPACE

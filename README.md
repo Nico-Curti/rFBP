@@ -13,9 +13,9 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/Nico-Curti/rFBP.svg?label=Watch&style=social)](https://github.com/Nico-Curti/rFBP/watchers)
 
 <a href="https://github.com/UniboDIFABiophysics">
-<div class="image">
-<img src="https://cdn.rawgit.com/physycom/templates/697b327d/logo_unibo.png" width="90" height="90">
-</div>
+  <div class="image">
+    <img src="https://cdn.rawgit.com/physycom/templates/697b327d/logo_unibo.png" width="90" height="90">
+  </div>
 </a>
 
 # Replicated Focusing Belief Propagation algorithm
@@ -42,7 +42,7 @@ To further improve the usage of our code, we propose also a `Python` wrap of the
 ## Overview
 
 The learning problem could be faced through statistical mechanic models joined with the so-called Large Deviation Theory.
-In general, the learning problem can be split in two sub-parts: the classification problem and the generalization one.
+In general, the learning problem can be split into two sub-parts: the classification problem and the generalization one.
 The first aims to completely store a pattern sample, i.e a prior known ensemble of input-output associations (*perfect learning*).
 The second one corresponds to compute a discriminant function based on a set of features of the input which guarantees a unique association of a pattern.
 
@@ -59,7 +59,7 @@ The learning rule which controls the weight updates is given by the Belief Propa
 A first implementation of the algorithm was proposed in the original paper [[BaldassiE7655](https://www.pnas.org/content/113/48/E7655)] jointly with an open-source Github repository.
 The original version of the code was written in `Julia` language and despite it is a quite efficient implementation the `Julia` programming language stays on difficult and far from many users.
 To broaden the scope and use of the method, a `C++` implementation was developed with a joint `Cython` wrap for `Python` users.
-The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enhance its usability.
+The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enhances its usability.
 This implementation is optimized for parallel computing and is endowed with a custom `C++` library called [`Scorer`](https://github.com/Nico-Curti/scorer)), which is able to compute a large number of statistical measurements based on a hierarchical graph scheme.
 With this optimized implementation and its [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) compatibility we try to encourage researchers to approach these alternative algorithms and to use them more frequently on real context.
 
@@ -79,7 +79,6 @@ To this end, the Belief Propagation method [[MézardMontanari](https://web.stanf
 
 See [here](https://github.com/Nico-Curti/rFBP/blob/master/docs/model.md) for further details about the model.
 
-
 ## Prerequisites
 
 C++ supported compilers:
@@ -93,9 +92,14 @@ C++ supported compilers:
 The `rFBP` project is written in `C++` using a large amount of c++17 features.
 To enlarge the usability of our package we provide also a retro-compatibility of all the c++17 modules reaching an usability (tested) of our code from gcc 4.8.5+.
 The package installation can be performed via [`CMake`](https://github.com/Nico-Curti/rFBP/blob/master/CMakeLists.txt) or [`Makefile`](https://github.com/Nico-Curti/rFBP/blob/master/Makefile).
-If you are using the `CMake` (recommended) installer the maximum version of C++ standard is automatic detected.
 
-You can use also the `rFBP` package in `Python` using the `Cython` wrap provided inside this project.
+If you are using the `CMake` (recommended) installer the maximum version of C++ standard is automatic detected.
+The `CMake` installer provides also the export of the library: after the installation you can use this library into other `CMake` projects using a simple `find_package` function.
+The exported `CMake` library (`rFBP::rfbp`) is installed in the `share/rFBP` directory of the current project and the relative header files are available in the `rFBP_INCLUDE_DIR` variable.
+
+The `CMake` installer provides also a `rFBP.pc`, useful if you want link to the `rFBP` using `pkg-config`.
+
+You can also use the `rFBP` package in `Python` using the `Cython` wrap provided inside this project.
 The only requirements are the following:
 
 * numpy >= 1.15
@@ -104,7 +108,8 @@ The only requirements are the following:
 * scikit-learn >= 0.20.3
 * requests >= 2.22.0
 
-The `Python` wrap guarantees also a good integration with the other common Machine Learning tools provided by `scikit-learn` `Python` package; in this way we can use the `rFBP` algorithm as equivalent alternative also in other pipelines.
+The `Cython` version can be built and installed via `CMake` enabling the `-DPYWRAP` variable.
+The `Python` wrap guarantees also a good integration with the other common Machine Learning tools provided by `scikit-learn` `Python` package; in this way you can use the `rFBP` algorithm as an equivalent alternative also in other pipelines.
 Like other Machine Learning algorithm also the `rFBP` one depends on many parameters, i.e its hyper-parameters, which has to be tuned according to the given problem.
 The `Python` wrap of the library was written according to `scikit-optimize` `Python` package to allow an easy hyper-parameters optimization using the already implemented classical methods.
 
@@ -116,7 +121,7 @@ A complete list of instructions "for beginners" is also provided for both [cpp](
 
 ### CMake C++ installation
 
-We recommend the use of `CMake` for the installation since it is the most automated way to reach your needs.
+We recommend to use `CMake` for the installation since it is the most automated way to reach your needs.
 First of all make sure you have a sufficient version of `CMake` installed (3.9 minimum version required).
 If you are working on a machine without root privileges and you need to upgrade your `CMake` version a valid solution to overcome your problems is provided [here](https://github.com/Nico-Curti/Shut).
 
@@ -177,7 +182,7 @@ Python version supported : ![Python version](https://img.shields.io/badge/python
 The `Python` installation can be performed with or without the `C++` installation.
 The `Python` installation is always executed using [`setup.py`](https://github.com/Nico-Curti/blob/master/setup.py) script.
 
-If you have already build the `rFBP` `C++` library the installation is performed faster and the `Cython` wrap directly links to the last library installed.
+If you have already built the `rFBP` `C++` library the installation is performed faster and the `Cython` wrap was already built using the `-DPYWRAP` definition.
 Otherwise the full list of dependencies is build.
 
 In both cases the installation steps are
@@ -207,7 +212,10 @@ python setup.py develop --user
 We test the computational efficiency of our implementation against the original `Julia` one.
 The tests were performed comparing our `Cython` version of the code (and thus with a slight overhead given by the `Python` interpreter) and the `Julia` implementation.
 Varying the dimension sizes (number of samples, `M`, and number of features, `N`) we performed 100 runs of both the algorithms.
-We divided our simulation according to the two possible types of magnetizations: `MagP64` and `MagT64`. As described in the [original implementation](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl), the `MagP64` type allows fast executions with inexact outcomes by neglecting all `tanh` operations. In contrast, the `MagT64` exactly follows all theoretical equations with no further approximation, which necessarily causes slower executions. The obtained results are showed in Fig. [[1](./img/rgbp_magp_timing.svg), [2](./img/rgbp_magt_timing.svg)], respectively.
+We divided our simulation according to the two possible types of magnetizations: `MagP64` and `MagT64`.
+As described in the [original implementation](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl), the `MagP64` type allows fast executions with inexact outcomes by neglecting all `tanh` operations.
+In contrast, the `MagT64` exactly follows all theoretical equations with no further approximation, which necessarily causes slower executions.
+The obtained results are showed in Fig. [[1](./img/rgbp_magp_timing.svg), [2](./img/rgbp_magt_timing.svg)], respectively.
 
 As can be seen by the two simulations our implementation scales very well with the number of samples and it is quite stable in relation to the number of features.
 However, we can not guarantee a perfect parallel execution of our version: also with multi-threading support the scalability of our implementation does not follow a linear trend with the number of available cores.
@@ -275,7 +283,8 @@ optional arguments:
 If you are interested in using `rFBP` inside your code you can simply import the [`rfbp.hpp`](https://github.com/Nico-Curti/rFBP/blob/master/hpp/rfbp.hpp) and create a `ReplicatedFocusingBeliefPropagation` object.
 
 Then all the work is performed by the `focusingBP` (template) function.
-You can use it with `MagP64` type or `MagT64`. We recommend the former when quick results are needed and the latter when the weights accuracy is top priority.
+You can use it with `MagP64` type or `MagT64`.
+We recommend the former when quick results are needed and the latter when the weights accuracy is top priority.
 
 The input pattern must be wrapped into a `Pattern` object provided by the library.
 
@@ -323,7 +332,7 @@ from ReplicatedFocusingBeliefPropagation import Pattern
 from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
 ```
 
-If your want to run your script with multiple cores you can simply import also
+If you want to run your script with multiple cores you can simply import also
 
 ```python
 from ReplicatedFocusingBeliefPropagation import NTH
@@ -385,11 +394,12 @@ We suggest the usage of this data type if you have to load your data from file.
 We check the consistency of the input variables into the `C++` code (**only** in DEBUG mode) and into the `Python` wrap.
 
 In the [example](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/example/) folder you can find a training/test example using a pattern imported from file (a more realistic example).
-Both the `fit` and `predict` functions works using either a `numpy` array and a `Pattern` object.
+Both the `fit` and `predict` functions work using either a `numpy` array and a `Pattern` object.
 
 ## Testing
 
-`rFBP` uses CMake to build a full list of tests. You can disable tests setting the `-DBUILD_TEST=OFF` during the building.
+`rFBP` uses CMake to build a full list of tests.
+You can disable tests setting the `-DBUILD_TEST=OFF` during the building.
 All the test are performed using the [`Catch2`](https://github.com/catchorg/Catch2/) (v2.11.0) library.
 
 The test scripts can be found [here](https://github.com/Nico-Curti/rFBP/blob/master/test).
@@ -399,7 +409,7 @@ To install the package in development mode you need to add also this requirement
 
 * pytest == 3.0.7
 
-The full list of python test scripts can be found [here](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp/test)
+The full list of python test scripts can be found [here](https://github.com/Nico-Curti/rFBP/blob/master/ReplicatedFocusingBeliefPropagation/rfbp/test).
 
 ## Table of contents
 
