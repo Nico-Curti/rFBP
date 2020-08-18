@@ -13,16 +13,16 @@
 [![GitHub watchers](https://img.shields.io/github/watchers/Nico-Curti/rFBP.svg?label=Watch&style=social)](https://github.com/Nico-Curti/rFBP/watchers)
 
 <a href="https://github.com/UniboDIFABiophysics">
-<div class="image">
-<img src="https://cdn.rawgit.com/physycom/templates/697b327d/logo_unibo.png" width="90" height="90">
-</div>
+  <div class="image">
+    <img src="https://cdn.rawgit.com/physycom/templates/697b327d/logo_unibo.png" width="90" height="90">
+  </div>
 </a>
 
 # Replicated Focusing Belief Propagation algorithm
 
 We propose a `C++` version of the [**Replicated Focusing Belief Propagation**](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl) Julia package.
 Our implementation optimizes and extends the original library including multi-threading support and an easy-to-use interface to the main algorithm.
-To further improve the usage of our code, we propose also a `Python` wrap of the library with a full compatibility with the [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) package.
+To further improve the usage of our code, we propose also a `Python` wrap of the library with a full compatibility with the [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) and [`scikit-optimize`](https://github.com/scikit-optimize/scikit-optimize) packages.
 
 - [C++ Install](./cpp_install.md)
 - [Python Install](./python_install.md)

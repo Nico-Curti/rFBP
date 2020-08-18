@@ -36,7 +36,7 @@ contributions:
  - name: Both authors contributed equally to this work
    index: *
 
-date: 20 December 2019
+date: 18 August 2020
 bibliography: paper.bib
 ---
 

@@ -22,7 +22,7 @@
 
 We propose a `C++` version of the [**Replicated Focusing Belief Propagation**](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl) Julia package.
 Our implementation optimizes and extends the original library including multi-threading support and an easy-to-use interface to the main algorithm.
-To further improve the usage of our code, we propose also a `Python` wrap of the library with a full compatibility with the [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) package.
+To further improve the usage of our code, we propose also a `Python` wrap of the library with a full compatibility with the [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) and [`scikit-optimize`](https://github.com/scikit-optimize/scikit-optimize) packages.
 
 * [Overview](#overview)
 * [Theory](#theory)
@@ -209,7 +209,7 @@ python setup.py develop --user
 
 ![Comparison of time performances between the original `Julia` implementation and our `Cython` one of the `rFBP` algorithm varying the input dimension sizes (number of samples, `M`, and number of features, `N`). For each input configuration 100 runs of both algorithm were performed and the results were normalized by the `Julia` implementation. In these cases we fixed the magnetization to **MagT64**.](./img/rfbp_magt_timing.svg)
 
-We test the computational efficiency of our implementation against the original `Julia` one.
+We test the computational efficiency of our implementation against the original `Julia` one ([update Jul 2020](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl/tree/179443860083fc68c87e8e53a588bc22187c3ade)).
 The tests were performed comparing our `Cython` version of the code (and thus with a slight overhead given by the `Python` interpreter) and the `Julia` implementation.
 Varying the dimension sizes (number of samples, `M`, and number of features, `N`) we performed 100 runs of both the algorithms.
 We divided our simulation according to the two possible types of magnetizations: `MagP64` and `MagT64`.
@@ -344,8 +344,8 @@ You can start to try the package functionality using a random pattern
 
 ```python
 N, M = (20, 101) # M must be odd
-data = np.random.choice([-1, 1], p=[.5, .5], size=(20, 101))
-label = np.random.choice([-1, 1], p=[.5, .5], size=(20, ))
+data = np.random.choice([-1, 1], p=[.5, .5], size=(N, M))
+label = np.random.choice([-1, 1], p=[.5, .5], size=(N, ))
 ```
 
 The input data must be composed by binary variables codified as `[-1, 1]`, since the model works only with spin-like variables.
@@ -378,8 +378,9 @@ The internal implementation of the algorithm works with a custom data type calle
 You can explicitly use a `Pattern` object or convert your data to it
 
 ```python
+n_sample, n_feature = (20, 101) # n_feature must be odd
 data = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, n_feature))
-labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample,))
+labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, ))
 
 pt = Pattern(X=data, y=labels)
 # dimensions
