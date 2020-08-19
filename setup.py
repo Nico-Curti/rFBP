@@ -130,7 +130,6 @@ here = os.path.abspath(os.path.dirname(__file__)).replace('\\', '/')
 # Package meta-data.
 NAME = 'ReplicatedFocusingBeliefPropagation'
 DESCRIPTION = 'Replicated Focusing Belief Propagation algorithm.'
-URL = 'https://github.com/Nico-Curti/rFBP'
 EMAIL = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 AUTHOR = ['Nico Curti', "Daniele Dall'Olio"]
 REQUIRES_PYTHON = '>=3.5'
@@ -172,7 +171,7 @@ else:
 
 # parse version variables and add them to command line as definitions
 Version = about['__version__'].split('.')
-
+URL = 'https://github.com/Nico-Curti/rFBP/archive/v{}.tar.gz'.format(about['__version__'])
 
 # Read dependecies graph
 dependencies = read_dependecies_build(DEPENDECIES_FILENAME)
