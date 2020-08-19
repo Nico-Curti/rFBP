@@ -42,6 +42,8 @@ ReplicatedFocusingBeliefPropagation/[Ss]ource/*.c*
 ReplicatedFocusingBeliefPropagation/[Ss]ource/*.h
 __pycache__/
 [Dd]ata/
+[Dd]ist/
+.eggs/
 
 # Utilities
 [Uu]tilities/

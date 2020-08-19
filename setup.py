@@ -130,8 +130,8 @@ here = os.path.abspath(os.path.dirname(__file__)).replace('\\', '/')
 # Package meta-data.
 NAME = 'ReplicatedFocusingBeliefPropagation'
 DESCRIPTION = 'Replicated Focusing Belief Propagation algorithm.'
-EMAIL = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
-AUTHOR = ['Nico Curti', "Daniele Dall'Olio"]
+EMAIL = 'nico.curti2@unibo.it, daniele.dallolio@studio.unibo.it'
+AUTHOR = "Nico Curti, Daniele Dall'Olio"
 REQUIRES_PYTHON = '>=3.5'
 VERSION = None
 KEYWORDS = "belief-propagation deep-neural-networks spin-glass"
