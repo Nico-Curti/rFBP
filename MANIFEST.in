@@ -1,3 +1,9 @@
 include *.md
 include *.txt
 include *.yml
+include include/*
+include hpp/*
+include ReplicatedFocusingBeliefPropagation/*.json
+include ReplicatedFocusingBeliefPropagation/lib/*.pxd
+include ReplicatedFocusingBeliefPropagation/lib/*.hpp
+include ReplicatedFocusingBeliefPropagation/source/*.pyx

@@ -5,6 +5,11 @@
                  "./src/spline.cpp",
                  "./src/utils.cpp"
     ],
+    "dependencies": ["./include/atanherf.h",
+                     "./include/spline.h",
+                     "./include/utils.h",
+                     "./hpp/utils.hpp"
+    ],
     "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
                       "./hpp/",
                       "./include/"
@@ -17,6 +22,11 @@
                  "./src/fprotocol.cpp",
                  "./src/utils.cpp"
     ],
+    "dependencies": ["./include/fprotocol.h",
+                     "./include/utils.h",
+                     "./ReplicatedFocusingBeliefPropagation/lib/misc.hpp",
+                     "./hpp/utils.hpp"
+    ],
     "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
                       "./hpp/",
                       "./include/"
@@ -28,6 +38,11 @@
     "sources": [ "./ReplicatedFocusingBeliefPropagation/source/Patterns.pyx",
                  "./src/pattern.cpp",
                  "./src/utils.cpp"
+    ],
+    "dependencies": ["./include/pattern.h",
+                     "./include/utils.h",
+                     "./ReplicatedFocusingBeliefPropagation/lib/misc.hpp",
+                     "./hpp/utils.hpp"
     ],
     "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
                       "./hpp/",
@@ -47,6 +62,23 @@
                  "./src/pattern.cpp",
                  "./src/spline.cpp",
                  "./src/utils.cpp"
+    ],
+    "dependencies": ["./include/rfbp.h",
+                     "./include/atanherf.h",
+                     "./include/cavity_message.h",
+                     "./include/fprotocol.h",
+                     "./include/magnetization.h",
+                     "./include/params.h",
+                     "./include/pattern.h",
+                     "./include/spline.h",
+                     "./include/utils.h",
+                     "./ReplicatedFocusingBeliefPropagation/lib/misc.hpp",
+                     "./hpp/cavity_message.hpp",
+                     "./hpp/magnetization.hpp",
+                     "./hpp/params.hpp",
+                     "./hpp/pattern.hpp",
+                     "./hpp/rfbp.hpp",
+                     "./hpp/utils.hpp"
     ],
     "include_dirs": [ "./ReplicatedFocusingBeliefPropagation/lib/",
                       "./hpp/",

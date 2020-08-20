@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function
-
 import os
 import sys
 import json
@@ -22,6 +20,8 @@ except ImportError:
 from distutils import sysconfig
 from Cython.Distutils import build_ext
 from distutils.sysconfig import customize_compiler
+from distutils.command.sdist import sdist as _sdist
+
 
 def get_requires (requirements_filename):
   '''
@@ -90,6 +90,12 @@ class rfbp_build_ext (build_ext):
     build_ext.build_extensions(self)
 
 
+class sdist(_sdist):
+  def run(self):
+    self.run_command("build_ext")
+    _sdist.run(self)
+
+
 def read_description (readme_filename):
   '''
   Description package from filename
@@ -115,11 +121,11 @@ def read_description (readme_filename):
     return ''
 
 
-def read_dependecies_build (dependecies_filename):
+def read_dependencies_build (dependencies_filename):
   '''
   Read the json of dependencies
   '''
-  with open(dependecies_filename, 'r') as fp:
+  with open(dependencies_filename, 'r') as fp:
     dependecies = json.load(fp)
 
   return dependecies
@@ -139,7 +145,7 @@ KEYWORDS = "belief-propagation deep-neural-networks spin-glass"
 CPP_COMPILER = platform.python_compiler()
 README_FILENAME = os.path.join(here, 'README.md')
 REQUIREMENTS_FILENAME = os.path.join(here, 'requirements.txt')
-DEPENDECIES_FILENAME = os.path.join(here, 'ReplicatedFocusingBeliefPropagation', 'dependencies.json')
+DEPENDENCIES_FILENAME = os.path.join(here, 'ReplicatedFocusingBeliefPropagation', 'dependencies.json')
 VERSION_FILENAME = os.path.join(here, 'ReplicatedFocusingBeliefPropagation', '__version__.py')
 
 ENABLE_OMP = False
@@ -174,7 +180,7 @@ Version = about['__version__'].split('.')
 URL = 'https://github.com/Nico-Curti/rFBP/archive/v{}.tar.gz'.format(about['__version__'])
 
 # Read dependecies graph
-dependencies = read_dependecies_build(DEPENDECIES_FILENAME)
+dependencies = read_dependencies_build(DEPENDENCIES_FILENAME)
 
 # Set compiler variables
 define_args = [ '-DMAJOR={}'.format(Version[0]),
@@ -245,6 +251,10 @@ else:
 
 whole_compiler_args = sum([cpp_compiler_args, compile_args, define_args, linker_args], [])
 
+cmdclass = {'build_ext': rfbp_build_ext,
+            'sdist': sdist}
+
+
 # Where the magic happens:
 setup(
   name                          = NAME,
@@ -261,6 +271,10 @@ setup(
   url                           = URL,
   download_url                  = URL,
   keywords                      = KEYWORDS,
+  setup_requires                = [# Setuptools 18.0 properly handles Cython extensions.
+                                   'setuptools>=18.0',
+                                   'cython',
+                                   'numpy'],
   packages                      = find_packages(include=['ReplicatedFocusingBeliefPropagation',
                                                          'ReplicatedFocusingBeliefPropagation.*'],
                                                 exclude=('test', 'example')),
@@ -276,7 +290,7 @@ setup(
                                     'Programming Language :: Python :: Implementation :: PyPy'
                                   ],
   license                       = 'MIT',
-  cmdclass                      = {'build_ext': rfbp_build_ext},
+  cmdclass                      = cmdclass,
   ext_modules                   = [
                                     Extension(name='.'.join(['ReplicatedFocusingBeliefPropagation', 'lib', name]),
                                               sources=values['sources'],

@@ -179,6 +179,12 @@ you can compile the main example and the `C++` library.
 
 Python version supported : ![Python version](https://img.shields.io/badge/python-3.5|3.6|3.7|3.8-blue.svg)
 
+The easiest way to install the package is to use `pip`
+
+```bash
+python -m pip install ReplicatedFocusingBeliefPropagation
+```
+
 The `Python` installation can be performed with or without the `C++` installation.
 The `Python` installation is always executed using [`setup.py`](https://github.com/Nico-Curti/blob/master/setup.py) script.
 

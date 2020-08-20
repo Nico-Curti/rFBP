@@ -32,7 +32,7 @@ or for installing in development mode:
 python setup.py develop --user
 ```
 
-### Installation using pip (Untested)
+### Installation using pip
 
 The latest release of the `rFBP` package can be installed using `pip`
 
