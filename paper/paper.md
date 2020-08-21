@@ -1,36 +1,39 @@
 ---
 title: 'rFBP: Replicated Focusing Belief Propagation algorithm'
 tags:
-  - belief-propagation
-  - deep-neural-networks
-  - sping-glass
-  - statistical-mechanics
-  - learning-algorithm
-  - machine-learning-algorithms
-  - python3
-  - cpp17
+- belief-propagation
+- deep-neural-networks
+- sping-glass
+- statistical-mechanics
+- learning-algorithm
+- machine-learning-algorithms
+- python3
+- cpp17
 authors:
- - name: Nico Curti [^a]
-   orcid: 0000-0001-5802-1195
-   affiliation: 1
- - name: Daniele Dall'Olio [^a]
-   orcid: 0000-0003-0196-6870
-   affiliation: 2
- - name: Daniel Remondini
-   orcid: 0000-0003-3185-7456
-   affiliation: 2
- - name: Gastone Castellani
-   orcid: 0000-0003-4892-925X
-   affiliation: 1
+- name: Nico Curti
+  orcid: 0000-0001-5802-1195
+  affiliation: 1
+- name: Daniele Dall'Olio^[Joint first author]
+  orcid: 0000-0003-0196-6870
+  affiliation: 2
+- name: Daniel Remondini
+  orcid: 0000-0003-3185-7456
+  affiliation: 2
+- name: Gastone Castellani
+  orcid: 0000-0003-4892-925X
+  affiliation: 1
 - name: Enrico Giampieri
-   orcid: 0000-0003-2269-2338
-   affiliation: 1
+  orcid: 0000-0003-2269-2338
+  affiliation: 1
 affiliations:
- - name: Department of Experimental, Diagnostic and Specialty Medicine of Bologna University
-   index: 1
- - name: Department of Physics and Astronomy of Bologna University
-   index: 2
+- name: Department of Experimental, Diagnostic and Specialty Medicine of Bologna University
+  index: 1
+- name: Department of Physics and Astronomy of Bologna University
+  index: 2
 
+date: 18 August 2020
+bibliography: paper.bib
+---
 date: 18 August 2020
 bibliography: paper.bib
 ---
