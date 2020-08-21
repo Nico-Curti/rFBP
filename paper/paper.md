@@ -31,8 +31,6 @@ affiliations:
  - name: Department of Physics and Astronomy of Bologna University
    index: 2
 
-[^a] : Both authors contributed equally to this work
-
 date: 18 August 2020
 bibliography: paper.bib
 ---
@@ -70,5 +68,7 @@ Algorithm application on real data:
 - *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/conference/ccs19.pdf), Conference paper
 
 - *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/presentation/ccs19.pdf), Conference slides
+
+[^a] : Both authors contributed equally to this work
 
 # References
