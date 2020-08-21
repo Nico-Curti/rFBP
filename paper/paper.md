@@ -10,14 +10,12 @@ tags:
   - python3
   - cpp17
 authors:
- - name: Nico Curti
+ - name: Nico Curti [^a]
    orcid: 0000-0001-5802-1195
    affiliation: 1
-   contributions: *
- - name: Daniele Dall'Olio
+ - name: Daniele Dall'Olio [^a]
    orcid: 0000-0003-0196-6870
    affiliation: 2
-   contributions: *
  - name: Daniel Remondini
    orcid: 0000-0003-3185-7456
    affiliation: 2
@@ -32,9 +30,8 @@ affiliations:
    index: 1
  - name: Department of Physics and Astronomy of Bologna University
    index: 2
-contributions:
- - name: Both authors contributed equally to this work
-   index: *
+
+[^a] : Both authors contributed equally to this work
 
 date: 18 August 2020
 bibliography: paper.bib
