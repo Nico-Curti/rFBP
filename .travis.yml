@@ -347,7 +347,8 @@ before_install:
 
   # install python packages
   - $PYTHON --version
-  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user numpy==1.15                                                         ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user setuptools==49.3.0                                                    ;fi
+  - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user numpy==1.15                                                           ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user cython==0.29                                                          ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user scipy==1.2.1                                                          ;fi
   - if [[ "$WITH_PYTHON" == "ON" ]]; then $PYTHON -m pip install --user scikit-learn==0.20.3                                                  ;fi
