@@ -37,7 +37,14 @@ bibliography: paper.bib
 
 # Summary
 
-The learning problem could be faced through statistical mechanic models joined with the so-called Large Deviation Theory [@parisi2007mean; @Baldassi_2015; @Monasson_1995; @Zecchina_1995; @Baldassi_2016_local]; .
+The `rFBP` project implements a `scikit-learn` compatible machine-learning binary classifier leveraging fully connected neural networks with a learning algorithm (*Replicated Focusing Belief Propagation*, rFBP) that is fast converging and robust (less prone to brittle overfitting) for ill-posed datasets (very few samples compared to the number of features).
+The current implementation works only with binary features such as one-hot encoding for categorical data.
+
+This library has been already used to successfully predict *source attribution* starting from GWAS (*Genome Wide Association Studies*) data.
+That study was trying to predict the animal origin for an infectious bacterial disease inside the H2020 European project COMPARE (Grant agreement ID: 643476).
+A full description of the pipeline used in this study is available in the abstract and slides provided into the [publications](https://github.com/Nico-Curti/rFBP/blob/master/publications) folder of the project.
+
+The learning problem under ill-posed conditions could be tackled through statistical mechanic models joined with the so-called Large Deviation Theory [@parisi2007mean; @Baldassi_2015; @Monasson_1995; @Zecchina_1995; @Baldassi_2016_local].
 In general, the learning problem can be split into two sub-parts: the classification problem and the generalization one.
 The first aims to completely store a pattern sample, i.e a prior known ensemble of input-output associations (*perfect learning*) [@Baldassi_2016; @Krauth1989StorageCO].
 The second one corresponds to compute a discriminant function based on a set of features of the input which guarantees a unique association of a pattern.
@@ -68,6 +75,10 @@ Algorithm application on real data:
 - *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/conference/ccs19.pdf), Conference paper
 
 - *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/presentation/ccs19.pdf), Conference slides
+
+# Acknowledgments
+
+The authors acknowledge COMPARE n. 643476 EU Horizon 2020 (EU) Project.
 
 [^a] : Both authors contributed equally to this work
 
