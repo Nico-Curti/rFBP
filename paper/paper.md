@@ -13,50 +13,48 @@ authors:
 - name: Nico Curti
   orcid: 0000-0001-5802-1195
   affiliation: 1
-- name: Daniele Dall'Olio^[Joint first author]
+- name: Daniele Dall'Olio^[Join first author]
   orcid: 0000-0003-0196-6870
-  affiliation: 2
+  affiliation: 3
 - name: Daniel Remondini
   orcid: 0000-0003-3185-7456
-  affiliation: 2
+  affiliation: 3
 - name: Gastone Castellani
   orcid: 0000-0003-4892-925X
-  affiliation: 1
+  affiliation: 2
 - name: Enrico Giampieri
   orcid: 0000-0003-2269-2338
   affiliation: 1
 affiliations:
-- name: Department of Experimental, Diagnostic and Specialty Medicine of Bologna University
+- name: eDIMESLab, Department of Experimental, Diagnostic and Specialty Medicine of Bologna University
   index: 1
-- name: Department of Physics and Astronomy of Bologna University
+- name: Department of Experimental, Diagnostic and Specialty Medicine of Bologna University
   index: 2
-
-date: 18 August 2020
-bibliography: paper.bib
----
-date: 18 August 2020
+- name: Department of Physics and Astronomy of Bologna University
+  index: 3
+date: 06 October 2020
 bibliography: paper.bib
 ---
 
 # Summary
 
-The `rFBP` project implements a `scikit-learn` compatible machine-learning binary classifier leveraging fully connected neural networks with a learning algorithm (*Replicated Focusing Belief Propagation*, rFBP) that is fast converging and robust (less prone to brittle overfitting) for ill-posed datasets (very few samples compared to the number of features).
+The `rFBP` project implements a `scikit-learn` compatible machine-learning binary classifier leveraging fully connected neural networks with a learning algorithm (*Replicated Focusing Belief Propagation*, rFBP) that is quickly converging and robust (less prone to brittle overfitting) for ill-posed datasets (very few samples compared to the number of features).
 The current implementation works only with binary features such as one-hot encoding for categorical data.
 
-This library has been already used to successfully predict *source attribution* starting from GWAS (*Genome Wide Association Studies*) data.
+This library has already been widely used to successfully predict *source attribution* starting from GWAS (*Genome Wide Association Studies*) data.
 That study was trying to predict the animal origin for an infectious bacterial disease inside the H2020 European project COMPARE (Grant agreement ID: 643476).
 A full description of the pipeline used in this study is available in the abstract and slides provided into the [publications](https://github.com/Nico-Curti/rFBP/blob/master/publications) folder of the project.
 
-The learning problem under ill-posed conditions could be tackled through statistical mechanic models joined with the so-called Large Deviation Theory [@parisi2007mean; @Baldassi_2015; @Monasson_1995; @Zecchina_1995; @Baldassi_2016_local].
+The learning problem under ill-posed conditions can be tackled through statistical mechanic models joined with the so-called Large Deviation Theory [@parisi2007mean; @Baldassi_2015; @Monasson_1995; @Zecchina_1995; @Baldassi_2016_local].
 In general, the learning problem can be split into two sub-parts: the classification problem and the generalization one.
-The first aims to completely store a pattern sample, i.e a prior known ensemble of input-output associations (*perfect learning*) [@Baldassi_2016; @Krauth1989StorageCO].
+The first aims to completely store a pattern sample, i.e. a prior known ensemble of input-output associations (*perfect learning*, Baldassi et al.) [@Baldassi_2016; @Krauth1989StorageCO].
 The second one corresponds to compute a discriminant function based on a set of features of the input which guarantees a unique association of a pattern.
 
-From a statistical point-of-view many Neural Network models have been proposed and the most promising seems to be spin-glass models based.
+From a statistical point-of-view many Neural Network models have been proposed and spin-glass models have emerged as the most promising ones.
 Starting from a balanced distribution of the system, generally based on Boltzmann distribution, and under proper conditions, we can prove that the classification problem becomes a NP-complete computational problem [@Blum_1992].
 A wide range of heuristic solutions to that type of problems were proposed [@Huang_2014; @Braunstein_2006; @Baldassi_11079].
 
-In this project we show one of these algorithms developed by Zecchina et al. [@Baldassi_2016] and called *Replicated Focusing Belief Propagation* (`rFBP`).
+In this project we show one of these algorithms developed by Baldassi et al. [@Baldassi_2016] and called *Replicated Focusing Belief Propagation* (`rFBP`).
 The `rFBP` algorithm is a learning algorithm developed to justify the learning process of a binary neural network framework.
 The model is based on a spin-glass distribution of neurons put on a fully connected neural network architecture.
 In this way each neuron is identified by a spin and so only binary weights (-1 and 1) can be assumed by each entry.
@@ -82,7 +80,5 @@ Algorithm application on real data:
 # Acknowledgments
 
 The authors acknowledge COMPARE n. 643476 EU Horizon 2020 (EU) Project.
-
-[^a] : Both authors contributed equally to this work
 
 # References
