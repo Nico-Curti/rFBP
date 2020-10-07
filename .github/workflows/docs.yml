@@ -35,9 +35,8 @@ jobs:
     - name: Install sphinx dependencies
       run: |
         python -m pip install sphinx
-        python -m pip install sphinx-napoleon
-        python -m pip install sphinxcontrib-napoleon --user
-        python -m pip install sphinxcontrib-programoutput --user
+        python -m pip install sphinxcontrib-napoleon
+        python -m pip install sphinxcontrib-programoutput
 
     - name: Install breathe
       run: |

@@ -1,0 +1,4 @@
+breathe
+sphinx
+sphinxcontrib-napoleon
+sphinxcontrib-programoutput
