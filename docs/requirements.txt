@@ -1,4 +1,5 @@
-breathe
+breathe<4.13.0
 sphinx
+sphinx-rtd-theme
 sphinxcontrib-napoleon
 sphinxcontrib-programoutput
