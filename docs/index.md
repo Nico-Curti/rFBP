@@ -4,8 +4,9 @@
 
 [![rFBP C++ CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20C++%20CI/badge.svg)](https://github.com/Nico-Curti/rFBP/actions?query=workflow%3A%22rFBP+C%2B%2B+CI%22)
 [![rFBP Python CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20Python%20CI/badge.svg)](https://github.com/Nico-Curti/rFBP/actions?query=workflow%3A%22rFBP+Python+CI%22)
+[![rFBP Docs CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20Docs%20CI/badge.svg)](https://github.com/Nico-Curti/rFBP/actions?query=workflow%3A%22rFBP+Docs+CI%22)
 
-[![docs](https://img.shields.io/badge/doc-latest-blue.svg?style=plastic)](https://nico-curti.github.io/rFBP/)
+[![docs](https://readthedocs.org/projects/rfbp/badge/?version=latest)](https://rfbp.readthedocs.io/en/latest/?badge=latest)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/issues)
 

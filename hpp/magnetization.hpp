@@ -232,7 +232,7 @@ namespace mag
       const double ay = y.mag;
 
       return !mag :: isinf < Mag >(ax) && !mag :: isinf < Mag >(ay)                                                 ?
-              std :: abs(ax + ay) - std :: abs(ax) - std :: abs(ay) + lr(ax + ay) - lr(ax) - lr(ay) :
+              std :: abs(ax + ay) - std :: abs(ax) - std :: abs(ay) + lr(ax + ay) - lr(ax) - lr(ay)                 :
               mag :: isinf < Mag >(ax) && !mag :: isinf < Mag >(ay) ? sign(ax) * ay - std :: abs(ay) - lr(ay)       :
              !mag :: isinf < Mag >(ax) &&  mag :: isinf < Mag >(ay) ? sign(ay) * ax - std :: abs(ax) - lr(ax)       :
               sign(ax) == sign(ay) ? 0. : -INF;
@@ -265,7 +265,7 @@ namespace mag
   {
     static_assert( std :: is_same < Mag, MagP64 > :: value ||
                    std :: is_same < Mag, MagT64 > :: value,
-                   "log1pxy function! Incompatible types found.");
+                   "logZ function! Incompatible types found.");
 
     if constexpr ( std :: is_same < Mag, MagP64 > :: value )
     {

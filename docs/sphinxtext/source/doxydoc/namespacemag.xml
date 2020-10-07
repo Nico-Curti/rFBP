@@ -1,0 +1,1424 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="namespacemag" kind="namespace" language="C++">
+    <compoundname>mag</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespacemag_1a4cd09de8217de3fffa7c162799d3a7ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double mag::clamp</definition>
+        <argsstring>(const double &amp;x, const double &amp;low, const double &amp;high)</argsstring>
+        <name>clamp</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>high</declname>
+        </param>
+        <briefdescription>
+<para>Clamp value between boundaries. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value as argument of clamp </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lower boundary </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>high</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>higher boundary</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>value clamped between boudaries </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="30" column="35" declfile="include/magnetization_oldgcc.h" declline="30" declcolumn="35"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1aa54bdc35a222cc01654b22f07b62fbf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double mag::lr</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>lr</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>log1p for magnetizations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>value computed as log1p(exp(-2*abs(x))) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="38" column="35" declfile="include/magnetization_oldgcc.h" declline="38" declcolumn="35"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a63ad70f0f7d3d359885510751793278e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long int</type>
+        <definition>long int mag::sign0</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>sign0</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Sign operation valid also for magnetizations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>sign evaluated as 1 - 2*signbit(x) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="46" column="35" declfile="include/magnetization_oldgcc.h" declline="46" declcolumn="35"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a01012f2c4f6c63f50117d1a80cbc663a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool mag::isinf</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>isinf</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Check if is infinite. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>result of the check</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: boolean true if is inf or -inf else false</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: boolean true if is nan or -nan else false </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="60" column="12" declfile="include/magnetization_oldgcc.h" declline="60" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1aa5c6ba535495d360f9262dec5cdc3e8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool mag::signbit</definition>
+        <argsstring>(const Mag &amp;m)</argsstring>
+        <name>signbit</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Get the sign of magnetization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Mag</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>boolean sign of magnetization </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="73" column="12" declfile="include/magnetization_oldgcc.h" declline="73" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a885c63525229459a6f87679101369f94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mag::zeros</definition>
+        <argsstring>(Mag *x, const long int &amp;n)</argsstring>
+        <name>zeros</name>
+        <param>
+          <type>Mag *</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+<para>Fill a magnetization array with zeros. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array size</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="92" column="12" declfile="include/magnetization_oldgcc.h" declline="92" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a2503c41bf09106f862ddd2002661a1d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mag::zero</definition>
+        <argsstring>(Mag &amp;x)</argsstring>
+        <name>zero</name>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Set magnetization to zero. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="105" column="12" declfile="include/magnetization_oldgcc.h" declline="105" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a58cc14c100de3aa5fb1f06334f803002" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double mag::abs</definition>
+        <argsstring>(const Mag &amp;a)</argsstring>
+        <name>abs</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Abs for magnetization objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The absolute value of the input </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="118" column="12" declfile="include/magnetization_oldgcc.h" declline="118" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a7d51dc1d83c4252db159812967da295b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::copysign</definition>
+        <argsstring>(Mag &amp;x, const double &amp;y)</argsstring>
+        <name>copysign</name>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Flip magnetization sign if necessary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value with desired sign</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The corrected mag object </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="132" column="12" declfile="include/magnetization_oldgcc.h" declline="132" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1aace55ba7fc39b03bfa2289c9f740f5cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::arrow</definition>
+        <argsstring>(const Mag &amp;m, const double &amp;x)</argsstring>
+        <name>arrow</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Arrow operator of original code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to multiply</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the operator.</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: x * atanh(m)</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: m * x </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="150" column="12" declfile="include/magnetization_oldgcc.h" declline="150" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1ac465cead66c7ce04a6753c0e2c0b918f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>long int</type>
+        <definition>long int mag::sign0</definition>
+        <argsstring>(const Mag &amp;x)</argsstring>
+        <name>sign0</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Get magnetization sign. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>sign computed as 1 - 2 * sign(x) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="163" column="12" declfile="include/magnetization_oldgcc.h" declline="163" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a292f62f5334c5de22b315b503f15355a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double mag::logmag2p</definition>
+        <argsstring>(const Mag &amp;x)</argsstring>
+        <name>logmag2p</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Log operation for magnetization objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the operation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="176" column="12" declfile="include/magnetization_oldgcc.h" declline="176" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a36beb34e6d5ae3a3e7d3213aea16a9c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::convert</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>convert</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Convert a double to a mag value (as a constructor). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>magnetization</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: <ref refid="struct_mag_p64" kindref="compound">MagP64(x)</ref></para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>(atanh(x), -30, 30) </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="193" column="12" declfile="include/magnetization_oldgcc.h" declline="193" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a0690e020876ce3ddde93f8ad56b00303" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double mag::convert</definition>
+        <argsstring>(const Mag &amp;x)</argsstring>
+        <name>convert</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Convert a mag to double. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>extract magnetization.</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: return mag</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: return value </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="210" column="12" declfile="include/magnetization_oldgcc.h" declline="210" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a8e27b9ea487021f76d9995c1f0b91087" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::couple</definition>
+        <argsstring>(const double &amp;x1, const double &amp;x2)</argsstring>
+        <name>couple</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x1</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x2</declname>
+        </param>
+        <briefdescription>
+<para>Combine values to magnetizations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the combination.</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: (x1 - x2) / (x1 + x2)</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: log(x1) - log(x2) * .5 </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="228" column="12" declfile="include/magnetization_oldgcc.h" declline="228" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1af5ddde6274707bbd19f6d7c40d1c4c5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::damp</definition>
+        <argsstring>(const Mag &amp;newx, const Mag &amp;oldx, const double &amp;l)</argsstring>
+        <name>damp</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>newx</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>oldx</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+<para>Update magnetization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>oldx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the update computed as newx * (1 - l) + oldx * l </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="243" column="12" declfile="include/magnetization_oldgcc.h" declline="243" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a7af2f84ac356634ab90aed8251e2b6ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::mtanh</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>mtanh</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Perform <computeroutput>tanh</computeroutput> on magnetization value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of <computeroutput>tanh</computeroutput> as Mag.</para>
+</simplesect>
+<itemizedlist>
+<listitem><para><simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.</para>
+</simplesect>
+</para>
+</listitem><listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: tanh(x)</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: x </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="260" column="12" declfile="include/magnetization_oldgcc.h" declline="260" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a1cc0338261fc2e50d8c15c3bf6912cfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::merf</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>merf</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Perform <computeroutput>erf</computeroutput> on magnetization value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of <computeroutput>atanherf(x)</computeroutput>.</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: erf(x)</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: atanherf(x) </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="280" column="12" declfile="include/magnetization_oldgcc.h" declline="280" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a68d0b86d6026b9efc23abee4835aab11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::bar</definition>
+        <argsstring>(const Mag &amp;m1, const Mag &amp;m2)</argsstring>
+        <name>bar</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>m1</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>m2</declname>
+        </param>
+        <briefdescription>
+<para>Diff of magnetizations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the diff.</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: (m1 - m2)/(1 - m1 * m2) clamped to [-1, 1]</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: m1 - m2 </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="298" column="12" declfile="include/magnetization_oldgcc.h" declline="298" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a6118e8bfcf070d2e36ade569ed77084e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double mag::log1pxy</definition>
+        <argsstring>(const Mag &amp;x, const Mag &amp;y)</argsstring>
+        <name>log1pxy</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Compute the log1p for the combination of the magnetizations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the operation</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: log((1. + (x.mag * y.mag)) * 0.5)</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: computation takes care of possible number overflows </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="316" column="12" declfile="include/magnetization_oldgcc.h" declline="316" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a77afb49c9a89a50cf24647a71053cffe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double mag::mcrossentropy</definition>
+        <argsstring>(const Mag &amp;x, const Mag &amp;y)</argsstring>
+        <name>mcrossentropy</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Compute the crossentropy score for magnetization objects. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The resulting crossentropy score</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: -x.mag * np.arctanh(y.mag) - np.log1p(- y.mag**2) * .5 + np.log(2)</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: -abs(y.mag) * (sign0(y.mag) * x.value - 1.) + lr(y.mag) </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="334" column="12" declfile="include/magnetization_oldgcc.h" declline="334" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a253e60a2a06d7dfd405b12ba75b8f25d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double mag::logZ</definition>
+        <argsstring>(const Mag &amp;u0, const Mag *u, const long int &amp;nu)</argsstring>
+        <name>logZ</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>u0</declname>
+        </param>
+        <param>
+          <type>const Mag *</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="339" column="12" declfile="include/magnetization_oldgcc.h" declline="339" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a5142fc182575fa48bc52b02e000e042c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_t64" kindref="compound">MagT64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::auxmix</definition>
+        <argsstring>(const Mag &amp;H, const double &amp;ap, const double &amp;am)</argsstring>
+        <name>auxmix</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>H</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>ap</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>am</declname>
+        </param>
+        <briefdescription>
+<para>Combine three <ref refid="struct_mag_t64" kindref="compound">MagT64</ref> variables. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>H</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>am</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>combination of the input</para>
+</simplesect>
+<simplesect kind="note"><para>This operation is valid only for <ref refid="struct_mag_t64" kindref="compound">MagT64</ref> variables up to now </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="356" column="12" declfile="include/magnetization_oldgcc.h" declline="356" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1ad6b802dacc9663741e80ecab5129ad88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::erfmix</definition>
+        <argsstring>(const Mag &amp;H, const double &amp;mp, const double &amp;mm)</argsstring>
+        <name>erfmix</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>H</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mp</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mm</declname>
+        </param>
+        <briefdescription>
+<para>Combine exactly three magnetizations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>H</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the mix</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: H.mag * (erf(mp) - erf(mm)) / (2. + H.mag * (erf(mp) + erf(mm)))</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: auxmix(H, atanherf(mp), atanherf(mm)) </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="373" column="12" declfile="include/magnetization_oldgcc.h" declline="373" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacemag_1a703c5ebd25527461f6bb98727b158f49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>Mag</type>
+        <definition>Mag mag::exactmix</definition>
+        <argsstring>(const Mag &amp;H, const Mag &amp;pp, const Mag &amp;pm)</argsstring>
+        <name>exactmix</name>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>H</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>pp</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>pm</declname>
+        </param>
+        <briefdescription>
+<para>Combine exactly three magnetizations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>H</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>pm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>mag object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the mix</para>
+</simplesect>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: (pp.mag - pm.mag) * H.mag / (2. + (pp.mag + pm.mag) * H.mag)</para>
+</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: auxmix(H, pp.mag, pm.mag) </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/magnetization_oldgcc.h" line="392" column="12" declfile="include/magnetization_oldgcc.h" declline="392" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/magnetization_oldgcc.h" line="19" column="1"/>
+  </compounddef>
+</doxygen>

@@ -16,6 +16,7 @@
 
 #endif
 
+/// @cond DEF
 #ifdef _MSC_VER
 
   #ifndef __unused
@@ -29,6 +30,7 @@
   #endif
 
 #endif
+/// @endcond
 
 #include <cavity_message.hpp>
 #include <fprotocol.h>
@@ -94,7 +96,6 @@ template < class Mag > double theta_node_update_exact (MagVec < Mag > m, Mag & M
 * @param xi Single input pattern
 * @param u Downward messages (cavity magnetizations) from factor node to lower variables nodes
 * @param U Upward message (cavity magnetizations) from factor node to upper variable node
-* @param params Parameters selected for the algorithm
 * @param nxi Size of input pattern
 * @param nm Number of variables node onto the lower layer
 *
@@ -111,7 +112,6 @@ template < class Mag > double free_energy_theta (const MagVec < Mag > m, const M
 * @param xi Single input pattern
 * @param u Downward messages (cavity magnetizations) from factor node to lower variables nodes
 * @param U Upward message (cavity magnetizations) from factor node to upper variable node
-* @param params Parameters selected for the algorithm
 * @param nm Number of variables node onto the lower layer
 *
 * @return Free energy for the system represented by a perceptron-like factor graph
@@ -182,6 +182,7 @@ template < class Mag > long int error_test (const Cavity_Message < Mag > & messa
 * @tparam Mag magnetization type (MagP or MagT)
 * @param messages All magnetizations, both total and cavity, container
 * @param patterns All patterns, both input and output values, container
+* @param params Parameters selected for the algorithm
 *
 * @return Total free energy of the system
 */
@@ -194,7 +195,7 @@ template < class Mag > double free_energy (const Cavity_Message < Mag > &message
   *
   * @tparam Mag magnetization type (MagP or MagT)
   * @param messages All magnetizations, both total and cavity, container
-  * @param patterns All patterns, both input and output values, container
+  * @param params Parameters selected for the algorithm
   *
   * @return Total entropy of the system
   */
@@ -205,7 +206,7 @@ template < class Mag > double free_energy (const Cavity_Message < Mag > &message
   *
   * @tparam Mag magnetization type (MagP or MagT)
   * @param messages All magnetizations, both total and cavity, container
-  * @param patterns All patterns, both input and output values, container
+  * @param params Parameters selected for the algorithm
   *
   * @return q order-term of the system without accounting for replicas
   */
@@ -239,9 +240,27 @@ template < class Mag > double free_energy (const Cavity_Message < Mag > &message
 
   #include <type_traits>
 
+  /**
+  * @brief Set the outcome variables nodes to training labels
+  *
+  * @tparam Mag magnetization type (MagP or MagT)
+  * @param message All magnetizations, both total and cavity, container
+  * @param output Output patterns (training labels)
+  * @param beta Inverse of temperature (always infinite up to now)
+  *
+  */
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
   void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
 
+  /**
+  * @brief Set the outcome variables nodes to training labels
+  *
+  * @tparam Mag magnetization type (MagP or MagT)
+  * @param message All magnetizations, both total and cavity, container
+  * @param output Output patterns (training labels)
+  * @param beta Inverse of temperature (always infinite up to now)
+  *
+  */
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagT64 > :: value > :: type * = nullptr >
   void set_outfields (const Cavity_Message < Mag > & message, const long int * output, const double & beta);
 
@@ -263,8 +282,8 @@ template < class Mag > double free_energy (const Cavity_Message < Mag > &message
 /**
 * @brief Management of all protocol step of the learning rule
 *
-* @tparam K Number of nodes onto the hidden layer
-* @param messages Number of nodes onto the hidden layer
+* @tparam Mag magnetization type (MagP or MagT)
+* @param K Number of nodes onto the hidden layer
 * @param patterns All patterns, both input and output values, container
 * @param max_iters Highest number of iterations to run within same protocol step
 * @param max_steps Number of protocol steps
@@ -274,6 +293,7 @@ template < class Mag > double free_energy (const Cavity_Message < Mag > &message
 * @param accuracy2 Accuracy level for second layer
 * @param randfact Random value used inside Cavity_Message initial messages creator
 * @param fprotocol Protocol type
+* @param epsil error tollerance
 * @param nth Number of cores to exploit
 * @param outfile Filename which evolution measurements can be stored in
 * @param outmessfiletmpl Filename which final messages can be written on
@@ -281,12 +301,21 @@ template < class Mag > double free_energy (const Cavity_Message < Mag > &message
 * @param bin_mess True if messages filename but me read/written as binary files, text files otherwise
 *
 */
-template < class Mag > long int ** focusingBP (const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, __unused int nth = 1, std :: string outfile = "", std :: string outmessfiletmpl = "", std :: string initmess = "", const bool & bin_mess = false);
+template < class Mag > long int ** focusingBP (const long int & K, const Patterns & patterns, const long int & max_iters, const long int & max_steps, const long int & seed, const double & damping, const std :: string & accuracy1, const std :: string & accuracy2, const double & randfact, const FocusingProtocol & fprotocol, const double & epsil, int nth = 1, std :: string outfile = "", std :: string outmessfiletmpl = "", std :: string initmess = "", const bool & bin_mess = false);
 
+/// @cond DEF
 template < class Mag > using theta_function = double (*) (MagVec < Mag >, Mag &, const double *, MagVec < Mag >, Mag &, const Params < Mag > &, const long int &, const long int &);
+/// @endcond
 
 #if (__cplusplus < 201700) && !(__clang_major__ > 4)
 
+  /**
+  * @brief Switch case for the right accuracy function
+  *
+  * @tparam Mag magnetization type (MagP or MagT)
+  * @param acc accuracy name (possible values are "accurate", "exact", and "none")
+  *
+  */
   template < class Mag, typename std :: enable_if < std :: is_same < Mag, MagP64 > :: value > :: type * = nullptr >
   theta_function < Mag > get_accuracy ( const std :: string & acc );
 

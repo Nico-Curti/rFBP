@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.0" xml:lang="en-US">
+  <compound refid="class_cavity___message" kind="class"><name>Cavity_Message</name>
+    <member refid="class_cavity___message_1a0a1c9ac75cf7d6f4c6fa6959a6cc136f" kind="variable"><name>M</name></member>
+    <member refid="class_cavity___message_1af17961b19120b3208a4d2c0818f01956" kind="variable"><name>N</name></member>
+    <member refid="class_cavity___message_1a5e8e03343edf943b0cf18d812832a5a5" kind="variable"><name>K</name></member>
+    <member refid="class_cavity___message_1ab84aecf4b63c996a44b92b8209f04e92" kind="variable"><name>seed</name></member>
+    <member refid="class_cavity___message_1acdb2fd30b3d147b83f45e9391becbbf0" kind="variable"><name>weights</name></member>
+    <member refid="class_cavity___message_1a4e15e9479733ecf7144458be144d818f" kind="variable"><name>m_star_j</name></member>
+    <member refid="class_cavity___message_1a9dbc5531a97f5447cabe86a8835a12ee" kind="variable"><name>m_j_star</name></member>
+    <member refid="class_cavity___message_1a7321be7d1a50e7b174a9fdaa5b479344" kind="variable"><name>m_in</name></member>
+    <member refid="class_cavity___message_1a766453014f90061cf68c9e023a39aae9" kind="variable"><name>m_no</name></member>
+    <member refid="class_cavity___message_1aaed796fd04b844cb045a6fb19132caaf" kind="variable"><name>m_ni</name></member>
+    <member refid="class_cavity___message_1a86d9a00f123b90533602270401cf69c3" kind="variable"><name>m_on</name></member>
+    <member refid="class_cavity___message_1a7bf541d0aa18197d59fdb7b884fd8a05" kind="function"><name>Cavity_Message</name></member>
+    <member refid="class_cavity___message_1afe6b144ba13acf2443d4f0cc8fead17c" kind="function"><name>Cavity_Message</name></member>
+    <member refid="class_cavity___message_1a40073bed08980699885c33ee0cfe4143" kind="function"><name>Cavity_Message</name></member>
+    <member refid="class_cavity___message_1a53d2d141fd0b28a345f6e9aebcf4de66" kind="function"><name>Cavity_Message</name></member>
+    <member refid="class_cavity___message_1acf780941ced380728eed1892cdffbaaa" kind="function"><name>operator=</name></member>
+    <member refid="class_cavity___message_1a0c7a24ab65c139c33d7d16bd977f4ce1" kind="function"><name>~Cavity_Message</name></member>
+    <member refid="class_cavity___message_1aef61a20547385cf7a61978a5f32f0402" kind="function"><name>get_weights</name></member>
+    <member refid="class_cavity___message_1a2c0c127e725066ad03e1a70cf7cedef5" kind="function"><name>save_weights</name></member>
+    <member refid="class_cavity___message_1a2f39f06b1e86c09ec750ac9db0321b8d" kind="function"><name>save_weights</name></member>
+    <member refid="class_cavity___message_1a0c674ee13a874f15d42cc1d1469f82f3" kind="function"><name>read_weights</name></member>
+    <member refid="class_cavity___message_1aa9ea9a888cf664ddc8cb7e8c0c1c9ec4" kind="function"><name>save_messages</name></member>
+    <member refid="class_cavity___message_1a6b742428680a50c5f0af37de7f336fda" kind="function"><name>save_messages</name></member>
+  </compound>
+  <compound refid="class_focusing_protocol" kind="class"><name>FocusingProtocol</name>
+    <member refid="class_focusing_protocol_1af259f52e98fc499e80f0c7de028c3ab9" kind="variable"><name>Nrep</name></member>
+    <member refid="class_focusing_protocol_1a41c3016e5a192d47fb19b63016673143" kind="variable"><name>gamma</name></member>
+    <member refid="class_focusing_protocol_1abe37110430c3c635cd8cdf55e580f711" kind="variable"><name>n_rep</name></member>
+    <member refid="class_focusing_protocol_1a09980a30307652787310b26068a90740" kind="variable"><name>beta</name></member>
+    <member refid="class_focusing_protocol_1a2fe8efb9ed3e9739681a64cd2f517a65" kind="function"><name>FocusingProtocol</name></member>
+    <member refid="class_focusing_protocol_1ab7444047659c639c804fb4747732c2f7" kind="function"><name>FocusingProtocol</name></member>
+    <member refid="class_focusing_protocol_1a0be9a61add298c0d37331b316b475c72" kind="function"><name>~FocusingProtocol</name></member>
+    <member refid="class_focusing_protocol_1a4335bd3870009f4c1f5cf1633eb110b0" kind="function"><name>StandardReinforcement</name></member>
+    <member refid="class_focusing_protocol_1a6496b195fe3a53611b6989d3bbf5d103" kind="function"><name>StandardReinforcement</name></member>
+    <member refid="class_focusing_protocol_1a65b7dfa97260ff9ed52140ed45774925" kind="function"><name>Scoping</name></member>
+    <member refid="class_focusing_protocol_1ae263266a0cb526eea469cdc97017a611" kind="function"><name>PseudoReinforcement</name></member>
+    <member refid="class_focusing_protocol_1a64b738b53c0b634e9691af3bc3b871c6" kind="function"><name>PseudoReinforcement</name></member>
+    <member refid="class_focusing_protocol_1a2f6d0388f60440275a1fca3d032903b3" kind="function"><name>FreeScoping</name></member>
+  </compound>
+  <compound refid="struct_mag_p64" kind="class"><name>MagP64</name>
+    <member refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kind="variable"><name>mag</name></member>
+    <member refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" kind="function"><name>MagP64</name></member>
+    <member refid="struct_mag_p64_1a266f37263db9a2b54c88368d90cfe438" kind="function"><name>MagP64</name></member>
+    <member refid="struct_mag_p64_1a7f10442b6777b55fb00ec4b762d61712" kind="function"><name>~MagP64</name></member>
+    <member refid="struct_mag_p64_1a453bd2d6be8e55333d12f4c96a4d4ddf" kind="function"><name>MagP64</name></member>
+    <member refid="struct_mag_p64_1aeb791a5ee57074cef7aa63ed548ab424" kind="function"><name>operator=</name></member>
+    <member refid="struct_mag_p64_1ad4a6d8b89285e334d4110cc780f1ed34" kind="function"><name>magformat</name></member>
+    <member refid="struct_mag_p64_1a4c5c7279334bfb2bef3d9828066f933e" kind="function"><name>value</name></member>
+    <member refid="struct_mag_p64_1acc13748f4a3dbb08ca852d692c1e369e" kind="function"><name>operator%</name></member>
+    <member refid="struct_mag_p64_1a9aa308ae5d40afabe343280d0ebc4aa3" kind="function"><name>operator+</name></member>
+    <member refid="struct_mag_p64_1a436711aa8887389c513e63ed1500d70a" kind="function"><name>operator/</name></member>
+    <member refid="struct_mag_p64_1aa0a6ce68f7385f2dfee282b310e37834" kind="function"><name>operator*</name></member>
+    <member refid="struct_mag_p64_1a02c9399ed36edb0461d391c9a4b57aac" kind="function"><name>operator^</name></member>
+    <member refid="struct_mag_p64_1a0690ac82f7949d93139f17676d24d1ca" kind="function"><name>operator-</name></member>
+    <member refid="struct_mag_p64_1aa150df8dfc64b5c0a4afc88450473698" kind="function"><name>operator-</name></member>
+    <member refid="struct_mag_p64_1a95a793eb33e89fcf09bb0d3449cd8433" kind="function"><name>operator==</name></member>
+    <member refid="struct_mag_p64_1a09d9de5a46e41e0b0c2d9bdffa657d45" kind="function"><name>operator!=</name></member>
+    <member refid="struct_mag_p64_1ad1f6864ecf09091b2b8a442b538e9e2f" kind="friend"><name>operator*</name></member>
+    <member refid="struct_mag_p64_1ab791dc95c3ccc9a9bff98de0c959c951" kind="friend"><name>operator&lt;&lt;</name></member>
+  </compound>
+  <compound refid="struct_mag_t64" kind="class"><name>MagT64</name>
+    <member refid="struct_mag_t64_1a047d9cdbf47ec346b4a67e52bab7f201" kind="variable"><name>mag</name></member>
+    <member refid="struct_mag_t64_1a677be2910878ea9079ffd30396a3457b" kind="variable"><name>mInf</name></member>
+    <member refid="struct_mag_t64_1afc21778f19294b623db809ad5563625b" kind="function"><name>MagT64</name></member>
+    <member refid="struct_mag_t64_1a1d9eaee8fff3b72ee17e5fb701b61801" kind="function"><name>MagT64</name></member>
+    <member refid="struct_mag_t64_1a227e57870de2690e458d6fd39a6ca333" kind="function"><name>~MagT64</name></member>
+    <member refid="struct_mag_t64_1abc48366bc41134962d553f681f164dad" kind="function"><name>MagT64</name></member>
+    <member refid="struct_mag_t64_1aab2aadbe07b001d7ef793e562e7c836a" kind="function"><name>operator=</name></member>
+    <member refid="struct_mag_t64_1a90146324fd2aecd0adab4d51ad05ea82" kind="function"><name>magformat</name></member>
+    <member refid="struct_mag_t64_1a7f86599609b5917819b6a2616f102b76" kind="function"><name>value</name></member>
+    <member refid="struct_mag_t64_1a0d2194aeaaf7cacde4a27986a68a3291" kind="function"><name>operator%</name></member>
+    <member refid="struct_mag_t64_1a8fb35f14ba28337050ae2654df6378ca" kind="function"><name>operator+</name></member>
+    <member refid="struct_mag_t64_1a83907b867838fb5c02a9060210310316" kind="function"><name>operator/</name></member>
+    <member refid="struct_mag_t64_1a4bda57efbd2d8c79d92644324623f300" kind="function"><name>operator^</name></member>
+    <member refid="struct_mag_t64_1aceba27e9d14ad97091a1fd7784e6b882" kind="function"><name>operator-</name></member>
+    <member refid="struct_mag_t64_1aaf724b3d17fe1ea52ec17c1ad1f5e772" kind="function"><name>operator-</name></member>
+    <member refid="struct_mag_t64_1a3227d1822e240768d969769574c49504" kind="function"><name>operator==</name></member>
+    <member refid="struct_mag_t64_1a975f0132339f8e25cc247534d7f31666" kind="function"><name>operator!=</name></member>
+    <member refid="struct_mag_t64_1a150f11a5328199c8dcc12652ea7d6099" kind="friend"><name>operator*</name></member>
+    <member refid="struct_mag_t64_1afc9ec333d6368a284f01608c648f0beb" kind="friend"><name>operator&lt;&lt;</name></member>
+  </compound>
+  <compound refid="class_params" kind="class"><name>Params</name>
+    <member refid="class_params_1ae3b363942f4435743e8cbc3c4c97d5b2" kind="variable"><name>max_iters</name></member>
+    <member refid="class_params_1a428afb75f2a1067b9238cda6f6251776" kind="variable"><name>damping</name></member>
+    <member refid="class_params_1a68a877715985de06e9a7a78a3f3af63d" kind="variable"><name>epsil</name></member>
+    <member refid="class_params_1acbbbe3b71cec797c69a01c1662f2b0fd" kind="variable"><name>beta</name></member>
+    <member refid="class_params_1a61d3085b21d9ab004fb04a99547b317a" kind="variable"><name>r</name></member>
+    <member refid="class_params_1a2be42cec0efbb67da808080d601bb2ce" kind="variable"><name>tan_gamma</name></member>
+    <member refid="class_params_1a022027ec32041d24fedd9ba4ecf74e16" kind="variable"><name>accuracy1</name></member>
+    <member refid="class_params_1a6ff9fcff74692be4ce6a73220abdf541" kind="variable"><name>accuracy2</name></member>
+    <member refid="class_params_1aaa6fa9e4951d679d9528a5c5f1cbbd2b" kind="function"><name>Params</name></member>
+    <member refid="class_params_1a5ceee8b855ab4805d2a98add371c188a" kind="function"><name>~Params</name></member>
+  </compound>
+  <compound refid="class_patterns" kind="class"><name>Patterns</name>
+    <member refid="class_patterns_1af69f58dfc651591170d37e6d0be0f341" kind="variable"><name>Nrow</name></member>
+    <member refid="class_patterns_1ae552566eb6b5ee1e416620db7c98b41f" kind="variable"><name>Ncol</name></member>
+    <member refid="class_patterns_1afdde47957fa6eaf3dcf44520972aac7d" kind="variable"><name>Nout</name></member>
+    <member refid="class_patterns_1a924d88426e222e96d42156d1bc34efa2" kind="variable"><name>output</name></member>
+    <member refid="class_patterns_1a73b169be84eb63953aab443276ae3328" kind="variable"><name>input</name></member>
+    <member refid="class_patterns_1aa6241d95e039c41cc4f4744d2285ebd9" kind="function"><name>Patterns</name></member>
+    <member refid="class_patterns_1afc83bc168c4e1c6abf168f9c62d2f596" kind="function"><name>Patterns</name></member>
+    <member refid="class_patterns_1a6bfcf325385bda038262d05418c8e3a4" kind="function"><name>Patterns</name></member>
+    <member refid="class_patterns_1aa677d66893f39b48c7e286aac9be0c57" kind="function"><name>Patterns</name></member>
+    <member refid="class_patterns_1a4b1ace8ccc95751f73dd670d66b4f884" kind="function"><name>operator=</name></member>
+    <member refid="class_patterns_1a6e12db97e2a7bfb10c21b0f507a0b1ac" kind="function"><name>Patterns</name></member>
+    <member refid="class_patterns_1a91257ce4caca2a7ed65d931cdaeaeb6b" kind="function"><name>~Patterns</name></member>
+  </compound>
+  <compound refid="namespace_atanh_erf" kind="namespace"><name>AtanhErf</name>
+    <member refid="namespace_atanh_erf_1a0545ab80bf7ae81f3f83c3c96e595bd7" kind="function"><name>getinp</name></member>
+    <member refid="namespace_atanh_erf_1a648fc918b0b9023b43880004aa00fa8c" kind="function"><name>atanherf_largex</name></member>
+    <member refid="namespace_atanh_erf_1a8426989952675ea057e3a5d54df5e6a7" kind="function"><name>atanherf_interp</name></member>
+    <member refid="namespace_atanh_erf_1ac882f44d4861eff24f39535120d7e999" kind="function"><name>evalpoly</name></member>
+    <member refid="namespace_atanh_erf_1a1c8a2d9634d0fd674d59c6f0b6e3d168" kind="function"><name>atanherf</name></member>
+  </compound>
+  <compound refid="namespacemag" kind="namespace"><name>mag</name>
+    <member refid="namespacemag_1a4cd09de8217de3fffa7c162799d3a7ab" kind="function"><name>clamp</name></member>
+    <member refid="namespacemag_1aa54bdc35a222cc01654b22f07b62fbf2" kind="function"><name>lr</name></member>
+    <member refid="namespacemag_1a63ad70f0f7d3d359885510751793278e" kind="function"><name>sign0</name></member>
+    <member refid="namespacemag_1a01012f2c4f6c63f50117d1a80cbc663a" kind="function"><name>isinf</name></member>
+    <member refid="namespacemag_1aa5c6ba535495d360f9262dec5cdc3e8a" kind="function"><name>signbit</name></member>
+    <member refid="namespacemag_1a885c63525229459a6f87679101369f94" kind="function"><name>zeros</name></member>
+    <member refid="namespacemag_1a2503c41bf09106f862ddd2002661a1d1" kind="function"><name>zero</name></member>
+    <member refid="namespacemag_1a58cc14c100de3aa5fb1f06334f803002" kind="function"><name>abs</name></member>
+    <member refid="namespacemag_1a7d51dc1d83c4252db159812967da295b" kind="function"><name>copysign</name></member>
+    <member refid="namespacemag_1aace55ba7fc39b03bfa2289c9f740f5cb" kind="function"><name>arrow</name></member>
+    <member refid="namespacemag_1ac465cead66c7ce04a6753c0e2c0b918f" kind="function"><name>sign0</name></member>
+    <member refid="namespacemag_1a292f62f5334c5de22b315b503f15355a" kind="function"><name>logmag2p</name></member>
+    <member refid="namespacemag_1a36beb34e6d5ae3a3e7d3213aea16a9c9" kind="function"><name>convert</name></member>
+    <member refid="namespacemag_1a0690e020876ce3ddde93f8ad56b00303" kind="function"><name>convert</name></member>
+    <member refid="namespacemag_1a8e27b9ea487021f76d9995c1f0b91087" kind="function"><name>couple</name></member>
+    <member refid="namespacemag_1af5ddde6274707bbd19f6d7c40d1c4c5d" kind="function"><name>damp</name></member>
+    <member refid="namespacemag_1a7af2f84ac356634ab90aed8251e2b6ba" kind="function"><name>mtanh</name></member>
+    <member refid="namespacemag_1a1cc0338261fc2e50d8c15c3bf6912cfc" kind="function"><name>merf</name></member>
+    <member refid="namespacemag_1a68d0b86d6026b9efc23abee4835aab11" kind="function"><name>bar</name></member>
+    <member refid="namespacemag_1a6118e8bfcf070d2e36ade569ed77084e" kind="function"><name>log1pxy</name></member>
+    <member refid="namespacemag_1a77afb49c9a89a50cf24647a71053cffe" kind="function"><name>mcrossentropy</name></member>
+    <member refid="namespacemag_1a253e60a2a06d7dfd405b12ba75b8f25d" kind="function"><name>logZ</name></member>
+    <member refid="namespacemag_1a5142fc182575fa48bc52b02e000e042c" kind="function"><name>auxmix</name></member>
+    <member refid="namespacemag_1ad6b802dacc9663741e80ecab5129ad88" kind="function"><name>erfmix</name></member>
+    <member refid="namespacemag_1a703c5ebd25527461f6bb98727b158f49" kind="function"><name>exactmix</name></member>
+  </compound>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+    <member refid="magnetization__oldgcc_8h_1ad36267bfd5a41eab9e44e4a9d720fe19" kind="function"><name>clamp</name></member>
+  </compound>
+  <compound refid="atanherf_8h" kind="file"><name>atanherf.h</name>
+    <member refid="atanherf_8h_1a0699c38e3c7f214f5c13ffe750e1f0ab" kind="define"><name>PWD</name></member>
+  </compound>
+  <compound refid="cavity__message_8h" kind="file"><name>cavity_message.h</name>
+  </compound>
+  <compound refid="fprotocol_8h" kind="file"><name>fprotocol.h</name>
+  </compound>
+  <compound refid="magnetization_8h" kind="file"><name>magnetization.h</name>
+  </compound>
+  <compound refid="magnetization__oldgcc_8h" kind="file"><name>magnetization_oldgcc.h</name>
+  </compound>
+  <compound refid="mag_p_8h" kind="file"><name>magP.h</name>
+  </compound>
+  <compound refid="mag_t_8h" kind="file"><name>magT.h</name>
+  </compound>
+  <compound refid="params_8h" kind="file"><name>params.h</name>
+  </compound>
+  <compound refid="pattern_8h" kind="file"><name>pattern.h</name>
+  </compound>
+  <compound refid="rfbp_8h" kind="file"><name>rfbp.h</name>
+    <member refid="rfbp_8h_1a0032ca195a10e9880705c46e31077f10" kind="function"><name>theta_node_update_approx</name></member>
+    <member refid="rfbp_8h_1a29b0b06c604237cc8691d8b474411252" kind="function"><name>theta_node_update_accurate</name></member>
+    <member refid="rfbp_8h_1abb7635234293fe12621b91a4076bb8a5" kind="function"><name>theta_node_update_exact</name></member>
+    <member refid="rfbp_8h_1a3f838ff2a8721ce6b48bbcc6bfc09929" kind="function"><name>free_energy_theta</name></member>
+    <member refid="rfbp_8h_1a9d3dbaae85eadc12cc333c28a38884d5" kind="function"><name>free_energy_theta_exact</name></member>
+    <member refid="rfbp_8h_1afde41dae33c5907b9233f7aa8fbc1161" kind="function"><name>m_star_update</name></member>
+    <member refid="rfbp_8h_1a322a0097201300d8b2727db02f032954" kind="function"><name>iterate</name></member>
+    <member refid="rfbp_8h_1acf83b505dd68549e6c490555eb2d7e5b" kind="function"><name>converge</name></member>
+    <member refid="rfbp_8h_1acb9a0ba7ba4ca38c9884b2612bddc528" kind="function"><name>nonbayes_test</name></member>
+    <member refid="rfbp_8h_1a5d76530197c899d919bb27b2155cfca1" kind="function"><name>error_test</name></member>
+    <member refid="rfbp_8h_1aac33e6fde3ce09ec9c60159a789fd6bf" kind="function"><name>free_energy</name></member>
+    <member refid="rfbp_8h_1ad95845da8bb9c4e423b604f66466c007" kind="function"><name>set_outfields</name></member>
+    <member refid="rfbp_8h_1a9a7427524dac2327cd4e43563143f1ef" kind="function"><name>focusingBP</name></member>
+    <member refid="rfbp_8h_1af59f3b7916d03cae5529c6ff0bff2d19" kind="function"><name>get_accuracy</name></member>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+</doxygenindex>

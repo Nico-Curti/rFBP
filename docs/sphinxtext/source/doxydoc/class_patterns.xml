@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="class_patterns" kind="class" language="C++" prot="public">
+    <compoundname>Patterns</compoundname>
+    <includes refid="pattern_8h" local="no">pattern.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_patterns_1af69f58dfc651591170d37e6d0be0f341" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Patterns::Nrow</definition>
+        <argsstring></argsstring>
+        <name>Nrow</name>
+        <briefdescription>
+<para>Number of input vectors (rows of input or samples) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="40" column="12" bodyfile="include/pattern.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_patterns_1ae552566eb6b5ee1e416620db7c98b41f" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Patterns::Ncol</definition>
+        <argsstring></argsstring>
+        <name>Ncol</name>
+        <briefdescription>
+<para>Number of cols in input (probes) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="41" column="12" bodyfile="include/pattern.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_patterns_1afdde47957fa6eaf3dcf44520972aac7d" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Patterns::Nout</definition>
+        <argsstring></argsstring>
+        <name>Nout</name>
+        <briefdescription>
+<para>Lenght of output labels. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="42" column="12" bodyfile="include/pattern.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_patterns_1a924d88426e222e96d42156d1bc34efa2" prot="public" static="no" mutable="no">
+        <type>long int *</type>
+        <definition>long int* Patterns::output</definition>
+        <argsstring></argsstring>
+        <name>output</name>
+        <briefdescription>
+<para>Output vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="43" column="13" bodyfile="include/pattern.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_patterns_1a73b169be84eb63953aab443276ae3328" prot="public" static="no" mutable="no">
+        <type>double **</type>
+        <definition>double** Patterns::input</definition>
+        <argsstring></argsstring>
+        <name>input</name>
+        <briefdescription>
+<para>Input matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="44" column="11" bodyfile="include/pattern.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_patterns_1aa6241d95e039c41cc4f4744d2285ebd9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Patterns::Patterns</definition>
+        <argsstring>()</argsstring>
+        <name>Patterns</name>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="52" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="class_patterns_1afc83bc168c4e1c6abf168f9c62d2f596" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Patterns::Patterns</definition>
+        <argsstring>(const std ::string &amp;filename, bool bin=false, const std ::string &amp;del=&quot;\t&quot;)</argsstring>
+        <name>Patterns</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>bin</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>del</declname>
+          <defval>&quot;\t&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Load pattern from file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The input file can store the values in binary or ascii format. For the <bold>binary</bold> format the function requires a file formatted following these instructions:</para>
+<para><itemizedlist>
+<listitem><para>Number of rows (long int)</para>
+</listitem><listitem><para>Number of columns (long int)</para>
+</listitem><listitem><para>labels array (long int) with a length equal to the number of rows</para>
+</listitem><listitem><para>data matrix (double) with a shape (number of rows x number of columns).</para>
+</listitem></itemizedlist>
+</para>
+<para>For the <bold>ascii</bold> format the function requires a file formatted following these instructions:</para>
+<para><itemizedlist>
+<listitem><para>labels array (as a series of separated numbers)</para>
+</listitem><listitem><para>matrix of data (as a series of rows separated by <computeroutput>\n</computeroutput>)</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input filename </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>switch between binary/ascii files (default = false) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>del</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>delimiter string if the file is in ascii fmt (default = &quot;\t&quot;)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>Outputs entries must be ∈ {-1,1}. Intputs entries must be arrays in which each element is ∈ {-1,1}. </para>
+</simplesect>
+<simplesect kind="note"><para>In the ascii format the delimiter of the file can be set using the <computeroutput>del</computeroutput> variable. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="78" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="class_patterns_1a6bfcf325385bda038262d05418c8e3a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Patterns::Patterns</definition>
+        <argsstring>(const long int &amp;N, const long int &amp;M)</argsstring>
+        <name>Patterns</name>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>M</declname>
+        </param>
+        <briefdescription>
+<para>Generate random patter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The pattern is generated using a Bernoulli distribution and thus it creates a data (matrix) + labels (vector) of binary values. The values are converted into the range (-1, 1) for the compatibility with the rFBP algorithm.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of input vectors (samples) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of columns (probes) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="91" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="class_patterns_1aa677d66893f39b48c7e286aac9be0c57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Patterns::Patterns</definition>
+        <argsstring>(double **data, long int *label, const int &amp;Nrow, const int &amp;Ncol)</argsstring>
+        <name>Patterns</name>
+        <param>
+          <type>double **</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>long int *</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>Nrow</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>Ncol</declname>
+        </param>
+        <briefdescription>
+<para>Copy pattern from arrays. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Data and labels are copied, so be careful with this constructor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>matrix of data in double format </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>label</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of labels </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nrow</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of rows in data matrix </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Ncol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of columns in data matrix</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>The copy of the arrays is performed for compatibility with the Python API of the library. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="106" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="class_patterns_1a4b1ace8ccc95751f73dd670d66b4f884" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+        <definition>Patterns&amp; Patterns::operator=</definition>
+        <argsstring>(const Patterns &amp;p)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Copy operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The operator performs a deep copy of the object and if there are buffers already allocated, the operatore deletes them and then re-allocates an appropriated portion of memory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pattern object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="120" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_patterns_1a6e12db97e2a7bfb10c21b0f507a0b1ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Patterns::Patterns</definition>
+        <argsstring>(const Patterns &amp;p)</argsstring>
+        <name>Patterns</name>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The copy constructor provides a deep copy of the object, i.e. all the arrays are copied and not moved.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pattern object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="131" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="class_patterns_1a91257ce4caca2a7ed65d931cdaeaeb6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Patterns::~Patterns</definition>
+        <argsstring>()</argsstring>
+        <name>~Patterns</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Completely destroy the object releasing the data/labels memory. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/pattern.h" line="141" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Abstract type used to store the input Pattern as (data, labels). To be provided as an argument to <computeroutput>focusingBP</computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Inputs and outputs must have the same length. Outputs entries must be ∈ {-1,1}. Intputs entries must be arrays in which each element is ∈ {-1,1}, and all the vectors must have the same length. The input pattern can be loaded from binary/ascii file, random generated or from a given matrix. </para>
+    </detaileddescription>
+    <location file="include/pattern.h" line="33" column="1" bodyfile="include/pattern.h" bodystart="34" bodyend="160"/>
+    <listofallmembers>
+      <member refid="class_patterns_1a73b169be84eb63953aab443276ae3328" prot="public" virt="non-virtual"><scope>Patterns</scope><name>input</name></member>
+      <member refid="class_patterns_1ae552566eb6b5ee1e416620db7c98b41f" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Ncol</name></member>
+      <member refid="class_patterns_1afdde47957fa6eaf3dcf44520972aac7d" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Nout</name></member>
+      <member refid="class_patterns_1af69f58dfc651591170d37e6d0be0f341" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Nrow</name></member>
+      <member refid="class_patterns_1a4b1ace8ccc95751f73dd670d66b4f884" prot="public" virt="non-virtual"><scope>Patterns</scope><name>operator=</name></member>
+      <member refid="class_patterns_1a924d88426e222e96d42156d1bc34efa2" prot="public" virt="non-virtual"><scope>Patterns</scope><name>output</name></member>
+      <member refid="class_patterns_1aa6241d95e039c41cc4f4744d2285ebd9" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Patterns</name></member>
+      <member refid="class_patterns_1afc83bc168c4e1c6abf168f9c62d2f596" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Patterns</name></member>
+      <member refid="class_patterns_1a6bfcf325385bda038262d05418c8e3a4" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Patterns</name></member>
+      <member refid="class_patterns_1aa677d66893f39b48c7e286aac9be0c57" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Patterns</name></member>
+      <member refid="class_patterns_1a6e12db97e2a7bfb10c21b0f507a0b1ac" prot="public" virt="non-virtual"><scope>Patterns</scope><name>Patterns</name></member>
+      <member refid="class_patterns_1a91257ce4caca2a7ed65d931cdaeaeb6b" prot="public" virt="non-virtual"><scope>Patterns</scope><name>~Patterns</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="dir_d44c64559bbebec7f509842c48db8b23" kind="dir">
+    <compoundname>include</compoundname>
+    <innerfile refid="atanherf_8h">atanherf.h</innerfile>
+    <innerfile refid="cavity__message_8h">cavity_message.h</innerfile>
+    <innerfile refid="fprotocol_8h">fprotocol.h</innerfile>
+    <innerfile refid="magnetization_8h">magnetization.h</innerfile>
+    <innerfile refid="magnetization__oldgcc_8h">magnetization_oldgcc.h</innerfile>
+    <innerfile refid="mag_p_8h">magP.h</innerfile>
+    <innerfile refid="mag_t_8h">magT.h</innerfile>
+    <innerfile refid="params_8h">params.h</innerfile>
+    <innerfile refid="pattern_8h">pattern.h</innerfile>
+    <innerfile refid="rfbp_8h">rfbp.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/"/>
+  </compounddef>
+</doxygen>

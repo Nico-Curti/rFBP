@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="mag_p_8h" kind="file" language="C++">
+    <compoundname>magP.h</compoundname>
+    <includes local="no">string</includes>
+    <includedby refid="magnetization_8h" local="no">include/magnetization.h</includedby>
+    <includedby refid="magnetization__oldgcc_8h" local="no">include/magnetization_oldgcc.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>include/magP.h</label>
+        <link refid="mag_p_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>include/params.h</label>
+        <link refid="params_8h"/>
+      </node>
+      <node id="2">
+        <label>include/magnetization.h</label>
+        <link refid="magnetization_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>include/magnetization_oldgcc.h</label>
+        <link refid="magnetization__oldgcc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/magP.h</label>
+        <link refid="mag_p_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>include/cavity_message.h</label>
+        <link refid="cavity__message_8h"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_mag_p64" prot="public">MagP64</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__magp_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__magp_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="struct_mag_p64" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_mag_p64" kindref="compound">MagP64</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>member</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>constructor<sp/>and<sp/>destructor</highlight></codeline>
+<codeline lineno="23" refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" refkind="member"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" kindref="member">MagP64</ref><sp/>()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="struct_mag_p64_1a266f37263db9a2b54c88368d90cfe438" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64_1a266f37263db9a2b54c88368d90cfe438" kindref="member">MagP64</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x)<sp/>:<sp/><ref refid="namespacemag" kindref="compound">mag</ref><sp/>(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="struct_mag_p64_1a7f10442b6777b55fb00ec4b762d61712" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64_1a7f10442b6777b55fb00ec4b762d61712" kindref="member">~MagP64</ref><sp/>()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="struct_mag_p64_1a453bd2d6be8e55333d12f4c96a4d4ddf" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64_1a453bd2d6be8e55333d12f4c96a4d4ddf" kindref="member">MagP64</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>this-&gt;mag<sp/>=<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="struct_mag_p64_1aeb791a5ee57074cef7aa63ed548ab424" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/><ref refid="struct_mag_p64_1aeb791a5ee57074cef7aa63ed548ab424" kindref="member">operator = </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>this-&gt;mag<sp/>=<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>;<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>utilities</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="struct_mag_p64_1ad4a6d8b89285e334d4110cc780f1ed34" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/><ref refid="struct_mag_p64_1ad4a6d8b89285e334d4110cc780f1ed34" kindref="member">magformat</ref><sp/>()</highlight><highlight class="keyword"><sp/>const<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;plain&quot;</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="struct_mag_p64_1a4c5c7279334bfb2bef3d9828066f933e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a4c5c7279334bfb2bef3d9828066f933e" kindref="member">value</ref><sp/>()</highlight><highlight class="keyword"><sp/>const<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>math<sp/>operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="struct_mag_p64_1acc13748f4a3dbb08ca852d692c1e369e" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/><ref refid="struct_mag_p64_1acc13748f4a3dbb08ca852d692c1e369e" kindref="member">operator % </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" kindref="member">MagP64</ref>(mag<sp/>::<sp/>clamp(<sp/>(this-&gt;mag<sp/>+<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>)<sp/>/<sp/>(1.<sp/>+<sp/>this-&gt;mag<sp/>*<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>),<sp/>-1.,<sp/>1.)<sp/>);<sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="struct_mag_p64_1a9aa308ae5d40afabe343280d0ebc4aa3" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/><ref refid="struct_mag_p64_1a9aa308ae5d40afabe343280d0ebc4aa3" kindref="member">operator + </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" kindref="member">MagP64</ref>(this-&gt;mag<sp/>+<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="struct_mag_p64_1a436711aa8887389c513e63ed1500d70a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/><ref refid="struct_mag_p64_1a436711aa8887389c513e63ed1500d70a" kindref="member">operator / </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" kindref="member">MagP64</ref>(this-&gt;mag<sp/>/<sp/>x);<sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="struct_mag_p64_1aa0a6ce68f7385f2dfee282b310e37834" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1aa0a6ce68f7385f2dfee282b310e37834" kindref="member">operator * </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;mag<sp/>*<sp/>x;<sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127" refid="struct_mag_p64_1ad1f6864ecf09091b2b8a442b538e9e2f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1aa0a6ce68f7385f2dfee282b310e37834" kindref="member">operator * </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref><sp/>*<sp/>x;<sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="struct_mag_p64_1a02c9399ed36edb0461d391c9a4b57aac" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/><ref refid="struct_mag_p64_1a02c9399ed36edb0461d391c9a4b57aac" kindref="member">operator ^ </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" kindref="member">MagP64</ref>(this-&gt;mag<sp/>*<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>);<sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="struct_mag_p64_1a0690ac82f7949d93139f17676d24d1ca" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1aa150df8dfc64b5c0a4afc88450473698" kindref="member">operator - </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;mag<sp/>-<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="struct_mag_p64_1aa150df8dfc64b5c0a4afc88450473698" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/><ref refid="struct_mag_p64_1aa150df8dfc64b5c0a4afc88450473698" kindref="member">operator - </ref>()</highlight><highlight class="keyword"><sp/>const<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a3830ffaba7e0aa11a05d460aae503923" kindref="member">MagP64</ref>(-this-&gt;mag);<sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>logical<sp/>operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="struct_mag_p64_1a95a793eb33e89fcf09bb0d3449cd8433" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a95a793eb33e89fcf09bb0d3449cd8433" kindref="member">operator == </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;mag<sp/>==<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="struct_mag_p64_1a09d9de5a46e41e0b0c2d9bdffa657d45" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64_1a09d9de5a46e41e0b0c2d9bdffa657d45" kindref="member">operator != </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;mag<sp/>!=<sp/>m.<ref refid="struct_mag_p64_1acbd21a720287c858970ed3405a447a78" kindref="member">mag</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190" refid="struct_mag_p64_1ab791dc95c3ccc9a9bff98de0c959c951" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>ostream<sp/>&amp;<sp/><ref refid="struct_mag_p64_1ab791dc95c3ccc9a9bff98de0c959c951" kindref="member">operator &lt;&lt; </ref>(std<sp/>::<sp/>ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_mag_p64" kindref="compound">MagP64</ref><sp/>&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__magp_h__</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/magP.h"/>
+  </compounddef>
+</doxygen>

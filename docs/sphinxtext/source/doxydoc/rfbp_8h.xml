@@ -1,0 +1,1555 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="rfbp_8h" kind="file" language="C++">
+    <compoundname>rfbp.h</compoundname>
+    <includes local="no">algorithm</includes>
+    <includes local="no">numeric</includes>
+    <includes local="no">cavity_message.hpp</includes>
+    <includes refid="fprotocol_8h" local="no">fprotocol.h</includes>
+    <includes refid="pattern_8h" local="no">pattern.h</includes>
+    <includes local="no">type_traits</includes>
+    <incdepgraph>
+      <node id="7">
+        <label>cmath</label>
+      </node>
+      <node id="1">
+        <label>include/rfbp.h</label>
+        <link refid="rfbp_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>numeric</label>
+      </node>
+      <node id="13">
+        <label>fstream</label>
+      </node>
+      <node id="5">
+        <label>fprotocol.h</label>
+        <link refid="fprotocol_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>random</label>
+      </node>
+      <node id="10">
+        <label>utils.hpp</label>
+      </node>
+      <node id="9">
+        <label>errors.h</label>
+      </node>
+      <node id="14">
+        <label>sstream</label>
+      </node>
+      <node id="12">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>climits</label>
+      </node>
+      <node id="16">
+        <label>type_traits</label>
+      </node>
+      <node id="2">
+        <label>algorithm</label>
+      </node>
+      <node id="4">
+        <label>cavity_message.hpp</label>
+      </node>
+      <node id="6">
+        <label>memory</label>
+      </node>
+      <node id="11">
+        <label>pattern.h</label>
+        <link refid="pattern_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="rfbp_8h_1a0032ca195a10e9880705c46e31077f10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double theta_node_update_approx</definition>
+        <argsstring>(MagVec&lt; Mag &gt; m, Mag &amp;M, const double *xi, MagVec&lt; Mag &gt; u, Mag &amp;U, const Params&lt; Mag &gt; &amp;params, const long int &amp;nxi, const long int &amp;nm)</argsstring>
+        <name>theta_node_update_approx</name>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>xi</declname>
+        </param>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>U</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_params" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nxi</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nm</declname>
+        </param>
+        <briefdescription>
+<para>Messages update for a perceptron-like factor graph (approximated version computationally efficient in the limit of large number of weights) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variables nodes belonging to lower layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variable node belonging to upper layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Single input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Downward messages (cavity magnetizations) from factor node to lower variables nodes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upward message (cavity magnetizations) from factor node to upper variable node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameters selected for the algorithm </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nxi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables node onto the lower layer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Largest difference between new and old messages </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="54" column="22" declfile="include/rfbp.h" declline="54" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1a29b0b06c604237cc8691d8b474411252" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double theta_node_update_accurate</definition>
+        <argsstring>(MagVec&lt; Mag &gt; m, Mag &amp;M, const double *xi, MagVec&lt; Mag &gt; u, Mag &amp;U, const Params&lt; Mag &gt; &amp;params, const long int &amp;nxi, const long int &amp;nm)</argsstring>
+        <name>theta_node_update_accurate</name>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>xi</declname>
+        </param>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>U</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_params" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nxi</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nm</declname>
+        </param>
+        <briefdescription>
+<para>Messages update for a perceptron-like factor graph (fast approximated version) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variables nodes belonging to lower layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variable node belonging to upper layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Single input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Downward messages (cavity magnetizations) from factor node to lower variables nodes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upward message (cavity magnetizations) from factor node to upper variable node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameters selected for the algorithm </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nxi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables node onto the lower layer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Largest difference between new and old messages </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="71" column="22" declfile="include/rfbp.h" declline="71" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1abb7635234293fe12621b91a4076bb8a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double theta_node_update_exact</definition>
+        <argsstring>(MagVec&lt; Mag &gt; m, Mag &amp;M, const double *xi, MagVec&lt; Mag &gt; u, Mag &amp;U, const Params&lt; Mag &gt; &amp;params, const long int &amp;nxi, const long int &amp;nm)</argsstring>
+        <name>theta_node_update_exact</name>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>xi</declname>
+        </param>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>U</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_params" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nxi</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nm</declname>
+        </param>
+        <briefdescription>
+<para>Messages update for a perceptron-like factor graph (exact version) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variables nodes belonging to lower layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variable node belonging to upper layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Single input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Downward messages (cavity magnetizations) from factor node to lower variables nodes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upward message (cavity magnetizations) from factor node to upper variable node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameters selected for the algorithm </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nxi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables node onto the lower layer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Largest difference between new and old messages </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="88" column="22" declfile="include/rfbp.h" declline="88" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1a3f838ff2a8721ce6b48bbcc6bfc09929" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double free_energy_theta</definition>
+        <argsstring>(const MagVec&lt; Mag &gt; m, const Mag &amp;M, const double *xi, const MagVec&lt; Mag &gt; u, const Mag &amp;U, const long int &amp;nxi, const long int &amp;nm)</argsstring>
+        <name>free_energy_theta</name>
+        <param>
+          <type>const MagVec&lt; Mag &gt;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>xi</declname>
+        </param>
+        <param>
+          <type>const MagVec&lt; Mag &gt;</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>U</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nxi</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nm</declname>
+        </param>
+        <briefdescription>
+<para>Computation of the free energy for a perceptron-like factor graph (fast approximated version) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variables nodes belonging to lower layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variable node belonging to upper layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Single input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Downward messages (cavity magnetizations) from factor node to lower variables nodes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upward message (cavity magnetizations) from factor node to upper variable node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nxi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Size of input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables node onto the lower layer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Free energy for the system represented by a perceptron-like factor graph </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="104" column="22" declfile="include/rfbp.h" declline="104" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1a9d3dbaae85eadc12cc333c28a38884d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double free_energy_theta_exact</definition>
+        <argsstring>(MagVec&lt; Mag &gt; m, const Mag &amp;M, const double *xi, MagVec&lt; Mag &gt; u, const Mag &amp;U, const long int &amp;nm)</argsstring>
+        <name>free_energy_theta_exact</name>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>xi</declname>
+        </param>
+        <param>
+          <type>MagVec&lt; Mag &gt;</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>const Mag &amp;</type>
+          <declname>U</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nm</declname>
+        </param>
+        <briefdescription>
+<para>Computation of the free energy for a perceptron-like factor graph (exact version) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variables nodes belonging to lower layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>M</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of variable node belonging to upper layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>xi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Single input pattern </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Downward messages (cavity magnetizations) from factor node to lower variables nodes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>U</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upward message (cavity magnetizations) from factor node to upper variable node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables node onto the lower layer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Free energy for the system represented by a perceptron-like factor graph </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="119" column="22" declfile="include/rfbp.h" declline="119" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1afde41dae33c5907b9233f7aa8fbc1161" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double m_star_update</definition>
+        <argsstring>(Mag &amp;m_j_star, Mag &amp;m_star_j, Params&lt; Mag &gt; &amp;params)</argsstring>
+        <name>m_star_update</name>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>m_j_star</declname>
+        </param>
+        <param>
+          <type>Mag &amp;</type>
+          <declname>m_star_j</declname>
+        </param>
+        <param>
+          <type><ref refid="class_params" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Extra message update rule due to replicas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m_j_star</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of a weight node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m_star_j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Extra message (cavity magnetizations) from replica node to its weight node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameters selected for the algorithm</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Largest value between older maximum difference and the difference between new and old extra message </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="131" column="22" declfile="include/rfbp.h" declline="131" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1a322a0097201300d8b2727db02f032954" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double iterate</definition>
+        <argsstring>(Cavity_Message&lt; Mag &gt; &amp;messages, const Patterns &amp;patterns, Params&lt; Mag &gt; &amp;params)</argsstring>
+        <name>iterate</name>
+        <param>
+          <type><ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+          <declname>messages</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>patterns</declname>
+        </param>
+        <param>
+          <type><ref refid="class_params" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Management of the single iteration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>messages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All magnetizations, both total and cavity, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>patterns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All patterns, both input and output values, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameters selected for the algorithm</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Largest difference between new and old messages across all updates </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="143" column="22" declfile="include/rfbp.h" declline="143" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1acf83b505dd68549e6c490555eb2d7e5b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool converge</definition>
+        <argsstring>(Cavity_Message&lt; Mag &gt; &amp;messages, const Patterns &amp;patterns, Params&lt; Mag &gt; &amp;params)</argsstring>
+        <name>converge</name>
+        <param>
+          <type><ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+          <declname>messages</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>patterns</declname>
+        </param>
+        <param>
+          <type><ref refid="class_params" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Management of all iterations within protocol step (i.e. constant focusing and replica parameteres) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>messages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All magnetizations, both total and cavity, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>patterns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All patterns, both input and output values, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameters selected for the algorithm</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True when convergence is reached, False otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="155" column="20" declfile="include/rfbp.h" declline="155" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1acb9a0ba7ba4ca38c9884b2612bddc528" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long int *</type>
+        <definition>long int* nonbayes_test</definition>
+        <argsstring>(long int **const sign_m_j_star, const Patterns &amp;patterns, const long int &amp;K)</argsstring>
+        <name>nonbayes_test</name>
+        <param>
+          <type>long int **const</type>
+          <declname>sign_m_j_star</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>patterns</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+<para>Prediction of labels given weights and input patterns. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sign_m_j_star</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Total magnetization of weights nodes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>patterns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All patterns, both input and output values, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of nodes onto the hidden layer</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Predicted labels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="166" column="11" declfile="include/rfbp.h" declline="166" declcolumn="11"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1a5d76530197c899d919bb27b2155cfca1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>long int</type>
+        <definition>long int error_test</definition>
+        <argsstring>(const Cavity_Message&lt; Mag &gt; &amp;messages, const Patterns &amp;patterns)</argsstring>
+        <name>error_test</name>
+        <param>
+          <type>const <ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+          <declname>messages</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>patterns</declname>
+        </param>
+        <briefdescription>
+<para>Computation of number of mistaken predicted labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>messages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All magnetizations, both total and cavity, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>patterns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All patterns, both input and output values, container</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Number of mistaken predicted labels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="177" column="24" declfile="include/rfbp.h" declline="177" declcolumn="24"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1aac33e6fde3ce09ec9c60159a789fd6bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double free_energy</definition>
+        <argsstring>(const Cavity_Message&lt; Mag &gt; &amp;messages, const Patterns &amp;patterns, const Params&lt; Mag &gt; &amp;params)</argsstring>
+        <name>free_energy</name>
+        <param>
+          <type>const <ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+          <declname>messages</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>patterns</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_params" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Computation of the free energy for the whole system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>messages</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All magnetizations, both total and cavity, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>patterns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All patterns, both input and output values, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Parameters selected for the algorithm</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Total free energy of the system </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="189" column="22" declfile="include/rfbp.h" declline="189" declcolumn="22"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1ad95845da8bb9c4e423b604f66466c007" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void set_outfields</definition>
+        <argsstring>(const Cavity_Message&lt; Mag &gt; &amp;message, const long int *output, const double &amp;beta)</argsstring>
+        <name>set_outfields</name>
+        <param>
+          <type>const <ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>const long int *</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+<para>Set the outcome variables nodes to training labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All magnetizations, both total and cavity, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output patterns (training labels) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Inverse of temperature (always infinite up to now) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="253" column="8" declfile="include/rfbp.h" declline="253" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1a9a7427524dac2327cd4e43563143f1ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+        </templateparamlist>
+        <type>long int **</type>
+        <definition>long int** focusingBP</definition>
+        <argsstring>(const long int &amp;K, const Patterns &amp;patterns, const long int &amp;max_iters, const long int &amp;max_steps, const long int &amp;seed, const double &amp;damping, const std ::string &amp;accuracy1, const std ::string &amp;accuracy2, const double &amp;randfact, const FocusingProtocol &amp;fprotocol, const double &amp;epsil, int nth=1, std ::string outfile=&quot;&quot;, std ::string outmessfiletmpl=&quot;&quot;, std ::string initmess=&quot;&quot;, const bool &amp;bin_mess=false)</argsstring>
+        <name>focusingBP</name>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_patterns" kindref="compound">Patterns</ref> &amp;</type>
+          <declname>patterns</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>max_iters</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>max_steps</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>damping</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>accuracy1</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>accuracy2</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>randfact</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_focusing_protocol" kindref="compound">FocusingProtocol</ref> &amp;</type>
+          <declname>fprotocol</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>epsil</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nth</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>std ::string</type>
+          <declname>outfile</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>std ::string</type>
+          <declname>outmessfiletmpl</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>std ::string</type>
+          <declname>initmess</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>bin_mess</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Management of all protocol step of the learning rule. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of nodes onto the hidden layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>patterns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>All patterns, both input and output values, container </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_iters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Highest number of iterations to run within same protocol step </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_steps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of protocol steps </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Seed for random generator inside <ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref> initial messages creator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>damping</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Damping parameter for regularization of messages updates </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accuracy1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Accuracy level for first layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accuracy2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Accuracy level for second layer </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>randfact</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random value used inside <ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref> initial messages creator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fprotocol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Protocol type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>epsil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>error tollerance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of cores to exploit </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outfile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Filename which evolution measurements can be stored in </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outmessfiletmpl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Filename which final messages can be written on </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>initmess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Filename which initial messages can be taken from </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bin_mess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>True if messages filename but me read/written as binary files, text files otherwise </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="304" column="25" declfile="include/rfbp.h" declline="304" declcolumn="25"/>
+      </memberdef>
+      <memberdef kind="function" id="rfbp_8h_1af59f3b7916d03cae5529c6ff0bff2d19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Mag</type>
+          </param>
+          <param>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <defval>nullptr</defval>
+          </param>
+        </templateparamlist>
+        <type>theta_function&lt; Mag &gt;</type>
+        <definition>theta_function&lt; Mag &gt; get_accuracy</definition>
+        <argsstring>(const std ::string &amp;acc)</argsstring>
+        <name>get_accuracy</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>acc</declname>
+        </param>
+        <briefdescription>
+<para>Switch case for the right accuracy function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization type (MagP or MagT) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>acc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accuracy name (possible values are &quot;accurate&quot;, &quot;exact&quot;, and &quot;none&quot;) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/rfbp.h" line="320" column="19" declfile="include/rfbp.h" declline="320" declcolumn="19"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__rfbp_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__rfbp_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;numeric&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;cassert&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>STATS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="preprocessor">#ifdef<sp/>_MSC_VER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#ifndef<sp/>__unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>__unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#ifndef<sp/>__unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>__unused<sp/>__attribute__((__unused__))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cavity_message.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="fprotocol_8h" kindref="compound">fprotocol.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="pattern_8h" kindref="compound">pattern.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="rfbp_8h_1a0032ca195a10e9880705c46e31077f10" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1a0032ca195a10e9880705c46e31077f10" kindref="member">theta_node_update_approx</ref><sp/>(MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>m,<sp/>Mag<sp/>&amp;<sp/>M,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>xi,<sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>u,<sp/>Mag<sp/>&amp;<sp/>U,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nxi,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nm);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="rfbp_8h_1a29b0b06c604237cc8691d8b474411252" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1a29b0b06c604237cc8691d8b474411252" kindref="member">theta_node_update_accurate</ref><sp/>(MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>m,<sp/>Mag<sp/>&amp;<sp/>M,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>xi,<sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>u,<sp/>Mag<sp/>&amp;<sp/>U,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nxi,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nm);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="rfbp_8h_1abb7635234293fe12621b91a4076bb8a5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1abb7635234293fe12621b91a4076bb8a5" kindref="member">theta_node_update_exact</ref><sp/>(MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>m,<sp/>Mag<sp/>&amp;<sp/>M,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>xi,<sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>u,<sp/>Mag<sp/>&amp;<sp/>U,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nxi,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nm);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="rfbp_8h_1a3f838ff2a8721ce6b48bbcc6bfc09929" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1a3f838ff2a8721ce6b48bbcc6bfc09929" kindref="member">free_energy_theta</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>m,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>M,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>xi,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>u,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>U,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nxi,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nm);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="rfbp_8h_1a9d3dbaae85eadc12cc333c28a38884d5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1a9d3dbaae85eadc12cc333c28a38884d5" kindref="member">free_energy_theta_exact</ref><sp/>(MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>m,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>M,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>xi,<sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>u,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>U,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nm);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="rfbp_8h_1afde41dae33c5907b9233f7aa8fbc1161" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1afde41dae33c5907b9233f7aa8fbc1161" kindref="member">m_star_update</ref><sp/>(Mag<sp/>&amp;<sp/>m_j_star,<sp/>Mag<sp/>&amp;<sp/>m_star_j,<sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="rfbp_8h_1a322a0097201300d8b2727db02f032954" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1a322a0097201300d8b2727db02f032954" kindref="member">iterate</ref><sp/>(<ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>messages,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>patterns,<sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="rfbp_8h_1acf83b505dd68549e6c490555eb2d7e5b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1acf83b505dd68549e6c490555eb2d7e5b" kindref="member">converge</ref><sp/>(<sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>messages,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>patterns,<sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="rfbp_8h_1acb9a0ba7ba4ca38c9884b2612bddc528" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/><ref refid="rfbp_8h_1acb9a0ba7ba4ca38c9884b2612bddc528" kindref="member">nonbayes_test</ref><sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>**<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>sign_m_j_star,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>patterns,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>K);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="rfbp_8h_1a5d76530197c899d919bb27b2155cfca1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1a5d76530197c899d919bb27b2155cfca1" kindref="member">error_test</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>messages,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>patterns);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="rfbp_8h_1aac33e6fde3ce09ec9c60159a789fd6bf" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1aac33e6fde3ce09ec9c60159a789fd6bf" kindref="member">free_energy</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;messages,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>patterns,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>STATS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>compute_S<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>messages,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>compute_q_bar<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message&lt;Mag&gt;</ref><sp/>&amp;<sp/>messages,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>compute_q<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>messages,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nm_j_star,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nm_j_star_col);</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mags_symmetry<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>messages,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>overlaps);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>STATS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__cplusplus<sp/>&lt;<sp/>201700)<sp/>&amp;&amp;<sp/>!(__clang_major__<sp/>&gt;<sp/>4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;type_traits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>enable_if<sp/>&lt;<sp/>std<sp/>::<sp/>is_same<sp/>&lt;<sp/>Mag,<sp/>MagP64<sp/>&gt;<sp/>::<sp/>value<sp/>&gt;<sp/>::<sp/>type<sp/>*<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal"><sp/>&gt;</highlight></codeline>
+<codeline lineno="253" refid="rfbp_8h_1ad95845da8bb9c4e423b604f66466c007" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1ad95845da8bb9c4e423b604f66466c007" kindref="member">set_outfields</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>message,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>beta);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>enable_if<sp/>&lt;<sp/>std<sp/>::<sp/>is_same<sp/>&lt;<sp/>Mag,<sp/>MagT64<sp/>&gt;<sp/>::<sp/>value<sp/>&gt;<sp/>::<sp/>type<sp/>*<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal"><sp/>&gt;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1ad95845da8bb9c4e423b604f66466c007" kindref="member">set_outfields</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>message,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>beta);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="rfbp_8h_1ad95845da8bb9c4e423b604f66466c007" kindref="member">set_outfields</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>message,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>beta);</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__clang__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304" refid="rfbp_8h_1a9a7427524dac2327cd4e43563143f1ef" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>**<sp/><ref refid="rfbp_8h_1a9a7427524dac2327cd4e43563143f1ef" kindref="member">focusingBP</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>K,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>patterns,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>max_iters,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>max_steps,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>seed,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>damping,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>accuracy1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>accuracy2,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>randfact,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol" kindref="compound">FocusingProtocol</ref><sp/>&amp;<sp/>fprotocol,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>epsil,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nth<sp/>=<sp/>1,<sp/>std<sp/>::<sp/>string<sp/>outfile<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>std<sp/>::<sp/>string<sp/>outmessfiletmpl<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>std<sp/>::<sp/>string<sp/>initmess<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>bin_mess<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>theta_function<sp/>=<sp/>double<sp/>(*)<sp/>(MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;,<sp/>Mag<sp/>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*,<sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;,<sp/>Mag<sp/>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;);</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__cplusplus<sp/>&lt;<sp/>201700)<sp/>&amp;&amp;<sp/>!(__clang_major__<sp/>&gt;<sp/>4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>enable_if<sp/>&lt;<sp/>std<sp/>::<sp/>is_same<sp/>&lt;<sp/>Mag,<sp/>MagP64<sp/>&gt;<sp/>::<sp/>value<sp/>&gt;<sp/>::<sp/>type<sp/>*<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal"><sp/>&gt;</highlight></codeline>
+<codeline lineno="320" refid="rfbp_8h_1af59f3b7916d03cae5529c6ff0bff2d19" refkind="member"><highlight class="normal"><sp/><sp/>theta_function<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="rfbp_8h_1af59f3b7916d03cae5529c6ff0bff2d19" kindref="member">get_accuracy</ref><sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>acc<sp/>);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>enable_if<sp/>&lt;<sp/>std<sp/>::<sp/>is_same<sp/>&lt;<sp/>Mag,<sp/>MagT64<sp/>&gt;<sp/>::<sp/>value<sp/>&gt;<sp/>::<sp/>type<sp/>*<sp/>=<sp/></highlight><highlight class="keywordtype">nullptr</highlight><highlight class="normal"><sp/>&gt;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/>theta_function<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="rfbp_8h_1af59f3b7916d03cae5529c6ff0bff2d19" kindref="member">get_accuracy</ref><sp/>(<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>acc<sp/>);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>unordered_map<sp/>&lt;<sp/>std<sp/>::<sp/>string,<sp/>theta_function<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/>&gt;<sp/>accuracy</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;accurate&quot;</highlight><highlight class="normal">,<sp/>&amp;<sp/><ref refid="rfbp_8h_1a29b0b06c604237cc8691d8b474411252" kindref="member">theta_node_update_accurate</ref>},</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;exact&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/>&amp;<sp/><ref refid="rfbp_8h_1abb7635234293fe12621b91a4076bb8a5" kindref="member">theta_node_update_exact</ref><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;none&quot;</highlight><highlight class="normal"><sp/>,<sp/><sp/><sp/><sp/>&amp;<sp/><ref refid="rfbp_8h_1a0032ca195a10e9880705c46e31077f10" kindref="member">theta_node_update_approx</ref><sp/><sp/>}</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__rfbp_h__</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/rfbp.h"/>
+  </compounddef>
+</doxygen>

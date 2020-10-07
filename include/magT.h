@@ -7,41 +7,43 @@
 
 /**
 * @class MagT64
-* @brief Abstract type representing magnetization type chosen for cavity messages
+* @brief Abstract type representing magnetization type chosen for cavity messages.
 *
-* @details MagT64 means a double type wit tanh application
+* @note MagT64 means a double type wit `tanh` application.
 *
 */
 struct MagT64
 {
   // member
-  double mag;   ///< magnetization
-  double mInf;  ///< boundary
+  double mag;   ///< Magnetization
+  double mInf;  ///< Boundary dimension
 
   // constructor and destructor
 
   /**
-  * @brief default constructor
+  * @brief Default constructor.
   *
   */
   MagT64 ()                                                                           {};
 
   /**
-  * @brief constructor with value
+  * @brief Constructor with value.
   *
-  * @param x magnetization (thus value is tanh(x))
+  * @param x magnetization
   * @param m boundary value
+  *
+  * @note In MagT64 the magnetization is converted to a `value` given by `tanh(x)`.
   */
   MagT64 (const double & x, double m=30.) : mag (x), mInf (m)                         {};
 
   /**
-  * @brief default destructor
+  * @brief Default destructor.
   *
   */
   ~MagT64 ()                                                             = default;
 
   /**
-  * @brief copy constructor
+  * @brief Copy constructor.
   *
   * @param m MagT64 object
   *
@@ -49,7 +51,7 @@ struct MagT64
   MagT64 (const MagT64 & m)                                              { this->mag = m.mag; this->mInf = m.mInf; }
 
   /**
-  * @brief assigment operator constructor
+  * @brief Assigment operator constructor.
   *
   * @param m MagT64 object
   *
@@ -59,13 +61,15 @@ struct MagT64
   // utilities
 
   /**
-  * @brief string format utility (=> "tanh")
+  * @brief Return the mag description (tanh for MagT64).
   *
   */
   std :: string magformat () const                                       { return "tanh"; }
 
   /**
-  * @brief magnetization value (equal to mag in MagP64)
+  * @brief Get the magnetization value.
+  *
+  * @note In MagT64 the value is given by `tanh(mag)`.
   *
   */
   double value () const                                                  { return std :: tanh(this->mag); }
@@ -73,9 +77,11 @@ struct MagT64
   // math operators
 
   /**
-  * @brief % operator
+  * @brief Overload operator.
   *
-  * @detail add magnetization (m1 + m2) <- tanh is already applied!
+  * @details Add magnetization (m1 + m2)
+  *
+  * @note The summation exclude the `tanh` evaluation.
   *
   * @param m MagT64 object
   *
@@ -88,9 +94,9 @@ struct MagT64
                                                                          }
 
   /**
-  * @brief + operator
+  * @brief Overload operator.
   *
-  * @detail add magnetization
+  * @details Just a simple addition of the mag values.
   *
   * @param m MagT64 object
   *
@@ -98,9 +104,9 @@ struct MagT64
   MagT64 operator + (const MagT64 & m)                                   { return MagT64(this->mag + m.mag); }
 
   /**
-  * @brief / operator
+  * @brief Overload operator.
   *
-  * @detail divide magnetization (mag / x)
+  * @details Just a simple division as (mag / x)
   *
   * @param x double value
   *
@@ -108,9 +114,9 @@ struct MagT64
   MagT64 operator / (const double & x)                                   { return MagT64(this->mag / x); }
 
   /**
-  * @brief * operator
+  * @brief Overload operator.
   *
-  * @detail prod magnetization (x * mag)
+  * @details Just a simple product as (x * mag)
   *
   * @param x double value
   * @param m MagT64 object
@@ -119,9 +125,9 @@ struct MagT64
   friend double operator * (const double & x, const MagT64 & m)          { return m.mag * x; }
 
   /**
-  * @brief ^ operator
+  * @brief Overload operator
   *
-  * @detail combination of mags
+  * @details Combine two mags.
   *
   * @param m MagT64 object
   *
@@ -142,9 +148,9 @@ struct MagT64
                                                                          }
 
   /**
-  * @brief - operator
+  * @brief Overload operator.
   *
-  * @detail sub magnetization (value - value)
+  * @details Subtract values (val1 - val2)
   *
   * @param m MagT64 object
   *
@@ -152,9 +158,9 @@ struct MagT64
   double operator - (const MagT64 & m)                                  { return this->value() - m.value(); }
 
   /**
-  * @brief - operator
+  * @brief Get a magnetization with a flipped sign.
   *
-  * @detail flip magnetization sign
+  * @details flip magnetization sign
   *
   */
   MagT64 operator - () const                                             { return MagT64(-this->mag); }
@@ -162,9 +168,9 @@ struct MagT64
   // logical operators
 
   /**
-  * @brief == operator
+  * @brief Check magnetization equality.
   *
-  * @detail compare magnetizations
+  * @details Compare magnetizations
   *
   * @param m MagT64 object
   *
@@ -172,9 +178,9 @@ struct MagT64
   bool operator == (const MagT64 & m)                                    { return this->mag == m.mag; }
 
   /**
-  * @brief != operator
+  * @brief Check magnetization not equality.
   *
-  * @detail compare magnetizations
+  * @details compare magnetizations
   *
   * @param m MagT64 object
   *
@@ -182,9 +188,9 @@ struct MagT64
   bool operator != (const MagT64 & m)                                    { return this->mag != m.mag; }
 
   /**
-  * @brief << operator
+  * @brief Print operator with stdout/stderr.
   *
-  * @detail print mag
+  * @details print mag
   *
   * @param os ostream operator
   * @param m MagT64 object

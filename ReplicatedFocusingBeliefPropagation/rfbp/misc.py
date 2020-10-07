@@ -6,6 +6,7 @@ from __future__ import division
 
 import os
 import sys
+import warnings
 from contextlib import contextmanager
 
 __author__  = ['Nico Curti', "Daniele Dall'Olio"]
@@ -17,19 +18,29 @@ def _check_string (String, exist=True):
 
   Parameters
   ----------
-  String : string or bytes
-    String to convert / verify
+    String : string or bytes
+      String to convert / verify
 
-  exist : bool (default = True)
-    If the string identify a filename check if it exist
+    exist : bool (default = True)
+      If the string identify a filename check if it exist
 
   Returns
   -------
-  Encoded string (utf-8)
+    str: Encoded string (utf-8)
+
+  Example
+  -------
+  >>> a = 'this_is_a_string'
+  >>> b = _check_string(a, False)
+  >>> assert isinstance(b, bytes)
+    True
+  >>> assert b == _check_string(b, False)
+    True
 
   Notes
   -----
-  The strings must be converted to bytes for c++ function compatibility!
+  .. note::
+    The strings must be converted to bytes for c++ function compatibility!
   '''
 
   if not isinstance(String, str) and not isinstance(String, bytes):
@@ -49,6 +60,13 @@ def redirect_stdout (verbose):
   This function works ONLY for cython wrap functions!!
   If you want to redirect python prints you can use something like
 
+  Parameters
+  ----------
+    verbose: bool
+      Switch if turn on/off the output redirection
+
+  Example
+  -------
   >>> from io import StringIO
   >>> import contextlib
   >>> temp_stdout = StringIO()
@@ -56,11 +74,21 @@ def redirect_stdout (verbose):
   >>> with contextlib.redirect_stdout(temp_stdout):
   >>>   foo()
 
-  Parameters
-  ----------
-    verbose : bool
-      Enable or disable stdout
   '''
+
+  try:
+    # Temporary fix for the IPython console.
+    # The current version of the redirect_stdout does not support the
+    # redirection using IPython.
+    # Error: "ValueError: write to closed file"
+    # TODO: fix this issue with some workaround for the devnull redirection in IPython
+    __IPYTHON__
+    warnings.warn('The current version does not allow to redirect the stdout using an IPython console.', RuntimeWarning)
+    verbose = True
+
+  except NameError:
+    pass
+
   if verbose:
     try:
       yield
@@ -75,8 +103,8 @@ def redirect_stdout (verbose):
   # assert libc.fileno(ctypes.c_void_p.in_dll(libc, "stdout")) == fd == 1
 
   def _redirect_stdout (to):
-    sys.stdout.close() # + implicit flush()
-    os.dup2(to.fileno(), fd) # fd writes to 'to' file
+    sys.stdout.close()              # + implicit flush()
+    os.dup2(to.fileno(), fd)        # fd writes to 'to' file
     sys.stdout = os.fdopen(fd, 'w') # Python writes to fd
 
   with os.fdopen(os.dup(fd), 'w') as old_stdout:
@@ -91,7 +119,8 @@ def redirect_stdout (verbose):
 
 def get_int_size ():
   '''
-  Get the correct integer size according to your operative system
+  Get the correct integer size according to your operative system.
+  This function is just an utility for the cython wrap of the objects.
   '''
 
   if sys.platform.lower() == 'win32':

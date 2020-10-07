@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="pattern_8h" kind="file" language="C++">
+    <compoundname>pattern.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">random</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">numeric</includes>
+    <includes local="no">errors.h</includes>
+    <includes local="no">utils.hpp</includes>
+    <includedby refid="rfbp_8h" local="no">include/rfbp.h</includedby>
+    <incdepgraph>
+      <node id="7">
+        <label>numeric</label>
+      </node>
+      <node id="3">
+        <label>fstream</label>
+      </node>
+      <node id="5">
+        <label>random</label>
+      </node>
+      <node id="9">
+        <label>utils.hpp</label>
+      </node>
+      <node id="8">
+        <label>errors.h</label>
+      </node>
+      <node id="4">
+        <label>sstream</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>algorithm</label>
+      </node>
+      <node id="1">
+        <label>include/pattern.h</label>
+        <link refid="pattern_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/rfbp.h</label>
+        <link refid="rfbp_8h"/>
+      </node>
+      <node id="1">
+        <label>include/pattern.h</label>
+        <link refid="pattern_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_patterns" prot="public">Patterns</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__patterns_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__patterns_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;numeric&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;errors.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;cassert&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="class_patterns" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_patterns" kindref="compound">Patterns</ref></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="class_patterns_1af69f58dfc651591170d37e6d0be0f341" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_patterns_1af69f58dfc651591170d37e6d0be0f341" kindref="member">Nrow</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="class_patterns_1ae552566eb6b5ee1e416620db7c98b41f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_patterns_1ae552566eb6b5ee1e416620db7c98b41f" kindref="member">Ncol</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="class_patterns_1afdde47957fa6eaf3dcf44520972aac7d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_patterns_1afdde47957fa6eaf3dcf44520972aac7d" kindref="member">Nout</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="class_patterns_1a924d88426e222e96d42156d1bc34efa2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/><ref refid="class_patterns_1a924d88426e222e96d42156d1bc34efa2" kindref="member">output</ref>;<sp/></highlight></codeline>
+<codeline lineno="44" refid="class_patterns_1a73b169be84eb63953aab443276ae3328" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>**<sp/><ref refid="class_patterns_1a73b169be84eb63953aab443276ae3328" kindref="member">input</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="class_patterns_1aa6241d95e039c41cc4f4744d2285ebd9" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_patterns_1aa6241d95e039c41cc4f4744d2285ebd9" kindref="member">Patterns</ref><sp/>();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="class_patterns_1afc83bc168c4e1c6abf168f9c62d2f596" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_patterns_1afc83bc168c4e1c6abf168f9c62d2f596" kindref="member">Patterns</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>bin=</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>del=</highlight><highlight class="stringliteral">&quot;\t&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="class_patterns_1a6bfcf325385bda038262d05418c8e3a4" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_patterns_1a6bfcf325385bda038262d05418c8e3a4" kindref="member">Patterns</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>N,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>M);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="class_patterns_1aa677d66893f39b48c7e286aac9be0c57" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_patterns_1aa677d66893f39b48c7e286aac9be0c57" kindref="member">Patterns</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>**<sp/>data,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*<sp/>label,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/><ref refid="class_patterns_1af69f58dfc651591170d37e6d0be0f341" kindref="member">Nrow</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/><ref refid="class_patterns_1ae552566eb6b5ee1e416620db7c98b41f" kindref="member">Ncol</ref>);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>Constructors<sp/>and<sp/>Copy<sp/>operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="class_patterns_1a4b1ace8ccc95751f73dd670d66b4f884" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/><ref refid="class_patterns_1a4b1ace8ccc95751f73dd670d66b4f884" kindref="member">operator = </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>p);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="class_patterns_1a6e12db97e2a7bfb10c21b0f507a0b1ac" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_patterns_1a6e12db97e2a7bfb10c21b0f507a0b1ac" kindref="member">Patterns</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_patterns" kindref="compound">Patterns</ref><sp/>&amp;<sp/>p);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="class_patterns_1a91257ce4caca2a7ed65d931cdaeaeb6b" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_patterns_1a91257ce4caca2a7ed65d931cdaeaeb6b" kindref="member">~Patterns</ref><sp/>();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Private<sp/>members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>check_binary<sp/>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__patterns_h__</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/pattern.h"/>
+  </compounddef>
+</doxygen>

@@ -79,19 +79,35 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     verbose : bool (default = False)
       Enable or disable stdout on shell
 
-  Members
+  Example
   -------
-    fit : Fit the model based on supervised input data
+  >>> import numpy as np
+  >>> from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
+  >>>
+  >>> N, M = (20, 101) # M must be odd
+  >>> data = np.random.choice([-1, 1], p=[.5, .5], size=(N, M))
+  >>> label = np.random.choice([-1, 1], p=[.5, .5], size=(N, ))
+  >>>
+  >>> rfbp = rFBP()
+  >>> rfbp.fit(data, label)
+    ReplicatedFocusingBeliefPropagation(randfact=0.1, damping=0.5, accuracy=('accurate', 'exact'), nth=1, epsil=0.1, seed=135, size=101, hidden=3, verbose=False, protocol=pseudo_reinforcement, mag=<class 'ReplicatedFocusingBeliefPropagation.rfbp.MagP64.MagP64'>, max_iter=1000)
+  >>> predicted_labels = rfbp.predict(data)
 
-    predict : Predict labels on a new pattern given
+  Notes
+  -----
+  .. note::
+    The input data must be composed by binary variables codified as `[-1, 1]`, since the model works only with spin-like variables.
 
-    load_weights : Load a weight matrix from file in ascii or binary mode
-
-    save_weights : Dump the fitted weights on file in ascii or binary mode
+  References
+  ----------
+  - C. Baldassi, C. Borgs, J. T. Chayes, A. Ingrosso, C. Lucibello, L. Saglietti, and R. Zecchina. "Unreasonable effectiveness of learning neural networks: From accessible states and robust ensembles to basic algorithmic schemes", Proceedings of the National Academy of Sciences, 113(48):E7655-E7662, 2016.
+  - C. Baldassi, A. Braunstein, N. Brunel, R. Zecchina. "Efficient supervised learning in networks with binary synapses", Proceedings of the National Academy of Sciences, 104(26):11079-11084, 2007.
+  - C. Baldassi, F. Gerace, C. Lucibello, L. Saglietti, R. Zecchina. "Learning may need only a few bits of synaptic precision", Physical Review E, 93, 2016
+  - D. Dall'Olio, N. Curti, G. Castellani, A. Bazzani, D. Remondini. "Classification of Genome Wide Association data by Belief Propagation Neural network", CCS Italy, 2019.
   '''
 
-  ALLOWED_ACCURACY = ('exact', 'accurate', 'approx', 'none')
-  ALLOWED_PROTOCOL = ('scoping', 'pseudo_reinforcement', 'free_scoping', 'standard_reinforcement')
+  _ALLOWED_ACCURACY = ('exact', 'accurate', 'approx', 'none')
+  _ALLOWED_PROTOCOL = ('scoping', 'pseudo_reinforcement', 'free_scoping', 'standard_reinforcement')
 
   def __init__ (self, mag=MagP64,
                       hidden=3,
@@ -112,11 +128,11 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
     if len(accuracy) > 2:
       raise TypeError('Too many accuracies given. Max number is two')
 
-    if not all(a in self.ALLOWED_ACCURACY for a in accuracy):
-      raise ValueError('Wrong accuracy. Possible values are only {}. Given: {}, {}'.format(','.join(self.ALLOWED_ACCURACY),
+    if not all(a in self._ALLOWED_ACCURACY for a in accuracy):
+      raise ValueError('Wrong accuracy. Possible values are only {}. Given: {}, {}'.format(','.join(self._ALLOWED_ACCURACY),
                                                                                            accuracy[0], accuracy[1]))
-    if protocol not in self.ALLOWED_PROTOCOL:
-      raise ValueError('Incorrect Protocol found. Possible values are only {}'.format(','.join(self.ALLOWED_PROTOCOL)))
+    if protocol not in self._ALLOWED_PROTOCOL:
+      raise ValueError('Incorrect Protocol found. Possible values are only {}'.format(','.join(self._ALLOWED_PROTOCOL)))
 
     self.mag = mag
     self.hidden = hidden
@@ -139,13 +155,13 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
 
     Parameters
     ----------
-    X : array of shape [n_samples, n_features]
-        The input samples.
+      X : array of shape [n_samples, n_features]
+          The input samples.
 
     Returns
     -------
-    y : array of shape [n_samples]
-        The predicted target values.
+      y : array of shape [n_samples]
+          The predicted target values.
     '''
 
     check_is_fitted(self, 'weights_')
@@ -189,8 +205,7 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
 
     Returns
     -------
-      self : object
-        Returns self.
+      self : ReplicatedFocusingBeliefPropagation object
     '''
 
     pattern = X if isinstance(X, Pattern) else Pattern(X, y)
@@ -238,7 +253,15 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
 
     Returns
     -------
-      self
+      self : ReplicatedFocusingBeliefPropagation object
+
+    Example
+    -------
+    >>> from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
+    >>>
+    >>> clf = rFBP()
+    >>> clf.load_weights('path/to/weights_filename.csv', delimiter=',', binary=False)
+      ReplicatedFocusingBeliefPropagation(randfact=0.1, damping=0.5, accuracy=('accurate', 'exact'), nth=1, epsil=0.1, seed=135, size=101, hidden=3, verbose=False, protocol=pseudo_reinforcement, mag=<class 'ReplicatedFocusingBeliefPropagation.rfbp.MagP64.MagP64'>, max_iter=1000)
     '''
 
     if binary:
@@ -267,6 +290,19 @@ class ReplicatedFocusingBeliefPropagation (BaseEstimator, ClassifierMixin):
 
       binary : bool
         Switch between binary and ascii dumping style
+
+    Example
+    -------
+    >>> import numpy as np
+    >>> from ReplicatedFocusingBeliefPropagation import ReplicatedFocusingBeliefPropagation as rFBP
+    >>>
+    >>> N, M = (20, 101) # M must be odd
+    >>> data = np.random.choice([-1, 1], p=[.5, .5], size=(N, M))
+    >>> label = np.random.choice([-1, 1], p=[.5, .5], size=(N, ))
+    >>>
+    >>> rfbp = rFBP()
+    >>> rfbp.fit(data, label)
+    >>> rfbp.save_weights('path/to/weights_filename.csv', delimiter=',', binary=False)
     '''
 
     check_is_fitted(self, 'weights_')

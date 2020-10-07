@@ -5,7 +5,10 @@
 
 /**
 * @class Params
-* @brief Class to wrap training parameters
+* @brief Class to wrap training parameters.
+*
+* @details This class is used by the rFBP functions to facilitate the moving of a set
+* of training parameters along the series of functions.
 *
 * @tparam Mag magnetization used
 *
@@ -18,26 +21,28 @@ public:
 
   // Members
 
-  long int max_iters;      ///< number of iterations
-  double   damping,        ///< damping
-           epsil,          ///< error tollerance
+  long int max_iters;      ///< Number of iterations
+  double   damping,        ///< Damping factor
+           epsil,          ///< Error tollerance
            beta,           ///< 1/kT
-           r;              ///< number of replicas -1
-  Mag      tan_gamma;      ///< hyperbolic tangent of distance weight between replicas (gamma)
-  std :: string accuracy1, ///< updating accuracy of cavity probability (messages of hidden layers)
-                accuracy2; ///< updating accuracy of cavity probability (messages of output node)
+           r;              ///< Number of replicas -1
+  Mag      tan_gamma;      ///< Hyperbolic tangent of distance weight between replicas (γ)
+  std :: string accuracy1, ///< Updating accuracy of cavity probability (messages of hidden layers)
+                accuracy2; ///< Updating accuracy of cavity probability (messages of output node)
 
   /**
-  * @brief Parameter constructor
+  * @brief Parameter constructor.
   *
-  * @param max_iters number of iterations
-  * @param damping damping factor
-  * @param epsil error tollerance
+  * @param max_iters Number of iterations
+  * @param damping Damping factor
+  * @param epsil Error tollerance
   * @param beta 1 / KT
-  * @param r number of replicas - 1
-  * @param tan_gamma hyperbolic tangent of distance weight between replicas (gamma) as Mag object
-  * @param accuracy1 updating accuracy of cavity probability (messages of hidden layers)
-  * @param accuracy2 updating accuracy of cavity probability (messages of otuput node)
+  * @param r Number of replicas - 1
+  * @param gamma Hyperbolic tangent of distance weight between replicas (γ) as Mag object
+  * @param accuracy1 Updating accuracy of cavity probability (messages of hidden layers)
+  * @param accuracy2 Updating accuracy of cavity probability (messages of otuput node)
+  *
+  * @note In the constructor the value of gamma is converted to the appropriated Mag type.
   *
   */
   Params (const int & max_iters,
@@ -51,7 +56,7 @@ public:
           );
 
   /**
-  * @brief default destructor
+  * @brief Default destructor.
   *
   */
   ~Params () = default;

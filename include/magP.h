@@ -5,39 +5,41 @@
 
 /**
 * @class MagP64
-* @brief Abstract type representing magnetization type chosen for cavity messages
+* @brief Abstract type representing magnetization type chosen for cavity messages.
 *
-* @details MagP64 means a double type without tanh application
+* @note The `MagP64` type allows fast executions with inexact outcomes by neglecting all `tanh` operations.
 *
 */
 struct MagP64
 {
   // member
-  double mag;   ///< magnetization
+  double mag;   ///< Magnetization
 
   // constructor and destructor
   /**
-  * @brief default constructor
+  * @brief Default constructor.
   *
   */
   MagP64 ()                                                   {};
 
   /**
-  * @brief constructor with value
+  * @brief Constructor with value.
   *
-  * @param x magnetization (equal to value in magP)
+  * @param x magnetization
+  *
+  * @note In MagP64 the value is equal to the mag.
   *
   */
   MagP64 (const double & x) : mag (x)                         {};
 
   /**
-  * @brief default destructor
+  * @brief Default destructor.
   *
   */
   ~MagP64 ()                                                  = default;
 
   /**
-  * @brief copy constructor
+  * @brief Copy constructor.
   *
   * @param m MagP64 object
   *
@@ -45,7 +47,7 @@ struct MagP64
   MagP64 (const MagP64 & m)                                   { this->mag = m.mag; }
 
   /**
-  * @brief assigment operator constructor
+  * @brief Assigment operator constructor.
   *
   * @param m MagP64 object
   *
@@ -55,13 +57,15 @@ struct MagP64
   // utilities
 
   /**
-  * @brief string format utility (=> "plain")
+  * @brief Return the mag description (plain for MagP64).
   *
   */
   std :: string magformat () const                            { return "plain"; }
 
   /**
-  * @brief magnetization value (equal to mag in MagP64)
+  * @brief Get the magnetization value.
+  *
+  * @note In MagP64 the value is equal to the mag.
   *
   */
   double value () const                                       { return this->mag; }
@@ -70,9 +74,11 @@ struct MagP64
   // math operators
 
   /**
-  * @brief % operator
+  * @brief Overload operator.
   *
-  * @detail add magnetization ( (m1 + m2) / (1 + m1*m2) ) with clamp
+  * @details Add magnetization ( (m1 + m2) / (1 + m1*m2) ) with clamp.
+  *
+  * @see mag :: clamp
   *
   * @param m MagP64 object
   *
@@ -80,9 +86,9 @@ struct MagP64
   MagP64 operator % (const MagP64 & m)                        { return MagP64(mag :: clamp( (this->mag + m.mag) / (1. + this->mag * m.mag), -1., 1.) ); }
 
   /**
-  * @brief + operator
+  * @brief Overload operator.
   *
-  * @detail add magnetization
+  * @details Just a simple addition of the mag values.
   *
   * @param m MagP64 object
   *
@@ -90,9 +96,9 @@ struct MagP64
   MagP64 operator + (const MagP64 & m)                        { return MagP64(this->mag + m.mag); }
 
   /**
-  * @brief / operator
+  * @brief Overload operator.
   *
-  * @detail divide magnetization (mag / x)
+  * @details Just a simple division as (mag / x)
   *
   * @param x double value
   *
@@ -100,9 +106,9 @@ struct MagP64
   MagP64 operator / (const double & x)                        { return MagP64(this->mag / x); }
 
   /**
-  * @brief * operator
+  * @brief Overload operator.
   *
-  * @detail prod magnetization (mag * x)
+  * @details Just a simple product as (mag * x)
   *
   * @param x double value
   *
@@ -110,9 +116,9 @@ struct MagP64
   double operator * (const double & x)                        { return this->mag * x; }
 
   /**
-  * @brief * operator
+  * @brief Overload operator.
   *
-  * @detail prod magnetization (x * mag)
+  * @details Just a simple product as (x * mag)
   *
   * @param x double value
   * @param m MagP64 object
@@ -121,9 +127,9 @@ struct MagP64
   friend double operator * (const double & x, const MagP64 & m) { return m.mag * x; }
 
   /**
-  * @brief ^ operator
+  * @brief Overload operator
   *
-  * @detail combination of mags (m1 * m2)
+  * @details Combine two mags as (mag * mag)
   *
   * @param m MagP64 object
   *
@@ -131,9 +137,11 @@ struct MagP64
   MagP64 operator ^ (const MagP64 & m)                        { return MagP64(this->mag * m.mag); }
 
   /**
-  * @brief - operator
+  * @brief Overload operator.
   *
-  * @detail sub values (val1 - val2) <- equal to mag!
+  * @details Subtract values (val1 - val2)
+  *
+  * @note In MagP64 the values are equal to the mags.
   *
   * @param m MagP64 object
   *
@@ -141,9 +149,9 @@ struct MagP64
   double operator - (const MagP64 & m)                        { return this->mag - m.mag; }
 
   /**
-  * @brief - operator
+  * @brief Get a magnetization with a flipped sign.
   *
-  * @detail flip magnetization sign
+  * @details flip magnetization sign
   *
   */
   MagP64 operator - () const                                  { return MagP64(-this->mag); }
@@ -151,9 +159,9 @@ struct MagP64
   // logical operators
 
   /**
-  * @brief == operator
+  * @brief Check magnetization equality.
   *
-  * @detail compare magnetizations
+  * @details Compare magnetizations
   *
   * @param m MagP64 object
   *
@@ -161,9 +169,9 @@ struct MagP64
   bool operator == (const MagP64 & m)                         { return this->mag == m.mag; }
 
   /**
-  * @brief != operator
+  * @brief Check magnetization not equality.
   *
-  * @detail compare magnetizations
+  * @details compare magnetizations
   *
   * @param m MagP64 object
   *
@@ -171,9 +179,9 @@ struct MagP64
   bool operator != (const MagP64 & m)                         { return this->mag != m.mag; }
 
   /**
-  * @brief << operator
+  * @brief Print operator with stdout/stderr.
   *
-  * @detail print mag
+  * @details print mag
   *
   * @param os ostream operator
   * @param m MagP64 object

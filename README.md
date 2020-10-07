@@ -1,11 +1,12 @@
 | **Authors**  | **Project** |  **Build Status** | **Code Quality** | **Coverage** |
 |:------------:|:-----------:|:-----------------:|:----------------:|:------------:|
-| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio) <br/> [**E. Giampieri**](https://github.com/EnricoGiampieri)  |  **rFBP**  | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : [![appveyor](https://ci.appveyor.com/api/projects/status/obuq56lhyd90pmup?svg=true)](https://ci.appveyor.com/project/Nico-Curti/rfbp) | **Codacy** : [![Codacy](https://api.codacy.com/project/badge/Grade/a6fdac990b6f4141a5bd9e8171ddaf53)](https://www.codacy.com/manual/Nico-Curti/rFBP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nico-Curti/rFBP&amp;utm_campaign=Badge_Grade) <br/> **Codebeat** : [![Codebeat](https://codebeat.co/badges/cc761a7c-79fa-4a66-984f-bef6fd145d34)](https://codebeat.co/projects/github-com-nico-curti-rfbp-master) | [![codecov](https://codecov.io/gh/Nico-Curti/rFBP/branch/master/graph/badge.svg)](https://codecov.io/gh/Nico-Curti/rFBP) |
+| [**N. Curti**](https://github.com/Nico-Curti) <br/> [**D. Dall'Olio**](https://github.com/DanieleDallOlio) <br/> [**E. Giampieri**](https://github.com/EnricoGiampieri)  |  **rFBP** <br/> [![JOSS](https://joss.theoj.org/papers/7643779111039dbc7776ff49d2a6b1b0/status.svg)](https://joss.theoj.org/papers/7643779111039dbc7776ff49d2a6b1b0)  | **Linux/MacOS** : [![Travis](https://travis-ci.com/Nico-Curti/rFBP.svg?token=7QqsqaQiuDHSyGDT3xek&branch=master)](https://travis-ci.com/Nico-Curti/rFBP) <br/> **Windows** : [![appveyor](https://ci.appveyor.com/api/projects/status/obuq56lhyd90pmup?svg=true)](https://ci.appveyor.com/project/Nico-Curti/rfbp) | **Codacy** : [![Codacy](https://api.codacy.com/project/badge/Grade/a6fdac990b6f4141a5bd9e8171ddaf53)](https://www.codacy.com/manual/Nico-Curti/rFBP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Nico-Curti/rFBP&amp;utm_campaign=Badge_Grade) <br/> **Codebeat** : [![Codebeat](https://codebeat.co/badges/cc761a7c-79fa-4a66-984f-bef6fd145d34)](https://codebeat.co/projects/github-com-nico-curti-rfbp-master) | [![codecov](https://codecov.io/gh/Nico-Curti/rFBP/branch/master/graph/badge.svg)](https://codecov.io/gh/Nico-Curti/rFBP) |
 
 [![rFBP C++ CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20C++%20CI/badge.svg)](https://github.com/Nico-Curti/rFBP/actions?query=workflow%3A%22rFBP+C%2B%2B+CI%22)
 [![rFBP Python CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20Python%20CI/badge.svg)](https://github.com/Nico-Curti/rFBP/actions?query=workflow%3A%22rFBP+Python+CI%22)
+[![rFBP Docs CI](https://github.com/Nico-Curti/rFBP/workflows/rFBP%20Docs%20CI/badge.svg)](https://github.com/Nico-Curti/rFBP/actions?query=workflow%3A%22rFBP+Docs+CI%22)
 
-[![docs](https://img.shields.io/badge/doc-latest-blue.svg?style=plastic)](https://nico-curti.github.io/rFBP/)
+[![docs](https://readthedocs.org/projects/rfbp/badge/?version=latest)](https://rfbp.readthedocs.io/en/latest/?badge=latest)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/pulls)
 [![GitHub issues](https://img.shields.io/github/issues/Nico-Curti/rFBP.svg?style=plastic)](https://github.com/Nico-Curti/rFBP/issues)
 
@@ -87,7 +88,7 @@ C++ supported compilers:
 
 ![clang version](https://img.shields.io/badge/clang-3.6%20|3.9%20|5.*%20|%206.*%20|%207.*%20|-red.svg)
 
-![msvc version](https://img.shields.io/badge/msvc-vs2017%20x86%20|%20vs2017%20x64-blue.svg)
+![msvc version](https://img.shields.io/badge/msvc-vs2017%20x86%20|%20vs2017%20x64|%20vs2019%20x86%20|%20vs2019%20x64-blue.svg)
 
 The `rFBP` project is written in `C++` using a large amount of c++17 features.
 To enlarge the usability of our package we provide also a retro-compatibility of all the c++17 modules reaching an usability (tested) of our code from gcc 4.8.5+.
@@ -208,6 +209,10 @@ or for installing in development mode:
 ```bash
 python setup.py develop --user
 ```
+
+> :warning: The current installation via pip has no requirements about the version of `setuptools` package.
+> If the already installed version of `setuptools` is `>= 50.*` you can find some troubles during the installation of our package (ref. [issue](https://github.com/Nico-Curti/rFBP/issues/5)).
+> We suggest to temporary downgrade the `setuptools` version to `49.3.0` to workaround this `setuptools` issue.
 
 ## Efficiency
 
@@ -442,9 +447,9 @@ Description of the folders related to the `Python` version (base directory `Repl
 
 ## Contribution
 
-Any contribution is more than welcome :heart:. Just fill an [issue](https://github.com/Nico-Curti/rFBP/blob/master/ISSUE_TEMPLATE.md) or a [pull request](https://github.com/Nico-Curti/rFBP/blob/master/PULL_REQUEST_TEMPLATE.md) and we will check ASAP!
+Any contribution is more than welcome :heart:. Just fill an [issue](https://github.com/Nico-Curti/rFBP/blob/master/.github/ISSUE_TEMPLATE/ISSUE_TEMPLATE.md) or a [pull request](https://github.com/Nico-Curti/rFBP/blob/master/.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md) and we will check ASAP!
 
-See [here](https://github.com/Nico-Curti/rFBP/blob/master/CONTRIBUTING.md) for further informations about how to contribute with this project.
+See [here](https://github.com/Nico-Curti/rFBP/blob/master/.github/CONTRIBUTING.md) for further informations about how to contribute with this project.
 
 ## References
 

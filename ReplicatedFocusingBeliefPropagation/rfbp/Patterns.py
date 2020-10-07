@@ -19,28 +19,35 @@ __email__   = ['nico.curti2@unibo.it', 'daniele.dallolio@studio.unibo.it']
 class Pattern (object):
 
   '''
-  Pattern object for C++ compatibility
+  Pattern object for C++ compatibility.
+  The Pattern object is just a simple wrap of a data (matrix) + labels (vector).
+  This object type provide a compatibility with the rFBP functions in C++ and it provides also a series of checks
+  for the input validity.
 
   Parameters
   ----------
     X : None or 2D array-like or string
-      Input matrix of variabels as (Nsample, Nfeatures) or filename with the input stored in the same way
+      Input matrix of variables as (Nsample, Nfeatures) or filename with the input stored in the same way
 
     y : None or 1D array-like
       Input labels. The label can be given or read from the input filename as first row in the file.
 
-  Members
+  Example
   -------
-    shape : Return the shape of input data as (nsample, nfeatures)
-
-    labels : Get the array of labels stored inside the object
-
-    data : Return the full matrix of data
-
-    pattern : Return the Cython Pattern object
-
-    load : Load pattern from file
-
+  >>> import numpy as np
+  >>> from ReplicatedFocusingBeliefPropagation import Pattern
+  >>>
+  >>> n_sample, n_feature = (20, 101) # n_feature must be odd
+  >>> data = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, n_feature))
+  >>> labels = np.random.choice(a=(-1, 1), p=(.5, .5), size=(n_sample, ))
+  >>>
+  >>> pt = Pattern(X=data, y=labels)
+  >>> # dimensions
+  >>> assert pt.shape == (n_sample, n_feature)
+  >>> # data
+  >>> np.testing.assert_allclose(pt.data, data)
+  >>> # labels
+  >>> np.testing.assert_allclose(pt.labels, labels)
   '''
 
   def __init__ (self, X=None, y=None):
@@ -69,12 +76,25 @@ class Pattern (object):
 
   def random (self, shape):
     '''
-    Generate Random pattern
+    Generate Random pattern.
+    The pattern is generated using a Bernoulli distribution and thus it creates a data (matrix) + labels (vector)
+    of binary values. The values are converted into the range (-1, 1) for the compatibility with the rFBP algorithm.
 
     Parameters
     ----------
       shapes : tuple
         a 2-D tuple with (M, N) where M is the number of samples and N the number of probes
+
+    Example
+    -------
+    >>> from ReplicatedFocusingBeliefPropagation import Pattern
+    >>>
+    >>> n_sample = 10
+    >>> n_feature = 20
+    >>> data = Pattern().random(shape=(n_sample, n_feature))
+    >>> assert data.shape == (n_sample, n_feature)
+    >>> data
+      Pattern[shapes=(10, 20)]
     '''
 
     try:
@@ -95,7 +115,8 @@ class Pattern (object):
 
   def load (self, filename, binary=False, delimiter='\t'):
     '''
-    Load pattern from file
+    Load pattern from file.
+    This is the main utility of the Pattern object. You can use this function to load data from csv-like files OR from a binary file.
 
     Parameters
     ----------
@@ -107,6 +128,14 @@ class Pattern (object):
 
       delimiter : str
         Separator of input file (valid if binary is False)
+
+    Example
+    -------
+    >>> from ReplicatedFocusingBeliefPropagation import Pattern
+    >>>
+    >>> data = Pattern().load(filename='path/to/datafile.csv', delimiter=',', binary=False)
+    >>> data
+      Pattern[shapes=(10, 20)]
     '''
 
     if not isinstance(filename, str):
@@ -124,6 +153,11 @@ class Pattern (object):
   def shape (self):
     '''
     Return the shape of the data matrix
+
+    Returns
+    -------
+      shape: tuple
+        The tuple related to the data dimensions (n_sample, n_features)
     '''
     try:
       return (self._pattern.Nrow, self._pattern.Ncol)
@@ -135,6 +169,11 @@ class Pattern (object):
   def labels (self):
     '''
     Return the label array
+
+    Returns
+    -------
+      labels: array-like
+        The labels vector as (n_sample, ) casted to integers.
     '''
     try:
       return np.asarray(self._pattern.labels, dtype=int)
@@ -146,6 +185,11 @@ class Pattern (object):
   def data (self):
     '''
     Return the data matrix
+
+    Returns
+    -------
+      data: array-like
+        The data matrix as (n_sample, n_features) casted to integers.
     '''
     try:
       return np.asarray(self._pattern.data, dtype=int)
@@ -157,6 +201,16 @@ class Pattern (object):
   def pattern (self):
     '''
     Return the pattern Cython object
+
+    Returns
+    -------
+      pattern: Cython object
+        The cython object wrapped by the Pattern class
+
+    Notes
+    -----
+    .. warning::
+      We discourage the use of this property if you do not know exactly what you are doing!
     '''
     return self._pattern
 

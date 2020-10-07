@@ -19,9 +19,9 @@ static constexpr int ERROR_MAGNETIZATION    = 111; ///< Return Error
 static constexpr int ERROR_ATANHERF_FILE    = 112; ///< Return Error
 
 /**
-* @brief raise error because N is not positive
+* @brief Raise error because N is not positive
 *
-* @param N the given value of N
+* @param N The given value of N
 */
 inline void error_Npositive (const long int & N)
 {
@@ -30,9 +30,9 @@ inline void error_Npositive (const long int & N)
 }
 
 /**
-* @brief raise error because K is not positive
+* @brief Raise error because K is not positive.
 *
-* @param K the given value of K
+* @param K The given value of K.
 */
 inline void error_Kpositive (const int & K)
 {
@@ -41,9 +41,9 @@ inline void error_Kpositive (const int & K)
 }
 
 /**
-* @brief raise error because max_iters is not positive
+* @brief Raise error because max_iters is not positive.
 *
-* @param max_iters the given value of max_iters
+* @param max_iters The given value of max_iters.
 */
 inline void error_maxiters (const long int & max_iters)
 {
@@ -52,9 +52,9 @@ inline void error_maxiters (const long int & max_iters)
 }
 
 /**
-* @brief raise error because max_steps is not positive
+* @brief Raise error because max_steps is not positive.
 *
-* @param max_steps the given value of max_stes
+* @param max_steps The given value of max_stes.
 */
 inline void error_maxsteps (const long int & max_steps)
 {
@@ -63,9 +63,9 @@ inline void error_maxsteps (const long int & max_steps)
 }
 
 /**
-* @brief raise error because damping is not bounded in [0, 1)
+* @brief Raise error because damping is not bounded in [0, 1).
 *
-* @param damping the given value of damping
+* @param damping The given value of damping.
 */
 inline void error_damping (const double & damping)
 {
@@ -74,9 +74,9 @@ inline void error_damping (const double & damping)
 }
 
 /**
-* @brief raise error because randfact is not bounded in [0, 1)
+* @brief Raise error because randfact is not bounded in [0, 1).
 *
-* @param randfact the given value of randfact
+* @param randfact The given value of randfact.
 */
 inline void error_randfact (const double & randfact)
 {
@@ -85,9 +85,9 @@ inline void error_randfact (const double & randfact)
 }
 
 /**
-* @brief raise error because accuracy is not valid
+* @brief Raise error because accuracy has not a valid value.
 *
-* @param accuracy the given value of accuracy
+* @param accuracy The given value of accuracy.
 */
 inline void error_accuracy (const std :: string & accuracy)
 {
@@ -96,7 +96,7 @@ inline void error_accuracy (const std :: string & accuracy)
 }
 
 /**
-* @brief raise error because too many accuracies were given
+* @brief Raise error because too many accuracies were given.
 *
 */
 inline void error_num_accuracy ()
@@ -106,9 +106,9 @@ inline void error_num_accuracy ()
 }
 
 /**
-* @brief raise error because accuracy1 is not valid
+* @brief Raise error because accuracy1 has not a valid value.
 *
-* @param accuracy1 the given value of accuracy1
+* @param accuracy1 The given value of accuracy1.
 */
 inline void error_accuracy1 (const std :: string & accuracy1)
 {
@@ -117,9 +117,9 @@ inline void error_accuracy1 (const std :: string & accuracy1)
 }
 
 /**
-* @brief raise error because accuracy2 is not valid
+* @brief Raise error because accuracy2 has not a valid value.
 *
-* @param accuracy2 the given value of accuracy2
+* @param accuracy2 The given value of accuracy2.
 */
 inline void error_accuracy2 (const std :: string & accuracy2)
 {
@@ -128,9 +128,9 @@ inline void error_accuracy2 (const std :: string & accuracy2)
 }
 
 /**
-* @brief raise error because with accuracy1 == 'exact' the value of N must be odd
+* @brief Raise error because with accuracy1 == 'exact' the value of N must be odd.
 *
-* @param N the given value of N
+* @param N The given value of N.
 */
 inline void error_Nexact (const int & N)
 {
@@ -139,9 +139,9 @@ inline void error_Nexact (const int & N)
 }
 
 /**
-* @brief raise error because with accuracy2 == 'exact' the value of K must be odd
+* @brief Raise error because with accuracy2 == 'exact' the value of K must be odd.
 *
-* @param K the given value of K
+* @param K The given value of K.
 */
 inline void error_Kexact (const int & K)
 {
@@ -150,9 +150,9 @@ inline void error_Kexact (const int & K)
 }
 
 /**
-* @brief raise error because beta is not finite (not yet supported)
+* @brief Raise error because beta is finite (not yet supported).
 *
-* @param beta the given value of beta
+* @param beta The given value of beta.
 */
 inline void error_infinite (const double & beta)
 {
@@ -164,9 +164,9 @@ inline void error_infinite (const double & beta)
 }
 
 /**
-* @brief raise error because weight filename is not found
+* @brief Raise error because weight filename is not found.
 *
-* @param filename the given value of filename
+* @param filename The given value of filename.
 */
 inline void error_message_weights (const std :: string & filename)
 {
@@ -178,9 +178,9 @@ inline void error_message_weights (const std :: string & filename)
 }
 
 /**
-* @brief raise error because input filename is not found
+* @brief Raise error because input filename is not found.
 *
-* @param filename the given value of filename
+* @param filename The given value of filename.
 */
 inline void error_pattern (const std :: string & filename)
 {
@@ -189,9 +189,9 @@ inline void error_pattern (const std :: string & filename)
 }
 
 /**
-* @brief raise error because protocol type is invalid
+* @brief Raise error because protocol type is invalid
 *
-* @param prot the given value of protocol type
+* @param prot The given value of protocol type
 */
 inline void error_protocol (const std :: string & prot)
 {
@@ -202,9 +202,9 @@ inline void error_protocol (const std :: string & prot)
 }
 
 /**
-* @brief raise error because messages filename is not found
+* @brief Raise error because messages filename is not found.
 *
-* @param filename the given value of filename
+* @param filename The given value of filename.
 */
 inline void error_messages (const std :: string & filename)
 {
@@ -213,9 +213,9 @@ inline void error_messages (const std :: string & filename)
 }
 
 /**
-* @brief raise error because messages filename is not well formatted
+* @brief Raise error because messages filename is not well formatted.
 *
-* @param filename the given value of filename
+* @param filename The given value of filename.
 */
 inline void error_invalid_messages (const std :: string & filename)
 {
@@ -224,9 +224,9 @@ inline void error_invalid_messages (const std :: string & filename)
 }
 
 /**
-* @brief raise error because Mag parameter is not valid
+* @brief Raise error because Mag parameter is not valid.
 *
-* @param mag the given value of mag
+* @param mag The given value of mag.
 */
 inline void error_magnetization (const int & mag)
 {
@@ -235,8 +235,8 @@ inline void error_magnetization (const int & mag)
 }
 
 /**
-* @brief raise error because atanherf interpolation filename is not found.
-* Suggest how to download it.
+* @brief Raise error because atanherf interpolation filename is not found.
+* It suggests how to download it.
 *
 */
 inline void error_atanherf_file ()

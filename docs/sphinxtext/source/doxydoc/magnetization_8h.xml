@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="magnetization_8h" kind="file" language="C++">
+    <compoundname>magnetization.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">type_traits</includes>
+    <includes local="no">cmath</includes>
+    <includes local="no">string</includes>
+    <includes local="no">algorithm</includes>
+    <includes refid="magnetization__oldgcc_8h" local="no">magnetization_oldgcc.h</includes>
+    <includes refid="mag_p_8h" local="no">magP.h</includes>
+    <includes refid="mag_t_8h" local="no">magT.h</includes>
+    <includedby refid="cavity__message_8h" local="no">include/cavity_message.h</includedby>
+    <includedby refid="params_8h" local="no">include/params.h</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>cmath</label>
+      </node>
+      <node id="13">
+        <label>numeric</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>include/magnetization.h</label>
+        <link refid="magnetization_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>spline.h</label>
+      </node>
+      <node id="11">
+        <label>fstream</label>
+      </node>
+      <node id="7">
+        <label>magnetization_oldgcc.h</label>
+        <link refid="magnetization__oldgcc_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>atanherf.h</label>
+        <link refid="atanherf_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>magP.h</label>
+        <link refid="mag_p_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>utils.hpp</label>
+      </node>
+      <node id="9">
+        <label>magT.h</label>
+        <link refid="mag_t_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>type_traits</label>
+      </node>
+      <node id="6">
+        <label>algorithm</label>
+      </node>
+      <node id="12">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>include/params.h</label>
+        <link refid="params_8h"/>
+      </node>
+      <node id="1">
+        <label>include/magnetization.h</label>
+        <link refid="magnetization_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/cavity_message.h</label>
+        <link refid="cavity__message_8h"/>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__mag_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__mag_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type_traits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(__cplusplus<sp/>&lt;<sp/>201700)<sp/>&amp;&amp;<sp/>!(__clang_major__<sp/>&gt;<sp/>4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;<ref refid="magnetization__oldgcc_8h" kindref="compound">magnetization_oldgcc.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacemag" kindref="compound">mag</ref></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1a4cd09de8217de3fffa7c162799d3a7ab" kindref="member">clamp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>low,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>high);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1aa54bdc35a222cc01654b22f07b62fbf2" kindref="member">lr</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespacemag_1a63ad70f0f7d3d359885510751793278e" kindref="member">sign0</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a01012f2c4f6c63f50117d1a80cbc663a" kindref="member">isinf</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1aa5c6ba535495d360f9262dec5cdc3e8a" kindref="member">signbit</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>template<sp/>&lt;<sp/>class<sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/>f2m<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(const<sp/>double<sp/>&amp;<sp/>x);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a885c63525229459a6f87679101369f94" kindref="member">zeros</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(Mag<sp/>*<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>n);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a2503c41bf09106f862ddd2002661a1d1" kindref="member">zero</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(Mag<sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1a58cc14c100de3aa5fb1f06334f803002" kindref="member">abs</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>a);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a7d51dc1d83c4252db159812967da295b" kindref="member">copysign</ref><sp/><sp/><sp/><sp/><sp/><sp/>(Mag<sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>y);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1aace55ba7fc39b03bfa2289c9f740f5cb" kindref="member">arrow</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>m,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="namespacemag_1a63ad70f0f7d3d359885510751793278e" kindref="member">sign0</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1a292f62f5334c5de22b315b503f15355a" kindref="member">logmag2p</ref><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a36beb34e6d5ae3a3e7d3213aea16a9c9" kindref="member">convert</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1a36beb34e6d5ae3a3e7d3213aea16a9c9" kindref="member">convert</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a8e27b9ea487021f76d9995c1f0b91087" kindref="member">couple</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x2);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1af5ddde6274707bbd19f6d7c40d1c4c5d" kindref="member">damp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>newx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>oldx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>l);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a7af2f84ac356634ab90aed8251e2b6ba" kindref="member">mtanh</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>template<sp/>&lt;<sp/>class<sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/>matanh<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(const<sp/>Mag<sp/>&amp;<sp/>m);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a1cc0338261fc2e50d8c15c3bf6912cfc" kindref="member">merf</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a68d0b86d6026b9efc23abee4835aab11" kindref="member">bar</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>m1,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>m2);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1a6118e8bfcf070d2e36ade569ed77084e" kindref="member">log1pxy</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>x,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>y);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1a77afb49c9a89a50cf24647a71053cffe" kindref="member">mcrossentropy</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>x,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>y);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="namespacemag_1a253e60a2a06d7dfd405b12ba75b8f25d" kindref="member">logZ</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>u0,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>*<sp/>u,<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nu);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a5142fc182575fa48bc52b02e000e042c" kindref="member">auxmix</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>H,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>ap,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>am);</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1ad6b802dacc9663741e80ecab5129ad88" kindref="member">erfmix</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>H,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>mp,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>mm);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a703c5ebd25527461f6bb98727b158f49" kindref="member">exactmix</ref><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>H,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>pp,<sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>pm);</highlight></codeline>
+<codeline lineno="307"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="mag_p_8h" kindref="compound">magP.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="mag_t_8h" kindref="compound">magT.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__mag_h__</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/magnetization.h"/>
+  </compounddef>
+</doxygen>

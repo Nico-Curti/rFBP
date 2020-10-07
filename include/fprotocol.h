@@ -18,7 +18,7 @@
 /**
 * @class FocusingProtocol
 * @brief Abstract type representing a protocol for the focusing procedure, i.e. a way to produce
-* successive values for the quantities `gamma`, `n_rep` and `beta`. Currently, however, only `beta=Inf`
+* successive values for the quantities γ, n_rep and β. Currently, however, only `β=Inf`
 * is supported. To be provided as an argument to `focusingBP`.
 *
 * @details Available protocols are: `StandardReinforcement`, `Scoping`, `PseudoReinforcement` and `FreeScoping`
@@ -31,15 +31,15 @@ public:
 
   // Member variables
 
-  long int Nrep;                         ///< number of repetitions, i.e. number of focusing iterations
-  std :: unique_ptr < double[] > gamma;  ///< distance parameters
-  std :: unique_ptr < double[] > n_rep;  ///< (y in the paper and original code) number of replicas
-  std :: unique_ptr < double[] > beta;   ///< 1/kT
+  long int Nrep;                         ///< Number of repetitions, i.e. number of focusing iterations
+  std :: unique_ptr < double[] > gamma;  ///< Distance parameters
+  std :: unique_ptr < double[] > n_rep;  ///< Number of replicas (y in the paper and original code)
+  std :: unique_ptr < double[] > beta;   ///< 1/kT (it must be infinite in the current implementation)
 
   // Constructors
 
   /**
-  * @brief default constructor
+  * @brief Default constructor.
   *
   */
   FocusingProtocol ();
@@ -59,16 +59,16 @@ public:
   // Destructors
 
   /**
-  * @brief destructor set as default
+  * @brief Destructor set as default.
   *
   */
   ~FocusingProtocol () = default;
 
   /**
-  * @brief Standard reinforcement protocol, returns `gamma=Inf` and `n_rep=1/(1-x)`, where `x` is taken from the given range `rho`.
+  * @brief Standard reinforcement protocol, returns `γ=Inf` and `n_rep=1/(1-x)`, where `x` is taken from the given range `ρ`.
   *
   * @param rho double pointer which store the range values of x
-  * @param size number of step. Converted to Nrep into the class
+  * @param Nrho number of step. Converted to Nrep into the class
   *
   */
   void StandardReinforcement (const double * rho, const long int & Nrho);
@@ -82,9 +82,9 @@ public:
   void StandardReinforcement (const double & drho);
 
   /**
-  * @brief Focusing protocol with fixed `n_rep` and a varying `gamma` taken from the given `gamma * r` range.
+  * @brief Focusing protocol with fixed `n_rep` and a varying `γ` taken from the given `γ * r` range.
   *
-  * @param gr double pointer with gamma * r values
+  * @param gr double pointer with γ * r values
   * @param x fixed value of n_rep
   * @param ngr number of replicas
   *
@@ -92,18 +92,18 @@ public:
   void Scoping (const double * gr, const double & x, const long int & ngr);
 
   /**
-  * @brief A focusing protocol in which both `gamma` and `n_rep` are progressively increased, according to
+  * @brief A focusing protocol in which both `γ` and `n_rep` are progressively increased, according to
   * the formulas
   *
   * ```python
-  * gamma = atanh(rho**x)
-  * n_rep = 1 + rho**(1 - 2x) / (1 - rho)
+  * γ = atanh(ρ**x)
+  * n_rep = 1 + ρ**(1 - 2x) / (1 - ρ)
   *
   * ```
   *
-  * where `rho` is taken from the given range(ngr) `r`. With `x=0`, this is basically the same as `StandardReinforcement`
+  * where `ρ` is taken from the given range(ngr) `r`. With `x=0`, this is basically the same as `StandardReinforcement`.
   *
-  * @param rho double pointer with rho values
+  * @param rho double pointer with ρ values
   * @param nrho lenght of rho array
   * @param x fixed value of n_rep
   */
@@ -113,12 +113,13 @@ public:
   * @brief Shorthand for Pseudo Reinforcement protocol.
   *
   * @param drho double related to the range increment
+  * @param x fixed value of n_rep
   *
   */
   void PseudoReinforcement (const double & drho, double x=.5);
 
   /**
-  * @brief A focusing protocol which just returns the values of `(gamma, n_rep)` from the given `list`.
+  * @brief A focusing protocol which just returns the values of `(γ, n_rep)` from the given `list`.
   *
   * @param list array of lists (nlist, 3) with values
   * @param nlist lenght of list

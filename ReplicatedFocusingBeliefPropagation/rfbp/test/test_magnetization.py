@@ -145,6 +145,30 @@ class TestMagnetization:
     with pytest.raises(ValueError):
       mag.bar(self.x, self.y)
 
+  def test_log1pxy (self):
+
+    with pytest.raises(ValueError):
+      mag.log1pxy(self.m, self.x)
+
+    with pytest.raises(ValueError):
+      mag.log1pxy(self.m, [self.x])
+
+    with pytest.raises(ValueError):
+      mag.log1pxy(self.mt, self.x)
+
+    with pytest.raises(ValueError):
+      mag.log1pxy(self.mt, [self.x])
+
+    with pytest.raises(ValueError):
+      mag.log1pxy(self.x, self.y)
+
+    x = mag.log1pxy( MagP64(1.),  MagP64(1.))
+    assert np.isclose(x, 0.)
+
+    x = mag.log1pxy( MagT64(1.),  MagT64(1.))
+    assert np.isclose(x, 0.)
+
+
   def test_mcrossentropy (self):
 
     x = mag.mcrossentropy(MagT64(-float('Inf')), MagT64(float('Inf')))

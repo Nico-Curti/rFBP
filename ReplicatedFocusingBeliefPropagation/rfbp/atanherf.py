@@ -25,6 +25,29 @@ def atanherf (x):
   -------
     atanh(erf(x)) : float
       atanh(erf(x)) for any value of x
+
+  Example
+  -------
+  >>> x = 3.14
+  >>> atanherf(x)
+    6.157408006068702
+
+  >>> from scipy.special import erf
+  >>> import numpy as np
+  >>> np.arctanh(erf(x))
+    6.157408006066962
+
+  >>> x = 100
+  >>> atanherf(x)
+    5002.9353661516125
+  >>> np.arctanh(erf(x))
+    inf
+
+  Notes
+  -----
+  .. note::
+    We encourage to use this function since it is faster than a possible pure-Python counterpart **and**
+    it implements a series of computational tricks to solve possible numerical instability or precision losses.
   '''
 
   return _atanherf(x)

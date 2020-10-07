@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="namespace_atanh_erf" kind="namespace" language="C++">
+    <compoundname>AtanhErf</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespace_atanh_erf_1a0545ab80bf7ae81f3f83c3c96e595bd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>spline</type>
+        <definition>spline AtanhErf::getinp</definition>
+        <argsstring>()</argsstring>
+        <name>getinp</name>
+        <briefdescription>
+<para>Load spline data points from file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The filename is hard coded into the function body and it must be placed in <computeroutput>$PWD/data/atanherf_interp.max_16.step_0.0001.first_1.dat</computeroutput>.</para>
+<para>The variable PWD is defined at compile time and its value is set by the CMake file. If you want to use a file in a different location, please re-build the library setting the variable</para>
+<para><programlisting filename=".sh"><codeline><highlight class="normal">-DPWD=&apos;new/path/location&apos;</highlight></codeline>
+</programlisting></para>
+<para><simplesect kind="return"><para>Spline object with the interpolated coordinates. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/atanherf.h" line="36" column="10" declfile="include/atanherf.h" declline="36" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_atanh_erf_1a648fc918b0b9023b43880004aa00fa8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double AtanhErf::atanherf_largex</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>atanherf_largex</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Atanh of erf function for large values of x. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input variable.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Approximated result of atanherf function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/atanherf.h" line="45" column="10" declfile="include/atanherf.h" declline="45" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_atanh_erf_1a8426989952675ea057e3a5d54df5e6a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double AtanhErf::atanherf_interp</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>atanherf_interp</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Atanh of erf function computed with the interpolation coordinates extracted by the spline. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input variable.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Approximated result of atanherf function estimated using a pre-computed LUT. The LUT is generated using a cubic spline interpolation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/atanherf.h" line="56" column="10" declfile="include/atanherf.h" declline="56" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_atanh_erf_1ac882f44d4861eff24f39535120d7e999" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double AtanhErf::evalpoly</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>evalpoly</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Atanh of erf function evaluated as polynomial decomposition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value as argument of atanherf function.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Approximated result of atanherf function. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/atanherf.h" line="65" column="10" declfile="include/atanherf.h" declline="65" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="namespace_atanh_erf_1a1c8a2d9634d0fd674d59c6f0b6e3d168" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double AtanhErf::atanherf</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>atanherf</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Atanh of erf function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The result is evaluated with different numerical techniques according to its domain.</para>
+<para>In particular:<itemizedlist>
+<listitem><para>if its abs is lower than 2 -&gt; &quot;standard&quot; formula</para>
+</listitem><listitem><para>if its abs is lower than 15 -&gt; <computeroutput>atanherf_interp</computeroutput> formula</para>
+</listitem><listitem><para>if its abs is greater than 15 -&gt; <computeroutput>atanherf_largex</computeroutput> formula</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input variable.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Approximated result of atanherf function.</para>
+</simplesect>
+<simplesect kind="note"><para>The function automatically use the most appropriated approximation of the atanherf function to prevent possible overflows. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/atanherf.h" line="84" column="10" declfile="include/atanherf.h" declline="84" declcolumn="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/atanherf.h" line="18" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+  <compounddef id="atanherf_8h" kind="file" language="C++">
+    <compoundname>atanherf.h</compoundname>
+    <includes local="no">cmath</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">numeric</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">utils.hpp</includes>
+    <includes local="no">spline.h</includes>
+    <includedby refid="mag_t_8h" local="no">include/magT.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>cmath</label>
+      </node>
+      <node id="6">
+        <label>numeric</label>
+      </node>
+      <node id="9">
+        <label>spline.h</label>
+      </node>
+      <node id="3">
+        <label>fstream</label>
+      </node>
+      <node id="1">
+        <label>include/atanherf.h</label>
+        <link refid="atanherf_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>utils.hpp</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="4">
+        <label>algorithm</label>
+      </node>
+      <node id="5">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>include/params.h</label>
+        <link refid="params_8h"/>
+      </node>
+      <node id="3">
+        <label>include/magnetization.h</label>
+        <link refid="magnetization_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>include/magnetization_oldgcc.h</label>
+        <link refid="magnetization__oldgcc_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/atanherf.h</label>
+        <link refid="atanherf_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/magT.h</label>
+        <link refid="mag_t_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>include/cavity_message.h</label>
+        <link refid="cavity__message_8h"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespace_atanh_erf">AtanhErf</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="atanherf_8h_1a0699c38e3c7f214f5c13ffe750e1f0ab" prot="public" static="no">
+        <name>PWD</name>
+        <initializer>&apos;.&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/atanherf.h" line="5" column="9" bodyfile="include/atanherf.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__atanherf_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__atanherf_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>PWD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="atanherf_8h_1a0699c38e3c7f214f5c13ffe750e1f0ab" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PWD<sp/>&apos;.&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;numeric&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;spline.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="namespace_atanh_erf" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespace_atanh_erf" kindref="compound">AtanhErf</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36" refid="namespace_atanh_erf_1a0545ab80bf7ae81f3f83c3c96e595bd7" refkind="member"><highlight class="normal"><sp/><sp/>spline<sp/><ref refid="namespace_atanh_erf_1a0545ab80bf7ae81f3f83c3c96e595bd7" kindref="member">getinp</ref><sp/>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="namespace_atanh_erf_1a648fc918b0b9023b43880004aa00fa8c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_atanh_erf_1a648fc918b0b9023b43880004aa00fa8c" kindref="member">atanherf_largex</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="namespace_atanh_erf_1a8426989952675ea057e3a5d54df5e6a7" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_atanh_erf_1a8426989952675ea057e3a5d54df5e6a7" kindref="member">atanherf_interp</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="namespace_atanh_erf_1ac882f44d4861eff24f39535120d7e999" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_atanh_erf_1ac882f44d4861eff24f39535120d7e999" kindref="member">evalpoly</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="namespace_atanh_erf_1a1c8a2d9634d0fd674d59c6f0b6e3d168" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="namespace_atanh_erf_1a1c8a2d9634d0fd674d59c6f0b6e3d168" kindref="member">atanherf</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__atanherf_h__</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/atanherf.h"/>
+  </compounddef>
+</doxygen>
