@@ -39,3 +39,5 @@ The latest release of the `rFBP` package can be installed using `pip`
 ```bash
 pip install ReplicatedFocusingBeliefPropagation
 ```
+
+The installation via `pip` requires to pre-install the `Cython` and `Numpy` packages, thus make sure to pre-install them!

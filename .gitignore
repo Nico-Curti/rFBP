@@ -161,3 +161,7 @@ results_*
 
 # .hypothesis
 .hypothesis
+
+# Doxygen
+*.xslt
+*.xsd

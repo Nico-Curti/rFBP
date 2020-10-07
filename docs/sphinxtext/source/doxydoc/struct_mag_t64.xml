@@ -48,10 +48,10 @@
         </inbodydescription>
         <location file="include/magT.h" line="27" column="3" bodyfile="include/magT.h" bodystart="27" bodyend="27"/>
       </memberdef>
-      <memberdef kind="function" id="struct_mag_t64_1a1d9eaee8fff3b72ee17e5fb701b61801" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="struct_mag_t64_1a2a2b81b99122a1c1759d124349244db0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>MagT64::MagT64</definition>
-        <argsstring>(const double &amp;x, double m=30.)</argsstring>
+        <argsstring>(const double &amp;x, double m=30.0)</argsstring>
         <name>MagT64</name>
         <param>
           <type>const double &amp;</type>
@@ -60,7 +60,7 @@
         <param>
           <type>double</type>
           <declname>m</declname>
-          <defval>30.</defval>
+          <defval>30.0</defval>
         </param>
         <briefdescription>
 <para>Constructor with value. </para>
@@ -510,7 +510,7 @@
       <member refid="struct_mag_t64_1a047d9cdbf47ec346b4a67e52bab7f201" prot="public" virt="non-virtual"><scope>MagT64</scope><name>mag</name></member>
       <member refid="struct_mag_t64_1a90146324fd2aecd0adab4d51ad05ea82" prot="public" virt="non-virtual"><scope>MagT64</scope><name>magformat</name></member>
       <member refid="struct_mag_t64_1afc21778f19294b623db809ad5563625b" prot="public" virt="non-virtual"><scope>MagT64</scope><name>MagT64</name></member>
-      <member refid="struct_mag_t64_1a1d9eaee8fff3b72ee17e5fb701b61801" prot="public" virt="non-virtual"><scope>MagT64</scope><name>MagT64</name></member>
+      <member refid="struct_mag_t64_1a2a2b81b99122a1c1759d124349244db0" prot="public" virt="non-virtual"><scope>MagT64</scope><name>MagT64</name></member>
       <member refid="struct_mag_t64_1abc48366bc41134962d553f681f164dad" prot="public" virt="non-virtual"><scope>MagT64</scope><name>MagT64</name></member>
       <member refid="struct_mag_t64_1a677be2910878ea9079ffd30396a3457b" prot="public" virt="non-virtual"><scope>MagT64</scope><name>mInf</name></member>
       <member refid="struct_mag_t64_1a975f0132339f8e25cc247534d7f31666" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator!=</name></member>

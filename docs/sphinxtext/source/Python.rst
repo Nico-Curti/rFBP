@@ -3,11 +3,15 @@ Python Installation
 
 Python version supported : |Python version|
 
-The easiest way to install the package is to use `pip`
+The easiest way to install the package is using `pip`
 
 .. code-block:: bash
 
 	python -m pip install ReplicatedFocusingBeliefPropagation
+
+.. warning::
+
+	The setup file requires the `Cython` and `Numpy` packages, thus make sure to pre-install them!
 
 The `Python` installation can be performed with or without the `C++` installation.
 The `Python` installation is always executed using `setup.py`_ script.

@@ -65,7 +65,7 @@
     <member refid="struct_mag_t64_1a047d9cdbf47ec346b4a67e52bab7f201" kind="variable"><name>mag</name></member>
     <member refid="struct_mag_t64_1a677be2910878ea9079ffd30396a3457b" kind="variable"><name>mInf</name></member>
     <member refid="struct_mag_t64_1afc21778f19294b623db809ad5563625b" kind="function"><name>MagT64</name></member>
-    <member refid="struct_mag_t64_1a1d9eaee8fff3b72ee17e5fb701b61801" kind="function"><name>MagT64</name></member>
+    <member refid="struct_mag_t64_1a2a2b81b99122a1c1759d124349244db0" kind="function"><name>MagT64</name></member>
     <member refid="struct_mag_t64_1a227e57870de2690e458d6fd39a6ca333" kind="function"><name>~MagT64</name></member>
     <member refid="struct_mag_t64_1abc48366bc41134962d553f681f164dad" kind="function"><name>MagT64</name></member>
     <member refid="struct_mag_t64_1aab2aadbe07b001d7ef793e562e7c836a" kind="function"><name>operator=</name></member>
