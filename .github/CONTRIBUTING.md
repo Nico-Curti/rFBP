@@ -1,10 +1,10 @@
 # Contribution
 
-Any contribution is more than welcome :heart:. Just fill an [issue](https://github.com/Nico-Curti/rFBP/blob/master/ISSUE_TEMPLATE.md) or a [pull request](https://github.com/Nico-Curti/rFBP/blob/master/PULL_REQUEST_TEMPLATE.md) and we will check ASAP!
+Any contribution is more than welcome :heart:. Just fill an [issue](https://github.com/Nico-Curti/rFBP/blob/master/.github/ISSUE_TEMPLATE/ISSUE_TEMPLATE.md) or a [pull request](https://github.com/Nico-Curti/rFBP/blob/master/.github/PULL_REQUEST_TEMPLATE/PULL_REQUEST_TEMPLATE.md) and we will check ASAP!
 
 ## Before start contributing
 
-- Make sure you agree to contribute your code under `rFBP` [license](https://github.com/Nico-Curti/rFBP/blob/master/LICENSE.md)
+- Make sure you agree to contribute your code under `rFBP` [license](https://github.com/Nico-Curti/rFBP/blob/master/LICENSE)
 
 - If you are going to fix a bug, check that it's still exists and that you are working with the latest version of `rFBP` library.
 
