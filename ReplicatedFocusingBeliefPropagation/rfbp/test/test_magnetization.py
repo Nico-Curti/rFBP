@@ -165,9 +165,6 @@ class TestMagnetization:
     x = mag.log1pxy( MagP64(1.),  MagP64(1.))
     assert np.isclose(x, 0.)
 
-    x = mag.log1pxy( MagT64(1.),  MagT64(1.))
-    assert np.isclose(x, 0.)
-
 
   def test_mcrossentropy (self):
 
