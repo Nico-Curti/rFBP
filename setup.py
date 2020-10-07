@@ -289,7 +289,7 @@ setup(
                                                          'ReplicatedFocusingBeliefPropagation.*'],
                                                 exclude=('test', 'example')),
   include_package_data          = True,
-  data_files                    = [('CMake', ['./CMakeLists.txt']), ('README', ['./README.md']), ('license', ['./LICENSE'])],
+  data_files                    = [('', ['CMakeLists.txt', 'README.md', 'LICENSE'])],
   platforms                     = 'any',
   classifiers                   = [
                                     # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers

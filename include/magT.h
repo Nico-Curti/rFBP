@@ -34,7 +34,7 @@ struct MagT64
   *
   * @note In MagT64 the magnetization is converted to a `value` given by `tanh(x)`.
   */
-  MagT64 (const double & x, double m=30.) : mag (x), mInf (m)                         {};
+  MagT64 (const double & x, double m=30.0) : mag (x), mInf (m)                        {};
 
   /**
   * @brief Default destructor.
