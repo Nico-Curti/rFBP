@@ -1,5 +1,6 @@
 include *.md
 include LICENSE
+include CMakeLists.txt
 include *.txt
 include *.yml
 include include/*

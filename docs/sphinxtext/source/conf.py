@@ -73,8 +73,8 @@ master_doc = 'index'
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.napoleon',
-						  'sphinx.ext.viewcode',
-						  'breathe'
+              'sphinx.ext.viewcode',
+              'breathe'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
