@@ -5,12 +5,22 @@ import os
 import sys
 import json
 import platform
+import warnings
 import numpy as np
 
 try:
   from setuptools import setup
   from setuptools import Extension
   from setuptools import find_packages
+
+  import setuptools
+
+  setuptools_version = setuptools.__version__.split('.')
+  if int(setuptools_version[0]) >= 50:
+    warnings.warn('The setuptools version found is >= 50.* '
+                  'This version could lead to ModuleNotFoundError of basic packages '
+                  '(ref. https://github.com/Nico-Curti/rFBP/issues/5). '
+                  'We suggest to temporary downgrade the setuptools version to 49.3.0 to workaround this setuptools issue.', ImportWarning)
 
 except ImportError:
   from distutils.core import setup
@@ -226,12 +236,12 @@ if 'GCC' in CPP_COMPILER or 'Clang' in CPP_COMPILER:
     linker_args = []
 
   if compiler == 'Clang':
-    ENABLE_OMP = False
+    print('OpenMP support disabled. It can be used only with gcc compiler.', file=sys.stderr)
 
 
 elif 'MSC' in CPP_COMPILER:
-  cpp_compiler_args = ['/std:c++latest', '/Ox', '/Wall', '/W3']
-  compile_args = []
+  cpp_compiler_args = ['/std:c++latest', '/Ox']
+  compile_args = ['/Wall', '/W3']
 
   if ENABLE_OMP:
     linker_args = ['/openmp']
@@ -289,6 +299,7 @@ setup(
                                     'Programming Language :: Python :: Implementation :: CPython',
                                     'Programming Language :: Python :: Implementation :: PyPy'
                                   ],
+  data_files                    = [('', ['./LICENSE'])],
   license                       = 'MIT',
   cmdclass                      = cmdclass,
   ext_modules                   = [

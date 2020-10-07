@@ -1,24 +1,97 @@
-image: Visual Studio 2017
 clone_folder: c:\projects\rFBP
-configuration: Release
+configuration: Debug
+
+image:
+  - Visual Studio 2017
+  - Visual Studio 2019
 
 environment:
-    WORKSPACE: C:\projects
-    matrix:
-    - platform: Win32
-      COMPILER: vs
-      MSVC_SETUP_ARG: x86
-      PYTHON: "C:\\Python36"
-      PYTHON_VERSION: "3.6.3"
-      PYTHON_ARCH: "32"
-      MINICONDA: "C:\\Miniconda36"
-    - platform: Win64
-      COMPILER: vs
-      MSVC_SETUP_ARG: x64
-      PYTHON: "C:\\Python36-x64"
-      PYTHON_VERSION: "3.6.3"
-      PYTHON_ARCH: "64"
-      MINICONDA: "C:\\Miniconda36-x64"
+
+  WORKSPACE: C:\projects
+  # MSVC v2017
+  matrix:
+  - platform: Win32
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    PYTHON: "C:\\Python36"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "32"
+    MINICONDA: "C:\\Miniconda36"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x86
+  - platform: Win32
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    PYTHON: "C:\\Python36"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "32"
+    MINICONDA: "C:\\Miniconda36"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x86
+  - platform: Win64
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    PYTHON: "C:\\Python36-x64"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "64"
+    MINICONDA: "C:\\Miniconda36-x64"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x64
+  - platform: Win64
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    PYTHON: "C:\\Python36-x64"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "64"
+    MINICONDA: "C:\\Miniconda36-x64"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x64
+
+  # MSVC v2019
+  - platform: Win32
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    PYTHON: "C:\\Python36"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "32"
+    MINICONDA: "C:\\Miniconda36"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x86
+  - platform: Win32
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    PYTHON: "C:\\Python36"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "32"
+    MINICONDA: "C:\\Miniconda36"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x86
+  - platform: Win64
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    PYTHON: "C:\\Python36-x64"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "64"
+    MINICONDA: "C:\\Miniconda36-x64"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x64
+  - platform: Win64
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    PYTHON: "C:\\Python36-x64"
+    PYTHON_VERSION: "3.6.3"
+    PYTHON_ARCH: "64"
+    MINICONDA: "C:\\Miniconda36-x64"
+    COMPILER: vs
+    MSVC_SETUP_PATH: C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat
+    MSVC_SETUP_ARG: x64
+
+
+matrix:
+  exclude:
+    - image: Visual Studio 2017
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+    - image: Visual Studio 2019
+      APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
 
 install:
   # Miniconda is pre-installed in the worker build
@@ -28,20 +101,22 @@ install:
   - "pip --version"
   - "pip install -r requirements.txt"
 
-  - SET "PATH=C:\Program Files\CMake\bin;%PATH%"
-  - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" x86
-  - git submodule -q update --init --recursive
-  - cd %WORKSPACE%\
+  - if [%COMPILER%]==[vs] cinst ninja
+  - if [%COMPILER%]==[vs] SET "PATH=C:\Program Files\CMake\bin;%PATH%"
+  - if [%COMPILER%]==[vs] SET "PATH=C:\Program Files\LLVM\bin;%PATH%"
+  - if [%COMPILER%]==[vs] call "%MSVC_SETUP_PATH%" %MSVC_SETUP_ARG%
+
   ############################################################################
   # Install a recent CMake
   ############################################################################
-  - set CMAKE_URL="https://cmake.org/files/v3.12/cmake-3.12.1-win64-x64.zip"
+  - set CMAKE_URL="https://cmake.org/files/v3.14/cmake-3.14.1-win64-x64.zip"
   - appveyor DownloadFile %CMAKE_URL% -FileName cmake.zip
   - 7z x cmake.zip -oC:\projects\deps > nul
   - move C:\projects\deps\cmake-* C:\projects\deps\cmake # Move to a version-agnostic directory
   - set PATH=C:\projects\deps\cmake\bin;%PATH%
   - cmake --version
 
+  - git submodule -q update --init --recursive
 
 before_build:
   - cd %WORKSPACE%\rFBP
@@ -49,6 +124,10 @@ before_build:
   - cd build
 
 build_script:
-  - if [%MSVC_SETUP_ARG%]==[x64] cmake .. -G "Visual Studio 15 2017 Win64" "-DCMAKE_BUILD_TYPE=Release" "-DOMP=OFF"
-  - if [%MSVC_SETUP_ARG%]==[x86] cmake .. -G "Visual Studio 15 2017" "-DCMAKE_BUILD_TYPE=Release" "-DOMP=OFF"
+  - if [%MSVC_SETUP_ARG%]==[x64] if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" cmake .. -G "Visual Studio 15 2017 Win64" "-DCMAKE_BUILD_TYPE=Release" "-DOMP=OFF"
+  - if [%MSVC_SETUP_ARG%]==[x86] if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" cmake .. -G "Visual Studio 15 2017" "-DCMAKE_BUILD_TYPE=Release" "-DOMP=OFF"
+
+  - if [%MSVC_SETUP_ARG%]==[x64] if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019" cmake .. -G "Visual Studio 16 2019" -T "host=x64" -A "x64" "-DCMAKE_BUILD_TYPE=Release" "-DOMP=OFF"
+  - if [%MSVC_SETUP_ARG%]==[x86] if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2019" cmake .. -G "Visual Studio 16 2019" "-DCMAKE_BUILD_TYPE=Release" "-DOMP=OFF"
+
   - cmake --build . --config Release
