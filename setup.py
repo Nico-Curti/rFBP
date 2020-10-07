@@ -289,6 +289,7 @@ setup(
                                                          'ReplicatedFocusingBeliefPropagation.*'],
                                                 exclude=('test', 'example')),
   include_package_data          = True,
+  data_files                    = [('CMake', ['./CMakeLists.txt']), ('README', ['./README.md']), ('license', ['./LICENSE'])],
   platforms                     = 'any',
   classifiers                   = [
                                     # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -299,7 +300,6 @@ setup(
                                     'Programming Language :: Python :: Implementation :: CPython',
                                     'Programming Language :: Python :: Implementation :: PyPy'
                                   ],
-  data_files                    = [('', ['./LICENSE'])],
   license                       = 'MIT',
   cmdclass                      = cmdclass,
   ext_modules                   = [
