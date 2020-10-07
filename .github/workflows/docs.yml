@@ -32,15 +32,9 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Install sphinx dependencies
+    - name: Install dependencies
       run: |
-        python -m pip install sphinx
-        python -m pip install sphinxcontrib-napoleon
-        python -m pip install sphinxcontrib-programoutput
-
-    - name: Install breathe
-      run: |
-        python -m pip install breathe
+        python -m pip install -r docs/requirements.txt
 
     - name: Install Doxygen
       run: |
