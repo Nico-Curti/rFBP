@@ -13,7 +13,7 @@ authors:
 - name: Nico Curti
   orcid: 0000-0001-5802-1195
   affiliation: 1
-- name: Daniele Dall'Olio^[Join first author]
+- name: Daniele Dall'Olio^[Joint first author]
   orcid: 0000-0003-0196-6870
   affiliation: 3
 - name: Daniel Remondini
