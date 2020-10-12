@@ -6,7 +6,6 @@ import sys
 import json
 import platform
 import warnings
-import numpy as np
 
 try:
   from setuptools import setup
@@ -22,11 +21,16 @@ try:
                   '(ref. https://github.com/Nico-Curti/rFBP/issues/5). '
                   'We suggest to temporary downgrade the setuptools version to 49.3.0 to workaround this setuptools issue.', ImportWarning)
 
+  from setuptools import dist
+
+  dist.Distribution().fetch_build_eggs(['numpy>=1.15', 'Cython>=0.29'])
+
 except ImportError:
   from distutils.core import setup
   from distutils.core import Extension
   from distutils.core import find_packages
 
+import numpy as np
 from distutils import sysconfig
 from Cython.Distutils import build_ext
 from distutils.sysconfig import customize_compiler
@@ -283,8 +287,8 @@ setup(
   keywords                      = KEYWORDS,
   setup_requires                = [# Setuptools 18.0 properly handles Cython extensions.
                                    'setuptools>=18.0',
-                                   'cython',
-                                   'numpy'],
+                                   'numpy>=1.15'
+                                   'Cython>=0.29'],
   packages                      = find_packages(include=['ReplicatedFocusingBeliefPropagation',
                                                          'ReplicatedFocusingBeliefPropagation.*'],
                                                 exclude=('test', 'example')),

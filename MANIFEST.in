@@ -9,3 +9,4 @@ include ReplicatedFocusingBeliefPropagation/*.json
 include ReplicatedFocusingBeliefPropagation/lib/*.pxd
 include ReplicatedFocusingBeliefPropagation/lib/*.hpp
 include ReplicatedFocusingBeliefPropagation/source/*.pyx
+include scripts/*
