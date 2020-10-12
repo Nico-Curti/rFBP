@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.9.0)
 # rFBP Version
 set (RFBP_MAJOR    1)
 set (RFBP_MINOR    0)
-set (RFBP_REVISION 1)
+set (RFBP_REVISION 2)
 set (RFBP_VERSION ${RFBP_MAJOR}.${RFBP_MINOR}.${RFBP_REVISION})
 
 project (rFBP LANGUAGES CXX VERSION ${RFBP_VERSION} DESCRIPTION "Replicated Focusing Belief Propagation")
