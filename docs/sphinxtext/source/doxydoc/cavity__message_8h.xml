@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="cavity__message_8h" kind="file" language="C++">
     <compoundname>cavity_message.h</compoundname>
     <includes local="no">algorithm</includes>
@@ -11,24 +11,12 @@
     <includes local="no">vector</includes>
     <includes local="no">string</includes>
     <includes refid="magnetization_8h" local="no">magnetization.h</includes>
-    <includes local="no">errors.h</includes>
+    <includes refid="errors_8h" local="no">errors.h</includes>
     <includes local="no">params.hpp</includes>
-    <includes local="no">utils.h</includes>
+    <includes refid="utils_8h" local="no">utils.h</includes>
     <incdepgraph>
-      <node id="23">
-        <label>utils.h</label>
-      </node>
-      <node id="7">
-        <label>iterator</label>
-      </node>
-      <node id="13">
-        <label>cmath</label>
-      </node>
-      <node id="3">
-        <label>numeric</label>
-      </node>
-      <node id="9">
-        <label>string</label>
+      <node id="25">
+        <label>limits</label>
       </node>
       <node id="10">
         <label>magnetization.h</label>
@@ -52,12 +40,41 @@
       </node>
       <node id="20">
         <label>spline.h</label>
+        <link refid="spline_8h"/>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
       </node>
-      <node id="5">
-        <label>fstream</label>
+      <node id="7">
+        <label>iterator</label>
       </node>
       <node id="22">
-        <label>params.hpp</label>
+        <label>errors.h</label>
+        <link refid="errors_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>cmath</label>
+      </node>
+      <node id="3">
+        <label>numeric</label>
+      </node>
+      <node id="9">
+        <label>string</label>
       </node>
       <node id="14">
         <label>magnetization_oldgcc.h</label>
@@ -76,6 +93,104 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
+      </node>
+      <node id="5">
+        <label>fstream</label>
+      </node>
+      <node id="23">
+        <label>params.hpp</label>
+      </node>
+      <node id="4">
+        <label>random</label>
+      </node>
+      <node id="19">
+        <label>utils.hpp</label>
+      </node>
+      <node id="16">
+        <label>magT.h</label>
+        <link refid="magT_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+      <node id="15">
+        <label>magP.h</label>
+        <link refid="magP_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>array</label>
+      </node>
+      <node id="6">
+        <label>sstream</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="24">
+        <label>utils.h</label>
+        <link refid="utils_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>unordered_map</label>
+      </node>
+      <node id="27">
+        <label>chrono</label>
+      </node>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/cavity_message.h</label>
+        <link refid="cavity__message_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>type_traits</label>
+      </node>
+      <node id="2">
+        <label>algorithm</label>
       </node>
       <node id="17">
         <label>atanherf.h</label>
@@ -97,79 +212,11 @@
         <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="4">
-        <label>random</label>
-      </node>
-      <node id="15">
-        <label>magP.h</label>
-        <link refid="mag_p_8h"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>utils.hpp</label>
-      </node>
-      <node id="16">
-        <label>magT.h</label>
-        <link refid="mag_t_8h"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>errors.h</label>
-      </node>
-      <node id="8">
-        <label>vector</label>
-      </node>
-      <node id="6">
-        <label>sstream</label>
-      </node>
-      <node id="11">
-        <label>iostream</label>
-      </node>
-      <node id="12">
-        <label>type_traits</label>
-      </node>
-      <node id="2">
-        <label>algorithm</label>
-      </node>
       <node id="18">
         <label>memory</label>
       </node>
-      <node id="1">
-        <label>include/cavity_message.h</label>
-        <link refid="cavity__message_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
     </incdepgraph>
-    <innerclass refid="class_cavity___message" prot="public">Cavity_Message</innerclass>
+    <innerclass refid="classCavity__Message" prot="public">Cavity_Message</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -188,7 +235,7 @@
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="magnetization_8h" kindref="compound">magnetization.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;errors.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="errors_8h" kindref="compound">errors.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;params.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
@@ -197,65 +244,65 @@
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utils.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="utils_8h" kindref="compound">utils.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;</highlight></codeline>
-<codeline lineno="37" refid="class_cavity___message" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_cavity___message" kindref="compound">Cavity_Message</ref></highlight></codeline>
+<codeline lineno="36"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;</highlight></codeline>
+<codeline lineno="37" refid="classCavity__Message" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classCavity__Message" kindref="compound">Cavity_Message</ref></highlight></codeline>
 <codeline lineno="38"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>public<sp/>member<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44" refid="class_cavity___message_1a0a1c9ac75cf7d6f4c6fa6959a6cc136f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_cavity___message_1a0a1c9ac75cf7d6f4c6fa6959a6cc136f" kindref="member">M</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="45" refid="class_cavity___message_1af17961b19120b3208a4d2c0818f01956" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_cavity___message_1af17961b19120b3208a4d2c0818f01956" kindref="member">N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="46" refid="class_cavity___message_1a5e8e03343edf943b0cf18d812832a5a5" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_cavity___message_1a5e8e03343edf943b0cf18d812832a5a5" kindref="member">K</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="47" refid="class_cavity___message_1ab84aecf4b63c996a44b92b8209f04e92" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_cavity___message_1ab84aecf4b63c996a44b92b8209f04e92" kindref="member">seed</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="48" refid="class_cavity___message_1acdb2fd30b3d147b83f45e9391becbbf0" refkind="member"><highlight class="normal"><sp/><sp/>MagVec3<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="class_cavity___message_1acdb2fd30b3d147b83f45e9391becbbf0" kindref="member">weights</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="49" refid="class_cavity___message_1a4e15e9479733ecf7144458be144d818f" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="class_cavity___message_1a4e15e9479733ecf7144458be144d818f" kindref="member">m_star_j</ref>;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="50" refid="class_cavity___message_1a9dbc5531a97f5447cabe86a8835a12ee" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="class_cavity___message_1a9dbc5531a97f5447cabe86a8835a12ee" kindref="member">m_j_star</ref>;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="51" refid="class_cavity___message_1a7321be7d1a50e7b174a9fdaa5b479344" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="class_cavity___message_1a7321be7d1a50e7b174a9fdaa5b479344" kindref="member">m_in</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="52" refid="class_cavity___message_1a766453014f90061cf68c9e023a39aae9" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="class_cavity___message_1a766453014f90061cf68c9e023a39aae9" kindref="member">m_no</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="53" refid="class_cavity___message_1aaed796fd04b844cb045a6fb19132caaf" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="class_cavity___message_1aaed796fd04b844cb045a6fb19132caaf" kindref="member">m_ni</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="54" refid="class_cavity___message_1a86d9a00f123b90533602270401cf69c3" refkind="member"><highlight class="normal"><sp/><sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><sp/><ref refid="class_cavity___message_1a86d9a00f123b90533602270401cf69c3" kindref="member">m_on</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="classCavity__Message_1a0a1c9ac75cf7d6f4c6fa6959a6cc136f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCavity__Message_1a0a1c9ac75cf7d6f4c6fa6959a6cc136f" kindref="member">M</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45" refid="classCavity__Message_1af17961b19120b3208a4d2c0818f01956" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCavity__Message_1af17961b19120b3208a4d2c0818f01956" kindref="member">N</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="classCavity__Message_1a5e8e03343edf943b0cf18d812832a5a5" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCavity__Message_1a5e8e03343edf943b0cf18d812832a5a5" kindref="member">K</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47" refid="classCavity__Message_1ab84aecf4b63c996a44b92b8209f04e92" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classCavity__Message_1ab84aecf4b63c996a44b92b8209f04e92" kindref="member">seed</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="classCavity__Message_1acdb2fd30b3d147b83f45e9391becbbf0" refkind="member"><highlight class="normal"><sp/><sp/>MagVec3<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="classCavity__Message_1acdb2fd30b3d147b83f45e9391becbbf0" kindref="member">weights</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="classCavity__Message_1a4e15e9479733ecf7144458be144d818f" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="classCavity__Message_1a4e15e9479733ecf7144458be144d818f" kindref="member">m_star_j</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="classCavity__Message_1a9dbc5531a97f5447cabe86a8835a12ee" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="classCavity__Message_1a9dbc5531a97f5447cabe86a8835a12ee" kindref="member">m_j_star</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51" refid="classCavity__Message_1a7321be7d1a50e7b174a9fdaa5b479344" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="classCavity__Message_1a7321be7d1a50e7b174a9fdaa5b479344" kindref="member">m_in</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="classCavity__Message_1a766453014f90061cf68c9e023a39aae9" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="classCavity__Message_1a766453014f90061cf68c9e023a39aae9" kindref="member">m_no</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53" refid="classCavity__Message_1aaed796fd04b844cb045a6fb19132caaf" refkind="member"><highlight class="normal"><sp/><sp/>MagVec2<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><ref refid="classCavity__Message_1aaed796fd04b844cb045a6fb19132caaf" kindref="member">m_ni</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="classCavity__Message_1a86d9a00f123b90533602270401cf69c3" refkind="member"><highlight class="normal"><sp/><sp/>MagVec<sp/>&lt;<sp/>Mag<sp/>&gt;<sp/><sp/><ref refid="classCavity__Message_1a86d9a00f123b90533602270401cf69c3" kindref="member">m_on</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62" refid="class_cavity___message_1a7bf541d0aa18197d59fdb7b884fd8a05" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_cavity___message_1a7bf541d0aa18197d59fdb7b884fd8a05" kindref="member">Cavity_Message</ref><sp/>();</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><ref refid="classCavity__Message_1a7bf541d0aa18197d59fdb7b884fd8a05" kindref="member">Cavity_Message</ref><sp/>();</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103" refid="class_cavity___message_1afe6b144ba13acf2443d4f0cc8fead17c" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_cavity___message_1afe6b144ba13acf2443d4f0cc8fead17c" kindref="member">Cavity_Message</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>bin);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><ref refid="classCavity__Message_1a7bf541d0aa18197d59fdb7b884fd8a05" kindref="member">Cavity_Message</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>bin);</highlight></codeline>
 <codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="125" refid="class_cavity___message_1a40073bed08980699885c33ee0cfe4143" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_cavity___message_1a40073bed08980699885c33ee0cfe4143" kindref="member">Cavity_Message</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>m,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>n,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>k,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>start);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><ref refid="classCavity__Message_1a7bf541d0aa18197d59fdb7b884fd8a05" kindref="member">Cavity_Message</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>m,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>n,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>k,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>start);</highlight></codeline>
 <codeline lineno="126"><highlight class="normal"></highlight></codeline>
 <codeline lineno="127"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>Operator<sp/>and<sp/>Copy<sp/>Constructor</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="138" refid="class_cavity___message_1a53d2d141fd0b28a345f6e9aebcf4de66" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_cavity___message_1a53d2d141fd0b28a345f6e9aebcf4de66" kindref="member">Cavity_Message</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><ref refid="classCavity__Message_1a7bf541d0aa18197d59fdb7b884fd8a05" kindref="member">Cavity_Message</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classCavity__Message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>m);</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150" refid="class_cavity___message_1acf780941ced380728eed1892cdffbaaa" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/><ref refid="class_cavity___message_1acf780941ced380728eed1892cdffbaaa" kindref="member">operator = </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>m);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><ref refid="classCavity__Message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/><ref refid="classCavity__Message_1acf780941ced380728eed1892cdffbaaa" kindref="member">operator = </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classCavity__Message" kindref="compound">Cavity_Message &lt; Mag &gt;</ref><sp/>&amp;<sp/>m);</highlight></codeline>
 <codeline lineno="151"><highlight class="normal"></highlight></codeline>
 <codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructor</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="160" refid="class_cavity___message_1a0c7a24ab65c139c33d7d16bd977f4ce1" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_cavity___message_1a0c7a24ab65c139c33d7d16bd977f4ce1" kindref="member">~Cavity_Message</ref><sp/>();</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><ref refid="classCavity__Message_1a0c7a24ab65c139c33d7d16bd977f4ce1" kindref="member">~Cavity_Message</ref><sp/>();</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"></highlight></codeline>
 <codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Methods</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="180" refid="class_cavity___message_1aef61a20547385cf7a61978a5f32f0402" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>**<sp/><ref refid="class_cavity___message_1aef61a20547385cf7a61978a5f32f0402" kindref="member">get_weights</ref><sp/>();</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>**<sp/><ref refid="classCavity__Message_1aef61a20547385cf7a61978a5f32f0402" kindref="member">get_weights</ref><sp/>();</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"></highlight></codeline>
-<codeline lineno="197" refid="class_cavity___message_1a2c0c127e725066ad03e1a70cf7cedef5" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message_1a2c0c127e725066ad03e1a70cf7cedef5" kindref="member">save_weights</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>parameters);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCavity__Message_1a2c0c127e725066ad03e1a70cf7cedef5" kindref="member">save_weights</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/><ref refid="classParams" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>parameters);</highlight></codeline>
 <codeline lineno="198"><highlight class="normal"></highlight></codeline>
-<codeline lineno="212" refid="class_cavity___message_1a2f39f06b1e86c09ec750ac9db0321b8d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message_1a2f39f06b1e86c09ec750ac9db0321b8d" kindref="member">save_weights</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCavity__Message_1a2c0c127e725066ad03e1a70cf7cedef5" kindref="member">save_weights</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename);</highlight></codeline>
 <codeline lineno="213"><highlight class="normal"></highlight></codeline>
-<codeline lineno="224" refid="class_cavity___message_1a0c674ee13a874f15d42cc1d1469f82f3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message_1a0c674ee13a874f15d42cc1d1469f82f3" kindref="member">read_weights</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>bin);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCavity__Message_1a0c674ee13a874f15d42cc1d1469f82f3" kindref="member">read_weights</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>bin);</highlight></codeline>
 <codeline lineno="225"><highlight class="normal"></highlight></codeline>
-<codeline lineno="237" refid="class_cavity___message_1aa9ea9a888cf664ddc8cb7e8c0c1c9ec4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message_1aa9ea9a888cf664ddc8cb7e8c0c1c9ec4" kindref="member">save_messages</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/><ref refid="class_params" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>parameters);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCavity__Message_1aa9ea9a888cf664ddc8cb7e8c0c1c9ec4" kindref="member">save_messages</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename,<sp/><ref refid="classParams" kindref="compound">Params &lt; Mag &gt;</ref><sp/>&amp;<sp/>parameters);</highlight></codeline>
 <codeline lineno="238"><highlight class="normal"></highlight></codeline>
-<codeline lineno="248" refid="class_cavity___message_1a6b742428680a50c5f0af37de7f336fda" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_cavity___message_1a6b742428680a50c5f0af37de7f336fda" kindref="member">save_messages</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classCavity__Message_1aa9ea9a888cf664ddc8cb7e8c0c1c9ec4" kindref="member">save_messages</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename);</highlight></codeline>
 <codeline lineno="249"><highlight class="normal"></highlight></codeline>
 <codeline lineno="250"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="251"><highlight class="normal"></highlight></codeline>
-<codeline lineno="252"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__message_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__message_h__</highlight></codeline>
     </programlisting>
-    <location file="include/cavity_message.h"/>
+    <location file="/home/nico/Code/rFBP/include/cavity_message.h"/>
   </compounddef>
 </doxygen>

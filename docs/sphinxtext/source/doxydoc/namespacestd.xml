@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="namespacestd" kind="namespace" language="C++">
     <compoundname>std</compoundname>
     <innerclass refid="classstd_1_1allocator" prot="public">std::allocator</innerclass>
@@ -124,7 +124,51 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="12" column="10" declfile="include/magnetization_oldgcc.h" declline="12" declcolumn="10"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="12" column="10" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="12" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8h_1ae406f1e075eb08bbd6d1adadf4c4b8f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std ::unique_ptr&lt; T &gt;</type>
+        <definition>std :: unique_ptr&lt; T &gt; std::make_unique</definition>
+        <argsstring>(std ::size_t size)</argsstring>
+        <name>make_unique</name>
+        <param>
+          <type>std ::size_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>wrap for the older version of gcc anc clang </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type of the pointer array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lenght of unique_ptr array</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>pointer array as unique_ptr (e.g. std :: unique_ptr &lt; float[] &gt; in modern c++) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="103" column="20" declfile="/home/nico/Code/rFBP/include/utils.h" declline="103" declcolumn="20"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

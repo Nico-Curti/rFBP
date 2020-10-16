@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="magnetization_8h" kind="file" language="C++">
     <compoundname>magnetization.h</compoundname>
     <includes local="no">iostream</includes>
@@ -8,22 +8,13 @@
     <includes local="no">string</includes>
     <includes local="no">algorithm</includes>
     <includes refid="magnetization__oldgcc_8h" local="no">magnetization_oldgcc.h</includes>
-    <includes refid="mag_p_8h" local="no">magP.h</includes>
-    <includes refid="mag_t_8h" local="no">magT.h</includes>
-    <includedby refid="cavity__message_8h" local="no">include/cavity_message.h</includedby>
-    <includedby refid="params_8h" local="no">include/params.h</includedby>
+    <includes refid="magP_8h" local="no">magP.h</includes>
+    <includes refid="magT_8h" local="no">magT.h</includes>
+    <includedby refid="cavity__message_8h" local="no">/home/nico/Code/rFBP/include/cavity_message.h</includedby>
+    <includedby refid="params_8h" local="no">/home/nico/Code/rFBP/include/params.h</includedby>
     <incdepgraph>
-      <node id="4">
-        <label>cmath</label>
-      </node>
-      <node id="13">
-        <label>numeric</label>
-      </node>
-      <node id="5">
-        <label>string</label>
-      </node>
       <node id="1">
-        <label>include/magnetization.h</label>
+        <label>/home/nico/Code/rFBP/include/magnetization.h</label>
         <link refid="magnetization_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -44,9 +35,33 @@
       </node>
       <node id="15">
         <label>spline.h</label>
+        <link refid="spline_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
       </node>
-      <node id="11">
-        <label>fstream</label>
+      <node id="17">
+        <label>iterator</label>
+      </node>
+      <node id="4">
+        <label>cmath</label>
+      </node>
+      <node id="13">
+        <label>numeric</label>
+      </node>
+      <node id="5">
+        <label>string</label>
       </node>
       <node id="7">
         <label>magnetization_oldgcc.h</label>
@@ -65,6 +80,40 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+      </node>
+      <node id="11">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>utils.hpp</label>
+      </node>
+      <node id="9">
+        <label>magT.h</label>
+        <link refid="magT_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>magP.h</label>
+        <link refid="magP_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>array</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>type_traits</label>
+      </node>
+      <node id="6">
+        <label>algorithm</label>
       </node>
       <node id="10">
         <label>atanherf.h</label>
@@ -86,53 +135,25 @@
         <childnode refid="15" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>magP.h</label>
-        <link refid="mag_p_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>utils.hpp</label>
-      </node>
-      <node id="9">
-        <label>magT.h</label>
-        <link refid="mag_t_8h"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>iostream</label>
-      </node>
-      <node id="3">
-        <label>type_traits</label>
-      </node>
-      <node id="6">
-        <label>algorithm</label>
-      </node>
       <node id="12">
         <label>memory</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="3">
-        <label>include/params.h</label>
-        <link refid="params_8h"/>
-      </node>
       <node id="1">
-        <label>include/magnetization.h</label>
+        <label>/home/nico/Code/rFBP/include/magnetization.h</label>
         <link refid="magnetization_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
+      <node id="3">
+        <label>/home/nico/Code/rFBP/include/params.h</label>
+        <link refid="params_8h"/>
+      </node>
       <node id="2">
-        <label>include/cavity_message.h</label>
+        <label>/home/nico/Code/rFBP/include/cavity_message.h</label>
         <link refid="cavity__message_8h"/>
       </node>
     </invincdepgraph>
@@ -193,13 +214,13 @@
 <codeline lineno="306"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Mag<sp/>&gt;<sp/>Mag<sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacemag_1a703c5ebd25527461f6bb98727b158f49" kindref="member">exactmix</ref><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>H,<sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>pp,<sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Mag<sp/>&amp;<sp/>pm);</highlight></codeline>
 <codeline lineno="307"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="308"><highlight class="normal"></highlight></codeline>
-<codeline lineno="309"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="310"><highlight class="normal"></highlight></codeline>
-<codeline lineno="311"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="mag_p_8h" kindref="compound">magP.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="312"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="mag_t_8h" kindref="compound">magT.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="magP_8h" kindref="compound">magP.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="magT_8h" kindref="compound">magT.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="313"><highlight class="normal"></highlight></codeline>
-<codeline lineno="314"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__mag_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__mag_h__</highlight></codeline>
     </programlisting>
-    <location file="include/magnetization.h"/>
+    <location file="/home/nico/Code/rFBP/include/magnetization.h"/>
   </compounddef>
 </doxygen>

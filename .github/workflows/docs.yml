@@ -44,9 +44,25 @@ jobs:
       run: |
         sudo apt install doxygen
 
-    - name: Build C++ API
+    - name: 'Configure build'
       run: |
-        doxygen
+        mkdir buildDirectory_debug
+        cd buildDirectory_debug
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DBUILD_DOCS=ON
+        cd ..
+        mkdir buildDirectory_release
+        cd buildDirectory_release
+        cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release" -DBUILD_DOCS=ON
+        cd ..
+
+    - name: 'Build'
+      run: |
+        cd buildDirectory_debug
+        cmake --build . --target install -- -j8
+        cd ..
+        cd buildDirectory_release
+        cmake --build . --target install -- -j8
+        cd ..
 
     - name: Build Python API
       run: |

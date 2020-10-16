@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="fprotocol_8h" kind="file" language="C++">
     <compoundname>fprotocol.h</compoundname>
     <includes local="no">memory</includes>
@@ -7,18 +7,32 @@
     <includes local="no">numeric</includes>
     <includes local="no">cmath</includes>
     <includes local="no">climits</includes>
-    <includes local="no">errors.h</includes>
+    <includes refid="errors_8h" local="no">errors.h</includes>
     <includes local="no">utils.hpp</includes>
-    <includedby refid="rfbp_8h" local="no">include/rfbp.h</includedby>
+    <includedby refid="rfbp_8h" local="no">/home/nico/Code/rFBP/include/rfbp.h</includedby>
     <incdepgraph>
+      <node id="7">
+        <label>errors.h</label>
+        <link refid="errors_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
       <node id="5">
         <label>cmath</label>
       </node>
       <node id="4">
         <label>numeric</label>
       </node>
+      <node id="9">
+        <label>string</label>
+      </node>
+      <node id="10">
+        <label>utils.hpp</label>
+      </node>
       <node id="1">
-        <label>include/fprotocol.h</label>
+        <label>/home/nico/Code/rFBP/include/fprotocol.h</label>
         <link refid="fprotocol_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -32,14 +46,11 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
       <node id="8">
-        <label>utils.hpp</label>
-      </node>
-      <node id="7">
-        <label>errors.h</label>
+        <label>iostream</label>
       </node>
       <node id="6">
         <label>climits</label>
@@ -53,17 +64,17 @@
     </incdepgraph>
     <invincdepgraph>
       <node id="2">
-        <label>include/rfbp.h</label>
+        <label>/home/nico/Code/rFBP/include/rfbp.h</label>
         <link refid="rfbp_8h"/>
       </node>
       <node id="1">
-        <label>include/fprotocol.h</label>
+        <label>/home/nico/Code/rFBP/include/fprotocol.h</label>
         <link refid="fprotocol_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
-    <innerclass refid="class_focusing_protocol" prot="public">FocusingProtocol</innerclass>
+    <innerclass refid="classFocusingProtocol" prot="public">FocusingProtocol</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -77,7 +88,7 @@
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;numeric&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;climits&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;errors.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="errors_8h" kindref="compound">errors.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
@@ -86,42 +97,42 @@
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27" refid="class_focusing_protocol" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_focusing_protocol" kindref="compound">FocusingProtocol</ref></highlight></codeline>
+<codeline lineno="27" refid="classFocusingProtocol" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFocusingProtocol" kindref="compound">FocusingProtocol</ref></highlight></codeline>
 <codeline lineno="28"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Member<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
-<codeline lineno="34" refid="class_focusing_protocol_1af259f52e98fc499e80f0c7de028c3ab9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol_1af259f52e98fc499e80f0c7de028c3ab9" kindref="member">Nrep</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="35" refid="class_focusing_protocol_1a41c3016e5a192d47fb19b63016673143" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/><ref refid="class_focusing_protocol_1a41c3016e5a192d47fb19b63016673143" kindref="member">gamma</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="36" refid="class_focusing_protocol_1abe37110430c3c635cd8cdf55e580f711" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/><ref refid="class_focusing_protocol_1abe37110430c3c635cd8cdf55e580f711" kindref="member">n_rep</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="37" refid="class_focusing_protocol_1a09980a30307652787310b26068a90740" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/><ref refid="class_focusing_protocol_1a09980a30307652787310b26068a90740" kindref="member">beta</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34" refid="classFocusingProtocol_1af259f52e98fc499e80f0c7de028c3ab9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classFocusingProtocol_1af259f52e98fc499e80f0c7de028c3ab9" kindref="member">Nrep</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="classFocusingProtocol_1a41c3016e5a192d47fb19b63016673143" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/><ref refid="classFocusingProtocol_1a41c3016e5a192d47fb19b63016673143" kindref="member">gamma</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="classFocusingProtocol_1abe37110430c3c635cd8cdf55e580f711" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/><ref refid="classFocusingProtocol_1abe37110430c3c635cd8cdf55e580f711" kindref="member">n_rep</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="classFocusingProtocol_1a09980a30307652787310b26068a90740" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/><ref refid="classFocusingProtocol_1a09980a30307652787310b26068a90740" kindref="member">beta</ref>;<sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="class_focusing_protocol_1a2fe8efb9ed3e9739681a64cd2f517a65" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_focusing_protocol_1a2fe8efb9ed3e9739681a64cd2f517a65" kindref="member">FocusingProtocol</ref><sp/>();</highlight></codeline>
-<codeline lineno="57" refid="class_focusing_protocol_1ab7444047659c639c804fb4747732c2f7" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_focusing_protocol_1ab7444047659c639c804fb4747732c2f7" kindref="member">FocusingProtocol</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>prot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>size);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><ref refid="classFocusingProtocol_1a2fe8efb9ed3e9739681a64cd2f517a65" kindref="member">FocusingProtocol</ref><sp/>();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><ref refid="classFocusingProtocol_1a2fe8efb9ed3e9739681a64cd2f517a65" kindref="member">FocusingProtocol</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>prot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>size);</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructors</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65" refid="class_focusing_protocol_1a0be9a61add298c0d37331b316b475c72" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="class_focusing_protocol_1a0be9a61add298c0d37331b316b475c72" kindref="member">~FocusingProtocol</ref><sp/>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><ref refid="classFocusingProtocol_1a0be9a61add298c0d37331b316b475c72" kindref="member">~FocusingProtocol</ref><sp/>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74" refid="class_focusing_protocol_1a4335bd3870009f4c1f5cf1633eb110b0" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol_1a4335bd3870009f4c1f5cf1633eb110b0" kindref="member">StandardReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>rho,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>Nrho);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFocusingProtocol_1a4335bd3870009f4c1f5cf1633eb110b0" kindref="member">StandardReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>rho,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>Nrho);</highlight></codeline>
 <codeline lineno="75"><highlight class="normal"></highlight></codeline>
-<codeline lineno="82" refid="class_focusing_protocol_1a6496b195fe3a53611b6989d3bbf5d103" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol_1a6496b195fe3a53611b6989d3bbf5d103" kindref="member">StandardReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>drho);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFocusingProtocol_1a4335bd3870009f4c1f5cf1633eb110b0" kindref="member">StandardReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>drho);</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92" refid="class_focusing_protocol_1a65b7dfa97260ff9ed52140ed45774925" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol_1a65b7dfa97260ff9ed52140ed45774925" kindref="member">Scoping</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>gr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>ngr);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFocusingProtocol_1a65b7dfa97260ff9ed52140ed45774925" kindref="member">Scoping</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>gr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>ngr);</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="110" refid="class_focusing_protocol_1ae263266a0cb526eea469cdc97017a611" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol_1ae263266a0cb526eea469cdc97017a611" kindref="member">PseudoReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>rho,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nrho,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x=.5);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFocusingProtocol_1ae263266a0cb526eea469cdc97017a611" kindref="member">PseudoReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>rho,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nrho,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x=.5);</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="119" refid="class_focusing_protocol_1a64b738b53c0b634e9691af3bc3b871c6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol_1a64b738b53c0b634e9691af3bc3b871c6" kindref="member">PseudoReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>drho,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x=.5);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFocusingProtocol_1ae263266a0cb526eea469cdc97017a611" kindref="member">PseudoReinforcement</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>drho,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x=.5);</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128" refid="class_focusing_protocol_1a2f6d0388f60440275a1fca3d032903b3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_focusing_protocol_1a2f6d0388f60440275a1fca3d032903b3" kindref="member">FreeScoping</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>**<sp/>list,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nlist);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFocusingProtocol_1a2f6d0388f60440275a1fca3d032903b3" kindref="member">FreeScoping</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>**<sp/>list,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nlist);</highlight></codeline>
 <codeline lineno="129"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="130"><highlight class="normal"></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>__fprotocol_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__fprotocol_h__</highlight></codeline>
     </programlisting>
-    <location file="include/fprotocol.h"/>
+    <location file="/home/nico/Code/rFBP/include/fprotocol.h"/>
   </compounddef>
 </doxygen>

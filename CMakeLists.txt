@@ -29,6 +29,7 @@ option (VERBOSE    "Enable verbose stdout        support" ON)
 option (STATS      "Enable verbose statistics    support" ON)
 option (BUILD_TEST "Enable tests build           support" ON)
 option (PYWRAP     "Enable Python wrap compilation      " OFF)
+option (BUILD_DOCS  "Enable Documentaion builid  support" OFF)
 
 #################################################################
 #                         SETTING VARIABLES                     #
@@ -176,6 +177,10 @@ if (PYWRAP)
   find_package (Python COMPONENTS Interpreter NumPy)
 endif()
 
+if (BUILD_DOCS)
+  add_subdirectory(${CMAKE_SOURCE_DIR}/docs/)
+endif ()
+
 set(rFBP_INSTALL_INCLUDE_DIR ${INSTALL_INCLUDE_DIR})
 
 configure_file(${CMAKE_SOURCE_DIR}/rFBP.pc.in ${CMAKE_SOURCE_DIR}/rFBP.pc @ONLY)
@@ -218,6 +223,7 @@ message(STATUS "   VERBOSE level  : ${VERBOSE}"                                 
 message(STATUS "   STATS   level  : ${STATS}"                                        )
 message(STATUS "   BUILD_TEST     : ${BUILD_TEST}"                                   )
 message(STATUS "   Compile Pythonize version : ${PYWRAP}"                            )
+message(STATUS "   Documentation support : ${BUILD_DOCS}"                            )
 message(STATUS ""                                                                    )
 
 

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="namespacemag" kind="namespace" language="C++">
     <compoundname>mag</compoundname>
       <sectiondef kind="func">
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="30" column="35" declfile="include/magnetization_oldgcc.h" declline="30" declcolumn="35"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="30" column="35" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="30" declcolumn="35"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1aa54bdc35a222cc01654b22f07b62fbf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="38" column="35" declfile="include/magnetization_oldgcc.h" declline="38" declcolumn="35"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="38" column="35" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="38" declcolumn="35"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a63ad70f0f7d3d359885510751793278e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>long int</type>
@@ -115,7 +115,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="46" column="35" declfile="include/magnetization_oldgcc.h" declline="46" declcolumn="35"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="46" column="35" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="46" declcolumn="35"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a01012f2c4f6c63f50117d1a80cbc663a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -123,7 +123,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -159,9 +159,9 @@
 </parameterlist>
 <simplesect kind="return"><para>result of the check</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: boolean true if is inf or -inf else false</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: boolean true if is nan or -nan else false </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: boolean true if is inf or -inf else false</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: boolean true if is nan or -nan else false </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -169,7 +169,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="60" column="12" declfile="include/magnetization_oldgcc.h" declline="60" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="60" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="60" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1aa5c6ba535495d360f9262dec5cdc3e8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -177,7 +177,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -217,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="73" column="12" declfile="include/magnetization_oldgcc.h" declline="73" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="73" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="73" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a885c63525229459a6f87679101369f94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -225,7 +225,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -277,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="92" column="12" declfile="include/magnetization_oldgcc.h" declline="92" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="92" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="92" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a2503c41bf09106f862ddd2002661a1d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -285,7 +285,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -325,7 +325,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="105" column="12" declfile="include/magnetization_oldgcc.h" declline="105" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="105" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="105" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a58cc14c100de3aa5fb1f06334f803002" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -333,7 +333,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -373,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="118" column="12" declfile="include/magnetization_oldgcc.h" declline="118" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="118" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="118" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a7d51dc1d83c4252db159812967da295b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -381,7 +381,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -433,7 +433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="132" column="12" declfile="include/magnetization_oldgcc.h" declline="132" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="132" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="132" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1aace55ba7fc39b03bfa2289c9f740f5cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -441,7 +441,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -489,9 +489,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The result of the operator.</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: x * atanh(m)</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: m * x </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: x * atanh(m)</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: m * x </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="150" column="12" declfile="include/magnetization_oldgcc.h" declline="150" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="150" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="150" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1ac465cead66c7ce04a6753c0e2c0b918f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -507,7 +507,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -547,7 +547,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="163" column="12" declfile="include/magnetization_oldgcc.h" declline="163" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="163" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="163" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a292f62f5334c5de22b315b503f15355a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -555,7 +555,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -595,7 +595,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="176" column="12" declfile="include/magnetization_oldgcc.h" declline="176" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="176" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="176" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a36beb34e6d5ae3a3e7d3213aea16a9c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -603,7 +603,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -639,9 +639,9 @@
 </parameterlist>
 <simplesect kind="return"><para>magnetization</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: <ref refid="struct_mag_p64" kindref="compound">MagP64(x)</ref></para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>(atanh(x), -30, 30) </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: <ref refid="structMagP64" kindref="compound">MagP64(x)</ref></para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: <ref refid="structMagT64" kindref="compound">MagT64</ref>(atanh(x), -30, 30) </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -649,7 +649,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="193" column="12" declfile="include/magnetization_oldgcc.h" declline="193" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="193" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="193" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a0690e020876ce3ddde93f8ad56b00303" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -657,7 +657,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -693,9 +693,9 @@
 </parameterlist>
 <simplesect kind="return"><para>extract magnetization.</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: return mag</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: return value </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: return mag</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: return value </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -703,7 +703,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="210" column="12" declfile="include/magnetization_oldgcc.h" declline="210" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="210" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="210" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a8e27b9ea487021f76d9995c1f0b91087" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -711,7 +711,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -759,9 +759,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The result of the combination.</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: (x1 - x2) / (x1 + x2)</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: log(x1) - log(x2) * .5 </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: (x1 - x2) / (x1 + x2)</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: log(x1) - log(x2) * .5 </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -769,7 +769,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="228" column="12" declfile="include/magnetization_oldgcc.h" declline="228" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="228" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="228" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1af5ddde6274707bbd19f6d7c40d1c4c5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -777,7 +777,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -841,7 +841,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="243" column="12" declfile="include/magnetization_oldgcc.h" declline="243" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="243" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="243" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a7af2f84ac356634ab90aed8251e2b6ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -849,7 +849,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -886,17 +886,17 @@
 <simplesect kind="return"><para>The result of <computeroutput>tanh</computeroutput> as Mag.</para>
 </simplesect>
 <itemizedlist>
-<listitem><para><simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.</para>
+<listitem><para><simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.</para>
 </simplesect>
 </para>
-</listitem><listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: tanh(x)</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: x </para>
+</listitem><listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: tanh(x)</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: x </para>
 </listitem></itemizedlist>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="260" column="12" declfile="include/magnetization_oldgcc.h" declline="260" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="260" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="260" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a1cc0338261fc2e50d8c15c3bf6912cfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -904,7 +904,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -940,9 +940,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The result of <computeroutput>atanherf(x)</computeroutput>.</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: erf(x)</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: atanherf(x) </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: erf(x)</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: atanherf(x) </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -950,7 +950,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="280" column="12" declfile="include/magnetization_oldgcc.h" declline="280" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="280" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="280" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a68d0b86d6026b9efc23abee4835aab11" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -958,7 +958,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -1006,9 +1006,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The result of the diff.</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: (m1 - m2)/(1 - m1 * m2) clamped to [-1, 1]</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: m1 - m2 </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: (m1 - m2)/(1 - m1 * m2) clamped to [-1, 1]</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: m1 - m2 </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -1016,7 +1016,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="298" column="12" declfile="include/magnetization_oldgcc.h" declline="298" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="298" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="298" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a6118e8bfcf070d2e36ade569ed77084e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1024,7 +1024,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -1072,9 +1072,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The result of the operation</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: log((1. + (x.mag * y.mag)) * 0.5)</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: computation takes care of possible number overflows </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: log((1. + (x.mag * y.mag)) * 0.5)</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: computation takes care of possible number overflows </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -1082,7 +1082,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="316" column="12" declfile="include/magnetization_oldgcc.h" declline="316" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="316" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="316" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a77afb49c9a89a50cf24647a71053cffe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1090,7 +1090,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -1138,9 +1138,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The resulting crossentropy score</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: -x.mag * np.arctanh(y.mag) - np.log1p(- y.mag**2) * .5 + np.log(2)</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: -abs(y.mag) * (sign0(y.mag) * x.value - 1.) + lr(y.mag) </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: -x.mag * np.arctanh(y.mag) - np.log1p(- y.mag**2) * .5 + np.log(2)</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: -abs(y.mag) * (sign0(y.mag) * x.value - 1.) + lr(y.mag) </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -1148,7 +1148,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="334" column="12" declfile="include/magnetization_oldgcc.h" declline="334" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="334" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="334" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a253e60a2a06d7dfd405b12ba75b8f25d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1156,7 +1156,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -1182,7 +1182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="339" column="12" declfile="include/magnetization_oldgcc.h" declline="339" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="339" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="339" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a5142fc182575fa48bc52b02e000e042c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1190,7 +1190,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_t64" kindref="compound">MagT64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagT64" kindref="compound">MagT64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -1211,7 +1211,7 @@
           <declname>am</declname>
         </param>
         <briefdescription>
-<para>Combine three <ref refid="struct_mag_t64" kindref="compound">MagT64</ref> variables. </para>
+<para>Combine three <ref refid="structMagT64" kindref="compound">MagT64</ref> variables. </para>
         </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="templateparam"><parameteritem>
@@ -1250,13 +1250,13 @@
 </parameterlist>
 <simplesect kind="return"><para>combination of the input</para>
 </simplesect>
-<simplesect kind="note"><para>This operation is valid only for <ref refid="struct_mag_t64" kindref="compound">MagT64</ref> variables up to now </para>
+<simplesect kind="note"><para>This operation is valid only for <ref refid="structMagT64" kindref="compound">MagT64</ref> variables up to now </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="356" column="12" declfile="include/magnetization_oldgcc.h" declline="356" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="356" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="356" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1ad6b802dacc9663741e80ecab5129ad88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1264,7 +1264,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -1324,9 +1324,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The result of the mix</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: H.mag * (erf(mp) - erf(mm)) / (2. + H.mag * (erf(mp) + erf(mm)))</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: auxmix(H, atanherf(mp), atanherf(mm)) </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: H.mag * (erf(mp) - erf(mm)) / (2. + H.mag * (erf(mp) + erf(mm)))</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: auxmix(H, atanherf(mp), atanherf(mm)) </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -1334,7 +1334,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="373" column="12" declfile="include/magnetization_oldgcc.h" declline="373" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="373" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="373" declcolumn="12"/>
       </memberdef>
       <memberdef kind="function" id="namespacemag_1a703c5ebd25527461f6bb98727b158f49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -1342,7 +1342,7 @@
             <type>class Mag</type>
           </param>
           <param>
-            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
+            <type>typename std ::enable_if&lt; std ::is_same&lt; Mag, <ref refid="structMagP64" kindref="compound">MagP64</ref> &gt; ::value &gt; ::type *</type>
             <defval>nullptr</defval>
           </param>
         </templateparamlist>
@@ -1402,9 +1402,9 @@
 </parameterlist>
 <simplesect kind="return"><para>The result of the mix</para>
 </simplesect>
-<simplesect kind="note"><para>The function behavior is different between <ref refid="struct_mag_p64" kindref="compound">MagP64</ref> and <ref refid="struct_mag_t64" kindref="compound">MagT64</ref>.<itemizedlist>
-<listitem><para><ref refid="struct_mag_p64" kindref="compound">MagP64</ref>: (pp.mag - pm.mag) * H.mag / (2. + (pp.mag + pm.mag) * H.mag)</para>
-</listitem><listitem><para><ref refid="struct_mag_t64" kindref="compound">MagT64</ref>: auxmix(H, pp.mag, pm.mag) </para>
+<simplesect kind="note"><para>The function behavior is different between <ref refid="structMagP64" kindref="compound">MagP64</ref> and <ref refid="structMagT64" kindref="compound">MagT64</ref>.<itemizedlist>
+<listitem><para><ref refid="structMagP64" kindref="compound">MagP64</ref>: (pp.mag - pm.mag) * H.mag / (2. + (pp.mag + pm.mag) * H.mag)</para>
+</listitem><listitem><para><ref refid="structMagT64" kindref="compound">MagT64</ref>: auxmix(H, pp.mag, pm.mag) </para>
 </listitem></itemizedlist>
 </para>
 </simplesect>
@@ -1412,13 +1412,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/magnetization_oldgcc.h" line="392" column="12" declfile="include/magnetization_oldgcc.h" declline="392" declcolumn="12"/>
+        <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="392" column="12" declfile="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" declline="392" declcolumn="12"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/magnetization_oldgcc.h" line="19" column="1"/>
+    <location file="/home/nico/Code/rFBP/include/magnetization_oldgcc.h" line="20" column="1"/>
   </compounddef>
 </doxygen>
