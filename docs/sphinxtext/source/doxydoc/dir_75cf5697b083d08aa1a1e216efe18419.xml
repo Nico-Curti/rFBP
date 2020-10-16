@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_75cf5697b083d08aa1a1e216efe18419" kind="dir">
+    <compoundname>/home/nico/Code/rFBP/include</compoundname>
+    <innerfile refid="atanherf_8h">atanherf.h</innerfile>
+    <innerfile refid="cavity__message_8h">cavity_message.h</innerfile>
+    <innerfile refid="cmd_8h">cmd.h</innerfile>
+    <innerfile refid="errors_8h">errors.h</innerfile>
+    <innerfile refid="fprotocol_8h">fprotocol.h</innerfile>
+    <innerfile refid="magnetization_8h">magnetization.h</innerfile>
+    <innerfile refid="magnetization__oldgcc_8h">magnetization_oldgcc.h</innerfile>
+    <innerfile refid="magP_8h">magP.h</innerfile>
+    <innerfile refid="magT_8h">magT.h</innerfile>
+    <innerfile refid="params_8h">params.h</innerfile>
+    <innerfile refid="parse__args_8h">parse_args.h</innerfile>
+    <innerfile refid="pattern_8h">pattern.h</innerfile>
+    <innerfile refid="rfbp_8h">rfbp.h</innerfile>
+    <innerfile refid="spline_8h">spline.h</innerfile>
+    <innerfile refid="utils_8h">utils.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/"/>
+  </compounddef>
+</doxygen>

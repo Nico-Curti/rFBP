@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classFocusingProtocol" kind="class" language="C++" prot="public">
+    <compoundname>FocusingProtocol</compoundname>
+    <includes refid="fprotocol_8h" local="no">fprotocol.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFocusingProtocol_1af259f52e98fc499e80f0c7de028c3ab9" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int FocusingProtocol::Nrep</definition>
+        <argsstring></argsstring>
+        <name>Nrep</name>
+        <briefdescription>
+<para>Number of repetitions, i.e. number of focusing iterations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="34" column="12" bodyfile="/home/nico/Code/rFBP/include/fprotocol.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFocusingProtocol_1a41c3016e5a192d47fb19b63016673143" prot="public" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; FocusingProtocol::gamma</definition>
+        <argsstring></argsstring>
+        <name>gamma</name>
+        <briefdescription>
+<para>Distance parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="35" column="22" bodyfile="/home/nico/Code/rFBP/include/fprotocol.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFocusingProtocol_1abe37110430c3c635cd8cdf55e580f711" prot="public" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; FocusingProtocol::n_rep</definition>
+        <argsstring></argsstring>
+        <name>n_rep</name>
+        <briefdescription>
+<para>Number of replicas (y in the paper and original code) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="36" column="22" bodyfile="/home/nico/Code/rFBP/include/fprotocol.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFocusingProtocol_1a09980a30307652787310b26068a90740" prot="public" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; FocusingProtocol::beta</definition>
+        <argsstring></argsstring>
+        <name>beta</name>
+        <briefdescription>
+<para>1/kT (it must be infinite in the current implementation) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="37" column="22" bodyfile="/home/nico/Code/rFBP/include/fprotocol.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFocusingProtocol_1a2fe8efb9ed3e9739681a64cd2f517a65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FocusingProtocol::FocusingProtocol</definition>
+        <argsstring>()</argsstring>
+        <name>FocusingProtocol</name>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="45" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1ab7444047659c639c804fb4747732c2f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FocusingProtocol::FocusingProtocol</definition>
+        <argsstring>(const std ::string &amp;prot, const long int &amp;size)</argsstring>
+        <name>FocusingProtocol</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>prot</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Constructor with protocol type and number of replicas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Protocol types are set with default values. If you want introduce other values you must use appropriated protocol functions</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>protocol type. Available protocols are: <computeroutput>StandardReinforcement</computeroutput>, <computeroutput>Scoping</computeroutput>, <computeroutput>PseudoReinforcement</computeroutput> and <computeroutput>FreeScoping</computeroutput>. This value is used to switch between the available protocols and the corresponding arrays are stored. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of step. Converted to Nrep into the class </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="57" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1a0be9a61add298c0d37331b316b475c72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>FocusingProtocol::~FocusingProtocol</definition>
+        <argsstring>()=default</argsstring>
+        <name>~FocusingProtocol</name>
+        <briefdescription>
+<para>Destructor set as default. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="65" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1a4335bd3870009f4c1f5cf1633eb110b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FocusingProtocol::StandardReinforcement</definition>
+        <argsstring>(const double *rho, const long int &amp;Nrho)</argsstring>
+        <name>StandardReinforcement</name>
+        <param>
+          <type>const double *</type>
+          <declname>rho</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>Nrho</declname>
+        </param>
+        <briefdescription>
+<para>Standard reinforcement protocol, returns <computeroutput>γ=Inf</computeroutput> and <computeroutput>n_rep=1/(1-x)</computeroutput>, where <computeroutput>x</computeroutput> is taken from the given range <computeroutput>ρ</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rho</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double pointer which store the range values of x </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nrho</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of step. Converted to Nrep into the class </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="74" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1a6496b195fe3a53611b6989d3bbf5d103" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FocusingProtocol::StandardReinforcement</definition>
+        <argsstring>(const double &amp;drho)</argsstring>
+        <name>StandardReinforcement</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>drho</declname>
+        </param>
+        <briefdescription>
+<para>Shorthand for Standard reinforcement protocol. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>drho</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double related to the range increment </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="82" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1a65b7dfa97260ff9ed52140ed45774925" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FocusingProtocol::Scoping</definition>
+        <argsstring>(const double *gr, const double &amp;x, const long int &amp;ngr)</argsstring>
+        <name>Scoping</name>
+        <param>
+          <type>const double *</type>
+          <declname>gr</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>ngr</declname>
+        </param>
+        <briefdescription>
+<para>Focusing protocol with fixed <computeroutput>n_rep</computeroutput> and a varying <computeroutput>γ</computeroutput> taken from the given <computeroutput>γ * r</computeroutput> range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double pointer with γ * r values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fixed value of n_rep </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ngr</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of replicas </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="92" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1ae263266a0cb526eea469cdc97017a611" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FocusingProtocol::PseudoReinforcement</definition>
+        <argsstring>(const double *rho, const long int &amp;nrho, double x=.5)</argsstring>
+        <name>PseudoReinforcement</name>
+        <param>
+          <type>const double *</type>
+          <declname>rho</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nrho</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+          <defval>.5</defval>
+        </param>
+        <briefdescription>
+<para>A focusing protocol in which both <computeroutput>γ</computeroutput> and <computeroutput>n_rep</computeroutput> are progressively increased, according to the formulas. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><programlisting filename=".python"><codeline><highlight class="normal">γ<sp/>=<sp/>atanh(ρ**x)</highlight></codeline>
+<codeline><highlight class="normal">n_rep<sp/>=<sp/>1<sp/>+<sp/>ρ**(1<sp/>-<sp/>2x)<sp/>/<sp/>(1<sp/>-<sp/>ρ)</highlight></codeline>
+</programlisting></para>
+<para>where <computeroutput>ρ</computeroutput> is taken from the given range(ngr) <computeroutput>r</computeroutput>. With <computeroutput>x=0</computeroutput>, this is basically the same as <computeroutput>StandardReinforcement</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rho</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double pointer with ρ values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nrho</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lenght of rho array </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fixed value of n_rep </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="110" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1a64b738b53c0b634e9691af3bc3b871c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FocusingProtocol::PseudoReinforcement</definition>
+        <argsstring>(const double &amp;drho, double x=.5)</argsstring>
+        <name>PseudoReinforcement</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>drho</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+          <defval>.5</defval>
+        </param>
+        <briefdescription>
+<para>Shorthand for Pseudo Reinforcement protocol. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>drho</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double related to the range increment </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fixed value of n_rep </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="119" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classFocusingProtocol_1a2f6d0388f60440275a1fca3d032903b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FocusingProtocol::FreeScoping</definition>
+        <argsstring>(double **list, const long int &amp;nlist)</argsstring>
+        <name>FreeScoping</name>
+        <param>
+          <type>double **</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>nlist</declname>
+        </param>
+        <briefdescription>
+<para>A focusing protocol which just returns the values of <computeroutput>(γ, n_rep)</computeroutput> from the given <computeroutput>list</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>array of lists (nlist, 3) with values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nlist</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lenght of list </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="128" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Abstract type representing a protocol for the focusing procedure, i.e. a way to produce successive values for the quantities γ, n_rep and β. Currently, however, only <computeroutput>β=Inf</computeroutput> is supported. To be provided as an argument to <computeroutput>focusingBP</computeroutput>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Available protocols are: <computeroutput>StandardReinforcement</computeroutput>, <computeroutput>Scoping</computeroutput>, <computeroutput>PseudoReinforcement</computeroutput> and <computeroutput>FreeScoping</computeroutput> </para>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/fprotocol.h" line="28" column="1" bodyfile="/home/nico/Code/rFBP/include/fprotocol.h" bodystart="27" bodyend="129"/>
+    <listofallmembers>
+      <member refid="classFocusingProtocol_1a09980a30307652787310b26068a90740" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>beta</name></member>
+      <member refid="classFocusingProtocol_1a2fe8efb9ed3e9739681a64cd2f517a65" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>FocusingProtocol</name></member>
+      <member refid="classFocusingProtocol_1ab7444047659c639c804fb4747732c2f7" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>FocusingProtocol</name></member>
+      <member refid="classFocusingProtocol_1a2f6d0388f60440275a1fca3d032903b3" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>FreeScoping</name></member>
+      <member refid="classFocusingProtocol_1a41c3016e5a192d47fb19b63016673143" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>gamma</name></member>
+      <member refid="classFocusingProtocol_1abe37110430c3c635cd8cdf55e580f711" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>n_rep</name></member>
+      <member refid="classFocusingProtocol_1af259f52e98fc499e80f0c7de028c3ab9" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>Nrep</name></member>
+      <member refid="classFocusingProtocol_1ae263266a0cb526eea469cdc97017a611" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>PseudoReinforcement</name></member>
+      <member refid="classFocusingProtocol_1a64b738b53c0b634e9691af3bc3b871c6" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>PseudoReinforcement</name></member>
+      <member refid="classFocusingProtocol_1a65b7dfa97260ff9ed52140ed45774925" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>Scoping</name></member>
+      <member refid="classFocusingProtocol_1a4335bd3870009f4c1f5cf1633eb110b0" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>StandardReinforcement</name></member>
+      <member refid="classFocusingProtocol_1a6496b195fe3a53611b6989d3bbf5d103" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>StandardReinforcement</name></member>
+      <member refid="classFocusingProtocol_1a0be9a61add298c0d37331b316b475c72" prot="public" virt="non-virtual"><scope>FocusingProtocol</scope><name>~FocusingProtocol</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

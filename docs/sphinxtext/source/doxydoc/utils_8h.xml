@@ -1,0 +1,527 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="utils_8h" kind="file" language="C++">
+    <compoundname>utils.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">limits</includes>
+    <includes local="no">unordered_map</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">cmath</includes>
+    <includes local="no">chrono</includes>
+    <includedby refid="cavity__message_8h" local="no">/home/nico/Code/rFBP/include/cavity_message.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>limits</label>
+      </node>
+      <node id="7">
+        <label>cmath</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/utils.h</label>
+        <link refid="utils_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>unordered_map</label>
+      </node>
+      <node id="8">
+        <label>chrono</label>
+      </node>
+      <node id="6">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/utils.h</label>
+        <link refid="utils_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/home/nico/Code/rFBP/include/cavity_message.h</label>
+        <link refid="cavity__message_8h"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespacestd">std</innernamespace>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="utils_8h_1ae71449b1cc6e6250b91f539153a7a0d3" prot="public" static="no">
+        <name>M_PI</name>
+        <initializer>3.141592653589793</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="43" column="11" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="utils_8h_1a3428692efe6051ef30016ffde1a9f7bb" prot="public" static="no">
+        <name>STRINGIZE</name>
+        <param><defname>x</defname></param>
+        <initializer>#x</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="47" column="9" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="utils_8h_1acad0f1fef9bd062448b204ca251db1cc" prot="public" static="no">
+        <name>STRINGIZE_VALUE_OF</name>
+        <param><defname>x</defname></param>
+        <initializer><ref refid="utils_8h_1a3428692efe6051ef30016ffde1a9f7bb" kindref="member">STRINGIZE</ref>(x)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="48" column="9" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55b" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@0</name>
+        <enumvalue id="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba884496ea01c202b07dea8e629b684ed8" prot="public">
+          <name>scoping_</name>
+          <initializer>= 0L</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba5b7ff6524ac6fd77264c842ee0abeefc" prot="public">
+          <name>pseudo_</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba0f58b4b1888babd944c3fd40a8add70d" prot="public">
+          <name>free_scoping_</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba51fb75f536130837cf4cce94520d460c" prot="public">
+          <name>standard_</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="58" column="6" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="58" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="enum" id="utils_8h_1adf764cbdea00d65edcd07bb9953ad2b7" prot="public" static="no" strong="no">
+        <type></type>
+        <name>@1</name>
+        <enumvalue id="utils_8h_1adf764cbdea00d65edcd07bb9953ad2b7a95a39d8fc5e272366650b9fb015d1c3e" prot="public">
+          <name>magP</name>
+          <initializer>= 0L</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="utils_8h_1adf764cbdea00d65edcd07bb9953ad2b7ac61dc3419c5446018a867ac44ecb7eef" prot="public">
+          <name>magT</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="64" column="6" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="64" bodyend="66"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="utils_8h_1adbfd68a6f0afb85aa38ec9734d03be7d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double INF</definition>
+        <argsstring></argsstring>
+        <name>INF</name>
+        <initializer>= std :: numeric_limits &lt; double &gt; :: infinity()</initializer>
+        <briefdescription>
+<para>shortcut to infinity value </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="26" column="25" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="utils_8h_1aa9387612e1b1ad9451eaddc21ceae7fc" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double epsilon</definition>
+        <argsstring></argsstring>
+        <name>epsilon</name>
+        <initializer>= std :: numeric_limits &lt; double &gt; :: epsilon()</initializer>
+        <briefdescription>
+<para>shortcut to epsilon value </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="27" column="25" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="utils_8h_1ae1efe252b934c0e3d8c5a47e109c87b0" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double log_2</definition>
+        <argsstring></argsstring>
+        <name>log_2</name>
+        <initializer>= 0.6931471805599453</initializer>
+        <briefdescription>
+<para>shortcut to log(2) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="36" column="27" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="utils_8h_1ab02278d565857fa1146be64ba2e1fe62" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double log2_over_2</definition>
+        <argsstring></argsstring>
+        <name>log2_over_2</name>
+        <initializer>= 0.34657359027997264311</initializer>
+        <briefdescription>
+<para>shortcut to log(2)/2 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="37" column="27" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="utils_8h_1a7c6d113b20d9d8b82400f2d38c630726" prot="public" static="yes" mutable="no">
+        <type>std ::unordered_map&lt; std ::string, long int &gt;</type>
+        <definition>std :: unordered_map&lt; std :: string, long int &gt; protocol</definition>
+        <argsstring></argsstring>
+        <name>protocol</name>
+        <initializer>{
+  {&quot;scoping&quot;,                scoping_},
+  {&quot;pseudo_reinforcement&quot;,   pseudo_},
+  {&quot;free_scoping&quot;,           free_scoping_},
+  {&quot;standard_reinforcement&quot;, standard_}
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="68" column="30" bodyfile="/home/nico/Code/rFBP/include/utils.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="utils_8h_1a928a196c5b583ec2adeb35dddde1d3e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double sign</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>sign</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>sign function </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="56" column="8" declfile="/home/nico/Code/rFBP/include/utils.h" declline="56" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8h_1a2647dab65a22b1df13c43e602e15a0cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std ::vector&lt; std ::string &gt;</type>
+        <definition>std :: vector&lt; std :: string &gt; split</definition>
+        <argsstring>(const std ::string &amp;txt, const std ::string &amp;del)</argsstring>
+        <name>split</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>txt</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>del</declname>
+        </param>
+        <briefdescription>
+<para>split string to token </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>txt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>del</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>delimiter as string</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;std::string&gt; vector of token </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="85" column="16" declfile="/home/nico/Code/rFBP/include/utils.h" declline="85" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8h_1ad9de9698e9187dd0fd71ec5c2b001008" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool file_exists</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>file_exists</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>check if a given file exists </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>filename/path to check</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool true if the filename is found else false </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="117" column="6" declfile="/home/nico/Code/rFBP/include/utils.h" declline="117" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8h_1aed32f611454a221936409e583fddbcda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std ::chrono ::time_point&lt; std ::chrono ::high_resolution_clock &gt;</type>
+        <definition>std :: chrono :: time_point&lt; std :: chrono :: high_resolution_clock &gt; what_time_is_it_now</definition>
+        <argsstring>()</argsstring>
+        <name>what_time_is_it_now</name>
+        <briefdescription>
+<para>Evaluate current time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>this function use OpenMP API if the code is compiled with -fopenmp else it uses chrono functions</para>
+<para><simplesect kind="return"><para>current time as double (OpenMP) or chrono </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="133" column="32" declfile="/home/nico/Code/rFBP/include/utils.h" declline="133" declcolumn="32"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8h_1a00e9106028b4e3b425fce16d0ea80238" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Time</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto duration</definition>
+        <argsstring>(const Time &amp;start)</argsstring>
+        <name>duration</name>
+        <param>
+          <type>const Time &amp;</type>
+          <declname>start</declname>
+        </param>
+        <briefdescription>
+<para>Evaluate duration time. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>this function is used in combination with what_time_is_it_now</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the type returned by what_time_is_it_now function</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time evaluated by what_time_is_it_now function</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>evaluated time </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/utils.h" line="150" column="6" declfile="/home/nico/Code/rFBP/include/utils.h" declline="150" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__utils_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__utils_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//#if<sp/>__has_include(&lt;filesystem&gt;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//#<sp/><sp/>include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//#<sp/><sp/>define<sp/>have_filesystem<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_OPENMP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;omp.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>INF<sp/><sp/><sp/><sp/><sp/>=<sp/>std<sp/>::<sp/>numeric_limits<sp/>&lt;<sp/>double<sp/>&gt;<sp/>::<sp/>infinity();<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>epsilon<sp/>=<sp/>std<sp/>::<sp/>numeric_limits<sp/>&lt;<sp/>double<sp/>&gt;<sp/>::<sp/>epsilon();<sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(defined(__GNUC__)<sp/>&amp;&amp;<sp/>!defined(__clang__))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>log_2<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>std<sp/>::<sp/>log(2);<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>log2_over_2<sp/>=<sp/>std<sp/>::<sp/>log(2)<sp/>*<sp/>.5;<sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>log_2<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0.6931471805599453;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>log2_over_2<sp/>=<sp/>0.34657359027997264311;<sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>M_PI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="utils_8h_1ae71449b1cc6e6250b91f539153a7a0d3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#define<sp/>M_PI<sp/>3.141592653589793</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="utils_8h_1a3428692efe6051ef30016ffde1a9f7bb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STRINGIZE(x)<sp/>#x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="utils_8h_1acad0f1fef9bd062448b204ca251db1cc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STRINGIZE_VALUE_OF(x)<sp/>STRINGIZE(x)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="utils_8h_1a928a196c5b583ec2adeb35dddde1d3e1" kindref="member">sign</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba884496ea01c202b07dea8e629b684ed8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{<ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba884496ea01c202b07dea8e629b684ed8" kindref="member">scoping_</ref><sp/>=<sp/>0L,</highlight></codeline>
+<codeline lineno="59" refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba5b7ff6524ac6fd77264c842ee0abeefc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba5b7ff6524ac6fd77264c842ee0abeefc" kindref="member">pseudo_</ref>,</highlight></codeline>
+<codeline lineno="60" refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba0f58b4b1888babd944c3fd40a8add70d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba0f58b4b1888babd944c3fd40a8add70d" kindref="member">free_scoping_</ref>,</highlight></codeline>
+<codeline lineno="61" refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba51fb75f536130837cf4cce94520d460c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba51fb75f536130837cf4cce94520d460c" kindref="member">standard_</ref></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="utils_8h_1adf764cbdea00d65edcd07bb9953ad2b7a95a39d8fc5e272366650b9fb015d1c3e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{<ref refid="utils_8h_1adf764cbdea00d65edcd07bb9953ad2b7a95a39d8fc5e272366650b9fb015d1c3e" kindref="member">magP</ref><sp/>=<sp/>0L,</highlight></codeline>
+<codeline lineno="65" refid="utils_8h_1adf764cbdea00d65edcd07bb9953ad2b7ac61dc3419c5446018a867ac44ecb7eef" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="utils_8h_1adf764cbdea00d65edcd07bb9953ad2b7ac61dc3419c5446018a867ac44ecb7eef" kindref="member">magT</ref><sp/>=<sp/>1</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>unordered_map<sp/>&lt;<sp/>std<sp/>::<sp/>string,<sp/>long<sp/>int<sp/>&gt;<sp/>protocol</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;scoping&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba884496ea01c202b07dea8e629b684ed8" kindref="member">scoping_</ref>},</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;pseudo_reinforcement&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba5b7ff6524ac6fd77264c842ee0abeefc" kindref="member">pseudo_</ref>},</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;free_scoping&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba0f58b4b1888babd944c3fd40a8add70d" kindref="member">free_scoping_</ref>},</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;standard_reinforcement&quot;</highlight><highlight class="normal">,<sp/><ref refid="utils_8h_1a06fc87d81c62e9abb8790b6e5713c55ba51fb75f536130837cf4cce94520d460c" kindref="member">standard_</ref>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">std<sp/>::<sp/>vector<sp/>&lt;<sp/>std<sp/>::<sp/>string<sp/>&gt;<sp/><ref refid="utils_8h_1a2647dab65a22b1df13c43e602e15a0cf" kindref="member">split</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>txt,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>del);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>(<sp/>(<sp/>__cplusplus<sp/>&lt;<sp/>201100<sp/>&amp;&amp;<sp/>!(_MSC_VER)<sp/>)<sp/>||<sp/>(<sp/>__GNUC__<sp/>==<sp/>4<sp/>&amp;&amp;<sp/>__GNUC_MINOR__<sp/>&lt;<sp/>9)<sp/>&amp;&amp;<sp/>!(__clang__)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">std</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T<sp/>&gt;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>T<sp/>&gt;<sp/><ref refid="utils_8h_1ae406f1e075eb08bbd6d1adadf4c4b8f5" kindref="member">make_unique</ref><sp/>(<sp/>std<sp/>::<sp/>size_t<sp/>size<sp/>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="utils_8h_1ad9de9698e9187dd0fd71ec5c2b001008" kindref="member">file_exists</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="preprocessor">#ifdef<sp/>_OPENMP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="utils_8h_1aed32f611454a221936409e583fddbcda" kindref="member">what_time_is_it_now</ref><sp/>();</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>chrono<sp/>::<sp/>time_point<sp/>&lt;<sp/>std<sp/>::<sp/>chrono<sp/>::<sp/>high_resolution_clock<sp/>&gt;<sp/><ref refid="utils_8h_1aed32f611454a221936409e583fddbcda" kindref="member">what_time_is_it_now</ref><sp/>();</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Time<sp/>&gt;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="utils_8h_1a00e9106028b4e3b425fce16d0ea80238" kindref="member">duration</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Time<sp/>&amp;<sp/>start);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__utils_h__</highlight></codeline>
+    </programlisting>
+    <location file="/home/nico/Code/rFBP/include/utils.h"/>
+  </compounddef>
+</doxygen>

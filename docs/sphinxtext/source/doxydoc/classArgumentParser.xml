@@ -1,0 +1,507 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classArgumentParser" kind="class" language="C++" prot="public">
+    <compoundname>ArgumentParser</compoundname>
+    <includes refid="parse__args_8h" local="no">parse_args.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classArgumentParser_1a8f088bcfbbaa5185845dc75437e1278e" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::PRINT_HELP</definition>
+        <argsstring></argsstring>
+        <name>PRINT_HELP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="68" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1a0724c88ffa81a52ef89af689dfdc0d0a" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="69" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1ae78ab72b32c8368221bf7668d29165be" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER_INPUTS</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER_INPUTS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="70" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1a6a9cdcc90de365687bde279554690d96" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER_REQUIRED</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER_REQUIRED</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="71" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1a8398a6ab14e87980b2dd61b5abbdf239" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER_UNKNOWN</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER_UNKNOWN</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="72" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1a9a89b8bad07b991c5f88040a47500da0" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER_INVARG</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER_INVARG</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="73" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1a6a9d61215bb8f9d2f23883da6f2a5f9a" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER_OUTRANGE</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER_OUTRANGE</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="74" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1acf3aa1ebe0d880a685d17f424f0ae364" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER_BOOL</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER_BOOL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="75" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1a31a0cb0ca7f0bd1e3c993bcceee476e7" prot="private" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int ArgumentParser::ERROR_PARSER_CHAR</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PARSER_CHAR</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="76" column="14" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classArgumentParser_1a3549bd8522aa85e535845cd6a1e016b6" prot="private" static="no" mutable="no">
+        <type>std ::vector&lt; <ref refid="classargument" kindref="compound">argument</ref> &gt;</type>
+        <definition>std :: vector&lt; argument &gt; ArgumentParser::args</definition>
+        <argsstring></argsstring>
+        <name>args</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="80" column="18" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1ab15c907c5553b9c8c593c808a757077b" prot="private" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string ArgumentParser::description</definition>
+        <argsstring></argsstring>
+        <name>description</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="82" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classArgumentParser_1a1fd89aefe1fb9d491cb3bdd355f0e471" prot="private" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string ArgumentParser::program</definition>
+        <argsstring></argsstring>
+        <name>program</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="83" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classArgumentParser_1ae911b882ff00b4afdecb535f5ac473e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ArgumentParser::ArgumentParser</definition>
+        <argsstring>(std ::string &amp;&amp;description)</argsstring>
+        <name>ArgumentParser</name>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="89" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1a04c152105d2dec809a860758da2834ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ArgumentParser::~ArgumentParser</definition>
+        <argsstring>()=default</argsstring>
+        <name>~ArgumentParser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="93" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1a2d98a1ed1cbc706c4c9c0d1d3d95f923" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::parse_args</definition>
+        <argsstring>(const int &amp;argc, char **argv)</argsstring>
+        <name>parse_args</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="97" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1a7af2bcf124fcc4335f98b2054052e9b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename data_t</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ArgumentParser::add_argument</definition>
+        <argsstring>(std ::string &amp;&amp;name, std ::string &amp;&amp;short_flag, std ::string &amp;&amp;long_flag, std ::string &amp;&amp;help, const bool &amp;req, data_t default_value)</argsstring>
+        <name>add_argument</name>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>short_flag</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>long_flag</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>help</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>req</declname>
+        </param>
+        <param>
+          <type>data_t</type>
+          <declname>default_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="102" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1a97a3f36e5710ac6e5a6a96e6d4da318e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename data_t</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ArgumentParser::get</definition>
+        <argsstring>(const std ::string &amp;name, data_t &amp;values)</argsstring>
+        <name>get</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>data_t &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="105" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classArgumentParser_1ac3fb933b518fc2f4c80a68a000b581aa" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::print_help</definition>
+        <argsstring>(const int &amp;error_index)</argsstring>
+        <name>print_help</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>error_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="111" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1a9abec20f434784291d839d8ea42f2d46" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_type</definition>
+        <argsstring>(const std ::string &amp;data_type)</argsstring>
+        <name>error_parsing_type</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>data_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="112" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1af5508fcad2da24edbb0c824a47314ee5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_inputs_arg</definition>
+        <argsstring>()</argsstring>
+        <name>error_parsing_inputs_arg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="113" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1ab350056f39d83694bc27fc4c5e27a9d9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_required_arg</definition>
+        <argsstring>(const std ::string &amp;name)</argsstring>
+        <name>error_parsing_required_arg</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="114" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1abbb73d7eec695fcc5d4a082b60f0580a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_unknown_arg</definition>
+        <argsstring>(const std ::string &amp;name)</argsstring>
+        <name>error_parsing_unknown_arg</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="115" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1ac8dd36f34bfbb0c0339f70e0f6950273" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_invalid_arg</definition>
+        <argsstring>(const std ::string &amp;name, const std ::string &amp;value)</argsstring>
+        <name>error_parsing_invalid_arg</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="116" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1ae3a35a9c39e6900f1f52b6ee76f925b3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_out_of_range_arg</definition>
+        <argsstring>(const std ::string &amp;name, const std ::string &amp;value)</argsstring>
+        <name>error_parsing_out_of_range_arg</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="117" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1aa1129deeac83d53521369bd837520492" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_bool</definition>
+        <argsstring>(const std ::string &amp;name, const std ::string &amp;value)</argsstring>
+        <name>error_parsing_bool</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="118" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1ac4a60a26a52fce4581fad40e7a807692" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ArgumentParser::error_parsing_char</definition>
+        <argsstring>(const std ::string &amp;name, const std ::string &amp;value)</argsstring>
+        <name>error_parsing_char</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="119" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classArgumentParser_1ab3434e185c7cf7cc240bccea1ce69471" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename data_t</type>
+          </param>
+        </templateparamlist>
+        <type>std ::string</type>
+        <definition>std :: string ArgumentParser::type_name</definition>
+        <argsstring>()</argsstring>
+        <name>type_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="122" column="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/parse_args.h" line="65" column="1" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="64" bodyend="124"/>
+    <listofallmembers>
+      <member refid="classArgumentParser_1a7af2bcf124fcc4335f98b2054052e9b1" prot="public" virt="non-virtual"><scope>ArgumentParser</scope><name>add_argument</name></member>
+      <member refid="classArgumentParser_1a3549bd8522aa85e535845cd6a1e016b6" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>args</name></member>
+      <member refid="classArgumentParser_1ae911b882ff00b4afdecb535f5ac473e2" prot="public" virt="non-virtual"><scope>ArgumentParser</scope><name>ArgumentParser</name></member>
+      <member refid="classArgumentParser_1ab15c907c5553b9c8c593c808a757077b" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>description</name></member>
+      <member refid="classArgumentParser_1a0724c88ffa81a52ef89af689dfdc0d0a" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER</name></member>
+      <member refid="classArgumentParser_1acf3aa1ebe0d880a685d17f424f0ae364" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER_BOOL</name></member>
+      <member refid="classArgumentParser_1a31a0cb0ca7f0bd1e3c993bcceee476e7" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER_CHAR</name></member>
+      <member refid="classArgumentParser_1ae78ab72b32c8368221bf7668d29165be" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER_INPUTS</name></member>
+      <member refid="classArgumentParser_1a9a89b8bad07b991c5f88040a47500da0" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER_INVARG</name></member>
+      <member refid="classArgumentParser_1a6a9d61215bb8f9d2f23883da6f2a5f9a" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER_OUTRANGE</name></member>
+      <member refid="classArgumentParser_1a6a9cdcc90de365687bde279554690d96" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER_REQUIRED</name></member>
+      <member refid="classArgumentParser_1a8398a6ab14e87980b2dd61b5abbdf239" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>ERROR_PARSER_UNKNOWN</name></member>
+      <member refid="classArgumentParser_1aa1129deeac83d53521369bd837520492" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_bool</name></member>
+      <member refid="classArgumentParser_1ac4a60a26a52fce4581fad40e7a807692" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_char</name></member>
+      <member refid="classArgumentParser_1af5508fcad2da24edbb0c824a47314ee5" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_inputs_arg</name></member>
+      <member refid="classArgumentParser_1ac8dd36f34bfbb0c0339f70e0f6950273" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_invalid_arg</name></member>
+      <member refid="classArgumentParser_1ae3a35a9c39e6900f1f52b6ee76f925b3" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_out_of_range_arg</name></member>
+      <member refid="classArgumentParser_1ab350056f39d83694bc27fc4c5e27a9d9" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_required_arg</name></member>
+      <member refid="classArgumentParser_1a9abec20f434784291d839d8ea42f2d46" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_type</name></member>
+      <member refid="classArgumentParser_1abbb73d7eec695fcc5d4a082b60f0580a" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>error_parsing_unknown_arg</name></member>
+      <member refid="classArgumentParser_1a97a3f36e5710ac6e5a6a96e6d4da318e" prot="public" virt="non-virtual"><scope>ArgumentParser</scope><name>get</name></member>
+      <member refid="classArgumentParser_1a2d98a1ed1cbc706c4c9c0d1d3d95f923" prot="public" virt="non-virtual"><scope>ArgumentParser</scope><name>parse_args</name></member>
+      <member refid="classArgumentParser_1a8f088bcfbbaa5185845dc75437e1278e" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>PRINT_HELP</name></member>
+      <member refid="classArgumentParser_1ac3fb933b518fc2f4c80a68a000b581aa" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>print_help</name></member>
+      <member refid="classArgumentParser_1a1fd89aefe1fb9d491cb3bdd355f0e471" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>program</name></member>
+      <member refid="classArgumentParser_1ab3434e185c7cf7cc240bccea1ce69471" prot="private" virt="non-virtual"><scope>ArgumentParser</scope><name>type_name</name></member>
+      <member refid="classArgumentParser_1a04c152105d2dec809a860758da2834ab" prot="public" virt="non-virtual"><scope>ArgumentParser</scope><name>~ArgumentParser</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

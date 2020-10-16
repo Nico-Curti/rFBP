@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classband__matrix" kind="class" language="C++" prot="public">
+    <compoundname>band_matrix</compoundname>
+    <includes refid="spline_8h" local="no">spline.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classband__matrix_1aa465540139054af270377a220f934553" prot="private" static="no" mutable="no">
+        <type>std ::array&lt; std ::unique_ptr&lt; double[] &gt;, 2 &gt;</type>
+        <definition>std :: array&lt; std :: unique_ptr &lt; double[] &gt;, 2 &gt; band_matrix::m_upper</definition>
+        <argsstring></argsstring>
+        <name>m_upper</name>
+        <briefdescription>
+<para>array with upper &quot;part&quot; of matrix </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="37" column="17" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classband__matrix_1ab9f2479e1de4e2dbd88f9fbdd0cdf8ee" prot="private" static="no" mutable="no">
+        <type>std ::array&lt; std ::unique_ptr&lt; double[] &gt;, 2 &gt;</type>
+        <definition>std :: array&lt; std :: unique_ptr &lt; double[] &gt;, 2 &gt; band_matrix::m_lower</definition>
+        <argsstring></argsstring>
+        <name>m_lower</name>
+        <briefdescription>
+<para>array with lower &quot;part&quot; of matrix </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="38" column="17" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classband__matrix_1ae2206a264017a0d072361e523270f266" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int band_matrix::dim</definition>
+        <argsstring></argsstring>
+        <name>dim</name>
+        <briefdescription>
+<para>matrix dimension (square) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="40" column="7" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classband__matrix_1a9567b236ee59bfc502ef45df20efeac8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>band_matrix::band_matrix</definition>
+        <argsstring>(const int &amp;dim)</argsstring>
+        <name>band_matrix</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>dim</declname>
+        </param>
+        <briefdescription>
+<para>default constructor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="50" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classband__matrix_1a712ef383b6abe84612f0a544b8f31dff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>band_matrix::~band_matrix</definition>
+        <argsstring>()=default</argsstring>
+        <name>~band_matrix</name>
+        <briefdescription>
+<para>destructor set as default </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="58" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classband__matrix_1a0dc09284795bf1f55cb28a8e515ef511" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double &amp;</type>
+        <definition>double&amp; band_matrix::operator()</definition>
+        <argsstring>(const int &amp;i, const int &amp;j)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Matrix element extraction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>row index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>col index</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>double reference to the element </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="71" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classband__matrix_1a10f669a5da16b8a9c7e1e1ada9fc56e9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double band_matrix::operator()</definition>
+        <argsstring>(const int &amp;i, const int &amp;j) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Matrix element extraction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>row index </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>col index</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>double element </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="81" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classband__matrix_1a0e546c41339f085f8adba5f9073d167f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; band_matrix::lu_solve</definition>
+        <argsstring>(const double *b)</argsstring>
+        <name>lu_solve</name>
+        <param>
+          <type>const double *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="85" column="22"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classband__matrix_1ac5e874f32b8256dc18e5722997f79792" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void band_matrix::lu_decompose</definition>
+        <argsstring>()</argsstring>
+        <name>lu_decompose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="91" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classband__matrix_1afc041169537bb766aa6d7d89404282d4" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; band_matrix::l_solve</definition>
+        <argsstring>(const double *b) const</argsstring>
+        <name>l_solve</name>
+        <param>
+          <type>const double *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="92" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classband__matrix_1a5b7b6e8f5904cf2732f866d89cd78e15" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; band_matrix::r_solve</definition>
+        <argsstring>(const double *b) const</argsstring>
+        <name>r_solve</name>
+        <param>
+          <type>const double *</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="93" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Utility class for spline evaluation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It is used for LU decomposition </para>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/spline.h" line="31" column="1" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="30" bodyend="95"/>
+    <listofallmembers>
+      <member refid="classband__matrix_1a9567b236ee59bfc502ef45df20efeac8" prot="public" virt="non-virtual"><scope>band_matrix</scope><name>band_matrix</name></member>
+      <member refid="classband__matrix_1ae2206a264017a0d072361e523270f266" prot="private" virt="non-virtual"><scope>band_matrix</scope><name>dim</name></member>
+      <member refid="classband__matrix_1afc041169537bb766aa6d7d89404282d4" prot="private" virt="non-virtual"><scope>band_matrix</scope><name>l_solve</name></member>
+      <member refid="classband__matrix_1ac5e874f32b8256dc18e5722997f79792" prot="private" virt="non-virtual"><scope>band_matrix</scope><name>lu_decompose</name></member>
+      <member refid="classband__matrix_1a0e546c41339f085f8adba5f9073d167f" prot="public" virt="non-virtual"><scope>band_matrix</scope><name>lu_solve</name></member>
+      <member refid="classband__matrix_1ab9f2479e1de4e2dbd88f9fbdd0cdf8ee" prot="private" virt="non-virtual"><scope>band_matrix</scope><name>m_lower</name></member>
+      <member refid="classband__matrix_1aa465540139054af270377a220f934553" prot="private" virt="non-virtual"><scope>band_matrix</scope><name>m_upper</name></member>
+      <member refid="classband__matrix_1a0dc09284795bf1f55cb28a8e515ef511" prot="public" virt="non-virtual"><scope>band_matrix</scope><name>operator()</name></member>
+      <member refid="classband__matrix_1a10f669a5da16b8a9c7e1e1ada9fc56e9" prot="public" virt="non-virtual"><scope>band_matrix</scope><name>operator()</name></member>
+      <member refid="classband__matrix_1a5b7b6e8f5904cf2732f866d89cd78e15" prot="private" virt="non-virtual"><scope>band_matrix</scope><name>r_solve</name></member>
+      <member refid="classband__matrix_1a712ef383b6abe84612f0a544b8f31dff" prot="public" virt="non-virtual"><scope>band_matrix</scope><name>~band_matrix</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

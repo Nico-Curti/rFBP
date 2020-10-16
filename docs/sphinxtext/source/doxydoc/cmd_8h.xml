@@ -1,0 +1,465 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="cmd_8h" kind="file" language="C++">
+    <compoundname>cmd.h</compoundname>
+    <includes refid="errors_8h" local="no">errors.h</includes>
+    <includes local="no">utils.hpp</includes>
+    <includes local="no">parse_args.hpp</includes>
+    <includes local="no">string</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/cmd.h</label>
+        <link refid="cmd_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>errors.h</label>
+        <link refid="errors_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>parse_args.hpp</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>utils.hpp</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="cmd_8h_1a7c13c3d3b09b9b7a599ef34fbb3ee77c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void parse_training_fbp</definition>
+        <argsstring>(int argc, char *argv[], std ::string &amp;patternsfile, std ::string &amp;output, bool &amp;bin, std ::string &amp;del, long int &amp;K, long int &amp;max_iters, long int &amp;seed, double &amp;randfact, double &amp;damping, std ::string &amp;accuracy1, std ::string &amp;accuracy2, std ::string &amp;fprotocol, double &amp;epsil, int &amp;nth, long int &amp;max_steps, int &amp;mag, std ::string &amp;inmess, std ::string &amp;outmess, std ::string &amp;delmess, bool &amp;binmess)</argsstring>
+        <name>parse_training_fbp</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>argv</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>patternsfile</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>output</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>bin</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>del</declname>
+        </param>
+        <param>
+          <type>long int &amp;</type>
+          <declname>K</declname>
+        </param>
+        <param>
+          <type>long int &amp;</type>
+          <declname>max_iters</declname>
+        </param>
+        <param>
+          <type>long int &amp;</type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>randfact</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>damping</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>accuracy1</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>accuracy2</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>fprotocol</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>epsil</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>nth</declname>
+        </param>
+        <param>
+          <type>long int &amp;</type>
+          <declname>max_steps</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>mag</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>inmess</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>outmess</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>delmess</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>binmess</declname>
+        </param>
+        <briefdescription>
+<para>Parse command line for training procedure using parse_args library. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This function is just an utility for the usage of the library from command line interface. It can be substituted by any equivalent command-line parser library. The variable are set into the function and thus are all passed by reference.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of arguments in command line </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>list of arguments in command line </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">patternsfile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pattern filename in which data are stored following Pattern requirements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output filename where results are saved </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">bin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>boolean variable to enable/disable pattern IO in binary/ascii format </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">del</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>delimiter char for ascii IO of pattern file (valid if bin is off and stored as STRING) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of Hidden Layers </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">max_iters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max number of iterations for training </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>seed global random generator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">randfact</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>seed random generator of Cavity Messages </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">damping</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>damping parameter for training protocol </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">accuracy1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accuracy of the messages computation at the hidden units level (choose between &apos;exact&apos;(default), &apos;accurate&apos;, &apos;approx&apos;, &apos;none&apos;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">accuracy2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>accuracy of the messages computation at the output units level (choose between &apos;exact&apos;(default), &apos;accurate&apos;, &apos;approx&apos;, &apos;none&apos;) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">fprotocol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specify protocol : scooping, pseudo_reinforcement (default), free_scoping, standard_reinforcement </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">epsil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>threshold for convergence </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">nth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max number of threads exploitable </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">max_steps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max number of steps for chosen protocol </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specify Magnetization to use in training: (0) MagnetizationP (<ref refid="structMagP64" kindref="compound">MagP64</ref>), (1) MagnetizationT (<ref refid="structMagT64" kindref="compound">MagT64</ref>) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">inmess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>filename with initial message values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">outmess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>filename where save trained message values </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">delmess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>delimiter for Messages files (as STRING) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">binmess</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>messages files format: (0) Textfile (default), (1) Binary </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cmd.h" line="41" column="6" declfile="/home/nico/Code/rFBP/include/cmd.h" declline="41" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="cmd_8h_1afa14418a89d64942b0bff214a42e64e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void parse_test_args</definition>
+        <argsstring>(int argc, char *argv[], std ::string &amp;patternsfile, std ::string &amp;del, bool &amp;bin, std ::string &amp;weight_file, std ::string &amp;output_file, int &amp;nth)</argsstring>
+        <name>parse_test_args</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>argv</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>patternsfile</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>del</declname>
+        </param>
+        <param>
+          <type>bool &amp;</type>
+          <declname>bin</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>weight_file</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;</type>
+          <declname>output_file</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>nth</declname>
+        </param>
+        <briefdescription>
+<para>Parse command line for testing procedure using parse_args library. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This function is just an utility for the usage of the library from command line interface. It can be substituted by any equivalent command-line parser library. The variable are set into the function and thus are all passed by reference.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of arguments in command line </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>list of arguments in command line </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">patternsfile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pattern filename in which data are stored following Pattern requirements </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">del</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>delimiter char for ascii IO of pattern file (valid if bin is off and stored as STRING) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">bin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>boolean variable to enable/disable pattern IO in binary/ascii format </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">weight_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>weights matrix filename </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">output_file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output filename where results are saved </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">nth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max number of threads exploitable </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cmd.h" line="60" column="6" declfile="/home/nico/Code/rFBP/include/cmd.h" declline="60" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__cmd_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__cmd_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="errors_8h" kindref="compound">errors.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;parse_args.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="cmd_8h_1a7c13c3d3b09b9b7a599ef34fbb3ee77c" kindref="member">parse_training_fbp</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*argv[],<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>patternsfile,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>output,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>bin,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>del,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>K,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>max_iters,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>seed,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>randfact,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>damping,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>accuracy1,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>accuracy2,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>fprotocol,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>epsil,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nth,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>max_steps,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/><ref refid="namespacemag" kindref="compound">mag</ref>,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>inmess,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>outmess,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>delmess,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>binmess);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="cmd_8h_1afa14418a89d64942b0bff214a42e64e7" kindref="member">parse_test_args</ref><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*argv[],<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>patternsfile,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>del,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>bin,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>weight_file,<sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>output_file,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nth);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__cmd_h__</highlight></codeline>
+    </programlisting>
+    <location file="/home/nico/Code/rFBP/include/cmd.h"/>
+  </compounddef>
+</doxygen>

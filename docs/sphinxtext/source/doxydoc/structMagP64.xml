@@ -1,0 +1,535 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structMagP64" kind="class" language="C++" prot="public">
+    <compoundname>MagP64</compoundname>
+    <includes refid="magP_8h" local="no">magP.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structMagP64_1acbd21a720287c858970ed3405a447a78" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagP64::mag</definition>
+        <argsstring></argsstring>
+        <name>mag</name>
+        <briefdescription>
+<para>Magnetization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="16" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structMagP64_1a3830ffaba7e0aa11a05d460aae503923" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MagP64::MagP64</definition>
+        <argsstring>()</argsstring>
+        <name>MagP64</name>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="23" column="3" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a266f37263db9a2b54c88368d90cfe438" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MagP64::MagP64</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>MagP64</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Constructor with value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>In <ref refid="structMagP64" kindref="compound">MagP64</ref> the value is equal to the mag. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="33" column="3" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a7f10442b6777b55fb00ec4b762d61712" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MagP64::~MagP64</definition>
+        <argsstring>()=default</argsstring>
+        <name>~MagP64</name>
+        <briefdescription>
+<para>Default destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="39" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a453bd2d6be8e55333d12f4c96a4d4ddf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MagP64::MagP64</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>MagP64</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="47" column="3" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1aeb791a5ee57074cef7aa63ed548ab424" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+        <definition>MagP64&amp; MagP64::operator=</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Assigment operator constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="55" column="11" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1ad4a6d8b89285e334d4110cc780f1ed34" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std ::string</type>
+        <definition>std :: string MagP64::magformat</definition>
+        <argsstring>() const</argsstring>
+        <name>magformat</name>
+        <briefdescription>
+<para>Return the mag description (plain for <ref refid="structMagP64" kindref="compound">MagP64</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="63" column="17" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a4c5c7279334bfb2bef3d9828066f933e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double MagP64::value</definition>
+        <argsstring>() const</argsstring>
+        <name>value</name>
+        <briefdescription>
+<para>Get the magnetization value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>In <ref refid="structMagP64" kindref="compound">MagP64</ref> the value is equal to the mag. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="71" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1acc13748f4a3dbb08ca852d692c1e369e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagP64" kindref="compound">MagP64</ref></type>
+        <definition>MagP64 MagP64::operator%</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>operator%</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Add magnetization ( (m1 + m2) / (1 + m1*m2) ) with clamp.</para>
+<para><simplesect kind="see"><para><ref refid="namespacemag" kindref="compound">mag</ref> :: clamp</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="86" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a9aa308ae5d40afabe343280d0ebc4aa3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagP64" kindref="compound">MagP64</ref></type>
+        <definition>MagP64 MagP64::operator+</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Just a simple addition of the mag values.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="96" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="96" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a436711aa8887389c513e63ed1500d70a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagP64" kindref="compound">MagP64</ref></type>
+        <definition>MagP64 MagP64::operator/</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>operator/</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Just a simple division as (mag / x)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="106" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="106" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1aa0a6ce68f7385f2dfee282b310e37834" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double MagP64::operator*</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Just a simple product as (mag * x)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="116" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a02c9399ed36edb0461d391c9a4b57aac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagP64" kindref="compound">MagP64</ref></type>
+        <definition>MagP64 MagP64::operator^</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>operator^</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Combine two mags as (mag * mag)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="137" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a0690ac82f7949d93139f17676d24d1ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double MagP64::operator-</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtract values (val1 - val2)</para>
+<para><simplesect kind="note"><para>In <ref refid="structMagP64" kindref="compound">MagP64</ref> the values are equal to the mags.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="149" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="149" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1aa150df8dfc64b5c0a4afc88450473698" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagP64" kindref="compound">MagP64</ref></type>
+        <definition>MagP64 MagP64::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+<para>Get a magnetization with a flipped sign. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>flip magnetization sign </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="157" column="10" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="157" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a95a793eb33e89fcf09bb0d3449cd8433" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MagP64::operator==</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Check magnetization equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compare magnetizations</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="169" column="8" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="169" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagP64_1a09d9de5a46e41e0b0c2d9bdffa657d45" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MagP64::operator!=</definition>
+        <argsstring>(const MagP64 &amp;m)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Check magnetization not equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>compare magnetizations</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="179" column="8" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="179" bodyend="179"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="structMagP64_1ad1f6864ecf09091b2b8a442b538e9e2f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend double</type>
+        <definition>double operator*</definition>
+        <argsstring>(const double &amp;x, const MagP64 &amp;m)</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Just a simple product as (x * mag)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="127" column="17" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="friend" id="structMagP64_1ab791dc95c3ccc9a9bff98de0c959c951" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend std ::ostream &amp;</type>
+        <definition>std :: ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std ::ostream &amp;os, const MagP64 &amp;m)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std ::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structMagP64" kindref="compound">MagP64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Print operator with stdout/stderr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>print mag</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ostream operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagP64" kindref="compound">MagP64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magP.h" line="190" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Abstract type representing magnetization type chosen for cavity messages. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="note"><para>The <computeroutput><ref refid="structMagP64" kindref="compound">MagP64</ref></computeroutput> type allows fast executions with inexact outcomes by neglecting all <computeroutput>tanh</computeroutput> operations. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/magP.h" line="14" column="1" bodyfile="/home/nico/Code/rFBP/include/magP.h" bodystart="13" bodyend="191"/>
+    <listofallmembers>
+      <member refid="structMagP64_1acbd21a720287c858970ed3405a447a78" prot="public" virt="non-virtual"><scope>MagP64</scope><name>mag</name></member>
+      <member refid="structMagP64_1ad4a6d8b89285e334d4110cc780f1ed34" prot="public" virt="non-virtual"><scope>MagP64</scope><name>magformat</name></member>
+      <member refid="structMagP64_1a3830ffaba7e0aa11a05d460aae503923" prot="public" virt="non-virtual"><scope>MagP64</scope><name>MagP64</name></member>
+      <member refid="structMagP64_1a266f37263db9a2b54c88368d90cfe438" prot="public" virt="non-virtual"><scope>MagP64</scope><name>MagP64</name></member>
+      <member refid="structMagP64_1a453bd2d6be8e55333d12f4c96a4d4ddf" prot="public" virt="non-virtual"><scope>MagP64</scope><name>MagP64</name></member>
+      <member refid="structMagP64_1a09d9de5a46e41e0b0c2d9bdffa657d45" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator!=</name></member>
+      <member refid="structMagP64_1acc13748f4a3dbb08ca852d692c1e369e" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator%</name></member>
+      <member refid="structMagP64_1aa0a6ce68f7385f2dfee282b310e37834" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator*</name></member>
+      <member refid="structMagP64_1ad1f6864ecf09091b2b8a442b538e9e2f" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator*</name></member>
+      <member refid="structMagP64_1a9aa308ae5d40afabe343280d0ebc4aa3" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator+</name></member>
+      <member refid="structMagP64_1a0690ac82f7949d93139f17676d24d1ca" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator-</name></member>
+      <member refid="structMagP64_1aa150df8dfc64b5c0a4afc88450473698" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator-</name></member>
+      <member refid="structMagP64_1a436711aa8887389c513e63ed1500d70a" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator/</name></member>
+      <member refid="structMagP64_1ab791dc95c3ccc9a9bff98de0c959c951" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator&lt;&lt;</name></member>
+      <member refid="structMagP64_1aeb791a5ee57074cef7aa63ed548ab424" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator=</name></member>
+      <member refid="structMagP64_1a95a793eb33e89fcf09bb0d3449cd8433" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator==</name></member>
+      <member refid="structMagP64_1a02c9399ed36edb0461d391c9a4b57aac" prot="public" virt="non-virtual"><scope>MagP64</scope><name>operator^</name></member>
+      <member refid="structMagP64_1a4c5c7279334bfb2bef3d9828066f933e" prot="public" virt="non-virtual"><scope>MagP64</scope><name>value</name></member>
+      <member refid="structMagP64_1a7f10442b6777b55fb00ec4b762d61712" prot="public" virt="non-virtual"><scope>MagP64</scope><name>~MagP64</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

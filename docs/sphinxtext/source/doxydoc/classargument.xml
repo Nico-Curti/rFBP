@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classargument" kind="class" language="C++" prot="public">
+    <compoundname>argument</compoundname>
+    <includes refid="parse__args_8h" local="no">parse_args.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classargument_1afbc3cd48436744dc80d58ba611538478" prot="public" static="no" mutable="no">
+        <type>std ::vector&lt; std ::string &gt;</type>
+        <definition>std :: vector&lt; std :: string &gt; argument::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="42" column="18" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classargument_1a7f2a70552c49a3c4bdecd885cdd0d0e3" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string argument::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="44" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classargument_1a612b05f0e319bd9696bab714f87d5c7f" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string argument::short_flag</definition>
+        <argsstring></argsstring>
+        <name>short_flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="45" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classargument_1a5b0a5e2450e4b48ee79d77d441d20b84" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string argument::long_flag</definition>
+        <argsstring></argsstring>
+        <name>long_flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="46" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classargument_1adb20cf230c08f5421e4157e33c9bdc2a" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string argument::help</definition>
+        <argsstring></argsstring>
+        <name>help</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="47" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classargument_1a10c93d0e8a5773fe0b1bd2e8f752a597" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string argument::defualt_value</definition>
+        <argsstring></argsstring>
+        <name>defualt_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="48" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classargument_1ab54c9020806111579763dc4fe2190486" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string argument::data_type</definition>
+        <argsstring></argsstring>
+        <name>data_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="49" column="17" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classargument_1ab67fbfd00b57dcb7bed24cc8579e1be2" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool argument::required</definition>
+        <argsstring></argsstring>
+        <name>required</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="51" column="8" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classargument_1ae5738480f8396d4698b6f0900d207a1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>argument::argument</definition>
+        <argsstring>(std ::string &amp;&amp;name, std ::string &amp;&amp;short_flag, std ::string &amp;&amp;long_flag, std ::string &amp;&amp;help, const bool &amp;required, std ::string &amp;&amp;defualt_value, std ::string &amp;&amp;data_type)</argsstring>
+        <name>argument</name>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>short_flag</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>long_flag</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>help</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>required</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>defualt_value</declname>
+        </param>
+        <param>
+          <type>std ::string &amp;&amp;</type>
+          <declname>data_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="55" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classargument_1a255911ce0550dfd9052b9220e347a064" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>argument::~argument</definition>
+        <argsstring>()=default</argsstring>
+        <name>~argument</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="59" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/parse_args.h" line="35" column="1" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="34" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classargument_1ae5738480f8396d4698b6f0900d207a1b" prot="public" virt="non-virtual"><scope>argument</scope><name>argument</name></member>
+      <member refid="classargument_1ab54c9020806111579763dc4fe2190486" prot="public" virt="non-virtual"><scope>argument</scope><name>data_type</name></member>
+      <member refid="classargument_1a10c93d0e8a5773fe0b1bd2e8f752a597" prot="public" virt="non-virtual"><scope>argument</scope><name>defualt_value</name></member>
+      <member refid="classargument_1adb20cf230c08f5421e4157e33c9bdc2a" prot="public" virt="non-virtual"><scope>argument</scope><name>help</name></member>
+      <member refid="classargument_1a5b0a5e2450e4b48ee79d77d441d20b84" prot="public" virt="non-virtual"><scope>argument</scope><name>long_flag</name></member>
+      <member refid="classargument_1a7f2a70552c49a3c4bdecd885cdd0d0e3" prot="public" virt="non-virtual"><scope>argument</scope><name>name</name></member>
+      <member refid="classargument_1ab67fbfd00b57dcb7bed24cc8579e1be2" prot="public" virt="non-virtual"><scope>argument</scope><name>required</name></member>
+      <member refid="classargument_1a612b05f0e319bd9696bab714f87d5c7f" prot="public" virt="non-virtual"><scope>argument</scope><name>short_flag</name></member>
+      <member refid="classargument_1afbc3cd48436744dc80d58ba611538478" prot="public" virt="non-virtual"><scope>argument</scope><name>values</name></member>
+      <member refid="classargument_1a255911ce0550dfd9052b9220e347a064" prot="public" virt="non-virtual"><scope>argument</scope><name>~argument</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

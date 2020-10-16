@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="parse__args_8h" kind="file" language="C++">
+    <compoundname>parse_args.h</compoundname>
+    <includes local="no">memory</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">string</includes>
+    <includes local="no">iomanip</includes>
+    <includes local="no">type_traits</includes>
+    <includes local="no">stdexcept</includes>
+    <incdepgraph>
+      <node id="7">
+        <label>iomanip</label>
+      </node>
+      <node id="9">
+        <label>stdexcept</label>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="4">
+        <label>utility</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>type_traits</label>
+      </node>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/parse_args.h</label>
+        <link refid="parse__args_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classargument" prot="public">argument</innerclass>
+    <innerclass refid="classArgumentParser" prot="public">ArgumentParser</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="parse__args_8h_1a2e3484535ee610c8e19e9859563abe48" prot="public" static="no">
+        <name>__unused</name>
+        <initializer>__attribute__((__unused__))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/parse_args.h" line="28" column="13" bodyfile="/home/nico/Code/rFBP/include/parse_args.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__parse_args_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__parse_args_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std<sp/>::<sp/>unique_ptr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>std<sp/>::<sp/>cerr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>std<sp/>::<sp/>move</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std<sp/>::<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std<sp/>::<sp/>stod</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>std<sp/>::<sp/>setw</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;type_traits&gt;</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>std<sp/>::<sp/>is_same_v</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdexcept&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(_MSC_VER)<sp/>&amp;&amp;<sp/>defined(__clang_major__)<sp/>&gt;<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;cxxabi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_MSC_VER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#ifndef<sp/>__unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>__unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#ifndef<sp/>__unused</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="parse__args_8h_1a2e3484535ee610c8e19e9859563abe48" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>__unused<sp/>__attribute__((__unused__))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classargument" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classargument" kindref="compound">argument</ref></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Private<sp/>members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Public<sp/>members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="classargument_1afbc3cd48436744dc80d58ba611538478" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>vector<sp/>&lt;<sp/>std<sp/>::<sp/>string<sp/>&gt;<sp/><ref refid="classargument_1afbc3cd48436744dc80d58ba611538478" kindref="member">values</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="classargument_1a7f2a70552c49a3c4bdecd885cdd0d0e3" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/><ref refid="classargument_1a7f2a70552c49a3c4bdecd885cdd0d0e3" kindref="member">name</ref>;</highlight></codeline>
+<codeline lineno="45" refid="classargument_1a612b05f0e319bd9696bab714f87d5c7f" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/><ref refid="classargument_1a612b05f0e319bd9696bab714f87d5c7f" kindref="member">short_flag</ref>;</highlight></codeline>
+<codeline lineno="46" refid="classargument_1a5b0a5e2450e4b48ee79d77d441d20b84" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/><ref refid="classargument_1a5b0a5e2450e4b48ee79d77d441d20b84" kindref="member">long_flag</ref>;</highlight></codeline>
+<codeline lineno="47" refid="classargument_1adb20cf230c08f5421e4157e33c9bdc2a" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/><ref refid="classargument_1adb20cf230c08f5421e4157e33c9bdc2a" kindref="member">help</ref>;</highlight></codeline>
+<codeline lineno="48" refid="classargument_1a10c93d0e8a5773fe0b1bd2e8f752a597" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/><ref refid="classargument_1a10c93d0e8a5773fe0b1bd2e8f752a597" kindref="member">defualt_value</ref>;</highlight></codeline>
+<codeline lineno="49" refid="classargument_1ab54c9020806111579763dc4fe2190486" refkind="member"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/><ref refid="classargument_1ab54c9020806111579763dc4fe2190486" kindref="member">data_type</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classargument_1ab67fbfd00b57dcb7bed24cc8579e1be2" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classargument_1ab67fbfd00b57dcb7bed24cc8579e1be2" kindref="member">required</ref>;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><ref refid="classargument_1ae5738480f8396d4698b6f0900d207a1b" kindref="member">argument</ref><sp/>(std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/><ref refid="classargument_1a7f2a70552c49a3c4bdecd885cdd0d0e3" kindref="member">name</ref>,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/><ref refid="classargument_1a612b05f0e319bd9696bab714f87d5c7f" kindref="member">short_flag</ref>,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/><ref refid="classargument_1a5b0a5e2450e4b48ee79d77d441d20b84" kindref="member">long_flag</ref>,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/><ref refid="classargument_1adb20cf230c08f5421e4157e33c9bdc2a" kindref="member">help</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/><ref refid="classargument_1ab67fbfd00b57dcb7bed24cc8579e1be2" kindref="member">required</ref>,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/><ref refid="classargument_1a10c93d0e8a5773fe0b1bd2e8f752a597" kindref="member">defualt_value</ref>,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/><ref refid="classargument_1ab54c9020806111579763dc4fe2190486" kindref="member">data_type</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><ref refid="classargument_1a255911ce0550dfd9052b9220e347a064" kindref="member">~argument</ref><sp/>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classArgumentParser" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classArgumentParser" kindref="compound">ArgumentParser</ref></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Static<sp/>Variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>PRINT_HELP;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER_INPUTS;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER_REQUIRED;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER_UNKNOWN;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER_INVARG;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER_OUTRANGE;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER_BOOL;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PARSER_CHAR;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Private<sp/>Members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>vector<sp/>&lt;<sp/>argument<sp/>&gt;<sp/>args;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/>description;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/>program;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><ref refid="classArgumentParser_1ae911b882ff00b4afdecb535f5ac473e2" kindref="member">ArgumentParser</ref><sp/>(<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/>description<sp/>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><ref refid="classArgumentParser_1a04c152105d2dec809a860758da2834ab" kindref="member">~ArgumentParser</ref><sp/>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Public<sp/>members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classArgumentParser_1a2d98a1ed1cbc706c4c9c0d1d3d95f923" kindref="member">parse_args</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**<sp/>argv);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Template<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>data_t<sp/>&gt;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classArgumentParser_1a7af2bcf124fcc4335f98b2054052e9b1" kindref="member">add_argument</ref><sp/>(std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/>name,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/>short_flag,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/>long_flag,<sp/>std<sp/>::<sp/>string<sp/>&amp;&amp;<sp/>help,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;<sp/>req,<sp/>data_t<sp/>default_value);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>data_t<sp/>&gt;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classArgumentParser_1a97a3f36e5710ac6e5a6a96e6d4da318e" kindref="member">get</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>name,<sp/>data_t<sp/>&amp;<sp/>values);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Private<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>print_help<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>error_index);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_type<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>data_type);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_inputs_arg<sp/>();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_required_arg<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>name);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_unknown_arg<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>name);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_invalid_arg<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>value);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_out_of_range_arg<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>value);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_bool<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>value);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>error_parsing_char<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>value);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>data_t<sp/>&gt;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>string<sp/>type_name<sp/>();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__parse_args_h__</highlight></codeline>
+    </programlisting>
+    <location file="/home/nico/Code/rFBP/include/parse_args.h"/>
+  </compounddef>
+</doxygen>

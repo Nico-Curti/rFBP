@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classParams" kind="class" language="C++" prot="public">
+    <compoundname>Params</compoundname>
+    <includes refid="params_8h" local="no">params.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class Mag</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classParams_1ae3b363942f4435743e8cbc3c4c97d5b2" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Params&lt; Mag &gt;::max_iters</definition>
+        <argsstring></argsstring>
+        <name>max_iters</name>
+        <briefdescription>
+<para>Number of iterations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="24" column="12" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParams_1a428afb75f2a1067b9238cda6f6251776" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Params&lt; Mag &gt;::damping</definition>
+        <argsstring></argsstring>
+        <name>damping</name>
+        <briefdescription>
+<para>Damping factor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="25" column="12" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParams_1a68a877715985de06e9a7a78a3f3af63d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Params&lt; Mag &gt;::epsil</definition>
+        <argsstring></argsstring>
+        <name>epsil</name>
+        <briefdescription>
+<para>Error tollerance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="26" column="12" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParams_1acbbbe3b71cec797c69a01c1662f2b0fd" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Params&lt; Mag &gt;::beta</definition>
+        <argsstring></argsstring>
+        <name>beta</name>
+        <briefdescription>
+<para>1/kT </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="27" column="12" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParams_1a61d3085b21d9ab004fb04a99547b317a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Params&lt; Mag &gt;::r</definition>
+        <argsstring></argsstring>
+        <name>r</name>
+        <briefdescription>
+<para>Number of replicas -1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="28" column="12" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParams_1a2be42cec0efbb67da808080d601bb2ce" prot="public" static="no" mutable="no">
+        <type>Mag</type>
+        <definition>Mag Params&lt; Mag &gt;::tan_gamma</definition>
+        <argsstring></argsstring>
+        <name>tan_gamma</name>
+        <briefdescription>
+<para>Hyperbolic tangent of distance weight between replicas (γ) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="29" column="12" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParams_1a022027ec32041d24fedd9ba4ecf74e16" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string Params&lt; Mag &gt;::accuracy1</definition>
+        <argsstring></argsstring>
+        <name>accuracy1</name>
+        <briefdescription>
+<para>Updating accuracy of cavity probability (messages of hidden layers) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="30" column="17" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParams_1a6ff9fcff74692be4ce6a73220abdf541" prot="public" static="no" mutable="no">
+        <type>std ::string</type>
+        <definition>std :: string Params&lt; Mag &gt;::accuracy2</definition>
+        <argsstring></argsstring>
+        <name>accuracy2</name>
+        <briefdescription>
+<para>Updating accuracy of cavity probability (messages of output node) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="31" column="17" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classParams_1aaa6fa9e4951d679d9528a5c5f1cbbd2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Params&lt; Mag &gt;::Params</definition>
+        <argsstring>(const int &amp;max_iters, const double &amp;damping, const double &amp;epsil, const double &amp;beta, const double &amp;r, const double &amp;gamma, const std ::string &amp;accuracy1, const std ::string &amp;accuracy2)</argsstring>
+        <name>Params</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>max_iters</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>damping</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>epsil</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>beta</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>gamma</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>accuracy1</declname>
+        </param>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>accuracy2</declname>
+        </param>
+        <briefdescription>
+<para>Parameter constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_iters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of iterations </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>damping</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Damping factor </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>epsil</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Error tollerance </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1 / KT </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of replicas - 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>gamma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Hyperbolic tangent of distance weight between replicas (γ) as Mag object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accuracy1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Updating accuracy of cavity probability (messages of hidden layers) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>accuracy2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Updating accuracy of cavity probability (messages of otuput node)</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>In the constructor the value of gamma is converted to the appropriated Mag type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="48" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classParams_1a5ceee8b855ab4805d2a98add371c188a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Params&lt; Mag &gt;::~Params</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Params</name>
+        <briefdescription>
+<para>Default destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/params.h" line="62" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class to wrap training parameters. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class is used by the rFBP functions to facilitate the moving of a set of training parameters along the series of functions.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization used </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/params.h" line="18" column="1" bodyfile="/home/nico/Code/rFBP/include/params.h" bodystart="17" bodyend="63"/>
+    <listofallmembers>
+      <member refid="classParams_1a022027ec32041d24fedd9ba4ecf74e16" prot="public" virt="non-virtual"><scope>Params</scope><name>accuracy1</name></member>
+      <member refid="classParams_1a6ff9fcff74692be4ce6a73220abdf541" prot="public" virt="non-virtual"><scope>Params</scope><name>accuracy2</name></member>
+      <member refid="classParams_1acbbbe3b71cec797c69a01c1662f2b0fd" prot="public" virt="non-virtual"><scope>Params</scope><name>beta</name></member>
+      <member refid="classParams_1a428afb75f2a1067b9238cda6f6251776" prot="public" virt="non-virtual"><scope>Params</scope><name>damping</name></member>
+      <member refid="classParams_1a68a877715985de06e9a7a78a3f3af63d" prot="public" virt="non-virtual"><scope>Params</scope><name>epsil</name></member>
+      <member refid="classParams_1ae3b363942f4435743e8cbc3c4c97d5b2" prot="public" virt="non-virtual"><scope>Params</scope><name>max_iters</name></member>
+      <member refid="classParams_1aaa6fa9e4951d679d9528a5c5f1cbbd2b" prot="public" virt="non-virtual"><scope>Params</scope><name>Params</name></member>
+      <member refid="classParams_1a61d3085b21d9ab004fb04a99547b317a" prot="public" virt="non-virtual"><scope>Params</scope><name>r</name></member>
+      <member refid="classParams_1a2be42cec0efbb67da808080d601bb2ce" prot="public" virt="non-virtual"><scope>Params</scope><name>tan_gamma</name></member>
+      <member refid="classParams_1a5ceee8b855ab4805d2a98add371c188a" prot="public" virt="non-virtual"><scope>Params</scope><name>~Params</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

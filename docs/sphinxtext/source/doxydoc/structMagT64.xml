@@ -1,0 +1,531 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structMagT64" kind="class" language="C++" prot="public">
+    <compoundname>MagT64</compoundname>
+    <includes refid="magT_8h" local="no">magT.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structMagT64_1a047d9cdbf47ec346b4a67e52bab7f201" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagT64::mag</definition>
+        <argsstring></argsstring>
+        <name>mag</name>
+        <briefdescription>
+<para>Magnetization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="18" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMagT64_1a677be2910878ea9079ffd30396a3457b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double MagT64::mInf</definition>
+        <argsstring></argsstring>
+        <name>mInf</name>
+        <briefdescription>
+<para>Boundary dimension. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="19" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structMagT64_1afc21778f19294b623db809ad5563625b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MagT64::MagT64</definition>
+        <argsstring>()</argsstring>
+        <name>MagT64</name>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="27" column="3" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="27" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a2a2b81b99122a1c1759d124349244db0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MagT64::MagT64</definition>
+        <argsstring>(const double &amp;x, double m=30.0)</argsstring>
+        <name>MagT64</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>m</declname>
+          <defval>30.0</defval>
+        </param>
+        <briefdescription>
+<para>Constructor with value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>boundary value</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>In <ref refid="structMagT64" kindref="compound">MagT64</ref> the magnetization is converted to a <computeroutput>value</computeroutput> given by <computeroutput>tanh(x)</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="37" column="3" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a227e57870de2690e458d6fd39a6ca333" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MagT64::~MagT64</definition>
+        <argsstring>()=default</argsstring>
+        <name>~MagT64</name>
+        <briefdescription>
+<para>Default destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="43" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1abc48366bc41134962d553f681f164dad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>MagT64::MagT64</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>MagT64</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="51" column="3" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1aab2aadbe07b001d7ef793e562e7c836a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+        <definition>MagT64&amp; MagT64::operator=</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Assigment operator constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="59" column="11" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="59" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a90146324fd2aecd0adab4d51ad05ea82" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std ::string</type>
+        <definition>std :: string MagT64::magformat</definition>
+        <argsstring>() const</argsstring>
+        <name>magformat</name>
+        <briefdescription>
+<para>Return the mag description (tanh for <ref refid="structMagT64" kindref="compound">MagT64</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="67" column="17" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a7f86599609b5917819b6a2616f102b76" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double MagT64::value</definition>
+        <argsstring>() const</argsstring>
+        <name>value</name>
+        <briefdescription>
+<para>Get the magnetization value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>In <ref refid="structMagT64" kindref="compound">MagT64</ref> the value is given by <computeroutput>tanh(mag)</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="75" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="75" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a0d2194aeaaf7cacde4a27986a68a3291" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagT64" kindref="compound">MagT64</ref></type>
+        <definition>MagT64 MagT64::operator%</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>operator%</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Add magnetization (m1 + m2)</para>
+<para><simplesect kind="note"><para>The summation exclude the <computeroutput>tanh</computeroutput> evaluation.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="89" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="89" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a8fb35f14ba28337050ae2654df6378ca" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagT64" kindref="compound">MagT64</ref></type>
+        <definition>MagT64 MagT64::operator+</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>operator+</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Just a simple addition of the mag values.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="104" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="104" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a83907b867838fb5c02a9060210310316" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagT64" kindref="compound">MagT64</ref></type>
+        <definition>MagT64 MagT64::operator/</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>operator/</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Just a simple division as (mag / x)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="114" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a4bda57efbd2d8c79d92644324623f300" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagT64" kindref="compound">MagT64</ref></type>
+        <definition>MagT64 MagT64::operator^</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>operator^</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Combine two mags.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="135" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="135" bodyend="148"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1aceba27e9d14ad97091a1fd7784e6b882" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double MagT64::operator-</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtract values (val1 - val2)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="158" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="158" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1aaf724b3d17fe1ea52ec17c1ad1f5e772" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structMagT64" kindref="compound">MagT64</ref></type>
+        <definition>MagT64 MagT64::operator-</definition>
+        <argsstring>() const</argsstring>
+        <name>operator-</name>
+        <briefdescription>
+<para>Get a magnetization with a flipped sign. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>flip magnetization sign </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="166" column="10" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="166" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a3227d1822e240768d969769574c49504" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MagT64::operator==</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Check magnetization equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compare magnetizations</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="178" column="8" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="178" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="structMagT64_1a975f0132339f8e25cc247534d7f31666" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MagT64::operator!=</definition>
+        <argsstring>(const MagT64 &amp;m)</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Check magnetization not equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>compare magnetizations</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="188" column="8" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="188" bodyend="188"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="structMagT64_1a150f11a5328199c8dcc12652ea7d6099" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>friend double</type>
+        <definition>double operator*</definition>
+        <argsstring>(const double &amp;x, const MagT64 &amp;m)</argsstring>
+        <name>operator*</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Overload operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Just a simple product as (x * mag)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>double value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="125" column="17" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="friend" id="structMagT64_1afc9ec333d6368a284f01608c648f0beb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend std ::ostream &amp;</type>
+        <definition>std :: ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std ::ostream &amp;os, const MagT64 &amp;m)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std ::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structMagT64" kindref="compound">MagT64</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Print operator with stdout/stderr. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>print mag</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ostream operator </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structMagT64" kindref="compound">MagT64</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/magT.h" line="199" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Abstract type representing magnetization type chosen for cavity messages. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="note"><para><ref refid="structMagT64" kindref="compound">MagT64</ref> means a double type wit <computeroutput>tanh</computeroutput> application. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/magT.h" line="16" column="1" bodyfile="/home/nico/Code/rFBP/include/magT.h" bodystart="15" bodyend="200"/>
+    <listofallmembers>
+      <member refid="structMagT64_1a047d9cdbf47ec346b4a67e52bab7f201" prot="public" virt="non-virtual"><scope>MagT64</scope><name>mag</name></member>
+      <member refid="structMagT64_1a90146324fd2aecd0adab4d51ad05ea82" prot="public" virt="non-virtual"><scope>MagT64</scope><name>magformat</name></member>
+      <member refid="structMagT64_1afc21778f19294b623db809ad5563625b" prot="public" virt="non-virtual"><scope>MagT64</scope><name>MagT64</name></member>
+      <member refid="structMagT64_1a2a2b81b99122a1c1759d124349244db0" prot="public" virt="non-virtual"><scope>MagT64</scope><name>MagT64</name></member>
+      <member refid="structMagT64_1abc48366bc41134962d553f681f164dad" prot="public" virt="non-virtual"><scope>MagT64</scope><name>MagT64</name></member>
+      <member refid="structMagT64_1a677be2910878ea9079ffd30396a3457b" prot="public" virt="non-virtual"><scope>MagT64</scope><name>mInf</name></member>
+      <member refid="structMagT64_1a975f0132339f8e25cc247534d7f31666" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator!=</name></member>
+      <member refid="structMagT64_1a0d2194aeaaf7cacde4a27986a68a3291" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator%</name></member>
+      <member refid="structMagT64_1a150f11a5328199c8dcc12652ea7d6099" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator*</name></member>
+      <member refid="structMagT64_1a8fb35f14ba28337050ae2654df6378ca" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator+</name></member>
+      <member refid="structMagT64_1aceba27e9d14ad97091a1fd7784e6b882" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator-</name></member>
+      <member refid="structMagT64_1aaf724b3d17fe1ea52ec17c1ad1f5e772" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator-</name></member>
+      <member refid="structMagT64_1a83907b867838fb5c02a9060210310316" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator/</name></member>
+      <member refid="structMagT64_1afc9ec333d6368a284f01608c648f0beb" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator&lt;&lt;</name></member>
+      <member refid="structMagT64_1aab2aadbe07b001d7ef793e562e7c836a" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator=</name></member>
+      <member refid="structMagT64_1a3227d1822e240768d969769574c49504" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator==</name></member>
+      <member refid="structMagT64_1a4bda57efbd2d8c79d92644324623f300" prot="public" virt="non-virtual"><scope>MagT64</scope><name>operator^</name></member>
+      <member refid="structMagT64_1a7f86599609b5917819b6a2616f102b76" prot="public" virt="non-virtual"><scope>MagT64</scope><name>value</name></member>
+      <member refid="structMagT64_1a227e57870de2690e458d6fd39a6ca333" prot="public" virt="non-virtual"><scope>MagT64</scope><name>~MagT64</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

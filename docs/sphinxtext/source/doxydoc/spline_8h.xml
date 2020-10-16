@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="spline_8h" kind="file" language="C++">
+    <compoundname>spline.h</compoundname>
+    <includes local="no">memory</includes>
+    <includes local="no">array</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">iterator</includes>
+    <includes local="no">utils.hpp</includes>
+    <includedby refid="atanherf_8h" local="no">/home/nico/Code/rFBP/include/atanherf.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/spline.h</label>
+        <link refid="spline_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>iterator</label>
+      </node>
+      <node id="5">
+        <label>fstream</label>
+      </node>
+      <node id="8">
+        <label>utils.hpp</label>
+      </node>
+      <node id="3">
+        <label>array</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="4">
+        <label>algorithm</label>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>/home/nico/Code/rFBP/include/magnetization.h</label>
+        <link refid="magnetization_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>/home/nico/Code/rFBP/include/params.h</label>
+        <link refid="params_8h"/>
+      </node>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/spline.h</label>
+        <link refid="spline_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/home/nico/Code/rFBP/include/magnetization_oldgcc.h</label>
+        <link refid="magnetization__oldgcc_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/home/nico/Code/rFBP/include/magT.h</label>
+        <link refid="magT_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/home/nico/Code/rFBP/include/cavity_message.h</label>
+        <link refid="cavity__message_8h"/>
+      </node>
+      <node id="2">
+        <label>/home/nico/Code/rFBP/include/atanherf.h</label>
+        <link refid="atanherf_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classband__matrix" prot="public">band_matrix</innerclass>
+    <innerclass refid="classspline" prot="public">spline</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="spline_8h_1aa40cd0f4521ae0bb24b2bcf889241fa0" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double one_third</definition>
+        <argsstring></argsstring>
+        <name>one_third</name>
+        <initializer>= 1. / 3.</initializer>
+        <briefdescription>
+<para>shortcut for 1/3 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="20" column="25" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="spline_8h_1a214c1ad7df2b307e24ff41a63a037161" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double two_third</definition>
+        <argsstring></argsstring>
+        <name>two_third</name>
+        <initializer>= 2. / 3.</initializer>
+        <briefdescription>
+<para>shortcut for 2/3 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="21" column="25" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="spline_8h_1ab7eab7e186e987fce6a7709b869ff553" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std ::ostream &amp;</type>
+        <definition>std :: ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std ::ostream &amp;os, const spline &amp;s)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std ::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classspline" kindref="compound">spline</ref> &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="192" column="1" declfile="/home/nico/Code/rFBP/include/spline.h" declline="192" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__spline_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__spline_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iterator&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;numeric&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/>#include<sp/>&lt;cassert&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utils.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>one_third<sp/>=<sp/>1.<sp/>/<sp/>3.;<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>two_third<sp/>=<sp/>2.<sp/>/<sp/>3.;<sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classband__matrix" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classband__matrix" kindref="compound">band_matrix</ref></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Member<sp/>variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>array<sp/>&lt;<sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;,<sp/>2<sp/>&gt;<sp/>m_upper;<sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>array<sp/>&lt;<sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;,<sp/>2<sp/>&gt;<sp/>m_lower;<sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>dim;<sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><ref refid="classband__matrix_1a9567b236ee59bfc502ef45df20efeac8" kindref="member">band_matrix</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>dim);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><ref refid="classband__matrix_1a712ef383b6abe84612f0a544b8f31dff" kindref="member">~band_matrix</ref><sp/>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/><ref refid="classband__matrix_1a0dc09284795bf1f55cb28a8e515ef511" kindref="member">operator () </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>j);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classband__matrix_1a0dc09284795bf1f55cb28a8e515ef511" kindref="member">operator () </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>i,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>j)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Public<sp/>Members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/><ref refid="classband__matrix_1a0e546c41339f085f8adba5f9073d167f" kindref="member">lu_solve</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>b);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Private<sp/>members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>lu_decompose<sp/>();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/>l_solve<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>b)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/>r_solve<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>b)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="classspline" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classspline" kindref="compound">spline</ref></highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562acaa5265607dc952969444f6fdda1196c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref><sp/>{<sp/><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562a616c8d193727d6c1f9c00ae03895a2f5" kindref="member">first_deriv</ref><sp/>=<sp/>1,<sp/><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562acaa5265607dc952969444f6fdda1196c" kindref="member">second_deriv</ref><sp/>=<sp/>2};</highlight></codeline>
+<codeline lineno="104" refid="classspline_1a7e13c846e69e3fb88791979b793a0cdf" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classspline_1a7e13c846e69e3fb88791979b793a0cdf" kindref="member">spline_type</ref><sp/>{<sp/><ref refid="classspline_1a7e13c846e69e3fb88791979b793a0cdfa4f354c1fde132173f9cd8fe6f327e2c7" kindref="member">linear_spline</ref><sp/>=<sp/>1,<sp/><ref refid="classspline_1a7e13c846e69e3fb88791979b793a0cdfa05b989e6bc94f72f4280c3b8dddd25cc" kindref="member">cubic_spline</ref><sp/>=<sp/>2};</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/>mx;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/>my;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/>ma;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/>mb;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>unique_ptr<sp/>&lt;<sp/>double[]<sp/>&gt;<sp/>mc;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mb0;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mc0;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>m_left_value;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>m_right_value;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref><sp/>m_left;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref><sp/>m_right;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>m_force_linear_extrapolation;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>_assert_increasing<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>t,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>nt);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><ref refid="classspline_1abc04226bf49bc27e1f9ea014d06ee478" kindref="member">spline</ref><sp/>();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>constructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><ref refid="classspline_1abc04226bf49bc27e1f9ea014d06ee478" kindref="member">spline</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classspline" kindref="compound">spline</ref><sp/>&amp;<sp/>s);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><ref refid="classspline" kindref="compound">spline</ref><sp/>&amp;<sp/><ref refid="classspline_1a2d82d6d639b6ecbc66b7a9829f6b0ee2" kindref="member">operator = </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classspline" kindref="compound">spline</ref><sp/>&amp;<sp/>s);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Destructors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><ref refid="classspline_1ab6ca25a1025a1e4c4f632e5a4497ad12" kindref="member">~spline</ref><sp/>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Operators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classspline_1a7c7ebb0487a01c78e0eb4c35c8a3cc7f" kindref="member">operator() </ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Public<sp/>members</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classspline_1a77cf81573cb3b22fd00c0331c77c0635" kindref="member">set_boundary</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref><sp/>&amp;<sp/>left,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>left_value,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref><sp/>&amp;<sp/>right,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>right_value,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>force_linear_extrapolation<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classspline_1aae7cb5a22d03458718da8def5adf663c" kindref="member">set_points</ref><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>&amp;<sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>npts,<sp/><ref refid="classspline_1a7e13c846e69e3fb88791979b793a0cdf" kindref="member">spline_type</ref><sp/>type<sp/>=<sp/><ref refid="classspline_1a7e13c846e69e3fb88791979b793a0cdfa05b989e6bc94f72f4280c3b8dddd25cc" kindref="member">cubic_spline</ref>);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classspline_1af825ac24fcdaf2c45218d459c5a88715" kindref="member">deriv</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>order,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>x)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classspline_1ab736d49fb0142f5a7e65720effcee609" kindref="member">load_points</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classspline_1a7ad0f993f9f64cbc12ba190912ffac7b" kindref="member">dump_points</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">friend</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>ostream<sp/>&amp;<sp/><ref refid="classspline_1ab7eab7e186e987fce6a7709b869ff553" kindref="member">operator &lt;&lt; </ref>(std<sp/>::<sp/>ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classspline" kindref="compound">spline</ref><sp/>&amp;<sp/>s);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal">std<sp/>::<sp/>ostream<sp/>&amp;<sp/><ref refid="spline_8h_1ab7eab7e186e987fce6a7709b869ff553" kindref="member">operator &lt;&lt; </ref>(std<sp/>::<sp/>ostream<sp/>&amp;<sp/>os,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classspline" kindref="compound">spline</ref><sp/>&amp;<sp/>s);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__spline_h__</highlight></codeline>
+    </programlisting>
+    <location file="/home/nico/Code/rFBP/include/spline.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,942 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="errors_8h" kind="file" language="C++">
+    <compoundname>errors.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">string</includes>
+    <includedby refid="cavity__message_8h" local="no">/home/nico/Code/rFBP/include/cavity_message.h</includedby>
+    <includedby refid="cmd_8h" local="no">/home/nico/Code/rFBP/include/cmd.h</includedby>
+    <includedby refid="fprotocol_8h" local="no">/home/nico/Code/rFBP/include/fprotocol.h</includedby>
+    <includedby refid="pattern_8h" local="no">/home/nico/Code/rFBP/include/pattern.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/errors.h</label>
+        <link refid="errors_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>/home/nico/Code/rFBP/include/cmd.h</label>
+        <link refid="cmd_8h"/>
+      </node>
+      <node id="1">
+        <label>/home/nico/Code/rFBP/include/errors.h</label>
+        <link refid="errors_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/home/nico/Code/rFBP/include/rfbp.h</label>
+        <link refid="rfbp_8h"/>
+      </node>
+      <node id="6">
+        <label>/home/nico/Code/rFBP/include/pattern.h</label>
+        <link refid="pattern_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/home/nico/Code/rFBP/include/fprotocol.h</label>
+        <link refid="fprotocol_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/home/nico/Code/rFBP/include/cavity_message.h</label>
+        <link refid="cavity__message_8h"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="errors_8h_1af7df0ad8b42cb5db0610cfe9c8e59582" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_POSITIVE</definition>
+        <argsstring></argsstring>
+        <name>ERROR_POSITIVE</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="7" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1a2c61dbde9a3b98f206351ac5203521ed" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_RANGE</definition>
+        <argsstring></argsstring>
+        <name>ERROR_RANGE</name>
+        <initializer>= 2</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="8" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1a139bd78a9ee509c475ca2b2e666079a7" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_ACCURACY</definition>
+        <argsstring></argsstring>
+        <name>ERROR_ACCURACY</name>
+        <initializer>= 3</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="9" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1af72a961007e36bd666f4f81a796e7e3c" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_EXACT</definition>
+        <argsstring></argsstring>
+        <name>ERROR_EXACT</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="10" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1a204363744dbdc9c089cb2dee98924f54" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_INFINITE</definition>
+        <argsstring></argsstring>
+        <name>ERROR_INFINITE</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="11" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1a3b673ce511e9d12112bad4e4f0536e1d" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_WEIGHTS</definition>
+        <argsstring></argsstring>
+        <name>ERROR_WEIGHTS</name>
+        <initializer>= 6</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="12" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1a481dffd862ebe4359f34c05835917426" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PATTERN</name>
+        <initializer>= 7</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="13" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1ab2bb89fd0ee6c6cf9c147b45c346b065" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_PROTOCOL</definition>
+        <argsstring></argsstring>
+        <name>ERROR_PROTOCOL</name>
+        <initializer>= 8</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="14" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1ad045d76bb2f10e41a073f3b69b484f35" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_MESSAGES</definition>
+        <argsstring></argsstring>
+        <name>ERROR_MESSAGES</name>
+        <initializer>= 91</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="15" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1a01ee72480d145b5be4044631e75aed38" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_INVALID_MESSAGES</definition>
+        <argsstring></argsstring>
+        <name>ERROR_INVALID_MESSAGES</name>
+        <initializer>= 92</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="16" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1a4ddbc10886f855553bace524ea902e54" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_MAGNETIZATION</definition>
+        <argsstring></argsstring>
+        <name>ERROR_MAGNETIZATION</name>
+        <initializer>= 111</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="18" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="errors_8h_1aba2a7a88d4b517ca18f365c88aeffbfb" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int ERROR_ATANHERF_FILE</definition>
+        <argsstring></argsstring>
+        <name>ERROR_ATANHERF_FILE</name>
+        <initializer>= 112</initializer>
+        <briefdescription>
+<para>Return Error. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="19" column="22" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="errors_8h_1a7a10737754a7ac8da57a62943898b033" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_Npositive</definition>
+        <argsstring>(const long int &amp;N)</argsstring>
+        <name>error_Npositive</name>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because N is not positive. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of N </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="26" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="26" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a55ec9ebb09c378041aee2c6a552f0258" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_Kpositive</definition>
+        <argsstring>(const int &amp;K)</argsstring>
+        <name>error_Kpositive</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because K is not positive. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of K. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="37" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="37" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a83ecc34fd251b031e331634e5cf087b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_maxiters</definition>
+        <argsstring>(const long int &amp;max_iters)</argsstring>
+        <name>error_maxiters</name>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>max_iters</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because max_iters is not positive. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_iters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of max_iters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="48" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="48" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1af702a38086bdffcbf435149b7d461a5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_maxsteps</definition>
+        <argsstring>(const long int &amp;max_steps)</argsstring>
+        <name>error_maxsteps</name>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>max_steps</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because max_steps is not positive. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_steps</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of max_stes. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="59" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="59" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a57d96e5d944871639cd3b5d6da450b70" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_damping</definition>
+        <argsstring>(const double &amp;damping)</argsstring>
+        <name>error_damping</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>damping</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because damping is not bounded in [0, 1). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>damping</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of damping. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="70" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="70" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a0272f6e2a5f1c8689724bd180c0507f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_randfact</definition>
+        <argsstring>(const double &amp;randfact)</argsstring>
+        <name>error_randfact</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>randfact</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because randfact is not bounded in [0, 1). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>randfact</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of randfact. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="81" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="81" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a8e0c6ffeea8ac0024ba8a10daf4dc312" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_accuracy</definition>
+        <argsstring>(const std ::string &amp;accuracy)</argsstring>
+        <name>error_accuracy</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>accuracy</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because accuracy has not a valid value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accuracy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of accuracy. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="92" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="92" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1ab68b786503bdfac0316a6f4c32562b05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_num_accuracy</definition>
+        <argsstring>()</argsstring>
+        <name>error_num_accuracy</name>
+        <briefdescription>
+<para>Raise error because too many accuracies were given. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="102" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="102" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a24d1870c36ab38ccbe6e7d1bb519647a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_accuracy1</definition>
+        <argsstring>(const std ::string &amp;accuracy1)</argsstring>
+        <name>error_accuracy1</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>accuracy1</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because accuracy1 has not a valid value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accuracy1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of accuracy1. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="113" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="113" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1ada7b1973fd97d3db65e552a34c564a2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_accuracy2</definition>
+        <argsstring>(const std ::string &amp;accuracy2)</argsstring>
+        <name>error_accuracy2</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>accuracy2</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because accuracy2 has not a valid value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>accuracy2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of accuracy2. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="124" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="124" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1ac02527e121d58b9605150300c3e69e5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_Nexact</definition>
+        <argsstring>(const int &amp;N)</argsstring>
+        <name>error_Nexact</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because with accuracy1 == &apos;exact&apos; the value of N must be odd. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of N. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="135" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="135" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a114eda310d33faaf8db0937089ef222e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_Kexact</definition>
+        <argsstring>(const int &amp;K)</argsstring>
+        <name>error_Kexact</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>K</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because with accuracy2 == &apos;exact&apos; the value of K must be odd. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>K</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of K. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="146" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="146" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a2604b385b260ea81e6ca7a84ebabe469" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_infinite</definition>
+        <argsstring>(const double &amp;beta)</argsstring>
+        <name>error_infinite</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>beta</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because beta is finite (not yet supported). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>beta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of beta. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="157" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="157" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a0144ec77ff77b36681160929813db49e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_message_weights</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>error_message_weights</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because weight filename is not found. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of filename. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="171" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="171" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a36a30d189ebf1f98d314574e07f7bab2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_pattern</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>error_pattern</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because input filename is not found. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of filename. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="185" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="185" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1af89099b31f43cff5e52819f96258d9cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_protocol</definition>
+        <argsstring>(const std ::string &amp;prot)</argsstring>
+        <name>error_protocol</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>prot</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because protocol type is invalid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of protocol type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="196" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="196" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1abd454f09a2a1156a763f5c52e7d990e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_messages</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>error_messages</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because messages filename is not found. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of filename. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="209" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="209" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a1815de99d50fa7138e18c1ea46cb89c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_invalid_messages</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>error_invalid_messages</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because messages filename is not well formatted. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of filename. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="220" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="220" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a03d59df59bdbfb2b00e4cccd62fa6ec2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_magnetization</definition>
+        <argsstring>(const int &amp;mag)</argsstring>
+        <name>error_magnetization</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>mag</declname>
+        </param>
+        <briefdescription>
+<para>Raise error because Mag parameter is not valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The given value of mag. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="231" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="231" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="errors_8h_1a122ae49d2abec637240b5fc5f9a78158" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void error_atanherf_file</definition>
+        <argsstring>()</argsstring>
+        <name>error_atanherf_file</name>
+        <briefdescription>
+<para>Raise error because atanherf interpolation filename is not found. It suggests how to download it. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/errors.h" line="242" column="13" bodyfile="/home/nico/Code/rFBP/include/errors.h" bodystart="242" bodyend="250"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__errors_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__errors_h__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_POSITIVE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>1;<sp/><sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_RANGE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>2;<sp/><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_ACCURACY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>3;<sp/><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_EXACT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>4;<sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_INFINITE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>5;<sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_WEIGHTS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>6;<sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PATTERN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>7;<sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_PROTOCOL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>8;<sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_MESSAGES<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>91;<sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_INVALID_MESSAGES<sp/>=<sp/>92;<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>ERRORS<sp/>101-105<sp/>are<sp/>related<sp/>to<sp/>raising<sp/>errors<sp/>in<sp/>parse_args.h</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_MAGNETIZATION<sp/><sp/><sp/><sp/>=<sp/>111;<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ERROR_ATANHERF_FILE<sp/><sp/><sp/><sp/>=<sp/>112;<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="errors_8h_1a7a10737754a7ac8da57a62943898b033" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a7a10737754a7ac8da57a62943898b033" kindref="member">error_Npositive</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>N)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;N<sp/>must<sp/>be<sp/>positive;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>N<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_POSITIVE);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="errors_8h_1a55ec9ebb09c378041aee2c6a552f0258" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a55ec9ebb09c378041aee2c6a552f0258" kindref="member">error_Kpositive</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>K)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;K<sp/>must<sp/>be<sp/>positive;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>K<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_POSITIVE);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="errors_8h_1a83ecc34fd251b031e331634e5cf087b7" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a83ecc34fd251b031e331634e5cf087b7" kindref="member">error_maxiters</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>max_iters)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;max_iters<sp/>must<sp/>be<sp/>non-negative;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>max_iters<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_POSITIVE);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="errors_8h_1af702a38086bdffcbf435149b7d461a5f" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1af702a38086bdffcbf435149b7d461a5f" kindref="member">error_maxsteps</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>max_steps)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;max_steps<sp/>must<sp/>be<sp/>non-negative;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>max_steps<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_POSITIVE);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="errors_8h_1a57d96e5d944871639cd3b5d6da450b70" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a57d96e5d944871639cd3b5d6da450b70" kindref="member">error_damping</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>damping)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;damping<sp/>must<sp/>be<sp/>in<sp/>[0,1);<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>damping<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_RANGE);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="errors_8h_1a0272f6e2a5f1c8689724bd180c0507f3" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a0272f6e2a5f1c8689724bd180c0507f3" kindref="member">error_randfact</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>randfact)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;randfact<sp/>must<sp/>be<sp/>in<sp/>[0,1);<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>randfact<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_RANGE);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="errors_8h_1a8e0c6ffeea8ac0024ba8a10daf4dc312" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a8e0c6ffeea8ac0024ba8a10daf4dc312" kindref="member">error_accuracy</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>accuracy)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>accuracy<sp/>variable<sp/>given.<sp/>Given<sp/>:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>accuracy<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_ACCURACY);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="errors_8h_1ab68b786503bdfac0316a6f4c32562b05" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1ab68b786503bdfac0316a6f4c32562b05" kindref="member">error_num_accuracy</ref><sp/>()</highlight></codeline>
+<codeline lineno="103"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Too<sp/>many<sp/>accuracy<sp/>variables<sp/>given.<sp/>Needed<sp/>two.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_ACCURACY);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="errors_8h_1a24d1870c36ab38ccbe6e7d1bb519647a" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a24d1870c36ab38ccbe6e7d1bb519647a" kindref="member">error_accuracy1</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>accuracy1)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;accuracy1<sp/>must<sp/>be<sp/>one<sp/>of<sp/>&apos;exact&apos;,<sp/>&apos;accurate&apos;<sp/>or<sp/>&apos;none&apos;;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>accuracy1<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_ACCURACY);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="errors_8h_1ada7b1973fd97d3db65e552a34c564a2b" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1ada7b1973fd97d3db65e552a34c564a2b" kindref="member">error_accuracy2</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>accuracy2)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;accuracy2<sp/>must<sp/>be<sp/>one<sp/>of<sp/>&apos;exact&apos;,<sp/>&apos;accurate&apos;<sp/>or<sp/>&apos;none&apos;;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>accuracy2<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_ACCURACY);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="errors_8h_1ac02527e121d58b9605150300c3e69e5e" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1ac02527e121d58b9605150300c3e69e5e" kindref="member">error_Nexact</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>N)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;when<sp/>accuracy1<sp/>==<sp/>&apos;exact&apos;,<sp/>N<sp/>must<sp/>be<sp/>odd;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>N<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_EXACT);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="errors_8h_1a114eda310d33faaf8db0937089ef222e" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a114eda310d33faaf8db0937089ef222e" kindref="member">error_Kexact</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>K)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;when<sp/>accuracy2<sp/>==<sp/>&apos;exact&apos;,<sp/>K<sp/>must<sp/>be<sp/>odd;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>K<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_EXACT);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="errors_8h_1a2604b385b260ea81e6ca7a84ebabe469" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a2604b385b260ea81e6ca7a84ebabe469" kindref="member">error_infinite</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>&amp;<sp/>beta)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_OPENMP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>omp<sp/>single</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;finite<sp/>beta<sp/>not<sp/>yet<sp/>supported;<sp/>given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>beta<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_INFINITE);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="errors_8h_1a0144ec77ff77b36681160929813db49e" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a0144ec77ff77b36681160929813db49e" kindref="member">error_message_weights</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename)</highlight></codeline>
+<codeline lineno="172"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_OPENMP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>omp<sp/>single</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Weights<sp/>file<sp/>not<sp/>found!<sp/>Given<sp/>:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>filename<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_WEIGHTS);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="errors_8h_1a36a30d189ebf1f98d314574e07f7bab2" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a36a30d189ebf1f98d314574e07f7bab2" kindref="member">error_pattern</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Input<sp/>file<sp/>not<sp/>found!<sp/>Given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>filename<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_PATTERN);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196" refid="errors_8h_1af89099b31f43cff5e52819f96258d9cc" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1af89099b31f43cff5e52819f96258d9cc" kindref="member">error_protocol</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>prot)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>protocol<sp/>parameter.<sp/>Given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>prot</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;.<sp/>Possible<sp/>values<sp/>are<sp/>\&quot;scoping\&quot;,<sp/>\&quot;pseudo_reinforcement\&quot;,<sp/>\&quot;free_scoping\&quot;<sp/>and<sp/>\&quot;standard_reinforcement\&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_PATTERN);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209" refid="errors_8h_1abd454f09a2a1156a763f5c52e7d990e7" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1abd454f09a2a1156a763f5c52e7d990e7" kindref="member">error_messages</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Messages<sp/>file<sp/>not<sp/>found!<sp/>Given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>filename<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_MESSAGES);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="errors_8h_1a1815de99d50fa7138e18c1ea46cb89c9" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a1815de99d50fa7138e18c1ea46cb89c9" kindref="member">error_invalid_messages</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std<sp/>::<sp/>string<sp/>&amp;<sp/>filename)</highlight></codeline>
+<codeline lineno="221"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>messages<sp/>file!<sp/>Given:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>filename<sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_INVALID_MESSAGES);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231" refid="errors_8h_1a03d59df59bdbfb2b00e4cccd62fa6ec2" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a03d59df59bdbfb2b00e4cccd62fa6ec2" kindref="member">error_magnetization</ref><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/><ref refid="namespacemag" kindref="compound">mag</ref>)</highlight></codeline>
+<codeline lineno="232"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>magnetization<sp/>found.<sp/>Given<sp/>:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="namespacemag" kindref="compound">mag</ref><sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_MAGNETIZATION);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="errors_8h_1a122ae49d2abec637240b5fc5f9a78158" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="errors_8h_1a122ae49d2abec637240b5fc5f9a78158" kindref="member">error_atanherf_file</ref><sp/>()</highlight></codeline>
+<codeline lineno="243"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Atanherf<sp/>interpolation<sp/>coefficients<sp/>file<sp/>not<sp/>found.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>Please<sp/>download<sp/>it<sp/>before<sp/>running<sp/>to<sp/>prevent<sp/>some<sp/>troubles.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>The<sp/>appropriated<sp/>script<sp/>could<sp/>be<sp/>used<sp/>and<sp/>you<sp/>can<sp/>find<sp/>it<sp/>in<sp/>the<sp/>&apos;scripts&apos;<sp/>directory.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/>Just<sp/>run<sp/>&apos;python<sp/>download_atanherf.py&apos;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>std<sp/>::<sp/>endl;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/>std<sp/>::<sp/>exit(ERROR_ATANHERF_FILE);</highlight></codeline>
+<codeline lineno="250"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/>//<sp/>__errors_h__</highlight></codeline>
+    </programlisting>
+    <location file="/home/nico/Code/rFBP/include/errors.h"/>
+  </compounddef>
+</doxygen>

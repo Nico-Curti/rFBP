@@ -1,0 +1,529 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classspline" kind="class" language="C++" prot="public">
+    <compoundname>spline</compoundname>
+    <includes refid="spline_8h" local="no">spline.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classspline_1a4e92a172f86289ee7171a07f1bdbf562" prot="public" static="no" strong="no">
+        <type></type>
+        <name>bd_type</name>
+        <enumvalue id="classspline_1a4e92a172f86289ee7171a07f1bdbf562a616c8d193727d6c1f9c00ae03895a2f5" prot="public">
+          <name>first_deriv</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classspline_1a4e92a172f86289ee7171a07f1bdbf562acaa5265607dc952969444f6fdda1196c" prot="public">
+          <name>second_deriv</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="103" column="15" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="103" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="enum" id="classspline_1a7e13c846e69e3fb88791979b793a0cdf" prot="public" static="no" strong="no">
+        <type></type>
+        <name>spline_type</name>
+        <enumvalue id="classspline_1a7e13c846e69e3fb88791979b793a0cdfa4f354c1fde132173f9cd8fe6f327e2c7" prot="public">
+          <name>linear_spline</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classspline_1a7e13c846e69e3fb88791979b793a0cdfa05b989e6bc94f72f4280c3b8dddd25cc" prot="public">
+          <name>cubic_spline</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="104" column="19" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="104" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classspline_1a77d44fd51ae3b60033e40404276c3f10" prot="private" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; spline::mx</definition>
+        <argsstring></argsstring>
+        <name>mx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="108" column="22" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a68794bf7253274b6be88226985f9bef1" prot="private" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; spline::my</definition>
+        <argsstring></argsstring>
+        <name>my</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="109" column="22" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1af8b6113b56686a9c0c4c432141194584" prot="private" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; spline::ma</definition>
+        <argsstring></argsstring>
+        <name>ma</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="110" column="22" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a95a8e16c2d68dc4b06c4e0901bc4bc47" prot="private" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; spline::mb</definition>
+        <argsstring></argsstring>
+        <name>mb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="111" column="22" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a4cc94d5b86a9506ac96d8bff06f662fe" prot="private" static="no" mutable="no">
+        <type>std ::unique_ptr&lt; double[] &gt;</type>
+        <definition>std :: unique_ptr&lt; double[] &gt; spline::mc</definition>
+        <argsstring></argsstring>
+        <name>mc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="112" column="22" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a79faad47611d9134c8c4881bb8bbb4b9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double spline::mb0</definition>
+        <argsstring></argsstring>
+        <name>mb0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="114" column="10" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a44dc33bac2328146277d206569201f18" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double spline::mc0</definition>
+        <argsstring></argsstring>
+        <name>mc0</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="115" column="10" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a2fcffa439aa94caf14380b99f279536f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double spline::m_left_value</definition>
+        <argsstring></argsstring>
+        <name>m_left_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="116" column="10" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a900ebd61c9a3632f9549cafa13c28e64" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double spline::m_right_value</definition>
+        <argsstring></argsstring>
+        <name>m_right_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="117" column="10" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a3b7fbcce23bfaed09502b87aed056148" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int spline::n</definition>
+        <argsstring></argsstring>
+        <name>n</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="119" column="7" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a49bd02e8a8cd7875b090a867bc31cba4" prot="private" static="no" mutable="no">
+        <type><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref></type>
+        <definition>bd_type spline::m_left</definition>
+        <argsstring></argsstring>
+        <name>m_left</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="121" column="11" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1a35b09db6dc89706279d7a542cb540e02" prot="private" static="no" mutable="no">
+        <type><ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref></type>
+        <definition>bd_type spline::m_right</definition>
+        <argsstring></argsstring>
+        <name>m_right</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="122" column="11" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classspline_1ad61c1f0dfdb15275fd48d48b88079780" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool spline::m_force_linear_extrapolation</definition>
+        <argsstring></argsstring>
+        <name>m_force_linear_extrapolation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="124" column="8" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classspline_1abc04226bf49bc27e1f9ea014d06ee478" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>spline::spline</definition>
+        <argsstring>()</argsstring>
+        <name>spline</name>
+        <briefdescription>
+<para>default constructor </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="141" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1a1538afb6be3ba889cf881ee69c110e41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>spline::spline</definition>
+        <argsstring>(const spline &amp;s)</argsstring>
+        <name>spline</name>
+        <param>
+          <type>const <ref refid="classspline" kindref="compound">spline</ref> &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>copy constructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>spline object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="151" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1a2d82d6d639b6ecbc66b7a9829f6b0ee2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classspline" kindref="compound">spline</ref> &amp;</type>
+        <definition>spline&amp; spline::operator=</definition>
+        <argsstring>(const spline &amp;s)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classspline" kindref="compound">spline</ref> &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>assignment operator constructor </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>s</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>spline object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="158" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1ab6ca25a1025a1e4c4f632e5a4497ad12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>spline::~spline</definition>
+        <argsstring>()=default</argsstring>
+        <name>~spline</name>
+        <briefdescription>
+<para>destructor set as default </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="166" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1a7c7ebb0487a01c78e0eb4c35c8a3cc7f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double spline::operator()</definition>
+        <argsstring>(const double &amp;x) const</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>get spline interpolation value </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>coordinate</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>double interpolation value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="178" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1a77cf81573cb3b22fd00c0331c77c0635" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void spline::set_boundary</definition>
+        <argsstring>(const bd_type &amp;left, const double &amp;left_value, const bd_type &amp;right, const double &amp;right_value, bool force_linear_extrapolation=false)</argsstring>
+        <name>set_boundary</name>
+        <param>
+          <type>const <ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref> &amp;</type>
+          <declname>left</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>left_value</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" kindref="member">bd_type</ref> &amp;</type>
+          <declname>right</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>right_value</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>force_linear_extrapolation</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="182" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1aae7cb5a22d03458718da8def5adf663c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void spline::set_points</definition>
+        <argsstring>(double *&amp;x, double *&amp;y, const int &amp;npts, spline_type type=cubic_spline)</argsstring>
+        <name>set_points</name>
+        <param>
+          <type>double *&amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double *&amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>npts</declname>
+        </param>
+        <param>
+          <type><ref refid="classspline_1a7e13c846e69e3fb88791979b793a0cdf" kindref="member">spline_type</ref></type>
+          <declname>type</declname>
+          <defval><ref refid="classspline_1a7e13c846e69e3fb88791979b793a0cdfa05b989e6bc94f72f4280c3b8dddd25cc" kindref="member">cubic_spline</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="183" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1af825ac24fcdaf2c45218d459c5a88715" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double spline::deriv</definition>
+        <argsstring>(const int &amp;order, const double &amp;x) const</argsstring>
+        <name>deriv</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>order</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="184" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1ab736d49fb0142f5a7e65720effcee609" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void spline::load_points</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>load_points</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="186" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classspline_1a7ad0f993f9f64cbc12ba190912ffac7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void spline::dump_points</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>dump_points</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="187" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classspline_1ab7eab7e186e987fce6a7709b869ff553" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend std ::ostream &amp;</type>
+        <definition>std :: ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std ::ostream &amp;os, const spline &amp;s)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std ::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classspline" kindref="compound">spline</ref> &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/spline.h" line="189" column="10"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/spline.h" line="99" column="1" bodyfile="/home/nico/Code/rFBP/include/spline.h" bodystart="98" bodyend="190"/>
+    <listofallmembers>
+      <member refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562" prot="public" virt="non-virtual"><scope>spline</scope><name>bd_type</name></member>
+      <member refid="classspline_1a7e13c846e69e3fb88791979b793a0cdfa05b989e6bc94f72f4280c3b8dddd25cc" prot="public" virt="non-virtual"><scope>spline</scope><name>cubic_spline</name></member>
+      <member refid="classspline_1af825ac24fcdaf2c45218d459c5a88715" prot="public" virt="non-virtual"><scope>spline</scope><name>deriv</name></member>
+      <member refid="classspline_1a7ad0f993f9f64cbc12ba190912ffac7b" prot="public" virt="non-virtual"><scope>spline</scope><name>dump_points</name></member>
+      <member refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562a616c8d193727d6c1f9c00ae03895a2f5" prot="public" virt="non-virtual"><scope>spline</scope><name>first_deriv</name></member>
+      <member refid="classspline_1a7e13c846e69e3fb88791979b793a0cdfa4f354c1fde132173f9cd8fe6f327e2c7" prot="public" virt="non-virtual"><scope>spline</scope><name>linear_spline</name></member>
+      <member refid="classspline_1ab736d49fb0142f5a7e65720effcee609" prot="public" virt="non-virtual"><scope>spline</scope><name>load_points</name></member>
+      <member refid="classspline_1ad61c1f0dfdb15275fd48d48b88079780" prot="private" virt="non-virtual"><scope>spline</scope><name>m_force_linear_extrapolation</name></member>
+      <member refid="classspline_1a49bd02e8a8cd7875b090a867bc31cba4" prot="private" virt="non-virtual"><scope>spline</scope><name>m_left</name></member>
+      <member refid="classspline_1a2fcffa439aa94caf14380b99f279536f" prot="private" virt="non-virtual"><scope>spline</scope><name>m_left_value</name></member>
+      <member refid="classspline_1a35b09db6dc89706279d7a542cb540e02" prot="private" virt="non-virtual"><scope>spline</scope><name>m_right</name></member>
+      <member refid="classspline_1a900ebd61c9a3632f9549cafa13c28e64" prot="private" virt="non-virtual"><scope>spline</scope><name>m_right_value</name></member>
+      <member refid="classspline_1af8b6113b56686a9c0c4c432141194584" prot="private" virt="non-virtual"><scope>spline</scope><name>ma</name></member>
+      <member refid="classspline_1a95a8e16c2d68dc4b06c4e0901bc4bc47" prot="private" virt="non-virtual"><scope>spline</scope><name>mb</name></member>
+      <member refid="classspline_1a79faad47611d9134c8c4881bb8bbb4b9" prot="private" virt="non-virtual"><scope>spline</scope><name>mb0</name></member>
+      <member refid="classspline_1a4cc94d5b86a9506ac96d8bff06f662fe" prot="private" virt="non-virtual"><scope>spline</scope><name>mc</name></member>
+      <member refid="classspline_1a44dc33bac2328146277d206569201f18" prot="private" virt="non-virtual"><scope>spline</scope><name>mc0</name></member>
+      <member refid="classspline_1a77d44fd51ae3b60033e40404276c3f10" prot="private" virt="non-virtual"><scope>spline</scope><name>mx</name></member>
+      <member refid="classspline_1a68794bf7253274b6be88226985f9bef1" prot="private" virt="non-virtual"><scope>spline</scope><name>my</name></member>
+      <member refid="classspline_1a3b7fbcce23bfaed09502b87aed056148" prot="private" virt="non-virtual"><scope>spline</scope><name>n</name></member>
+      <member refid="classspline_1a7c7ebb0487a01c78e0eb4c35c8a3cc7f" prot="public" virt="non-virtual"><scope>spline</scope><name>operator()</name></member>
+      <member refid="classspline_1ab7eab7e186e987fce6a7709b869ff553" prot="public" virt="non-virtual"><scope>spline</scope><name>operator&lt;&lt;</name></member>
+      <member refid="classspline_1a2d82d6d639b6ecbc66b7a9829f6b0ee2" prot="public" virt="non-virtual"><scope>spline</scope><name>operator=</name></member>
+      <member refid="classspline_1a4e92a172f86289ee7171a07f1bdbf562acaa5265607dc952969444f6fdda1196c" prot="public" virt="non-virtual"><scope>spline</scope><name>second_deriv</name></member>
+      <member refid="classspline_1a77cf81573cb3b22fd00c0331c77c0635" prot="public" virt="non-virtual"><scope>spline</scope><name>set_boundary</name></member>
+      <member refid="classspline_1aae7cb5a22d03458718da8def5adf663c" prot="public" virt="non-virtual"><scope>spline</scope><name>set_points</name></member>
+      <member refid="classspline_1abc04226bf49bc27e1f9ea014d06ee478" prot="public" virt="non-virtual"><scope>spline</scope><name>spline</name></member>
+      <member refid="classspline_1a1538afb6be3ba889cf881ee69c110e41" prot="public" virt="non-virtual"><scope>spline</scope><name>spline</name></member>
+      <member refid="classspline_1a7e13c846e69e3fb88791979b793a0cdf" prot="public" virt="non-virtual"><scope>spline</scope><name>spline_type</name></member>
+      <member refid="classspline_1ab6ca25a1025a1e4c4f632e5a4497ad12" prot="public" virt="non-virtual"><scope>spline</scope><name>~spline</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

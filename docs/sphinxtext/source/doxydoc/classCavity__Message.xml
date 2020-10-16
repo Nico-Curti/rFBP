@@ -1,0 +1,647 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classCavity__Message" kind="class" language="C++" prot="public">
+    <compoundname>Cavity_Message</compoundname>
+    <includes refid="cavity__message_8h" local="no">cavity_message.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class Mag</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classCavity__Message_1a0a1c9ac75cf7d6f4c6fa6959a6cc136f" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Cavity_Message&lt; Mag &gt;::M</definition>
+        <argsstring></argsstring>
+        <name>M</name>
+        <briefdescription>
+<para>Input sample size. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="44" column="19" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1af17961b19120b3208a4d2c0818f01956" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Cavity_Message&lt; Mag &gt;::N</definition>
+        <argsstring></argsstring>
+        <name>N</name>
+        <briefdescription>
+<para>Input layers size. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="45" column="19" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1a5e8e03343edf943b0cf18d812832a5a5" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Cavity_Message&lt; Mag &gt;::K</definition>
+        <argsstring></argsstring>
+        <name>K</name>
+        <briefdescription>
+<para>Number of hidden layers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="46" column="19" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1ab84aecf4b63c996a44b92b8209f04e92" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Cavity_Message&lt; Mag &gt;::seed</definition>
+        <argsstring></argsstring>
+        <name>seed</name>
+        <briefdescription>
+<para>Random seed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="47" column="19" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1acdb2fd30b3d147b83f45e9391becbbf0" prot="public" static="no" mutable="no">
+        <type>MagVec3&lt; Mag &gt;</type>
+        <definition>MagVec3&lt; Mag &gt; Cavity_Message&lt; Mag &gt;::weights</definition>
+        <argsstring></argsstring>
+        <name>weights</name>
+        <briefdescription>
+<para>uw in the paper nomeclature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="48" column="12" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1a4e15e9479733ecf7144458be144d818f" prot="public" static="no" mutable="no">
+        <type>MagVec2&lt; Mag &gt;</type>
+        <definition>MagVec2&lt; Mag &gt; Cavity_Message&lt; Mag &gt;::m_star_j</definition>
+        <argsstring></argsstring>
+        <name>m_star_j</name>
+        <briefdescription>
+<para>ux in the paper nomeclature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="49" column="12" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1a9dbc5531a97f5447cabe86a8835a12ee" prot="public" static="no" mutable="no">
+        <type>MagVec2&lt; Mag &gt;</type>
+        <definition>MagVec2&lt; Mag &gt; Cavity_Message&lt; Mag &gt;::m_j_star</definition>
+        <argsstring></argsstring>
+        <name>m_j_star</name>
+        <briefdescription>
+<para>mw in the paper nomeclature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="50" column="12" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1a7321be7d1a50e7b174a9fdaa5b479344" prot="public" static="no" mutable="no">
+        <type>MagVec2&lt; Mag &gt;</type>
+        <definition>MagVec2&lt; Mag &gt; Cavity_Message&lt; Mag &gt;::m_in</definition>
+        <argsstring></argsstring>
+        <name>m_in</name>
+        <briefdescription>
+<para>mτ1 in the paper nomeclature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="51" column="12" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1a766453014f90061cf68c9e023a39aae9" prot="public" static="no" mutable="no">
+        <type>MagVec2&lt; Mag &gt;</type>
+        <definition>MagVec2&lt; Mag &gt; Cavity_Message&lt; Mag &gt;::m_no</definition>
+        <argsstring></argsstring>
+        <name>m_no</name>
+        <briefdescription>
+<para>Uτ1 in the paper nomeclature. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="52" column="12" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1aaed796fd04b844cb045a6fb19132caaf" prot="public" static="no" mutable="no">
+        <type>MagVec2&lt; Mag &gt;</type>
+        <definition>MagVec2&lt; Mag &gt; Cavity_Message&lt; Mag &gt;::m_ni</definition>
+        <argsstring></argsstring>
+        <name>m_ni</name>
+        <briefdescription>
+<para>uτ1 in the paper nomeclature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="53" column="12" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCavity__Message_1a86d9a00f123b90533602270401cf69c3" prot="public" static="no" mutable="no">
+        <type>MagVec&lt; Mag &gt;</type>
+        <definition>MagVec&lt; Mag &gt; Cavity_Message&lt; Mag &gt;::m_on</definition>
+        <argsstring></argsstring>
+        <name>m_on</name>
+        <briefdescription>
+<para>mτ2 in the paper nomeclature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="54" column="12" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCavity__Message_1a7bf541d0aa18197d59fdb7b884fd8a05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cavity_Message&lt; Mag &gt;::Cavity_Message</definition>
+        <argsstring>()</argsstring>
+        <name>Cavity_Message</name>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="62" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1afe6b144ba13acf2443d4f0cc8fead17c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cavity_Message&lt; Mag &gt;::Cavity_Message</definition>
+        <argsstring>(const std ::string &amp;filename, const bool &amp;bin)</argsstring>
+        <name>Cavity_Message</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>bin</declname>
+        </param>
+        <briefdescription>
+<para>Load messages from file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The input file must have a very precise format.<itemizedlist>
+<listitem><para>For the binary format we require a file with the following instructions:<itemizedlist>
+<listitem><para>N (long int)</para>
+</listitem><listitem><para>M (long int)</para>
+</listitem><listitem><para>K (long int)</para>
+</listitem><listitem><para>m_star_j (K * N, double)</para>
+</listitem><listitem><para>m_j_star (K * N, double)</para>
+</listitem><listitem><para>m_in (M * K, double)</para>
+</listitem><listitem><para>weights (M * K * N, double)</para>
+</listitem><listitem><para>m_no (M * K, double)</para>
+</listitem><listitem><para>m_on (M, double)</para>
+</listitem><listitem><para>m_ni (M * K, double)</para>
+</listitem></itemizedlist>
+</para>
+<para>All the double values are converted into the respective Mag format.</para>
+</listitem><listitem><para>For the ascii version the required file must have the following format:</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting filename=".csv"><codeline><highlight class="normal">fmt:<sp/>plain</highlight></codeline>
+<codeline><highlight class="normal">N,M,K:<sp/>`N`<sp/>`M`<sp/>`K`</highlight></codeline>
+</programlisting></para>
+<para>where <computeroutput>N</computeroutput> represents the numerical value of the N parameter. This header file is followed by ravel version of the required arrays (m_star_j, m_j_star, m_in, weights, m_no, m_on, m_ni) one per each line, divided by white spaces (or <computeroutput>\t</computeroutput>).</para>
+<para><simplesect kind="note"><para>A valid file can be generated by the function <computeroutput>save_messages</computeroutput>.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input filename </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>switch between binary/ascii files (default = false) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="103" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1a40073bed08980699885c33ee0cfe4143" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cavity_Message&lt; Mag &gt;::Cavity_Message</definition>
+        <argsstring>(const long int &amp;m, const long int &amp;n, const long int &amp;k, const double &amp;x, const int &amp;start)</argsstring>
+        <name>Cavity_Message</name>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>const long int &amp;</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const int &amp;</type>
+          <declname>start</declname>
+        </param>
+        <briefdescription>
+<para>Generate random messages. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The cavity_messages&apos; arrays are generated according a uniform distribution. The [0, 1] range is converted using the formula</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="normal">x<sp/>*<sp/>(2.<sp/>*<sp/>dist()<sp/>-<sp/>1.)</highlight></codeline>
+</programlisting></para>
+<para>where <computeroutput>dist</computeroutput> represents the uniform random generator. All the values are converted to Mag types.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of samples </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of probes </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of hidden layers </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>initial value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>random seed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="125" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1a53d2d141fd0b28a345f6e9aebcf4de66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cavity_Message&lt; Mag &gt;::Cavity_Message</definition>
+        <argsstring>(const Cavity_Message&lt; Mag &gt; &amp;m)</argsstring>
+        <name>Cavity_Message</name>
+        <param>
+          <type>const <ref refid="classCavity__Message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Copy constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The copy constructor provides a deep copy of the object, i.e. all the arrays are copied and not moved.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classCavity__Message" kindref="compound">Cavity_Message</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="138" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1acf780941ced380728eed1892cdffbaaa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classCavity__Message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+        <definition>Cavity_Message&lt; Mag &gt;&amp; Cavity_Message&lt; Mag &gt;::operator=</definition>
+        <argsstring>(const Cavity_Message&lt; Mag &gt; &amp;m)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classCavity__Message" kindref="compound">Cavity_Message</ref>&lt; Mag &gt; &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Copy operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The operator performs a deep copy of the object and if there are buffers already allocated, the operatore deletes them and then re-allocates an appropriated portion of memory.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classCavity__Message" kindref="compound">Cavity_Message</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="150" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1a0c7a24ab65c139c33d7d16bd977f4ce1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cavity_Message&lt; Mag &gt;::~Cavity_Message</definition>
+        <argsstring>()</argsstring>
+        <name>~Cavity_Message</name>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Completely delete the object and release the memory of the arrays. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="160" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1aef61a20547385cf7a61978a5f32f0402" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>long int **</type>
+        <definition>long int** Cavity_Message&lt; Mag &gt;::get_weights</definition>
+        <argsstring>()</argsstring>
+        <name>get_weights</name>
+        <briefdescription>
+<para>Return weights matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The weights are converted from double to long int, using the sign of each element, i.e.</para>
+<para><programlisting filename=".cpp"><codeline><highlight class="normal">1L<sp/>-<sp/>2L<sp/>*<sp/><ref refid="namespacemag_1aa5c6ba535495d360f9262dec5cdc3e8a" kindref="member">signbit</ref>(x)</highlight></codeline>
+</programlisting></para>
+<para>This function can be used as getter member for the weight matrix used to predict new patterns.</para>
+<para><simplesect kind="note"><para>The weight matrix used in the prediction is the <computeroutput>m_j_star</computeroutput> array! </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="180" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1a2c0c127e725066ad03e1a70cf7cedef5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cavity_Message&lt; Mag &gt;::save_weights</definition>
+        <argsstring>(const std ::string &amp;filename, Params&lt; Mag &gt; &amp;parameters)</argsstring>
+        <name>save_weights</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="classParams" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+<para>Save weight matrix to file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Save the weight matrix to file and the related training parameters. This function provides a valid file for the function <computeroutput>read_weights</computeroutput> in ascii format. Only the weight matrix, i.e. <computeroutput>m_j_star</computeroutput>, is saved, since it is the only informative array for the prediction of new patterns. The training parameters are saved as header in the file.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output filename </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classParams" kindref="compound">Params</ref> object</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The binirized format of the weight matrix, ready for the prediction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="197" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1a2f39f06b1e86c09ec750ac9db0321b8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cavity_Message&lt; Mag &gt;::save_weights</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>save_weights</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Save weight matrix to file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Save <bold>only</bold> the weight matrix to file. This function provides a valid file for the function <computeroutput>read_weights</computeroutput> in binary format. Only the weight matrix, i.e. <computeroutput>m_j_star</computeroutput>, is saved, since it is the only informative array for the prediction of new patterns. The weight values are saved as double values and thus before use them to predict new values, it is necessary to apply the &quot;get_weights&quot; function.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output filename </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="212" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1a0c674ee13a874f15d42cc1d1469f82f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cavity_Message&lt; Mag &gt;::read_weights</definition>
+        <argsstring>(const std ::string &amp;filename, const bool &amp;bin)</argsstring>
+        <name>read_weights</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type>const bool &amp;</type>
+          <declname>bin</declname>
+        </param>
+        <briefdescription>
+<para>Load weight matrix from file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function read the weight matrix from a binary or ascii file. Its usage is in relation to the <computeroutput>save_weights</computeroutput> member function.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input filename </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>switch between binary/ascii fmt </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="224" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1aa9ea9a888cf664ddc8cb7e8c0c1c9ec4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cavity_Message&lt; Mag &gt;::save_messages</definition>
+        <argsstring>(const std ::string &amp;filename, Params&lt; Mag &gt; &amp;parameters)</argsstring>
+        <name>save_messages</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <param>
+          <type><ref refid="classParams" kindref="compound">Params</ref>&lt; Mag &gt; &amp;</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+<para>Save all the messages to file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function dump the complete object to file with also the parameters used for the training section, according to the format required by the constructor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output filename </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parameters</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classParams" kindref="compound">Params</ref> object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="237" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classCavity__Message_1a6b742428680a50c5f0af37de7f336fda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cavity_Message&lt; Mag &gt;::save_messages</definition>
+        <argsstring>(const std ::string &amp;filename)</argsstring>
+        <name>save_messages</name>
+        <param>
+          <type>const std ::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+<para>Save all the messages to a <bold>binary</bold> file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function dump the complete object to <bold>binary</bold> file, according to the format required by the constructor.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>filename</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>output filename </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="248" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Abstract type used to store weights and messages of rFBP algorithm. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The initial messages can be loaded from file and the resulting ones can be saved to file using the appropriated member functions.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>Mag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>magnetization chosen for training </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="/home/nico/Code/rFBP/include/cavity_message.h" line="38" column="1" bodyfile="/home/nico/Code/rFBP/include/cavity_message.h" bodystart="37" bodyend="250"/>
+    <listofallmembers>
+      <member refid="classCavity__Message_1a7bf541d0aa18197d59fdb7b884fd8a05" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>Cavity_Message</name></member>
+      <member refid="classCavity__Message_1afe6b144ba13acf2443d4f0cc8fead17c" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>Cavity_Message</name></member>
+      <member refid="classCavity__Message_1a40073bed08980699885c33ee0cfe4143" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>Cavity_Message</name></member>
+      <member refid="classCavity__Message_1a53d2d141fd0b28a345f6e9aebcf4de66" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>Cavity_Message</name></member>
+      <member refid="classCavity__Message_1aef61a20547385cf7a61978a5f32f0402" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>get_weights</name></member>
+      <member refid="classCavity__Message_1a5e8e03343edf943b0cf18d812832a5a5" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>K</name></member>
+      <member refid="classCavity__Message_1a0a1c9ac75cf7d6f4c6fa6959a6cc136f" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>M</name></member>
+      <member refid="classCavity__Message_1a7321be7d1a50e7b174a9fdaa5b479344" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>m_in</name></member>
+      <member refid="classCavity__Message_1a9dbc5531a97f5447cabe86a8835a12ee" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>m_j_star</name></member>
+      <member refid="classCavity__Message_1aaed796fd04b844cb045a6fb19132caaf" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>m_ni</name></member>
+      <member refid="classCavity__Message_1a766453014f90061cf68c9e023a39aae9" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>m_no</name></member>
+      <member refid="classCavity__Message_1a86d9a00f123b90533602270401cf69c3" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>m_on</name></member>
+      <member refid="classCavity__Message_1a4e15e9479733ecf7144458be144d818f" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>m_star_j</name></member>
+      <member refid="classCavity__Message_1af17961b19120b3208a4d2c0818f01956" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>N</name></member>
+      <member refid="classCavity__Message_1acf780941ced380728eed1892cdffbaaa" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>operator=</name></member>
+      <member refid="classCavity__Message_1a0c674ee13a874f15d42cc1d1469f82f3" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>read_weights</name></member>
+      <member refid="classCavity__Message_1aa9ea9a888cf664ddc8cb7e8c0c1c9ec4" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>save_messages</name></member>
+      <member refid="classCavity__Message_1a6b742428680a50c5f0af37de7f336fda" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>save_messages</name></member>
+      <member refid="classCavity__Message_1a2c0c127e725066ad03e1a70cf7cedef5" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>save_weights</name></member>
+      <member refid="classCavity__Message_1a2f39f06b1e86c09ec750ac9db0321b8d" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>save_weights</name></member>
+      <member refid="classCavity__Message_1ab84aecf4b63c996a44b92b8209f04e92" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>seed</name></member>
+      <member refid="classCavity__Message_1acdb2fd30b3d147b83f45e9391becbbf0" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>weights</name></member>
+      <member refid="classCavity__Message_1a0c7a24ab65c139c33d7d16bd977f4ce1" prot="public" virt="non-virtual"><scope>Cavity_Message</scope><name>~Cavity_Message</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
