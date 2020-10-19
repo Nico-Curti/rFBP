@@ -191,7 +191,7 @@ else:
 
 # parse version variables and add them to command line as definitions
 Version = about['__version__'].split('.')
-URL = 'https://github.com/Nico-Curti/rFBP/archive/v{}.tar.gz'.format(about['__version__'])
+URL = 'https://github.com/Nico-Curti/rFBP'#/archive/v{}.tar.gz'.format(about['__version__'])
 
 # Read dependecies graph
 dependencies = read_dependencies_build(DEPENDENCIES_FILENAME)
@@ -283,7 +283,7 @@ setup(
   python_requires               = REQUIRES_PYTHON,
   install_requires              = get_requires(REQUIREMENTS_FILENAME),
   url                           = URL,
-  download_url                  = URL,
+  download_url                  = '{}/archive/v{}.tar.gz'.format(URL, about['__version__']),
   keywords                      = KEYWORDS,
   setup_requires                = [# Setuptools 18.0 properly handles Cython extensions.
                                    'setuptools>=18.0',
@@ -299,9 +299,17 @@ setup(
   classifiers                   = [
                                     # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
                                     #'License :: OSI Approved :: GPL License',
+                                    'Natural Language :: English',
+                                    'Operating System :: MacOS :: MacOS X',
+                                    'Operating System :: POSIX',
+                                    'Operating System :: POSIX :: Linux',
+                                    'Operating System :: Microsoft :: Windows',
                                     'Programming Language :: Python',
                                     'Programming Language :: Python :: 3',
+                                    'Programming Language :: Python :: 3.5',
                                     'Programming Language :: Python :: 3.6',
+                                    'Programming Language :: Python :: 3.7',
+                                    'Programming Language :: Python :: 3.8',
                                     'Programming Language :: Python :: Implementation :: CPython',
                                     'Programming Language :: Python :: Implementation :: PyPy'
                                   ],
