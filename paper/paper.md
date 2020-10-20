@@ -45,9 +45,17 @@ This library has already been widely used to successfully predict *source attrib
 That study was trying to predict the animal origin for an infectious bacterial disease inside the H2020 European project COMPARE (Grant agreement ID: 643476).
 A full description of the pipeline used in this study is available in the abstract and slides provided into the [publications](https://github.com/Nico-Curti/rFBP/blob/master/publications) folder of the project.
 
+Algorithm application on real data:
+
+- *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/conference/ccs19.pdf), Conference paper
+
+- *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/presentation/ccs19.pdf), Conference slides
+
+# Statement of need
+
 The learning problem under ill-posed conditions can be tackled through statistical mechanic models joined with the so-called Large Deviation Theory [@parisi2007mean; @Baldassi_2015; @Monasson_1995; @Zecchina_1995; @Baldassi_2016_local].
 In general, the learning problem can be split into two sub-parts: the classification problem and the generalization one.
-The first aims to completely store a pattern sample, i.e. a prior known ensemble of input-output associations (*perfect learning*, Baldassi et al.) [@Baldassi_2016; @Krauth1989StorageCO].
+The first aims to completely store a pattern sample, i.e., a prior known ensemble of input-output associations (*perfect learning*, Baldassi et al.) [@Baldassi_2016; @Krauth1989StorageCO].
 The second one corresponds to compute a discriminant function based on a set of features of the input which guarantees a unique association of a pattern.
 
 From a statistical point-of-view many Neural Network models have been proposed and spin-glass models have emerged as the most promising ones.
@@ -61,21 +69,16 @@ In this way each neuron is identified by a spin and so only binary weights (-1 a
 The learning rule which controls the weight updates is given by the Belief Propagation method.
 
 A first implementation of the algorithm was proposed in the original paper [@Baldassi_2016] jointly with an open-source Github repository.
-The original version of the code was written in `Julia` language and despite it is a quite efficient implementation the `Julia` programming language stays on difficult and far from many users.
+The original version of the algorithm was written in [`Julia` language](https://github.com/carlobaldassi/BinaryCommitteeMachineFBP.jl).
+`Julia` is certainly an efficient programming language but it is not part of most machine learning developers' tool of choice.
 To broaden the scope and use of the method, a `C++` implementation was developed with a joint `Cython` wrap for `Python` users.
 The `C++` language guarantees better computational performances against the `Julia` implementation and the `Python` version enhances its usability.
-This implementation is optimized for parallel computing and is endowed with a custom `C++` library called [`Scorer`](https://github.com/Nico-Curti/scorer) for further details), which is able to compute a large number of statistical measurements based on a hierarchical graph scheme.
+This implementation is optimized for parallel computing and is endowed with a custom `C++` library called [`Scorer`](https://github.com/Nico-Curti/scorer), which is able to compute a large number of statistical measurements based on a hierarchical graph scheme.
 With this optimized implementation and its [`scikit-learn`](https://github.com/scikit-learn/scikit-learn) compatibility we try to encourage researchers to approach these alternative algorithms and to use them more frequently on real context.
 
 As the `Julia` implementation also the `C++` one provides the entire `rFBP` framework in a single library callable via a command line interface.
 The library widely uses template syntaxes to perform dynamic specialization of the methods between two magnetization versions of the algorithm.
 The main object categories needed by the algorithm are wrapped in handy `C++` objects easy to use also from the `Python` interface.
-
-Algorithm application on real data:
-
-- *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/conference/ccs19.pdf), Conference paper
-
-- *Classification of Genome Wide Association data by Belief Propagation Neural network*, [CCS Italy 2019](https://github.com/Nico-Curti/rFBP/blob/master/publications/presentation/ccs19.pdf), Conference slides
 
 # Acknowledgments
 
