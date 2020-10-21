@@ -138,6 +138,7 @@ venv.bak/
 *.egg-info
 ReplicatedFocusingBeliefPropagation/[Ss]ource/*.c*
 ReplicatedFocusingBeliefPropagation/[Ss]ource/*.h
+ReplicatedFocusingBeliefPropagation/__version__.py
 __pycache__/
 [Dd]ata/
 [Dd]ist/

@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.9.0)
 # rFBP Version
 set (RFBP_MAJOR    1)
 set (RFBP_MINOR    0)
-set (RFBP_REVISION 3)
+set (RFBP_REVISION 4)
 set (RFBP_VERSION ${RFBP_MAJOR}.${RFBP_MINOR}.${RFBP_REVISION})
 
 project (rFBP LANGUAGES CXX VERSION ${RFBP_VERSION} DESCRIPTION "Replicated Focusing Belief Propagation")
@@ -184,6 +184,7 @@ endif ()
 set(rFBP_INSTALL_INCLUDE_DIR ${INSTALL_INCLUDE_DIR})
 
 configure_file(${CMAKE_SOURCE_DIR}/rFBP.pc.in ${CMAKE_SOURCE_DIR}/rFBP.pc @ONLY)
+configure_file(${PYC_DIR}/__version__.py.in ${PYC_DIR}/__version__.py @ONLY)
 message(STATUS "Pkg-config generated")
 
 #################################################################
